@@ -6,8 +6,9 @@
 #menu {
 	background: #141C44;
 	height: 120px;
-	padding-left: 100px;
+	padding-left: 60px;
 	border-radius: 0px;
+
 }
 #menu ul, #menu li {
 	margin: 0 auto;
@@ -25,7 +26,7 @@
 }
 #menu a {
 	display: block;
-	line-height: 80px;
+	line-height: 100px;
 	padding: 0px 40px;
 	text-decoration: none;
 	color: #FFFFFF;
@@ -51,16 +52,16 @@
 }
 #menu label {
 	display: none;
-	line-height: 80px;
+	line-height: 0px;
 	text-align: center;
-	position: absolute;
+	position: relative;
 	left: 30px
 }
 #menu label:before {
 	font-size: 1.6em;
 	color: #FFFFFF;
 	content: "\2261"; 
-	margin-left: 20px;
+	margin-left: 100px;
 }
 #menu ul.sub-menus{
 	left:40px;
@@ -86,12 +87,50 @@
 	font-size: 18px;
 }
 #menu li:hover ul.sub-menus {
-	display: block
+	display: block;
+	border-radius: 5px;
 }
 #menu ul.sub-menus a:hover{
 	background: #636570;
 	color: #AAFFFF;
 }
+
+#login{
+	display: inline-block;
+	padding-right: 40px;
+	text-align: right;
+}
+
+#cadastroescola{
+	position: relative;
+    margin: 0;
+    padding: 0;
+	background-color: #f56d44;
+	border-radius: 15px;
+	left: 10%;
+	
+	
+}
+#cadastroescola:hover{
+	background-color: #c43c12;
+}
+
+#login, #cadastroescola{
+	position: relative;
+	left: 100%;
+	align-items: right;
+}
+
+#logo{
+	position: relative;
+	width: 200px;
+	top: 28px;
+	padding-left: 0px;
+	
+}
+
+
+
 @media screen and (max-width: 800px){
 	#menu {position:relative}
 	#menu ul {background:#141C44;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
@@ -105,40 +144,4 @@
 	#menu input:checked ~ ul {display:block}
 }
 
-
-
-
-/* .botao{
-    position: absolute;
-	margin: 30;
-    right: 300px;
-    width: 150px;
-    height: 12px;
 	
-    }
-#cadastroescola{
-	background-color: #f56d44;
-	border-radius: 10px;
-	border: 10px;
-	border-color: #f56d44;
-	border-top: #f56d44;
-	border-left: #f56d44;
-	border-bottom:#f56d44;
-	border-right: #f56d44;
-	width: 135px;
-	font-size: 18px;
-	font-style: none;
-	width: 191px;
-	height: 34px;
-	padding: 2px 2px 2px 2px;
-	border-radius: 3px;
-	background-color: #f56d44;
-	box-sizing: border-box;
-	font-family: "Poppins SemiBold", "Poppins", sans-serif;
-	font-weight: 500;
-	color: #ffffff;
-	text-align: center;
-	line-height: 15px;
-
-}
-	 */

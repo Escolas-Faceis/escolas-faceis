@@ -8,8 +8,8 @@ router.get('/', function(req, res) {
 router.get('/cadastro-escola', function(req, res) {
     res.render('pages/cadastro-escola');
 });
-router.get('/encontre-escola', function(req, res) {
-    res.render('pages/encontre-escola');
+router.get('/encontre-escolas', function(req, res) {
+    res.render('pages/encontre-escolas');
 });
 router.get('/contato', function(req, res) {
     res.render('pages/contato');
@@ -47,5 +47,13 @@ router.get('/redefinicao-senha', function(req, res) {
 router.get('/mais-filtros', function(req, res) {
     res.render('pages/mais-filtros');
 });
+router.get('/login', function(req, res) {
+    res.render('pages/login');
+});
+
+router.get('/navbar', function(req, res) {
+    res.render('partials/navbar');
+});
+
 
 module.exports = router;
