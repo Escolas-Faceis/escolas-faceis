@@ -1,3 +1,5 @@
+
+
 .nome-escola{
     font-size: 40px;
     position: absolute;
@@ -54,7 +56,6 @@
      display: block;
      position: relative;
      height: 350px;
-     width: 40%;
      margin: auto;
      top: 120px;
      position: relative;
@@ -69,8 +70,7 @@
  
  .slider img{
      margin: auto;
-     height: 350px;
-     width: 500px;
+
      vertical-align: top;
      border-radius: 15px;
      transition: 2s;
