@@ -19,10 +19,13 @@
 #menu ul {
 	width: 100%;
 	text-align: left;
+	align-items: center; 
+    justify-content: space-between;
 }
 #menu li {
 	display: inline-block;
 	position: relative;
+	margin:0	
 }
 #menu a {
 	display: block;
@@ -101,25 +104,44 @@
 	text-align: right;
 }
 
-#cadastroescola{
-	position: relative;
-    margin: 0;
-    padding: 0;
-	background-color: #f56d44;
-	border-radius: 15px;
-	left: 10%;
-	
-	
+.cades-reset{
+	height: auto;
+	width: auto;
+	display: flexbox;
 }
-#cadastroescola:hover{
-	background-color: #c43c12;
+.cades-reset:hover{
+	color: inherit;
 }
 
-#login, #cadastroescola{
-	position: relative;
-	left: 100%;
-	align-items: right;
+.cades {
+    display: inline-block;
+    background-color: #f56d44; 
+    color: #FFFFFF; 
+    border: none;
+    border-radius: 5px; 
+    font-size: 18px; 
+    text-align: center;
+    text-decoration: none; 
+    cursor: pointer;
+    margin-left: auto; 
+    margin-right: 20px; 
+	
+	
 }
+.cades:hover{
+	background-color: #d43200;
+}
+
+
+/* Certifique-se de que o botão está posicionado corretamente */
+#menu li {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+}
+
+
+
 
 #logo{
 	position: relative;

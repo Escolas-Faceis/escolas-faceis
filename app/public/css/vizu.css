@@ -9,7 +9,8 @@
 @media screen and (min-width:1280px ){
 
     .short-prof{
-        margin: 2% 10% ;
+        margin: 2% auto ;
+        width: 45%;
         padding: 1% 5%;
         position: relative;
         display: flex; 
@@ -17,17 +18,20 @@
         border-radius: 15px;
         background-color: white;
         z-index: 1; 
+        align-content: center;
     }
     
     .logo{
-    
-        position: relative;
+        
+        position: static;
         width: 180px;
         border-radius: 15px;
-        box-sizing: border-box;
+        margin-left: -22%;
+        margin-top: 10%;
     }
     
     .info{
+        margin-top: 1%;
         flex: 1; /* Permite que a seção de informações ocupe o espaço restante */
         padding-left: 20px; /* Adiciona espaço à esquerda da imagem */
         font-family: "Poppins", sans-serif;
@@ -62,11 +66,14 @@
     }
     
     .EI{
-        background-color: hsl(7, 100%, 73%);
+        background-color:  #ff7184;
     }
     
     .EFI{
-        background-color: hsl(41, 100%, 72%);
+        background-color: #a765e6;
+    }
+    .EFII{
+        background-color: #22ddb5;
     }
     
     .TEC{
@@ -92,14 +99,14 @@
     .button {
     
         float:inline-end;
-    
+        position: static;
         border: 2px solid #a03616;
         color: #812205;
         background-color: #f56d44;
         border-radius: 5px;
         font-size: 19px;
         font-weight:540;
-        margin-top: -5%;
+        
         padding: 0.23rem;
       }
       .button:hover{
