@@ -6,7 +6,7 @@
 #menu {
 	background: #141C44;
 	height: 120px;
-	padding-left: 60px;
+	padding-left: 3%;
 	border-radius: 0px;
 
 }
@@ -29,7 +29,7 @@
 }
 #menu a {
 	display: block;
-	line-height: 100px;
+	line-height: 50px;
 	padding: 0px 40px;
 	text-decoration: none;
 	color: #FFFFFF;
@@ -41,8 +41,8 @@
 	margin-left: 10px;
 }
 #menu li a:hover {
-	color: #AAFFFF;
-	background: #141C44;
+	color: #fff6d8;
+
 }
 #menu input {
 	display: none;
@@ -67,17 +67,19 @@
 	margin-left: 100px;
 }
 #menu ul.sub-menus{
+	list-style-type: disc;
 	left:40px;
-	top:60px;
+	top:40px;
 	height: auto;
 	overflow: hidden;
-	width: 300px;
+	width: 110%;
 	background: #636570;
 	position: absolute;
 	z-index: 99;
 	display: none;
 	border-radius: 5px;
 	font-size: 16px;
+	padding: 7% 0;
 }
 #menu ul.sub-menus li {
 	position: relative;
@@ -85,6 +87,7 @@
 	width: 100%;
 }
 #menu ul.sub-menus a {
+	
 	padding-top: 0%;
 	color: #FFFFFF;
 	font-size: 18px;
@@ -95,23 +98,18 @@
 }
 #menu ul.sub-menus a:hover{
 	background: #636570;
-	color: #AAFFFF;
+	color: #ccdbfc;
 }
 
 #login{
 	display: inline-block;
 	padding-right: 40px;
 	text-align: right;
+	/* border: 1px solid white; */
+	border-radius: 15px;
+
 }
 
-.cades-reset{
-	height: auto;
-	width: auto;
-	display: flexbox;
-}
-.cades-reset:hover{
-	color: inherit;
-}
 
 .cades {
     display: inline-block;
@@ -124,12 +122,20 @@
     text-decoration: none; 
     cursor: pointer;
     margin-left: auto; 
-    margin-right: 20px; 
-	
+    margin-right: 20px;
+	padding: 0;
+	margin-left: 600px;
 	
 }
 .cades:hover{
-	background-color: #d43200;
+	background-color: #e04c1f;
+}
+.F{
+	display: flex;
+	align-items: end;
+	justify-content: end;
+	justify-items: end;
+	
 }
 
 

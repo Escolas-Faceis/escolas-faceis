@@ -111,7 +111,13 @@
     font-family: "Poppins", sans-serif;
     line-height:60px;
     left: 20%;
+    list-style:disc;
+    list-style-type:square;
+    
 }
+li::marker {
+    color: #f56d44;
+  }
 #imgpequena{
     position:relative ;
     top: 1280px;

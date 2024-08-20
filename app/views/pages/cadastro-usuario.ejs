@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastro-usuario.css">
     <title> Modelo App Node </title>
 </head>
 
@@ -12,8 +13,47 @@
     <%- include('../partials/navbar'); %>
 
 
-   CADASTRO ESCOLA
+    <main id="form_space">
+
+        <section id="form">
+            <form action="#">
+
+                <p>Nome</p>
+                <input type="text" id="name">
+
+                <p>Email</p>
+                <input type="text" id="email">
+
+                <p>Número de Telefone</p>
+                <input type="text" id="phonenumber">
+
+                <p>Senha</p>
+                <input type="text" id="password">
+
+                <p>Confirmação de Senha</p>
+                <input type="text" id="repeatpassword">
+                <div>
+                <input type="checkbox" id="politica">
+                <label for="politica">Concordo com a política de privacidade</label>
+                <p></p>
+                <input type="checkbox" id="novidades">
+                <label for="novidades">Desejo receber as novidades do site por e-mail</label>
+                <p>
+                </div>
+            
+            <section id="login">
+            <input type="submit" id="login_button" value="CRIAR CONTA" />
+            </section>
+
+            </form>
+        </section>
+
+        <section id="texto_lateral">
+            <img src="imagem/cadastro_img.png">
+        </section>
+    </main>
+
 
 </body>
-<%- include('../partials/footer'); %>
+
 </html>
