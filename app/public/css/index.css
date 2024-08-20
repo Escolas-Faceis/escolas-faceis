@@ -6,6 +6,7 @@
 #imagem{
     position: absolute;
     width: 100%;
+    display: block;
 }
 
 #texto{
@@ -27,8 +28,10 @@
     top:480px;
 
 }
+
 .imagem-caixa{
     position: relative;
+    
 }
 .caixa1{
     position: absolute;
@@ -46,6 +49,7 @@
  
 
 } 
+
 
 ::-webkit-input-placeholder {
     color:white;

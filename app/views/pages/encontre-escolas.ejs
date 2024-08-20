@@ -13,11 +13,12 @@
 <body>
     <%- include('../partials/navbar'); %>
 
+    <%- include('../partials/search-bar'); %>
 <!-- Barra de pesquisa-->
 
     <!-- <section class="search-bar">
-        <input type="text" id="nome-escola-search" name="nome-escola-search" placeholder="Nome da Escola">
-        <select name="UF" id="Região">
+        <input type="text" id="nome-escola-search" name="nome-escola-search" placeholder="Nome da Escola" class="A">
+        <select name="UF" id="regiao-search" class="A">
             <ul>
                 <option value="regiao"> Região </option>
                 <option value="RNO"> Região Norte</option>
@@ -27,7 +28,7 @@
                 <option value="RSU"> Região Sul</option>
 
             </ul>
-            <input type="text" id="cidade-search" name="cidade-search" placeholder="Cidade">
+            <input type="text" id="cidade-search" name="cidade-search" placeholder="Cidade" class="A">
         </select>
     </section> -->
 
@@ -40,6 +41,7 @@
             <aside class="niveis">
                 <h5 class="escolaridade EM" >   Ensino Médio</h5>
                 <h5 class="escolaridade TEC" > Cursos Técnicos</h5>
+                <h5 class="escolaridade CSO"> Cursos Extracurriculares</h5>
             </aside>
 
             <section class="inf">
@@ -53,81 +55,83 @@
 
     <!--Segundo Perfil-->
     <section class="short-prof" id="eded">
-        <figure><img src="imagem/cavazza.jpeg" alt="logo da escola" class="logo"></figure>
+        <figure><img src="imagem/fieb.png" alt="logo da escola" class="logo"></figure>
         <section class="info">
-            <h1 class="nome-escola"> EMEF Armando Cavazza </h1>
+            <h1 class="nome-escola"> EMEI Armando de Arruda Pereira </h1>
 
             <aside class="niveis">
-                <h5 class="escolaridade EFI" >   Ensino Funadamental I</h5>
-                <h5 class="escolaridade EFII" >   Ensino Funadamental II</h5>
+                <h5 class="escolaridade EI" > Ensino Infantil</h5>
             </aside>
 
             <section class="inf">
-            <p class="localidade "> Engenho Novo - Barueri, SP</p>
+            <p class="localidade "> Praça da República - São Paulo, SP</p>
             <p class="instituicao ">Pública</p></section>
-            <p class="ingresso"> ‎</p> 
-            
+            <p class="ingresso"> </p>
 
             <button type="submit" class="button"> <a href="">VER PERFIL</a></button>
         </section>
     </section>
     <!--Terceiro Perfil-->
     <section class="short-prof" id="eded">
-        <figure><img src="imagem/emef.png" alt="logo da escola" class="logo"></figure>
+        <figure><img src="imagem/fieb.png" alt="logo da escola" class="logo"></figure>
         <section class="info">
-            <h1 class="nome-escola"> EMEF Onofra da Silva </h1>
+            <h1 class="nome-escola"> Escola Morumbi Alphaville </h1>
 
             <aside class="niveis">
-                <h5 class="escolaridade EFI" >   Ensino Fundamental I</h5>
-                <h5 class="escolaridade EFII" > Ensino Fundamental II</h5>
+                <h5 class="escolaridade EM" >   Ensino Infantil</h5>
+                <h5 class="escolaridade TEC" > Cursos Técnicos</h5>
+                <h5 class="escolaridade CSO"> Cursos Extracurriculares</h5>
             </aside>
 
             <section class="inf">
-            <p class="localidade "> Parque Viana - Barueri, SP</p>
-            <p class="instituicao ">Pública</p></section>
-            <p class="ingresso"> ‎</p> 
+            <p class="localidade "> Jardim Belval - Barueri, SP</p>
+            <p class="instituicao ">FIEB</p></section>
+            <p class="ingresso"> Vestibulinho 2024</p>
 
             <button type="submit" class="button"> <a href="">VER PERFIL</a></button>
         </section>
     </section>
     <!--Quarto Perfil-->
     <section class="short-prof" id="eded">
-        <figure><img src="imagem/emef.png" alt="logo da escola" class="logo"></figure>
+        <figure><img src="imagem/fieb.png" alt="logo da escola" class="logo"></figure>
         <section class="info">
-            <h1 class="nome-escola"> EMEI Armando de Arruda Pereira </h1>
+            <h1 class="nome-escola"> FIEB - ITB Brasílio Flores de Azevedo </h1>
 
             <aside class="niveis">
-                <h5 class="escolaridade EI" >   Ensino Infantil</h5>
+                <h5 class="escolaridade EM" >   Ensino Médio</h5>
+                <h5 class="escolaridade TEC" > Cursos Técnicos</h5>
+                <h5 class="escolaridade CSO"> Cursos Extracurriculares</h5>
             </aside>
 
             <section class="inf">
-            <p class="localidade "> Praça da República - Barueri, SP</p>
-            <p class="instituicao ">Pública</p></section>
-            <p class="ingresso"> ‎</p> 
+            <p class="localidade "> Jardim Belval - Barueri, SP</p>
+            <p class="instituicao ">FIEB</p></section>
+            <p class="ingresso"> Vestibulinho 2024</p>
 
             <button type="submit" class="button"> <a href="">VER PERFIL</a></button>
         </section>
     </section>
-    <!-- quinta escola -->
-    <section class="short-prof" id="eded">
-        <figure><img src="imagem/saopaulo.png" alt="logo da escola" class="logo"></figure>
+
+     <!--Quinto Perfil-->
+     <section class="short-prof" id="eded">
+        <figure><img src="imagem/emef.png" alt="logo da escola" class="logo"></figure>
         <section class="info">
-            <h1 class="nome-escola"> EMEF José Bonifácio </h1>
+            <h1 class="nome-escola"> EMEF Armando Cavazza </h1>
 
             <aside class="niveis">
                 <h5 class="escolaridade EFI" >   Ensino Fundamental I</h5>
-                <h5 class="escolaridade EFII" > Ensino Fundamental II</h5>
+                <h5 class="escolaridade EFII" > Cursos Fundamental II</h5>
+               
             </aside>
 
             <section class="inf">
-            <p class="localidade "> Cidade Patriarca - São Paulo, SP</p>
+            <p class="localidade "> Engenho Novo - Barueri, SP</p>
             <p class="instituicao ">Pública</p></section>
-            <p class="ingresso"> ‎</p> 
+            <p class="ingresso"> ‎</p>
 
             <button type="submit" class="button"> <a href="">VER PERFIL</a></button>
         </section>
     </section>
-
 
     <section id="blank"> <br><br><br><br><br><br><br><br></section>
 
