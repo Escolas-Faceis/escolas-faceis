@@ -1,19 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Modelo App Node </title>
+    <title>Contato</title>
+    <link rel="stylesheet" href="assets/css/estilo.css">
 </head>
-
 <body>
-    <%- include('../partials/navbar'); %>
+        <main id="form_space">
 
+            <section id="lateral_contato">
+                <p >Tem alguma dúvida, encontrou algum erro? Entre em contato conosco pelo e-mail ou mande uma mensagem</p>
+                <section id="email_contato">
+                    <img src="assets/img/normal_u3.png"> <a>escolas.faceis@suporte.com</a>
+                </section>
 
-   CADASTRO ESCOLA
+            </section>
+                <img src="assets/img/contato.png">
+            <section >
+                
+            </section>
 
+        </main>
+
+        <section id="centralizar">
+            <section id="inserir_email_contato">
+            <p id="laranja">Seu melhor e-mail</p>
+            <input type="text" id="email_contato_input">
+
+            <section id="inserir_msg">
+                <textarea id="mensagem_contato" placeholder="Escreva sua mensagem aqui..."></textarea>
+                
+            </section>
+            <section id="alinhar_direita">
+            <button id="orange_button">ENVIAR</button>
+            </section>
+            </section>
+            
+        </section>
+
+        <%- include('../partials/footer'); %>
 </body>
-<%- include('../partials/footer'); %>
 </html>
