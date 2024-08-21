@@ -5,16 +5,210 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Modelo App Node </title>
+    <title> Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script>
+        function rolar_pra_baixo(){
+        window.scrollTo({
+        top: 600,
+        behavior: 'smooth'
+        })
+        }
+
+    </script>
 </head>
 
 <body>
-    <%- include('../partials/navbar'); %>
+    <%- include('../partials/navbar'); %><!DOCTYPE html>
+    <nav id="top_part_space">
+    <section id="top_part">
+        <a>
+            Inscreva sua instituição para alcançar seus <p>futuros alunos!</p>
+        </a>
+        <img src="assets/img/asasa.png">
+    </section>
+    <section id="top_button">
+    <button onclick="rolar_pra_baixo()">VAMOS LÁ!</button>
+    </section>
+    </nav>
 
+    <main id="form_space">
+        <section id="form">
+            <form action="#">
+                <h2 id="form_title">Informações Básicas</h2>
+                <p>Nome da Escola</p>
+                <input type="text" id="nome_escola">
 
-   CADASTRO ESCOLA
+                <div>
+                <div id="endereco">
+                <div>
+                <p>Endereço</p>
+                <input type="text" id="endereco_escola">
+                </div>
+                <div>
+                <p>N°</p>
+                <div id="pequeno">
+                <input type="text" id="n_escola">
+                </div> 
+                </div>
+                </div>
+                <div>
+                <div id="endereco">
+                    <div>
+                    <p>Cidade</p>
+                    <input type="text" id="cidade_escola">
+                    </div>
+                    <div>
+                    <p>Estado</p>
+                    <div id="pequeno">
+                        <select id="estado_escola">
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                          </select>
+                    </div> 
+                    </div>
+                </div>
+            </div>
+            
+            
+            <section id="checkboxes">
+                <section id="parts_checks"> 
+                <p>Tipo de Ensino</p>
+                <div>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Educação Infantil</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Ensino Fundamental</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Ensino Médio</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Educação Integrado</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Ensino Técnico</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Cursos Profissionalizantes</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Cursos Extracurriculares</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Cursos de Idioma</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Outro</label>
+                </div>
+                </section>
 
+                <section id="parts_checks"> 
+                    <p>Turnos</p>
+                    <div>
+                        <input type="checkbox" id="educacao_infantil">
+                        <label for="educacao_infantil">Manhã</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="educacao_infantil">
+                        <label for="educacao_infantil">Tarde</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="educacao_infantil">
+                        <label for="educacao_infantil">Integral</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="educacao_infantil">
+                        <label for="educacao_infantil">Noite</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="educacao_infantil">
+                        <label for="educacao_infantil">Sábado</label>
+                    </div>
+                
+                    </section>
+
+                    <section id="parts_checks"> 
+                        <p>Rede</p>
+                        <div>
+                            <input type="checkbox" id="educacao_infantil">
+                            <label for="educacao_infantil">Municipal</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="educacao_infantil">
+                            <label for="educacao_infantil">Estadual</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="educacao_infantil">
+                            <label for="educacao_infantil">Fundação</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="educacao_infantil">
+                            <label for="educacao_infantil">Particular</label>
+                        </div>
+                       
+                        </section>
+            </section>
+            
+
+            <p>E-mail</p>
+            <input type="text" id="email">
+
+            <p>Senha</p>
+            <input type="text" id="senha">
+
+            <p>Confirmação de Senha</p>
+            <input type="text" id="repetir_senha">
+
+            <div>
+                <input type="checkbox" id="politica_privacidade">
+                <label for="politica_privacidade">Concordo com a Política de Privacidade</label>
+            </div>
+            <div>
+                <input type="checkbox" id="novidades">
+                <label for="novidades">Desejo receber as novidades do site por e-mail</label>
+            </div>
+            
+            <section id="submit_button">
+            <input type="submit" id="criar_conta" value="CRIAR CONTA" />
+        </section>
+            </form>
+        </section>
+    </main>
+    <%- include('../partials/footer'); %>
 </body>
-
-<%- include('../partials/footer'); %>
 </html>
