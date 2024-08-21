@@ -1,18 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Modelo App Node </title>
+    <title>Login</title>
+    <link rel="stylesheet" href="assets/css/estilo.css">
 </head>
-
 <body>
-    <%- include('../partials/navbar'); %>
+        <main id="form_space">
 
-   CADASTRO ESCOLA
+            <section id="form">
+                <form action="#">
+                    <p>Email</p>
+                    <input type="text" id="email">
+
+                    <p>Senha</p>
+                    <input type="text" id="password">
+                    <div>
+                    <input type="checkbox" id="conectado">
+                    <label for="conectado">Desejo me manter conectado</label>
+                    <p>
+                    <a href="registro.html">Esqueci minha senha</p>
+                    </div>
+                
+                <section id="login">
+                <input type="submit" id="login_button" value="LOGIN" />
+                </section>
+
+                <section id="centralizar">
+                <p>Não tem uma conta? <a id="laranjinha" href="#">Cadastre-se</a></p>
+                </section>
+                </form>
+            </section>
+
+            <section id="texto_lateral">
+                <h3>Com o login você pode:</h3>
+                <p>✓ Interagir com postagens;</p>
+                <p>✓ Se inscrever para testes de admissão;</p>
+                <p>✓ Marcar presença em eventos;</p>
+                <p>Entre outros!</p>
+            </section>
+        </main>
 
 </body>
-<%- include('../partials/footer'); %>
 </html>
