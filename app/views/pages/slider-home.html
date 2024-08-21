@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Modelo App Node </title>
+</head>
+
+<style>    
+    body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    height: 400px;
+    display: block;
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(121, 121, 121, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.indicators {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.indicator.active {
+    background-color: #676b85;
+}
+
+</style>
+
+
+<body>
+    <%- include('../partials/navbar'); %>
+
+
+ 
+        <section class="slider">
+            <ul class="slides">
+                <li class="slide"><img src="banner-cadastro.png" alt="slide1"></li>
+                <li class="slide"><img src="bannner_de_publicidade.png" alt="slide2"></li>
+                <li class="slide"><img src="bannner_de_publicidade1.png" alt="slide3"></li>
+            </ul>
+            <button class="prev">❮</button>
+            <button class="next">❯</button>
+            <div class="indicators">
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
+        </section>
+        
+    
+
+</body>
+
+<script>
+const slides = document.querySelector('.slides');
+const slideCount = document.querySelectorAll('.slide').length;
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+const indicators = document.querySelectorAll('.indicator');
+
+let currentIndex = 0;
+const intervalTime = 3000; // Tempo em milissegundos (3 segundos)
+
+function updateCarousel() {
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentIndex);
+    });
+}
+
+function moveToNextSlide() {
+    currentIndex = (currentIndex + 1) % slideCount;
+    updateCarousel();
+}
+
+// Configurar a navegação automática
+let autoPlay = setInterval(moveToNextSlide, intervalTime);
+
+nextBtn.addEventListener('click', () => {
+    clearInterval(autoPlay); // Parar autoplay ao clicar
+    moveToNextSlide();
+    autoPlay = setInterval(moveToNextSlide, intervalTime); // Reiniciar autoplay
+});
+
+prevBtn.addEventListener('click', () => {
+    clearInterval(autoPlay); // Parar autoplay ao clicar
+    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+    updateCarousel();
+    autoPlay = setInterval(moveToNextSlide, intervalTime); // Reiniciar autoplay
+});
+
+indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+        clearInterval(autoPlay); // Parar autoplay ao clicar
+        currentIndex = index;
+        updateCarousel();
+        autoPlay = setInterval(moveToNextSlide, intervalTime); // Reiniciar autoplay
+    });
+});
+
+updateCarousel();
+
+
+</script>
+
+<%- include('../partials/footer'); %>
+</html>
