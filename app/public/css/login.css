@@ -1,0 +1,340 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+:root{
+    --laranja: #f56d44;
+    --azul: rgba(20, 28, 68, 0.99);
+    --azul_claro: #77b6ea;
+}
+
+body{
+    font-family: "Poppins SemiBold", "Poppins", sans-serif;
+    font-size: 22px;
+    font-weight: lighter;
+}
+
+/*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TEXTO DE CIMA, IMAGEM E BOTAO
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*/
+#top_part_space{
+#top_part {
+    color: var(--azul);
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    a{
+
+        padding-top: 100px;
+        width: 370px;
+        font-size: 45px;
+        line-height: 1.4em;
+        p{
+            color: var(--laranja);
+            font-size: 47px;
+            font-weight: bold;
+        }
+        padding-right: 30px;
+    }
+    img{
+
+        width: 675px;
+        height: 193px;
+        padding-top: 110px;
+        padding-left: 30px;
+    }
+}
+#top_button{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+button{
+    width: 300px;
+    height: 80px;
+    color: var(--laranja);;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: white;
+    border-color: var(--laranja);
+    border-radius: 28px;
+    border-style: solid;
+    border-width: 4px ;
+}
+button:hover{
+    color: white;
+    background-color: var(--laranja);
+    cursor: pointer;
+    
+}
+}
+}
+
+/*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+FORMULARIO
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*/
+nav{
+    margin-bottom: 40px;
+}
+#form_space{
+    width: 100%;
+    justify-content: space-evenly;
+    display: flex;
+
+    #form{
+        border-style: solid;
+        border-radius: 20px;
+        border-color: var(--azul_claro);
+        width: 850px;
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+
+        input[type=text] {
+            width: 750px;
+            height: 40px;
+            border-radius: 10px;
+            margin: 4px;
+            font-size: 27px;
+            padding-left: 8px;
+            padding-right: 8px;
+            border-color: var(--azul);
+            border-style: solid;
+        }
+
+        select {
+            width: 90px;
+            height: 43px;
+            border-radius: 10px;
+            margin: 4px;
+            font-size: 27px;
+            padding-left: 8px;
+            padding-right: 8px;
+            border-color: var(--azul);
+            border-style: solid;
+            background-color: white;
+        }
+        
+        p {
+            font-size: 24px;
+            padding-left: 8px;
+            padding-top: 3px;
+            color: var(--azul);
+        }
+
+        h2{
+            color: var(--laranja);
+            font-size: 40px;
+            padding-top: 10px;
+        }
+
+        #endereco{
+            display: flex;
+
+            input {
+                width: 600px;
+            }
+            
+            #pequeno{
+                input {
+                    width: 70px;
+                }
+            }
+        }
+
+        #checkboxes {
+            width: 100%;
+            display: flex;
+            
+            
+
+            #parts_checks{
+                display: block;
+                padding-left: 15px;
+                margin-right: 50px;
+
+                input[type=checkbox]{
+                    background-color: white;
+                    accent-color:var(--laranja);
+                    width: 15px;
+                    height: 15px;
+                }
+                label{
+                    color:var(--azul);
+                    padding-right:8px;
+                    font-size: 18px;
+                }
+    
+                p{
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+                }
+            }
+        }
+
+        #criar_conta{
+            background-color: white;
+            border-style: solid;
+            border-color: var(--azul_claro);
+            border-radius: 30px;
+            color: var(--azul_claro);
+            width: 250px;
+            height: 70px;
+            font-size: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #criar_conta:hover{
+            background-color: var(--azul_claro);
+            color: white;
+            cursor: pointer;
+        }
+
+        #submit_button{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+    }
+}
+
+#login{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    #login_button{
+        background-color: var(--azul_claro);
+        border-style: solid;
+        border-color: var(--azul_claro);
+        border-radius: 30px;
+        color: white;
+        width: 250px;
+        height: 70px;
+        font-size: 25px;
+        font-weight: bold;
+        margin-top: 20px;
+        
+    }
+
+    #login_button:hover{
+        background-color: white;
+        color: var(--azul_claro);
+        cursor: pointer;
+    }
+}
+
+#centralizar {
+    display: flex;
+    justify-content: center;
+
+    
+}
+#laranjinha{
+    color:var(--laranja) 
+ }
+
+ 
+ #email, #password {
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 4px;
+    font-size: 27px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-color: var(--azul);
+    border-style: solid;
+}
+
+
+#texto_lateral{
+    width: 300px;
+    color: var(--azul);
+
+    h3{
+        margin-bottom: 15px;
+    }
+    p{
+        font-size: 22px;
+    }
+}
+
+#lateral_contato{
+    width: 20%;
+
+    img{
+        align-self: center;
+        margin-right: 5px;
+    }
+
+    #email_contato{
+        display: flex;
+        align-items: center;
+    }
+}
+
+#email_contato_input {
+
+        width: 450px;
+        height: 40px;
+        border-radius: 10px;
+        margin: 4px;
+        font-size: 27px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-color: var(--azul_claro);
+        border-style: solid;
+    
+}
+#laranja {
+    color: var(--laranja);
+}
+
+#mensagem_contato{
+        width: 450px;
+        height: 200px;
+        border-radius: 10px;
+        margin: 4px;
+        font-size: 27px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-color: var(--azul_claro);
+        border-style: solid;
+        resize: none;
+}
+
+#alinhar_direita{
+    display: flex;
+    justify-content: right;
+
+    #orange_button{
+        background-color: var(--laranja);
+        border-style: solid;
+        border-color: var(--laranja);
+        border-radius: 10px;
+        color: white;
+        width: 150px;
+        height: 40px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+
+    }
+
+    #orange_button:hover{
+        background-color: white;
+        color: var(--laranja);
+        cursor: pointer;
+    }
+}
