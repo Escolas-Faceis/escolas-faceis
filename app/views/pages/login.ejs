@@ -10,6 +10,22 @@
 </head>
 
 <body>
+    <%
+    let  erroValidacao =  {"email":"", "password":"" };
+    let  msgErro =  {"email":"", "password":"" };
+    if(erros) {
+        erros.errors.forEach(function(erro) {
+            if (erro.path == "email") {
+                erroValidacao.email = "erro",
+                msgErro.email = erro.msg
+            }
+            if (erro.path == "password") {
+                erroValidacao.password = "erro",
+                msgErro.password = erro.msg
+            }
+        })
+    }; %>
+
     <%- include('../partials/navbar'); %>
 
     <body>
@@ -17,17 +33,17 @@
         <main id="form_space">
 
             <section id="form">
-                <form action="#">
+                <form action="/login_post" method="POST">
                     <p>Email</p>
-                    <input type="text" id="email">
-
+                    <input type="text" id="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
+                    <span class="spanerro"><%=msgErro.email%></span>
                     <p>Senha</p>
-                    <input type="text" id="password">
+                    <input type="text" id="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">    
+                    <span class="spanerro"><%=msgErro.password%></span>
                     <div>
                     <input type="checkbox" id="conectado">
                     <label for="conectado">Desejo me manter conectado</label>
-                    <p>
-                    <a href="registro.html">Esqueci minha senha</p>
+                    <p><a href="#">Esqueci minha senha</a></p>
                     </div>
                 
                 <section id="login2">
