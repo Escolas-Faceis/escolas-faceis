@@ -1,5 +1,5 @@
-function validarTelefone(telefone){
-    telefone = telefone.replace(/[^\d]+/g,'');
+function validarTelefone(value){
+    telefone = value.replace(/[^\d]+/g,'');
 
     //verifica se tem a qtde de numero correto
     if (!(telefone.length >= 10 && telefone.length <= 11)) return false;
