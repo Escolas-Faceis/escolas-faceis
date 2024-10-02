@@ -10,8 +10,9 @@
 </head>
 
 <body>
-    let  erroValidacao =  {"name","email":"","password":"","repassword":"","cellphone":""};
-    let  msgErro =  {"name","email":"","password":"","repassword":"","cellphone":""};
+    <%
+    let  erroValidacao =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
+    let  msgErro =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
     if(erros) {
         erros.errors.forEach(function(erro) {
             if (erro.path == "name") {
@@ -43,7 +44,7 @@
     <main id="form_space">
 
         <section id="form">
-            <form action="#">
+            <form action="/registro_post" method="POST">
 
                 <p>Nome</p>
                 <input type="text" name="name" id="name" value="<%= valores.name %>" class="<%= erroValidacao.name%>">
@@ -59,11 +60,11 @@
 
                 <p>Senha</p>
                 <input type="text" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
-                <span class="spanerro"><%=msgErro.password%></span>>
+                <span class="spanerro"><%=msgErro.password%></span>
 
                 <p>Confirmação de Senha</p>
-                <input type="text" id="repassword" name="repassword" value="<%= valores.repassword %>" class="<%= erroValidacao.repassword%>">
-                <span class="spanerro"><%=msgErro.repassword%></span>>
+                <input type="text" id="reppassword" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
+                <span class="spanerro"><%=msgErro.reppassword%></span>
                 <div>
                 <input type="checkbox" id="politica">
                 <label for="politica">Concordo com a política de privacidade</label>
