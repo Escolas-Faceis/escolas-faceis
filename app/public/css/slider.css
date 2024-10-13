@@ -1,0 +1,32 @@
+.slider {
+  list-style-type: none;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+ }
+ 
+ .slides {
+  list-style-type: none;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+ }
+ 
+ .slide{
+  list-style-type: none;
+  min-width: 100%;
+  box-sizing: border-box;
+ }
+ 
+ /*imagens do slider*/
+ 
+ .slide img {
+  outline: none;
+  width: 100%;
+  height: 400px;
+  display: block;
+ 
+ }
+
+ .img{
+    width: 100px;
+ }

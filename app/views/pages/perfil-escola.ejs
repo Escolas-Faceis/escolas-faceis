@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Modelo App Node </title>
+</head>
+
+<body>
+    <%- include('../partials/navbar'); %>
+
+    <img class="foto-escola" src="imagem/canarinho.jpg">
+    <section class="nome-escola">Escola Canarinho</section>
+    <section class="classificacao">Ensino Infantil</section>
+    <img class="imagem-localizacao" src="imagem/lupinha.svg">
+    <section class="local">Avenida Brasil, Nº 328 <br>
+        Piratininga - Osasco, SP</section>
+    <section class="privado">Ensino Privado</section>
+    <section class="mensalidade">Mensalidades a partir de R$215,32</section>
+    
+    
+        <header>
+            <section>
+                <ul class="slider">
+                    <li>
+                        <input class="imagem" type="radio" id="slide1" name="slide" checked>
+                        <label for="slide1"></label> 
+                        <img src="imagem/primeira-carossel.jpeg">
+                    </li>
+                    <li>
+                        <input class="imagem" type="radio" id="slide2" name="slide" checked>
+                        <label for="slide2"></label> 
+                        <img src="imagem/terceira-carrossel.jpg">
+                    </li>
+                    <li>
+                        <input class="imagem" type="radio" id="slide3" name="slide" checked>
+                        <label for="slide3"></label> 
+                        <img src="imagem/segunda-carossel.jpg">
+                    </li>
+                    </ul>
+            </section>
+           
+ 
+
+</body>
+<%- include('../partials/footer'); %>
+</html>
+
+<!-- 
+<img class="foto-escola" src="imagem/canarinho.jpg">
+<section class="nome-escola">Escola Canarinho</section>
+<section class="classificacao">Ensino Infantil</section>
+<img class="imagem-localizacao" src="imagem/lupinha.svg">
+<section class="local">Avenida Brasil, Nº 328 <br>
+    Piratininga - Osasco, SP</section>
+<section class="privado">Ensino Privado</section>
+<section class="mensalidade">Mensalidades a partir de R$215,32</section>
+
+
+    <header>
+        <section>
+            <ul class="slider">
+                <li>
+                    <input class="imagem" type="radio" id="slide1" name="slide" checked>
+                    <label for="slide1"></label> 
+                    <img src="imagem/primeira-carossel.jpeg">
+                </li>
+                <li>
+                    <input class="imagem" type="radio" id="slide2" name="slide" checked>
+                    <label for="slide2"></label> 
+                    <img src="imagem/terceira-carrossel.jpg">
+                </li>
+                <li>
+                    <input class="imagem" type="radio" id="slide3" name="slide" checked>
+                    <label for="slide3"></label> 
+                    <img src="imagem/segunda-carossel.jpg">
+                </li>
+                </ul>
+        </section>
+       <script>
+
+    temp = 2
+    let tempo_para_trocar;
+    var delay = 3 * 1000
+      
+    function ChangeSlide() {
+        var desaparecer = document.getElementById('slide'+temp);
+        temp += 1;
+        desaparecer.checked = false;
+        if(document.getElementById('slide'+temp) == null){temp = 1}
+        var aparecer = document.getElementById('slide'+temp)
+        aparecer.checked = true;
+        
+    }
+     
+    function AutoRun(){
+        if (!tempo_para_trocar) {
+            tempo_para_trocar = setInterval(ChangeSlide, delay);
+          }
+    }
+
+       </script>
+
+
+
+    </header>
+<br><br><br><br><br><br><br><br><br><br><BR><BR>
+    <hr class="linha-quebra"> -->

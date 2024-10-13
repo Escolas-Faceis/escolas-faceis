@@ -1,0 +1,353 @@
+*{
+    padding: 0;
+    margin: 0;
+    color: inherit;       /* Remove a cor padrão e herda a cor do elemento pai */
+    text-decoration: none; /* Remove o sublinhado padrão */
+
+}
+
+@media screen and (max-width:1280px ){
+
+    .short-prof{
+        margin: 2% auto ;
+        width: 65%;
+        padding: 1% 5%;
+        position: relative;
+        display: flex; 
+        border: 1px solid gray;
+        border-radius: 15px;
+        background-color: white;
+        z-index: 1; 
+
+    }
+    
+    .logo{
+        
+        position: static;
+        width: 180px;
+        border-radius: 15px;
+        margin-left: -22%;
+        margin-top: 10%;
+    }
+    
+    .info{
+        margin-top: 1%;
+        flex: 1; /* Permite que a seção de informações ocupe o espaço restante */
+        padding-left: 20px; /* Adiciona espaço à esquerda da imagem */
+        font-family: "Poppins", sans-serif;
+        color:#141c44;
+        font-size: 16px;;
+    }
+    
+    .nome-escola{
+        font-size: 22px;
+        padding: 5px;
+    }
+    .niveis{
+        display: flex; /* Usar flexbox para organizar os elementos em linha */
+        flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se necessário */
+        gap: 10px; /* Adiciona espaço entre os itens */
+    }
+    
+    .escolaridade{
+        border: 1px solid #141c44;
+        border-radius: 20px;
+        display: inline-block;
+        padding: 2px 7px;
+        font-weight: 600;
+        font-size: 14px;
+        
+    }
+    .EM{
+        background-color: #00b4b4;
+    }
+    .TEC{
+        background-color: #15c724;
+    }
+    
+    .EI{
+        background-color:  #ff7184;
+    }
+    
+    .EFI{
+        background-color: #a765e6;
+    }
+    .EFII{
+        background-color: #22ddb5;
+    }
+    
+    .TEC{
+        background-color: #15c724;
+    }
+
+    .CSO{
+        background-color: mediumslateblue;
+    }
+    
+    .inf{
+        margin:2%
+    }
+    
+    .ingresso{
+        color: #ffbc3e;
+        font-weight: 500;
+        margin: 2%;
+    }
+    .ingresso:hover{
+        text-decoration: underline;
+    }
+    .button {
+    
+        float:inline-end;
+        position: static;
+        border: 2px solid #a03616;
+        color: #812205;
+        background-color: #f56d44;
+        border-radius: 5px;
+        font-size: 19px;
+        font-weight:540;
+        
+        padding: 0.23rem;
+      }
+      .button:hover{
+        border-color: #b33f1c;
+        color: #9b3212;
+        background-color: #f3815e;
+      }
+}
+
+@media screen and (max-width: 1000px) {
+    
+
+    html{
+        background-color: white ;
+    }
+
+    .short-prof{
+        margin: 2% auto ;
+        width: 65%;
+        padding: 1% 5%;
+        position: relative;
+        display: flex; 
+        border: 1px solid gray;
+        border-radius: 15px;
+        background-color: white;
+        z-index: 1; 
+
+    }
+    
+    .logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: static;
+        width: 180px;
+        border-radius: 15px;
+        margin-left: -12%;
+        margin-top: 10%;
+    }
+    
+    .info{
+        margin-top: 1%;
+        flex: 1; /* Permite que a seção de informações ocupe o espaço restante */
+        font-family: "Poppins", sans-serif;
+        color:#141c44;
+        font-size: 16px;;
+    }
+    
+    .nome-escola{
+        font-size: 22px;
+        padding: 5px;
+    }
+    .niveis{
+        display: flex; /* Usar flexbox para organizar os elementos em linha */
+        flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se necessário */
+        gap: 10px; /* Adiciona espaço entre os itens */
+    }
+    
+    .escolaridade{
+        border: 1px solid #141c44;
+        border-radius: 20px;
+        display: inline-block;
+        padding: 2px 7px;
+        font-weight: 600;
+        font-size: 14px;
+        
+    }
+    .EM{
+        background-color: #00b4b4;
+    }
+    .TEC{
+        background-color: #15c724;
+    }
+    
+    .EI{
+        background-color:  #ff7184;
+    }
+    
+    .EFI{
+        background-color: #a765e6;
+    }
+    .EFII{
+        background-color: #22ddb5;
+    }
+    
+    .TEC{
+        background-color: #15c724;
+    }
+
+    .CSO{
+        background-color: mediumslateblue;
+    }
+    
+    .inf{
+        margin:2%
+    }
+    
+    .ingresso{
+        color: #ffbc3e;
+        font-weight: 500;
+        margin: 2%;
+    }
+    .ingresso:hover{
+        text-decoration: underline;
+    }
+    .button {
+    
+        float:inline-end;
+        position: static;
+        border: 2px solid #a03616;
+        color: #812205;
+        background-color: #f56d44;
+        border-radius: 5px;
+        font-size: 19px;
+        font-weight:540;
+        margin-top:-30px;
+        padding: 0.23rem;
+      }
+      .button:hover{
+        border-color: #b33f1c;
+        color: #9b3212;
+        background-color: #f3815e;
+      }
+}
+
+
+@media screen and (max-width: 800px) {
+    
+
+    html{
+        background-color: white ;
+    }
+
+    .short-prof{
+        margin: 2% auto ;
+        width: 250px;
+        padding: 1% 5%;
+        position: relative;
+        display: flex;
+        align-items: center; 
+        border: 1px solid gray;
+        border-radius: 15px;
+        background-color: white;
+        z-index: 1; 
+        flex-direction: column; 
+
+    }
+    
+    .logo{
+        
+        position: static;
+        width: 180px;
+        border-radius: 15px;
+        margin-left: -10%;
+        margin-top: 11%;
+    }
+    
+    .info{
+        margin-top: 1%;
+        flex: 1; /* Permite que a seção de informações ocupe o espaço restante */
+        font-family: "Poppins", sans-serif;
+        color:#141c44;
+        font-size: 14px;;
+    }
+    
+    .nome-escola{
+        font-size: 18px;
+        padding: 5px;
+    }
+    .niveis{
+        display: flex; 
+        flex-wrap: wrap; 
+        gap: 10px; 
+        
+    }
+    
+    .escolaridade{
+        border: 1px solid #141c44;
+        border-radius: 20px;
+        display: inline-block;
+        padding: 2px 7px;
+        font-weight: 600;
+        font-size: 12px;
+        
+    }
+    .EM{
+        background-color: #00b4b4;
+    }
+    .TEC{
+        background-color: #15c724;
+    }
+    
+    .EI{
+        background-color:  #ff7184;
+    }
+    
+    .EFI{
+        background-color: #a765e6;
+    }
+    .EFII{
+        background-color: #22ddb5;
+    }
+    
+    .TEC{
+        background-color: #15c724;
+    }
+
+    .CSO{
+        background-color: mediumslateblue;
+    }
+    
+    .inf{
+        margin:2%
+    }
+    
+    .ingresso{
+        color: #ffbc3e;
+        font-weight: 500;
+        margin: 2%;
+    }
+    .ingresso:hover{
+        text-decoration: underline;
+    }
+    .button {
+        display: flex;
+        align-items: center;   
+        border: 2px solid #a03616;
+        color: #812205;
+        background-color: #f56d44;
+        border-radius: 5px;
+        font-size: 17px;
+        font-weight:540;
+        margin-top: 10px ;
+        padding: 0.23rem;
+        text-align: center;
+        justify-content: center;
+        margin-right: 32%;
+      }
+      .button:hover{
+        border-color: #b33f1c;
+        color: #9b3212;
+        background-color: #f3815e;
+      }
+}
