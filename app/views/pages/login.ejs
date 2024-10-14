@@ -33,17 +33,18 @@
         <main id="form_space">
 
             <section id="form">
+
                 <form action="/login_post" method="POST">
                     <p>Email</p>
-                    <input type="text" id="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
+                    <input type="email" id="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
                     <span class="spanerro"><%=msgErro.email%></span>
                     <p>Senha</p>
-                    <input type="text" id="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">    
+                    <input type="password" id="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">    
                     <span class="spanerro"><%=msgErro.password%></span>
                     <div>
                     <input type="checkbox" id="conectado">
                     <label for="conectado">Desejo me manter conectado</label>
-                    <p><a href="#">Esqueci minha senha</a></p>
+                    <p><a  id="f-password" href="#">Esqueci minha senha</a></p>
                     </div>
                 
                 <section id="login2">
@@ -51,21 +52,21 @@
                 </section>
 
                 <section id="centralizar">
-                <p>Não tem uma conta? <a id="laranjinha" href="/cadastro-usuario">Cadastre-se</a></p>
+                <span id="no-account">Não tem uma conta? <a id="laranjinha" href="/cadastro-usuario">Cadastre-se</a></p>
                 </section>
                 </form>
             </section>
 
             <section id="texto_lateral">
                 <h3>Com o login você pode:</h3>
-                <p>✓ Interagir com postagens;</p>
-                <p>✓ Se inscrever para testes de admissão;</p>
-                <p>✓ Marcar presença em eventos;</p>
+                <p><span class="marker">✓</span> Interagir com postagens;</p>
+                <p><span class="marker">✓</span> Se inscrever para testes de admissão;</p>
+                <p><span class="marker">✓</span> Marcar presença em eventos;</p>
                 <p>Entre outros!</p>
-
-                <img src="imagem/login_image.png">
+                <h3>Junte-se a nossa <a href="/cadastro-usuario" id="amarelinho">comunidade</a href="/cadastro-usuario">!</h3>
+                
             </section>
-        </main> 
+        </main> <img id="picture" src="imagem/login_image.png">
         </section>
 
 </body>
