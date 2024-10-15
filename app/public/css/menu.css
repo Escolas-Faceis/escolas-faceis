@@ -213,7 +213,7 @@
 	#menu li {display:block;float:none;width:auto;}
 	#menu input, #menu label {position:absolute;top:0;left:0;display:block}
 	#menu input {z-index:4}
-	#menu input:checked + label {color:#FFFFFF}
+	#menu input:checked + label {color:#FFFFFF; transition: all 1s;}
 	#menu input:checked + label:before {content:"\00d7"}
 	#menu input:checked ~ ul {display:block}
 }
