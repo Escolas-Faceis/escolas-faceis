@@ -6,7 +6,7 @@
 
 }
 
-@media screen and (max-width:1280px ){
+
 
     .short-prof{
         margin: 2% auto ;
@@ -56,7 +56,7 @@
         padding: 2px 7px;
         font-weight: 600;
         font-size: 14px;
-        
+        cursor: default ;
     }
     .EM{
         background-color: #00b4b4;
@@ -95,26 +95,27 @@
     }
     .ingresso:hover{
         text-decoration: underline;
+        cursor: pointer;
     }
-    .button {
+    .buttao {
     
         float:inline-end;
         position: static;
-        border: 2px solid #a03616;
         color: #812205;
         background-color: #f56d44;
         border-radius: 5px;
         font-size: 19px;
-        font-weight:540;
-        
-        padding: 0.23rem;
+        font-weight: 600;
+        transition: all 0.3s;
+        padding: 0.4rem;
       }
-      .button:hover{
+      .buttao:hover{
         border-color: #b33f1c;
-        color: #9b3212;
-        background-color: #f3815e;
+        font-size: 19px;
+        color: gray;
+        background-color: #c13d15;
       }
-}
+      
 
 @media screen and (max-width: 1000px) {
     
@@ -172,7 +173,7 @@
         padding: 2px 7px;
         font-weight: 600;
         font-size: 14px;
-        
+        cursor: context-menu;
     }
     .EM{
         background-color: #00b4b4;
@@ -212,20 +213,13 @@
     .ingresso:hover{
         text-decoration: underline;
     }
-    .button {
-    
-        float:inline-end;
-        position: static;
-        border: 2px solid #a03616;
-        color: #812205;
-        background-color: #f56d44;
-        border-radius: 5px;
+    .buttao {
         font-size: 19px;
         font-weight:540;
         margin-top:-30px;
         padding: 0.23rem;
       }
-      .button:hover{
+      .buttao:hover{
         border-color: #b33f1c;
         color: #9b3212;
         background-color: #f3815e;
@@ -238,6 +232,7 @@
 
     html{
         background-color: white ;
+        overflow-x: hidden;
     }
 
     .short-prof{
@@ -250,7 +245,7 @@
         border: 1px solid gray;
         border-radius: 15px;
         background-color: white;
-        z-index: 1; 
+        z-index: 0; 
         flex-direction: column; 
 
     }
@@ -272,12 +267,12 @@
         flex: 1;
         font-family: "Poppins", sans-serif;
         color:#141c44;
-        font-size: 18px;;
+        font-size: 16px;;
         margin-left: 0;
     }
     
     .nome-escola{
-        font-size: 25px;
+        font-size: 22px;
         padding: 5px;
     }
     .niveis{
@@ -293,7 +288,7 @@
         display: inline-block;
         padding: 2px 7px;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 14px;
         
     }
     .EM{
@@ -334,24 +329,144 @@
     .ingresso:hover{
         text-decoration: underline;
     }
-    .button {
+    .buttao {
         display: flex;
         align-items: center;   
-        border: 2px solid #a03616;
-        color: #812205;
-        background-color: #f56d44;
-        border-radius: 5px;
-        font-size: 25px;
+        font-size: ;
+        margin-top: 10px ;
+        padding: 0.4rem;
+        text-align: center;
+        justify-content: center;
+        margin-right: 10%;
+        flex-direction: column;
+        transition: all ;
+      }
+      .buttao:hover{
+        border-color: #b33f1c;
+        font-size: 19px;
+        color: gray;
+        background-color: #c13d15;
+      }
+}
+
+
+
+
+@media screen and (max-width: 500px) {
+    
+
+    html{
+        background-color: inherit ;
+    }
+
+    .short-prof{
+        margin: 2% auto ;
+        width:  65%;
+        padding: 1% 0.2%;
+        position: relative;
+        display: flex;
+        align-items: center; 
+        border: 1px solid gray;
+        border-radius: 15px;
+        background-color: white;
+        z-index: 0; 
+        flex-direction: column; 
+
+    }
+    
+    .logo{
+        margin: 1% auto 0; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: static;
+        width: 170px;
+        border-radius: 15px;
+
+    }
+    
+    .info{
+        text-align: left;
+        margin-top: 1%;
+        flex: 1;
+        font-family: "Poppins", sans-serif;
+        color:#141c44;
+        font-size: 15px;;
+        margin-left: 0;
+    }
+    
+    .nome-escola{
+        font-size: 20px;
+        padding: 5px;
+    }
+    .niveis{
+        display: flex; 
+        flex-wrap: wrap; 
+        gap: 10px; 
+        
+    }
+    
+    .escolaridade{
+        border: 1px solid #141c44;
+        border-radius: 20px;
+        display: inline-block;
+        padding: 2px 7px;
+        font-weight: 600;
+        font-size: 12px;
+        
+    }
+    .EM{
+        background-color: #00b4b4;
+    }
+    .TEC{
+        background-color: #15c724;
+    }
+    
+    .EI{
+        background-color:  #ff7184;
+    }
+    
+    .EFI{
+        background-color: #a765e6;
+    }
+    .EFII{
+        background-color: #22ddb5;
+    }
+    
+    .TEC{
+        background-color: #15c724;
+    }
+
+    .CSO{
+        background-color: mediumslateblue;
+    }
+    
+    .inf{
+        margin:2%
+    }
+    
+    .ingresso{
+        color: #ffbc3e;
+        font-weight: 500;
+        margin: 2%;
+    }
+    .ingresso:hover{
+        text-decoration: underline;
+    }
+    .buttao {
+
+        font-size: 19px;
         font-weight:540;
         margin-top: 10px ;
         padding: 0.23rem;
         text-align: center;
         justify-content: center;
         margin-right: 32%;
+        transition: all 0.3s;
       }
-      .button:hover{
+      .buttao:hover{
         border-color: #b33f1c;
-        color: #9b3212;
-        background-color: #f3815e;
+        font-size: 19px;
+        color: gray;
+        background-color: #c13d15;
       }
-}
