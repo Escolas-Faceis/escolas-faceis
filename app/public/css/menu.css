@@ -13,6 +13,7 @@ body {
 header {
   background: #141C44;
   padding: 20px 40px;
+  margin-bottom: 8%;
 }
 
 input[type="checkbox"]{

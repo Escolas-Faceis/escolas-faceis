@@ -352,7 +352,7 @@
 
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 520px) {
     
 
     html{
@@ -470,3 +470,4 @@
         color: gray;
         background-color: #c13d15;
       }
+    }

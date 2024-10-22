@@ -1,4 +1,4 @@
-/* function validarTelefone(value){
+function validarTelefone(value){
     telefone = value.replace(/[^\d]+/g,'');
 
     //verifica se tem a qtde de numero correto
@@ -31,4 +31,4 @@
     return true;
 }
 
-module.exports = validarTelefone() */
+module.exports = {validarTelefone}
