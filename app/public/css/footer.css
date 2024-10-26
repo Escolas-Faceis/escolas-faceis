@@ -1,10 +1,10 @@
 footer{
-
+    display: block;
     background-color: rgba(20, 28, 68, 0.99);
     margin-top: none;
 }
 footer, .pag{
-
+    
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-style: normal;
@@ -72,7 +72,7 @@ position:static
     background-color: rgba(20, 28, 68, 0.99);
     color: #fff;
     padding: 40px 0;
-    margin-top: 5%;
+    /* margin-top: 100vh; */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -151,4 +151,7 @@ position:static
       max-width: 100%;
       margin-bottom: 30px;
     }
-  }
+    #logo-footer  {
+      width: 50%;
+    }
+}

@@ -5,43 +5,93 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/perfil-escolaa.css">
     <title> Modelo App Node </title>
 </head>
 
 <body>
     <%- include('../partials/navbar'); %>
 
-    <img class="foto-escola" src="imagem/canarinho.jpg">
-    <section class="nome-escola">Escola Canarinho</section>
-    <section class="classificacao">Ensino Infantil</section>
-    <img class="imagem-localizacao" src="imagem/lupinha.svg">
-    <section class="local">Avenida Brasil, Nº 328 <br>
-        Piratininga - Osasco, SP</section>
-    <section class="privado">Ensino Privado</section>
-    <section class="mensalidade">Mensalidades a partir de R$215,32</section>
-    
-    
-        <header>
-            <section>
-                <ul class="slider">
-                    <li>
-                        <input class="imagem" type="radio" id="slide1" name="slide" checked>
-                        <label for="slide1"></label> 
-                        <img src="imagem/primeira-carossel.jpeg">
-                    </li>
-                    <li>
-                        <input class="imagem" type="radio" id="slide2" name="slide" checked>
-                        <label for="slide2"></label> 
-                        <img src="imagem/terceira-carrossel.jpg">
-                    </li>
-                    <li>
-                        <input class="imagem" type="radio" id="slide3" name="slide" checked>
-                        <label for="slide3"></label> 
-                        <img src="imagem/segunda-carossel.jpg">
-                    </li>
+   
+    <section class="perfil" id="pepe">
+        <figure><img src="imagem/canarinho.jpg" alt="logo da escola" class="logo"></figure>
+        <section class="info">
+            <h1 class="nome-escola">Escola Canarinho</h1>
+            <aside class="niveis">
+                <h5 class="escolaridade EI">Ensino Infantil</h5>
+            </aside>
+            <section class="inf">
+                <p class="localidade "> Avenida Brasil, Nº 328 Piratininga - Osasco, SP</p>
+                <p class="instituicao ">Ensino Privado</p></section>
+                <p class="ingresso"> Mensalidade a partir de R$ 215,32</p>
+        </section>
+    </section>
+        <hr id="separacao">
+        <section class="centro">
+            <section class="esquerdo">
+                <h2 class="sobre-escola">Sobre a Escola </h2>
+                <p class="informacao">Escola Canarinho - a escola primária que se preocupa tanto com o futuro dos nossos filhos quanto com o futuro do nosso planeta!<br>
+                Acreditamos que uma educação positiva pode fazertoda a diferença na formação de seres humanos conscientes e responsáveis, <br> prontos para lidar com os desafios do mundo moderno.
+                Venha nos conhecer e descubra por que somos a escola que mais cresce<br> em nossa cidade!
+                </p>
+            <h2 class="sobre-escola">Sobre o Ensino</h2>
+            <ul class="lista">
+                <li>Valorizamos a diversidade e o respeito;</li>
+                <li>Ambiente de ensino acolhedor e inclusivo;</li>
+                <li>Atividades extracurriculares que estimulam o desenvolvimento físico, mental e emocional;</li>
+                <li>Educação de Qualidade;</li>
+                <li>Profissionais Qualificados;</li>
+                <li>Ensino Acessível;</li>
+            </ul>
+            <h2 class="sobre-escola">Sobre a Estrutura</h2>
+            <ul class="lista-2">
+                <li>Salas de aula climatizadas;</li>
+                <li>Pátio com playground;</li>
+                <li>Banheiros seguros;</li>
+            </ul>
+        </section>
+    <hr class="linha-v"> </hr>   
+
+        <section class="divisao-direita">
+            <aside>
+                <h1 class="contato-ace">Contato</h1>
+                <article>
+                    <figure><a href="https://www.instagram.com/"><img src="imagem/instagram.png" alt="Instagram" class="social-media" id="insta"></a></figure>
+                    <figure><a href="https://www.whatsapp.com"><img src="imagem/whatsapp.png" alt="WhattsApp" class="social-media" id="what"></a></figure>
+                    <figure><a href="https://www.facebook.com"><img src="imagem/facebook.png" alt="Facebook" class="social-media" id="face"></a></figure>
+                    <figure><a href="#"><img src="imagem/telephone.png"class="social-media" alt="Telefone" id="telefone"></a></figure>
+                    <figure><a href="#"><img src="imagem/mail.png"class="social-media" alt="Email" id="email"></a></figure>
+                </article>
+            </aside> 
+            <aside>
+                <h1 class="contato-ace">Acessibilidade</h1>
+                <article>
+                    <figure><a href="#"class="tooltip"><img src="imagem/bengala.png" alt="bengala" class="aces" id="bengala"><span class="tooltip-text">Piso tátil para deficientes visuais</span></a></figure> 
+                    <figure><a href="#"class="tooltip"><img src="imagem/lingua-de-sinais.png"class="aces"  alt="lingua-de-sinais" id="lingua-de-sinais"><span class="tooltip-text">Língua de Sinais</span></a></figure>
+                    <figure><a href="#" class="tooltip"><img src="imagem/acessibilidade-cadeira-de-rodas.png"class="aces"  alt="Acessibilidade" id="cadeira-de-rodas"><span class="tooltip-text">Estrutura para cadeirante</span></a></figure>
+                
+                </article>
+            </aside>
+            <aside>
+                <h1 class="ingresso-ace">Ingresso</h1>
+                <article>
+                    <ul class="ingresso-manner">
+                        <li> <span class="fase-name"><b>Berçario</b>&#8212; Até 2 anos </span><br>
+                            <span class="valormens">A partir de <span class="valorm">R$215,32 </span></li></span>
+                            <li> <span class="fase-name"><b>Maternal I</b>&#8212; 2 anos </span><br>
+                                <span class="valormens">A partir de <span class="valorm">R$237,10 </span></li></span>
+                                <li> <span class="fase-name"><b>Maternal II</b>&#8212; 3 anos </span><br>
+                                    <span class="valormens">A partir de <span class="valorm">R$237,10 </span></li></span>
+                                    <li> <span class="fase-name"><b>Jardim I</b>&#8212; 4 anos </span><br>
+                                        <span class="valormens">A partir de <span class="valorm">R$265,24 </span></li></span>
+                                               
                     </ul>
-            </section>
-           
+                </article>
+            </aside>
+        </section>
+   
+    
+    
  
 
 </body>

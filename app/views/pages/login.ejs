@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Login</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/login-us.css">
+    <link rel="stylesheet" href="css/login-mob.css">
 </head>
 
 <body>
@@ -31,21 +32,21 @@
     <body>
         <section id="centralizar">
         <main id="form_space">
-
+            <img src="imagem/normal_capelo_u29.svg" id="capelo" alt="Decoração" width="51" height="38">
             <section id="form">
 
                 <form action="/login_post" method="POST">
-                    <p>Email</p>
+                    <p id="email">Email</p>
                     <input type="email" id="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
+
                     <span class="spanerro"><%=msgErro.email%></span>
-                    <p>Senha</p>
+                    <p id="senha">Senha</p>
                     <input type="password" id="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">    
                     <span class="spanerro"><%=msgErro.password%></span>
-                    <div>
-                    <input type="checkbox" id="conectado">
-                    <label for="conectado">Desejo me manter conectado</label>
+                    <section>
+                    <span id="conect"><input type="checkbox" id="conectado"><label for="conectado">Desejo me manter conectado</label></span>
                     <p><a  id="f-password" href="#">Esqueci minha senha</a></p>
-                    </div>
+                    </section>
                 
                 <section id="login2">
                 <input type="submit" id="login_button" value="LOGIN" />
@@ -68,7 +69,7 @@
             </section>
         </main> <img id="picture" src="imagem/login_image.png">
         </section>
-
+<script src="js/mascaras.js"></script>
 </body>
 
 </body>

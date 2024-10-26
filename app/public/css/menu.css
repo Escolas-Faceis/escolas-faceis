@@ -7,16 +7,16 @@ body {
   padding: 0;
   background: rgb(255, 255, 255);
   color: #ffffff;
-  font-family: "Poppins Light", "Avenir", sans-serif;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 header {
   background: #141C44;
-  padding: 20px 40px;
-  margin-bottom: 8%;
+
 }
 
-input[type="checkbox"]{
+#check{
   display: none;
 }
 
@@ -28,6 +28,9 @@ input[type="checkbox"]{
   list-style-type: none;
   padding: 0;
   margin: 0;
+  padding: 20px 40px;
+  max-height: 83px;
+  font-size: 18px;
 }
 
 #menu li {
@@ -65,9 +68,8 @@ summary{
   margin-left: 20px;
   outline: none;
   list-style:none;
-}
-.submenu {
-  display: none;
+}.submenu {
+  display: none; /* Esconde o submenu por padrão */
   position: absolute;
   top: 100%;
   left: 0;
@@ -77,8 +79,12 @@ summary{
   z-index: 1;
 }
 
+.dropdown-arrow:hover .submenu {
+  display: block; /* Exibe o submenu ao passar o mouse sobre o item pai */
+}
+
 .submenu li {
-  margin: 0;
+  margin: 0; /* Remove margens do submenu */
 }
 
 .submenu li a {
@@ -89,14 +95,15 @@ summary{
 }
 
 .submenu li a:hover {
-  color: #f56d44;
+  color: #f56d44; /* Cor ao passar o mouse */
 }
+
 
 #logo {
   width: 150px;
 }
 
-button {
+#menu button {
   color: #ffffff;
   font-size: 18px;
   border-radius: 5px;

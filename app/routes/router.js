@@ -49,7 +49,7 @@ router.get('/mais-filtros', function(req, res) {
     res.render('pages/mais-filtros');
 });
 router.get('/login', function(req, res) {
-    res.render('pages/login', { "erros": null, "valores": {"email":"","password":""},"retorno":null });
+    res.render('pages/login', { "erros": null, "valores": {"email":"","password":"", "cnpj":""},"retorno":null });
 });
 
 router.get('/navbar', function(req, res) {
@@ -109,6 +109,15 @@ router.post(
     body("reppassword").custom((value, { req }) => {
             return value === req.body.password;
         }).withMessage("Senhas estão diferentes"),
+    body("cnpj")
+    .isLength({ min: 18, max: 18 }).withMessage('O CNPJ tem 18 caracteres!')
+    .custom((value) => {
+      if (validarCNPJ(value)) {
+        return true;
+      } else {
+        throw new Error('CNPJ inválido!');
+      }
+    }),
     function (req, res) {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {

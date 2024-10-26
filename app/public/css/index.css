@@ -1,3 +1,9 @@
+
+body{
+    color: #141c44;
+    font-size: 'Poppins', sans-serif;
+}
+
 .imagem-texto{
     position: relative;
     width: 100%;
@@ -11,6 +17,7 @@
 }
 
 #texto{
+
     position: absolute;
     font-size: 55px;
     font-family: "Poppins Bold", "Poppins", sans-serif;
@@ -20,8 +27,8 @@
     color: #f56d44;
 }
 #paragrafo{
-
     position: absolute;
+    color: #141c44;
     font-size: 25px;
     padding-top: 20px;
     font-family: "Poppins Light", "Poppins", sans-serif;
@@ -119,6 +126,7 @@
     display: inline;
     top: 1480px;
     font-size: 20px;
+    color: #141c44;
     font-family: "Poppins", sans-serif;
     line-height:60px;
     left: 20%;

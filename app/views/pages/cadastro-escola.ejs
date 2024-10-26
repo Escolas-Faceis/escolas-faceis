@@ -20,8 +20,8 @@
 
 <body>
     <%
-    let  erroValidacao =  {"name_school":"","adress":"","adress_n":"", "city":"", "email":"","password":"","reppassword":""};
-    let  msgErro =  {"name_school":"","adress":"","adress_n":"", "city":"", "email":"","password":"","reppassword":""};
+    let  erroValidacao =  {"name_school":"","adress":"","adress_n":"", "city":"", "email":"","password":"","reppassword":"", cnpj:""};
+    let  msgErro =  {"name_school":"","adress":"","adress_n":"", "city":"", "email":"","password":"","reppassword":"", cnpj:""};
     if(erros) {
         erros.errors.forEach(function(erro) {
             if (erro.path == "name_school") {
@@ -52,6 +52,11 @@
                 erroValidacao.city = "erro",
                 msgErro.city = erro.msg
             }
+            if (erro.path  == "cnpj"){
+                cssErro.cnpj = "erro";
+                msgErro.cnpj = itemErro.msg;                
+             }  
+
         })
     }; %>
 
@@ -78,31 +83,28 @@
                 <input type="text" id="name_school" name="name_school" value="<%= valores.name_school %>" class="<%= erroValidacao.name_school%>">
                 <span class="spanerro"><%=msgErro.name_school%></span>
 
-                <div>
-                <div id="endereco">
-                <div>
+                
+                <section id="endereco">
                 <p>Endereço</p>
                 <input type="text" id="endereco_escola" name="adress" value="<%= valores.adress %>" class="<%= erroValidacao.adress%>">
                 <span class="spanerro"><%=msgErro.adress%></span>
-                </div>
-                <div>
                 <p>N°</p>
-                <div id="pequeno">
-                <input type="text" id="n_escola" name="adress_n" value="<%= valores.adress_n %>" class="<%= erroValidacao.adress_n%>">
+                <section id="pequeno">
+                <input type="number" id="n_escola" name="adress_n" value="<%= valores.adress_n %>" class="<%= erroValidacao.adress_n%>">
                 <span class="spanerro"><%=msgErro.adress_n%></span>
-                </div> 
-                </div>
-                </div>
-                <div>
-                <div id="endereco">
-                    <div>
+                </section> 
+         
+                </section>
+                
+                <section id="endereco">
+                    <section>
                     <p>Cidade</p>
                     <input type="text" id="cidade_escola" name="city" value="<%= valores.city %>" class="<%= erroValidacao.city%>">
                     <span class="spanerro"><%=msgErro.city%></span>
-                    </div>
-                    <div>
+                    </section>
+                    <section>
                     <p>Estado</p>
-                    <div id="pequeno">
+                    <section id="pequeno">
                         <select id="estado_escola">
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -132,129 +134,137 @@
                             <option value="SE">Sergipe</option>
                             <option value="TO">Tocantins</option>
                           </select>
-                    </div> 
-                    </div>
-                </div>
-            </div>
+                    </section>
+                    <section><p id="cnpj">CNPJ</p>
+                        <input type="text" maxlength="18" id="cnpj_input" name="cnpj" value="<%= valores.cnpj %>" class="<%= erroValidacao.cnpj %>">
+                        <span class="spanerro"><%= msgErro.cnpj %></span>
+                
+                        
+                    </section> 
+                    </section>
+                
+            </section>
             
             
             <section id="checkboxes">
                 <section id="parts_checks"> 
                 <p>Tipo de Ensino</p>
-                <div>
+                <ul>
+                <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Educação Infantil</label>
-                </div>
-                <div>
+                </li>
+                <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Ensino Fundamental</label>
-                </div>
-                <div>
+                </li>
+                <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Ensino Médio</label>
-                </div>
-                <div>
+                </li>
+                <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Educação Integrado</label>
-                </div>
-                <div>
+                </li>
+                <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Ensino Técnico</label>
-                </div>
-                <div>
+                </li>
+                <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Cursos Profissionalizantes</label>
-                </div>
-                <div>
+                </li>
+                <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Cursos Extracurriculares</label>
-                </div>
-                <div>
+                </li>
+                <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Cursos de Idioma</label>
-                </div>
-                <div>
+                </li>
+                <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Outro</label>
-                </div>
+                </li></ul>
                 </section>
 
                 <section id="parts_checks"> 
-                    <p>Turnos</p>
-                    <div>
+                    <p>Turnos</p><ul>
+                    <li>
                         <input type="checkbox" id="educacao_infantil">
                         <label for="educacao_infantil">Manhã</label>
-                    </div>
-                    <div>
+                    </li>
+                    <li>
                         <input type="checkbox" id="educacao_infantil">
                         <label for="educacao_infantil">Tarde</label>
-                    </div>
-                    <div>
+                    </li>
+                    <li>
                         <input type="checkbox" id="educacao_infantil">
                         <label for="educacao_infantil">Integral</label>
-                    </div>
-                    <div>
+                    </li>
+                    <li>
                         <input type="checkbox" id="educacao_infantil">
                         <label for="educacao_infantil">Noite</label>
-                    </div>
-                    <div>
+                    </li>
+                    <li>
                         <input type="checkbox" id="educacao_infantil">
-                        <label for="educacao_infantil">Sábado</label>
-                    </div>
+                        <label for="educacao_infantil">*Sábado</label>
+                    </li></ul>
                 
                     </section>
 
                     <section id="parts_checks"> 
-                        <p>Rede</p>
-                        <div>
+                        <p>Rede</p><ul>
+                        <li>
                             <input type="checkbox" id="educacao_infantil">
                             <label for="educacao_infantil">Municipal</label>
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <input type="checkbox" id="educacao_infantil">
                             <label for="educacao_infantil">Estadual</label>
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <input type="checkbox" id="educacao_infantil">
                             <label for="educacao_infantil">Fundação</label>
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <input type="checkbox" id="educacao_infantil">
-                            <label for="educacao_infantil">Particular</label>
-                        </div>
+                            <label for="educacao_infantil">Particular</label></li>
+                        </ul> </section>
                        
                         </section>
             </section>
             
 
             <p>E-mail</p>
-            <input type="text" id="email" name="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
+            <input type="email" id="email" name="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
             <span class="spanerro"><%=msgErro.email%></span>
 
             <p>Senha</p>
-            <input type="text" id="senha" name="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
+            <input type="password" id="senha" name="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
             <span class="spanerro"><%=msgErro.password%></span>
 
             <p>Confirmação de Senha</p>
-            <input type="text" id="repetir_senha" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
+            <input type="password" id="repetir_senha" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
             <span class="spanerro"><%=msgErro.reppassword%></span>
 
-            <div>
+            <section class="concordancias">
                 <input type="checkbox" id="politica_privacidade">
                 <label for="politica_privacidade">Concordo com a Política de Privacidade</label>
-            </div>
-            <div>
+
                 <input type="checkbox" id="novidades">
                 <label for="novidades">Desejo receber as novidades do site por e-mail</label>
-            </div>
+            </section>
             
             <section id="submit_button">
             <input type="submit" id="criar_conta" value="CRIAR CONTA" />
-        </section>
+            </section>
             </form>
         </section>
     </main>
 </section>
     <%- include('../partials/footer'); %>
+    <script src="js/mascaras.js"></script>
 </body>
+
 </html>
