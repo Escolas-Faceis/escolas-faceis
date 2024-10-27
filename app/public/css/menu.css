@@ -20,9 +20,6 @@ body {
   display: none;
 }
 
-
-
-
 .navbar  #menu {
   display: flex;
   align-items: center;
@@ -43,7 +40,7 @@ body {
 #menu a {
   text-decoration: none;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 16px;
   transition: color 0.3s ease;
 }
 
@@ -55,7 +52,7 @@ body {
   margin-right: 30px; /* Adiciona espaçamento entre os três primeiros itens */
 }
 
-#menu li:first-child{
+#menu #inicio{
   margin-left: 50px;
 }
 
@@ -70,34 +67,49 @@ body {
   margin-left: 20px;
   outline: none;
   list-style:none;
-}.submenu {
+
+}
+
+.submenu {
   display: none; /* Esconde o submenu por padrão */
   position: absolute;
-  top: 100%;
+  top: 100%; /* Faz o submenu aparecer logo abaixo do item pai */
   left: 0;
-  background: #141C44;
+  background: #a3a7a8;
   padding: 10px 0;
   list-style-type: none;
   z-index: 1;
+  font-size: 16px;
+  width: 200%;
+  white-space:none;
+  text-wrap: nowrap;
+  border-radius: 10px;
+  border-top-left-radius: 0;
 }
 
-.dropdown-arrow:hover .submenu {
+.master:hover .submenu {
   display: block; /* Exibe o submenu ao passar o mouse sobre o item pai */
 }
 
-.submenu li {
-  margin: 0; /* Remove margens do submenu */
+#menu .submenu li:first-child{
+  margin: auto 7%;
+
 }
 
-.submenu li a {
-  padding: 10px 20px;
-  display: block;
-  color: #ffffff;
-  transition: color 0.3s ease;
+.submenu li a{
+  margin: 3% 1%;
+  row-gap: 10px;
+  font-size: 7px;
+  line-height: 30px;
 }
 
-.submenu li a:hover {
-  color: #f56d44; /* Cor ao passar o mouse */
+#menu .submenu li a:hover{
+  color: #adcfeb;
+}
+
+.master{
+  margin-left:-3%;
+  padding: 0;
 }
 
 
@@ -108,7 +120,6 @@ body {
 
 #menu button {
   color: #ffffff;
-  font-size: 18px;
   border-radius: 5px;
   padding: 10px 15px;
   background-color: #f56d44;
@@ -138,7 +149,7 @@ body {
   text-decoration: none;
 } button li a:hover{color: white;}
 }
-  
+
   @media screen and (max-width: 850px){
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
