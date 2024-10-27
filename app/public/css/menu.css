@@ -11,18 +11,20 @@ body {
 
 }
 
-header {
+.navbar header {
   background: #141C44;
 
 }
 
-#check{
+
+.navbar #check{
   display: none;
 }
 
 
 
-#menu {
+
+.navbar  #menu {
   display: flex;
   align-items: center;
   list-style-type: none;
@@ -63,7 +65,8 @@ header {
 	margin-left: 0 5px;
 
 } 
-summary{
+
+.navbar summary{
   margin-bottom: 3px;
   margin-left: 20px;
   outline: none;
@@ -99,7 +102,8 @@ summary{
 }
 
 
-#logo {
+
+.navbar #logo {
   width: 150px;
 }
 
@@ -120,7 +124,8 @@ summary{
   gap: 10px; /* Espaço entre os itens */
 }
 
-button {
+
+.navbar button {
   margin: 0; /* Remove margem do botão */
   transition: all 0.3s;
 }button:hover{
@@ -128,7 +133,8 @@ button {
   background-color: #d84214;
 }
 
-button a {
+
+.navbar button a {
   color: #ffffff;
   text-decoration: none;
 } button li a:hover{color: white;}
@@ -137,7 +143,8 @@ button a {
   @media screen and (max-width: 850px){
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-    body {
+    
+.navbar body {
       margin: 0;
       padding: 0;
       /* faça parecer decente o suficiente */
@@ -147,17 +154,20 @@ button a {
       
     }
 
-    header{
+    
+.navbar header{
       background-color:#141C44;
     }
 
-	nav{
+	
+.navbar nav{
 		z-index: 3;
 		background-color: #141C44;
 		height: 120px;
 	}
 
-    #logo{
+    
+.navbar #logo{
       width:25%;
       display: flex;
       position: absolute;
@@ -169,17 +179,20 @@ button a {
       padding-bottom: 10px;
       
     }
-    a {
+    
+.navbar a {
       text-decoration: none;
       color: #ffffff;
       transition: color 0.3s ease;
     }
     
-    a:hover {
+    
+.navbar a:hover {
       color: #fff6d8;
     }
     
-    #menuToggle {
+    
+.navbar #menuToggle {
       display: block;
       position: relative;
       top: 50px;
@@ -295,7 +308,8 @@ button a {
     #cadastro:hover{
       color: white;
     }
-    button{
+    
+.navbar button{
       color: #f56d44;
       font-size: 22px;
       border-radius: 5px;

@@ -1,4 +1,4 @@
-/* *{
+*{
     padding: 0px;
     margin: 0px;
     }
@@ -40,7 +40,8 @@
     }
 
     #regiao-search{
-        width: 6%
+        width: 6%;
+        color: #141c44;
     }
 
     #search{
@@ -272,4 +273,4 @@
             }
 
         
-    } */
+    } 
