@@ -1,18 +1,18 @@
-@media screen and (max-width:1920px){
+@media screen and (max-width:800px){
 
     body{
-        background-color: white;
+        background-color: rgb(222, 90, 90);
     }
 
     .imagem-texto{
         position: relative;
         width: 100%;
         height: 50%;
+        overflow-x: hidden;
     }
     #imagem{
-    
-        width: 100%;
-     
+        width: 255%;
+        overflow-x: hidden;
         z-index: 0;
     }
     
@@ -21,7 +21,7 @@
         font-size: 50px;
         font-family: "Poppins Bold", "Poppins", sans-serif;
         font-weight: bold;
-        left: 7%;
+        left: 10%;
         top: 29%;
         color: #f56d44;
     }
@@ -31,25 +31,21 @@
         font-size: 20px;
         padding-top: 20px;
         font-family: "Poppins Light", "Poppins", sans-serif;
-        left:8%;
+        left:10%;
         top: 46%;
     
     }
     
     .imagem-caixa{
-        z-index: 1;
-        position: relative;
-        top: -80px;
-        display: flex;  
-        justify-content: center;
+        display: none;
         
     }
     .caixa1{
     
         color: white;
-        left: 610px;
+        left: 0;
         padding: 10px;
-        width: 277px;
+        width: 180px;
         border-top-left-radius: 15px;
         border-bottom-left-radius: 15px;
         border-left-color: white;
@@ -89,7 +85,7 @@
     }
     .caixa3{
         padding: 10px;
-        width: 277px;
+        width: 180px;
         border-top-right-radius: 15px;
         border-bottom-right-radius: 15px;
         background-color: #0a7777;
@@ -133,7 +129,7 @@
         
     } li::marker {color: #f56d44;}
     #imgpequena{
-        display: flex;
+        display: none;
         position:relative; 
     
         margin-left: 50%;

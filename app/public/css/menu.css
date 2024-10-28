@@ -96,14 +96,14 @@ body {
 
 }
 
-.submenu li a{
+.submenu ul li a{
   margin: 3% 1%;
   row-gap: 10px;
   font-size: 7px;
   line-height: 30px;
 }
 
-#menu .submenu li a:hover{
+#menu .submenu ul li a:hover{
   color: #adcfeb;
 }
 
@@ -125,6 +125,7 @@ body {
   background-color: #f56d44;
   border: none;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
 }
 
 .aside {
@@ -154,14 +155,14 @@ body {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
     
-.navbar body {
+    body {
       margin: 0;
       padding: 0;
       /* faça parecer decente o suficiente */
       background: rgb(255, 255, 255);
-      color: #455bcc;
+      color: #ffffff;
       font-family: "Popping Light", "Avenir", sans-serif;
-      
+      overflow-x: hidden;
     }
 
     
@@ -174,6 +175,7 @@ body {
 		z-index: 3;
 		background-color: #141C44;
 		height: 120px;
+    width: 100vw;
 	}
 
     
@@ -209,6 +211,7 @@ body {
       left: 50px;  
       z-index: 1;
       user-select: none;
+      width: 50%;
     }
     #menuToggle input {
       display: block;
@@ -268,7 +271,7 @@ body {
        superior esquerdo da tela */
     #menu {
       position: absolute;
-      width: 100%;
+      width: 100vw;
       margin: -100px 0 0 -50px;
       padding: 50px;
       padding-top: 125px; 
@@ -277,11 +280,13 @@ body {
       transform-origin: 0% 0%;
       transform: translate(-100%, 0);
       transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+      overflow-x: hidden;
     }
     
     #menu li
     {
-      padding: 10px 0;
+        font-family: 'Poppins', sans-serif;
+      padding: 10px 10px;
       font-size: 22px;
     }
     
@@ -295,6 +300,11 @@ body {
       color: #ffffff;
       transition: all 0.3s ease-in-out;
     }
+
+    summary{
+      list-style-type: none;
+    }
+    
     .master:hover{
       color: #f56d44;
     }
@@ -320,6 +330,7 @@ body {
     }
     
 .navbar button{
+  font-family: 'Poppins', sans-serif;
       color: #f56d44;
       font-size: 22px;
       border-radius: 5px;

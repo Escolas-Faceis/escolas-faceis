@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/cadastro-usuario.css">
     <title> Cadastro </title>
 </head>
 
@@ -51,31 +52,31 @@
                 <span class="spanerro"><%=msgErro.name%></span>
 
                 <p>Email</p>
-                <input type="text" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
+                <input type="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
                 <span class="spanerro"><%=msgErro.email%></span>
 
                 <p>Número de Telefone</p>
-                <input type="text" name="cellphone" id="cellphone" value="<%= valores.cellphone %>" class="<%= erroValidacao.cellphone%>">
+                <input type="text" name="cellphone" id="cellphone" value="<%= valores.cellphone %>"maxlenght="15" class="<%= erroValidacao.cellphone%>">
                 <span class="spanerro"><%=msgErro.cellphone%></span>
 
                 <p>Senha</p>
-                <input type="text" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
+                <input type="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
                 <span class="spanerro"><%=msgErro.password%></span>
 
                 <p>Confirmação de Senha</p>
-                <input type="text" id="reppassword" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
+                <input type="password" id="reppassword" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
                 <span class="spanerro"><%=msgErro.reppassword%></span>
                 <div>
                 <input type="checkbox" id="politica">
                 <label for="politica">Concordo com a política de privacidade</label>
                 <p></p>
                 <input type="checkbox" id="novidades">
-                <label for="novidades">Desejo receber as novidades do site por e-mail</label>
+                <label for="novidades">Desejo receber as novidades por e-mail</label>
                 <p>
                 </div>
             
             <section id="login2">
-            <input type="submit" id="login_button" value="CRIAR CONTA" />
+            <a href="/perfil-usuario"><input type="submit" id="login_button" value="CRIAR CONTA" /></a>
             </section>
 
             </form>
@@ -85,6 +86,8 @@
             <img src="imagem/cadastro_img.png">
         </section>
     </main>
+
+    <%- include('../partials/footer')%>
     </section>  
 
 </body>

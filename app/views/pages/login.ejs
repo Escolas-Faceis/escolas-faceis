@@ -36,15 +36,15 @@
             <section id="form">
 
                 <form action="/login_post" method="POST">
-                    <p id="email">Email</p>
+                    <p id="email"><label for="email">Email</label></p>
                     <input type="email" id="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
 
                     <span class="spanerro"><%=msgErro.email%></span>
-                    <p id="senha">Senha</p>
+                    <p id="senha"><label for="password">Senha</label></p>
                     <input type="password" id="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">    
                     <span class="spanerro"><%=msgErro.password%></span>
                     <section>
-                    <span id="conect"><input type="checkbox" id="conectado"><label for="conectado">Desejo me manter conectado</label></span>
+                    <span id="conect"><input type="checkbox" id="conectado" name="conectado"><label for="conectado">Desejo me manter conectado</label></span>
                     <p><a  id="f-password" href="#">Esqueci minha senha</a></p>
                     </section>
                 
@@ -67,7 +67,7 @@
                 <h3>Junte-se a nossa <a href="/cadastro-usuario" id="amarelinho">comunidade</a href="/cadastro-usuario">!</h3>
                 
             </section>
-        </main> <img id="picture" src="imagem/login_image.png">
+        </main> <img id="picture" alt="Decorativa" src="imagem/login_image.png">
         </section>
 <script src="js/mascaras.js"></script>
 </body>

@@ -82,6 +82,7 @@ nav {
     margin-bottom: 10%;
     display: flex;
     justify-content: center;
+    
 }
 
 #form {
@@ -103,6 +104,10 @@ input[type="password"] {
     font-size: 17px;
     padding: 0 8px;
     border: solid var(--azul);
+}
+
+#form form p {
+    
 }
 
 .marker {
@@ -195,7 +200,7 @@ h2 {
         width: 20px; /* Aumente o tamanho se necessário */
         height: 20px;
         appearance: checkbox; /* Reseta a aparência padrão */
-        margin-right: 8px; /* Espaço entre o checkbox e o label */
+        margin-right: 2px; /* Espaço entre o checkbox e o label */
     }
     
 
@@ -203,6 +208,8 @@ label {
     color: var(--azul);
     padding-right: 8px;
     font-size: 18px;
+    white-space: nowrap;
+
 }
 
 #criar_conta {
@@ -240,7 +247,7 @@ label {
 #login_button {
     transition: all 0.3s;
     background-color: var(--azul_claro);
-    border: solid var(--azul_claro);
+    border: none;
     border-radius: 30px;
     color: white;
     width: 250px;
@@ -248,11 +255,16 @@ label {
     font-size: 25px;
     font-weight: bold;
     margin-top: 20px;
+    
+}
+
+.spanerro{
+    color: #f56d44;
 }
 
 #login_button:hover {
-    background-color: white;
-    color: var(--azul_claro);
+    background-color: #3d8fd2;
+    color: white;
     cursor: pointer;
 }
 
@@ -271,7 +283,9 @@ label {
 }
 
 #texto_lateral img {
-    width: 300px;
+    width: 200%;
+    margin-top: 10%;
+    margin-left: 10%;
 }
 
 #lateral_contato {

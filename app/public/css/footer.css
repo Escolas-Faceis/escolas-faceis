@@ -151,7 +151,25 @@ position:static
       max-width: 100%;
       margin-bottom: 30px;
     }
+    .footer-container{
+      margin-left: 5%;
+    }
     #logo-footer  {
       width: 50%;
     }
+}
+
+@media (max-width:1200px){
+  .footer-container{
+    margin-left: 5%;
+  }
+}
+
+@media (max-width: 400px){
+  .footer-container{
+    margin-left: 5%;
+  }
+  .social-links{
+    display: none;
+  }
 }
