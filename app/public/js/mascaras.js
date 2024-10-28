@@ -13,3 +13,29 @@ input.addEventListener('keypress', () => {
     }else if (inputLength == 15) {
         input.value += '-'
     }})
+
+
+    //TELEFONE CELULAR
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const numero = document.getElementById('cellphone');
+    
+        numero.addEventListener('keypress', (event) => {
+            const numerLength = numero.value.replace(/[^0-9]/g, '').length; // Contar apenas números
+    
+            // Impedir a inserção de mais caracteres
+            if (numerLength >= 11) {
+                event.preventDefault();
+            }
+    
+            // Formatação do telefone
+            if (numerLength === 0) {
+                numero.value += '(';
+            } else if (numerLength === 2) {
+                numero.value += ') ';
+            } else if (numerLength === 7) {
+                numero.value += '-';
+            }
+        });
+    });
+    

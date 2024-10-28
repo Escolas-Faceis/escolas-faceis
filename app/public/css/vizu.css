@@ -22,18 +22,19 @@
     }
     
     .logo{
-        
+        overflow: hidden;
+        object-fit: cover;
         position: static;
         width: 180px;
         border-radius: 15px;
-        margin-left: -22%;
+        margin-left: -18%;
         margin-top: 10%;
     }
     
     .info{
         margin-top: 1%;
         flex: 1; /* Permite que a seção de informações ocupe o espaço restante */
-        padding-left: 20px; /* Adiciona espaço à esquerda da imagem */
+        padding-left: 8px; /* Adiciona espaço à esquerda da imagem */
         font-family: "Poppins", sans-serif;
         color:#141c44;
         font-size: 16px;;

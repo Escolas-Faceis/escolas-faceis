@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Cadastrar Escola</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/">
+    <link rel="stylesheet" href="css/cadastro-escola.css">
     <script>
         function rolar_pra_baixo(){
         window.scrollTo({
@@ -76,63 +77,65 @@
 
     <section id="centralizar">
     <main id="form_space">
-        <section id="form2">
+        <section id="form">
             <form action="cadastro_escola_post" method="POST">
                 <h2 id="form_title">Informações Básicas</h2>
+
                 <p>Nome da Escola</p>
                 <input type="text" id="name_school" name="name_school" value="<%= valores.name_school %>" class="<%= erroValidacao.name_school%>">
                 <span class="spanerro"><%=msgErro.name_school%></span>
 
                 
-                <section id="endereco">
-                <p>Endereço</p>
-                <input type="text" id="endereco_escola" name="adress" value="<%= valores.adress %>" class="<%= erroValidacao.adress%>">
-                <span class="spanerro"><%=msgErro.adress%></span>
-                <p>N°</p>
-                <section id="pequeno">
-                <input type="number" id="n_escola" name="adress_n" value="<%= valores.adress_n %>" class="<%= erroValidacao.adress_n%>">
-                <span class="spanerro"><%=msgErro.adress_n%></span>
-                </section> 
-         
-                </section>
+                    <section class="endereco">
+                        <section id="end">
+                    <p>Endereço</p><br>
+                    <input type="text" id="end" name="adress" value="<%= valores.adress %>" class="<%= erroValidacao.adress%>">
+                    <span class="spanerro"><%=msgErro.adress%></span></section>
+                    <section id="numero"><p>N°</p>
+                    
+                    <input type="number" id="num" name="adress_n" value="<%= valores.adress_n %>" class="<%= erroValidacao.adress_n%>">
+                    <span class="spanerro"><%=msgErro.adress_n%></span>
+                    </section> 
+            
+                    </section>
                 
-                <section id="endereco">
+                <section class="endereco">
                     <section>
                     <p>Cidade</p>
-                    <input type="text" id="cidade_escola" name="city" value="<%= valores.city %>" class="<%= erroValidacao.city%>">
+                    <input type="text" id="city" name="city" value="<%= valores.city %>" class="<%= erroValidacao.city%>">
                     <span class="spanerro"><%=msgErro.city%></span>
                     </section>
                     <section>
                     <p>Estado</p>
                     <section id="pequeno">
-                        <select id="estado_escola">
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
+                        <select id="uf">
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SC</option>
+                            <option value="SP">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
                           </select>
                     </section>
                     <section><p id="cnpj">CNPJ</p>
@@ -147,89 +150,85 @@
             
             
             <section id="checkboxes">
-                <section id="parts_checks"> 
-                <p>Tipo de Ensino</p>
-                <ul>
+                <section class="parts_checks"> 
+                
+                <ul><p>Tipo de Ensino</p>
                 <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Educação Infantil</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="educacao_infantil">
-                    <label for="educacao_infantil">Ensino Fundamental</label>
+                    <input type="checkbox" id="ef1">
+                    <label for="ef1">Ensino Fundamental</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="educacao_infantil">
-                    <label for="educacao_infantil">Ensino Médio</label>
+                    <input type="checkbox" id="ef2">
+                    <label for="ef2">Ensino Médio</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="educacao_infantil">
-                    <label for="educacao_infantil">Educação Integrado</label>
+                    <input type="checkbox" id="ei">
+                    <label for="ei">Educação Integrado</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="educacao_infantil">
-                    <label for="educacao_infantil">Ensino Técnico</label>
+                    <input type="checkbox" id="etec">
+                    <label for="etec">Cursos Técnicos</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="educacao_infantil">
-                    <label for="educacao_infantil">Cursos Profissionalizantes</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="educacao_infantil">
-                    <label for="educacao_infantil">Cursos Extracurriculares</label>
+                    <input type="checkbox" id="cso">
+                    <label for="cso">Cursos Extracurriculares</label>
                 </li>
                 <li>
                     <input type="checkbox" id="educacao_infantil">
                     <label for="educacao_infantil">Cursos de Idioma</label>
                 </li>
                 <li>
-                    <input type="checkbox" id="educacao_infantil">
-                    <label for="educacao_infantil">Outro</label>
+                    <input type="checkbox" id="outroe">
+                    <label for="outroe">Outro</label>
                 </li></ul>
                 </section>
 
-                <section id="parts_checks"> 
-                    <p>Turnos</p><ul>
+                <section class="parts_checks"> 
+                    <ul><p>Turnos</p>
                     <li>
-                        <input type="checkbox" id="educacao_infantil">
-                        <label for="educacao_infantil">Manhã</label>
+                        <input type="checkbox" id="m">
+                        <label for="m">Manhã</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="educacao_infantil">
-                        <label for="educacao_infantil">Tarde</label>
+                        <input type="checkbox" id="t">
+                        <label for="t">Tarde</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="educacao_infantil">
-                        <label for="educacao_infantil">Integral</label>
+                        <input type="checkbox" id="int">
+                        <label for="int">Integral</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="educacao_infantil">
-                        <label for="educacao_infantil">Noite</label>
+                        <input type="checkbox" id="n">
+                        <label for="n">Noite</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="educacao_infantil">
-                        <label for="educacao_infantil">*Sábado</label>
+                        <input type="checkbox" id="sab">
+                        <label for="sab">*Sábado </label>
                     </li></ul>
                 
                     </section>
 
-                    <section id="parts_checks"> 
-                        <p>Rede</p><ul>
+                    <section class="parts_checks"> 
+                        <ul><p>Rede</p>
                         <li>
-                            <input type="checkbox" id="educacao_infantil">
-                            <label for="educacao_infantil">Municipal</label>
+                            <input type="checkbox" id="muni">
+                            <label for="muni">Municipal</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="educacao_infantil">
-                            <label for="educacao_infantil">Estadual</label>
+                            <input type="checkbox" id="est">
+                            <label for="est">Estadual</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="educacao_infantil">
-                            <label for="educacao_infantil">Fundação</label>
+                            <input type="checkbox" id="fund">
+                            <label for="fund">Fundação</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="educacao_infantil">
-                            <label for="educacao_infantil">Particular</label></li>
+                            <input type="checkbox" id="part">
+                            <label for="part">Particular</label></li>
                         </ul> </section>
                        
                         </section>
