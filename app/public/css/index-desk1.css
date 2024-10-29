@@ -117,13 +117,13 @@
         color: #77b6ea;
         font-size: 40px;
         font-family:  "Poppins SemiBold", "Poppins", sans-serif;
-        top: 1390px;
+        top: 1700px;
         left: 20%;
     }
     .aqui2{
         position: absolute;
         display: inline;
-        top: 1480px;
+        top: 1780px;
         font-size: 20px;
         font-family: "Poppins", sans-serif;
         line-height:60px;
@@ -135,7 +135,7 @@
     #imgpequena{
         display: flex;
         position:relative; 
-    
+        margin-top: -100px;
         margin-left: 50%;
         height: 450px; 
         width: 450px;
