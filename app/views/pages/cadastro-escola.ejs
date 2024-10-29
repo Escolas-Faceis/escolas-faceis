@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Cadastrar Escola</title>
-    <link rel="stylesheet" href="css/">
+
     <link rel="stylesheet" href="css/cadastro-escola.css">
     <script>
         function rolar_pra_baixo(){
@@ -54,8 +54,8 @@
                 msgErro.city = erro.msg
             }
             if (erro.path  == "cnpj"){
-                cssErro.cnpj = "erro";
-                msgErro.cnpj = itemErro.msg;                
+                erroValidacao.cnpj = "erro";
+                msgErro.cnpj = erro.msg;                
              }  
 
         })
@@ -232,10 +232,8 @@
                         </ul> </section>
                        
                         </section>
-            </section>
-            
 
-            <p>E-mail</p>
+                        <p>E-mail</p>
             <input type="email" id="email" name="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
             <span class="spanerro"><%=msgErro.email%></span>
 
@@ -258,6 +256,10 @@
             <section id="submit_button">
             <input type="submit" id="criar_conta" value="CRIAR CONTA" />
             </section>
+            </section>
+            
+
+            
             </form>
         </section>
     </main>
