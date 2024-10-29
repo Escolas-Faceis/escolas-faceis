@@ -21,17 +21,17 @@
         font-size: 50px;
         font-family: "Poppins Bold", "Poppins", sans-serif;
         font-weight: bold;
-        left: 7%;
+        left: 10%;
         top: 29%;
         color: #f56d44;
     }
     #paragrafo{
     
         position: absolute;
-        font-size: 20px;
+        font-size: 25px;
         padding-top: 20px;
         font-family: "Poppins Light", "Poppins", sans-serif;
-        left:8%;
+        left:10%;
         top: 46%;
     
     }
