@@ -42,7 +42,7 @@
     width: 20%;
     position: absolute;
     height: auto;
-    display: flex;
+    display: none;
     float: right;
     margin-left: 50%;
     margin-top: -14%;
