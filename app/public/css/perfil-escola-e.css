@@ -21,6 +21,45 @@
     display: inline;
     
 }
+
+.perfil{
+    margin-top: 3%;
+}
+.perfil input[type='text']{
+    border: none;
+    border-radius: 10px;
+    width: 40%;
+    margin: 0;
+    
+}
+.Add{
+    cursor: pointer;
+}
+.nome-escola{font-weight: 500; margin-top: -4%;}
+
+
+.perfil select{
+    padding:0.3%;
+    margin:0.2%;
+    font-size: 16px;
+}
+.ingresso{
+ font-size: 15px;
+ border-radius: 3px;
+ padding: 0.3%;
+}
+.i{
+    width: 200%;
+}
+
+/* input[type='textarea']{
+    width: 100%;
+    height: auto;
+    white-space: wrap;
+    flex-wrap: nowrap;
+    text-wrap: wrap;
+} */
+
 .info{
     flex: 1; /* Permite que a seção de informações ocupe o espaço restante */
     padding-left: 20px; /* Adiciona espaço à esquerda da imagem */
@@ -107,6 +146,47 @@
 .lista li::marker{
     color: #f56d44;
 }
+
+#botoes{
+    display: inline-block;
+    transform: translate(-135%, 40%);
+}
+
+
+#botoes #editar_perfil {
+    width: 150px;
+    margin-bottom: 10px;
+    font-size: 19px;
+    background-color: #77b6ea;
+    border-radius: 8px;
+    border: solid #77b6ea;
+    color: white;
+    padding: 5px 8px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+   transition: all 0.3s;
+ }#editar_perfil:hover{opacity:0.7}#editar_perfil:active{background-color: #2b5475;}
+ 
+ #salvar_botao {
+    font-size: 19px;
+     width: 150px;
+     background-color: white;
+     border-style: solid;
+     border-radius: 5px;
+     border-color: gray;
+     padding: 5px 8px;
+     color: gray;
+     text-align: center;
+     font-family: 'Poppins', sans-serif;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;    
+     flex-wrap: nowrap;
+     transition: all 0.3s;
+ }#salvar_botao:hover{background-color: rgb(235, 235, 235); }
+ 
 .lista-2{
     margin-left: 10%;
     margin-top: 2%;

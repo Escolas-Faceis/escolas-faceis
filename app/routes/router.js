@@ -51,6 +51,9 @@ router.get('/mais-filtros', function(req, res) {
 router.get('/login', function(req, res) {
     res.render('pages/login', { "erros": null, "valores": {"email":"","password":"", "cnpj":""},"retorno":null });
 });
+router.get('/perfil-escola-e', function(req, res) {
+  res.render('pages/perfil-escola-e');
+});
 
 router.get('/navbar', function(req, res) {
     res.render('partials/navbar');

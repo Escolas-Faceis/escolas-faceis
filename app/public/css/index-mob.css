@@ -11,27 +11,27 @@
         overflow-x: hidden;
     }
     #imagem{
-        width: 255%;
+        width: 263%;
         overflow-x: hidden;
         z-index: 0;
     }
     
     #texto{
         position: absolute;
-        font-size: 50px;
+        font-size: 70px;
         font-family: "Poppins Bold", "Poppins", sans-serif;
         font-weight: bold;
-        left: 10%;
+        left: 12%;
         top: 29%;
         color: #f56d44;
     }
     #paragrafo{
     
         position: absolute;
-        font-size: 20px;
+        font-size: 35px;
         padding-top: 20px;
         font-family: "Poppins Light", "Poppins", sans-serif;
-        left:10%;
+        left:12%;
         top: 46%;
     
     }
@@ -98,10 +98,7 @@
     #caixa1 ::placeholder{
         color: white;
     }
-    #info{
-        margin-top: 10%;
-    
-    }
+
     
     .aq{
         margin-top: 7%;
@@ -113,13 +110,13 @@
         color: #77b6ea;
         font-size: 40px;
         font-family:  "Poppins SemiBold", "Poppins", sans-serif;
-        top: 1390px;
+        top: 1690px;
         left: 20%;
     }
     .aqui2{
         position: absolute;
         display: inline;
-        top: 1480px;
+        top: 1780px;
         font-size: 20px;
         font-family: "Poppins", sans-serif;
         line-height:60px;
@@ -129,10 +126,10 @@
         
     } li::marker {color: #f56d44;}
     #imgpequena{
-        display: none;
-        position:relative; 
+            position:relative; 
     
-        margin-left: 50%;
+        margin-top: 92%;
+        margin-left: 20%;
         height: 450px; 
         width: 450px;
     }
@@ -180,7 +177,7 @@
         display: block;
         width: 100%;
         overflow: hidden;
-        height: 50%;
+        height: 250px;
     }
     
     .slides {
@@ -198,8 +195,8 @@
     }
     
     .slide img {
-        width: 100%;
-        height: 300px;
+        width: 500px;
+        height: 100px;
         display: block;
         
             width: 100%;
@@ -207,6 +204,10 @@
             display: block;
         
         
+    }
+
+    #imgs{
+        height: 250px;
     }
     
      #kkj{
@@ -263,6 +264,12 @@
     
 }
 
-@media screen and (max-width:400px){
+@media screen and (max-width:650px){
+    #imgs{
+        height: 200px;
+    }
+    .info #imagempequena{
+        margin-top: 92%;
+    }
     
 }

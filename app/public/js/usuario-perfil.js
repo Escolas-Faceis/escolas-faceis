@@ -17,6 +17,8 @@ if (biografia.hasAttribute('readonly')) {
 }
 }
 
+
+
 // Adiciona evento para o botão de editar
 editarBtn.addEventListener('click', toggleEdit);
 

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Perfil Escola Canarinho </title>
+
+    <link rel="stylesheet" href="css/perfil-escola-e.css">
+    <link rel="stylesheet" href="css/aval.css">
+    <link rel="stylesheet" href="css/carrossel-perfil.css">
+    <link rel="stylesheet" href="css/alerts.css">
+    
+</head>
+
+<body>
+    <%- include('../partials/navbar'); %>
+
+        <!-- ESTA PÁGINA NAO TERÁ RESPONSIVIDADE, O USUARIO SÓ PODERÁ UTILIZA-LA NO COMPUTADOR-->
+    <section class="perfil" id="pepe">
+        <span class="logo-info">
+        <figure><img src="imagem/canarinho.jpg" alt="logo da escola" class="logo"></figure>
+        <section class="info">
+            <input type="text" name="nome-escola" class="nome-escola" value="Escola Canarinho">
+            <aside class="niveis">
+                <h5 class="escolaridade EI">Ensino Infantil</h5><h5 class="escolaridade Add">+</h5>
+            </aside>
+            <section class="inf">
+                <input type="text" value=" Avenida Brasil, Nº 328 Piratininga - Osasco, SP" class="localidade "><br>
+                <select class="instituicao"><option value="">Ensino Privado</option>
+                    <option value="">Ensino Público</option>
+                    <option value="">Fundação/Instituto</option>
+                    
+                </select><br>
+                <input type="text" class="ingresso" value="Mensalidade a partir de R$ 215,32" ><br>
+
+                <article id="botoes" >
+                    <button id="editar_perfil">Editar Perfil</button>
+                    <button id="salvar_botao" type="submit" onclick="document.getElementById('alert').classList.toggle('show');">Salvar Perfil</button>
+                </article>
+                <label class="alert">
+                    <input type="checkbox" class="alertCheckbox alts" id="alts" autocomplete="off" />
+                    <section class="alert success" id="alert">
+                      <span class="alertClose">X</span>
+                      <span class="alertText">Alterações salvas com sucesso!
+                          <br class="clear"/></span>
+                    </section>
+                  </label>
+            
+        <section class="slider">
+            <ul class="slides">
+                <li class="slide"><img src="imagem/primeira-carrossel.jpeg" alt="slide1"></li>
+                <li class="slide"><img src="imagem/segunda-carossel.jpg" alt="slide2"></li>
+                <li class="slide"><img src="imagem/terceira-carrossel.jpg" alt="slide3"></li>
+            </ul>
+            <button class="prev">❮</button>
+            <button class="next">❯</button>
+            <div class="indicators">
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
+        </section>
+        
+        </section>
+
+        
+    </section>
+        <hr id="separacao">
+        <section class="centro">
+            <section class="esquerdo">
+                <h2 class="sobre-escola">Sobre a Escola </h2>
+                <p class="informacao">Escola Canarinho - a escola primária que se preocupa tanto com o futuro dos nossos filhos quanto com o futuro do nosso planeta!<br>
+                Acreditamos que uma educação positiva pode fazertoda a diferença na formação de seres humanos conscientes e responsáveis, <br> prontos para lidar com os desafios do mundo moderno.
+                Venha nos conhecer e descubra por que somos a escola que mais cresce em nossa cidade!
+                </p>
+            <h2 class="sobre-escola">Sobre o Ensino</h2>
+            <ul class="lista">
+                <li>Valorizamos a diversidade e o respeito;</li>
+                <li>Ambiente de ensino acolhedor e inclusivo;</li>
+                <li>Atividades extracurriculares que estimulam o desenvolvimento físico, mental e emocional;</li>
+                <li>Educação de Qualidade;</li>
+                <li>Profissionais Qualificados;</li>
+                <li>Ensino Acessível;</li>
+            </ul>
+            <h2 class="sobre-escola">Sobre a Estrutura</h2>
+            <ul class="lista-2">
+                <li>Salas de aula climatizadas;</li>
+                <li>Pátio com playground;</li>
+                <li>Banheiros seguros;</li>
+            </ul>
+            
+        </section>
+
+    
+    
+    
+        
+
+        <section class="divisao-direita">
+            <hr class="linha-v"> </hr>
+            <aside>
+                <h1 class="contato-ace">Contato</h1><br>
+                <article>
+                    <figure><a href="https://www.instagram.com/" target="_blank"><img src="imagem/instagram.png" alt="Instagram" class="social-media" id="insta"></a></figure>
+                    <figure><a href="https://www.whatsapp.com" target="_blank"><img src="imagem/whatsapp.png" alt="WhattsApp" class="social-media" id="what"></a></figure>
+                    <figure><a href="https://www.facebook.com" target="_blank"><img src="imagem/facebook.png" alt="Facebook" class="social-media" id="face"></a></figure>
+                    <figure><a href="#" target="_blank"><img src="imagem/telephone.png"class="social-media" alt="Telefone" id="telefone"></a></figure>
+                    <figure><a href="#" target="_blank"><img src="imagem/mail.png"class="social-media" alt="Email" id="email"></a></figure>
+                </article>
+            </aside> 
+            <aside>
+                <h1 class="contato-ace">Acessibilidade</h1><br>
+                <article>
+                    <figure><a href="#"class="tooltip" ><img src="imagem/bengala.png" alt="bengala" class="aces" id="bengala"><span class="tooltip-text">Piso tátil para deficientes visuais</span></a></figure> 
+                    <figure><a href="#"class="tooltip"><img src="imagem/lingua-de-sinais.png"class="aces"  alt="lingua-de-sinais" id="lingua-de-sinais"><span class="tooltip-text">Língua de Sinais</span></a></figure>
+                    <figure><a href="#" class="tooltip"><img src="imagem/acessibilidade-cadeira-de-rodas.png"class="aces"  alt="Acessibilidade" id="cadeira-de-rodas"><span class="tooltip-text">Estrutura para cadeirante</span></a></figure>
+                
+                </article>
+            </aside>
+            <aside>
+                <h1 class="ingresso-ace">Ingresso</h1><br>
+                <article>
+                    <ul class="ingresso-manner">
+                        <li> <span class="fase-name"><b>Berçario</b>&#8212; Até 2 anos </span><br>
+                            <span class="valormens">A partir de <span class="valorm">R$215,32 </span></li></span>
+                            <li> <span class="fase-name"><b>Maternal I</b>&#8212; 2 anos </span><br>
+                                <span class="valormens">A partir de <span class="valorm">R$237,10 </span></li></span>
+                                <li> <span class="fase-name"><b>Maternal II</b>&#8212; 3 anos </span><br>
+                                    <span class="valormens">A partir de <span class="valorm">R$237,10 </span></li></span>
+                                    <li> <span class="fase-name"><b>Jardim I</b>&#8212; 4 anos </span><br>
+                                        <span class="valormens">A partir de <span class="valorm">R$265,24 </span></li></span>
+                                               
+                    </ul>
+                </article>
+            </aside>
+        </section></section>
+        <hr id="div" style="margin-top: 5%;">
+        <section class="aval"><br>
+            <h1>Avaliações</h1>
+            <p class="avalinfo">Compartilhe suas impressões e experiência sobre essa instituição</p>
+            <span class="centro">
+            <section class="rating">
+                <input type="radio" name="rating" id="rating-5">
+                <label for="rating-5"></label>
+                <input type="radio" name="rating" id="rating-4">
+                <label for="rating-4"></label>
+                <input type="radio" name="rating" id="rating-3">
+                <label for="rating-3"></label>
+                <input type="radio" name="rating" id="rating-2">
+                <label for="rating-2"></label>
+                <input type="radio" name="rating" id="rating-1">
+                <label for="rating-1"></label>
+            </section>
+            <section class="ratetext">
+                <textarea name="ratetext" id="ratetext" maxlength="352" placeholder="Escreva aqui sua opinião"></textarea>
+                <span id="caracteres">O número de caracteres foi atingido!</span>
+            </section>
+            <section> <button type="submit" id="enviar">Enviar</button></section></span>
+        </section>
+       
+           
+ 
+
+</body>
+<%- include('../partials/footer'); %>
+<script>
+    const textarea = document.getElementById('ratetext');
+    const warning = document.getElementById('caracteres');
+
+    textarea.addEventListener('input', () => {
+        let caracteres = textarea.value.length; 
+
+        if (caracteres >= 352) { 
+            warning.style.display = 'block';
+        } else {
+            warning.style.display = 'none';
+        }
+    });
+
+    var temp = 1 
+let MudarSlide; 
+function Trocarslide() { 
+JS(RESOLUÇÃO) 
+var x = document.getElementById('slide'+temp); temp += 1; 
+x.checked = false;  
+if(document.getElementById('slide'+temp) == null){temp = 1} 
+var y = document.getElementById('slide'+temp) 
+y.checked = true; 
+} 
+function ChangeSlide(){ 
+if (!tempo_para_trocar) { 
+MudarSlide = setInterval(Trocarslide, 3000); 
+} 
+}
+
+</script>
+
+<script>
+    const slides = document.querySelector('.slides');
+    const slideCount = document.querySelectorAll('.slide').length;
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    let currentIndex = 0;
+    const intervalTime = 3000; // Tempo em milissegundos (3 segundos)
+    
+    function updateCarousel() {
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    function moveToNextSlide() {
+        currentIndex = (currentIndex + 1) % slideCount;
+        updateCarousel();
+    }
+    
+    // Configurar a navegação automática
+    let autoPlay = setInterval(moveToNextSlide, intervalTime);
+    
+    nextBtn.addEventListener('click', () => {
+        clearInterval(autoPlay); // Parar autoplay ao clicar
+        moveToNextSlide();
+        autoPlay = setInterval(moveToNextSlide, intervalTime); // Reiniciar autoplay
+    });
+    
+    prevBtn.addEventListener('click', () => {
+        clearInterval(autoPlay); // Parar autoplay ao clicar
+        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+        updateCarousel();
+        autoPlay = setInterval(moveToNextSlide, intervalTime); // Reiniciar autoplay
+    });
+    
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            clearInterval(autoPlay); // Parar autoplay ao clicar
+            currentIndex = index;
+            updateCarousel();
+            autoPlay = setInterval(moveToNextSlide, intervalTime); // Reiniciar autoplay
+        });
+    });
+    
+    updateCarousel();
+    
+    
+
+</script><script src="js/usuario-perfil.js"></script>
+
+<!-- 
+<img class="foto-escola" src="imagem/canarinho.jpg">
+<section class="nome-escola">Escola Canarinho</section>
+<section class="classificacao">Ensino Infantil</section>
+<img class="imagem-localizacao" src="imagem/lupinha.svg">
+<section class="local">Avenida Brasil, Nº 328 <br>
+    Piratininga - Osasco, SP</section>
+<section class="privado">Ensino Privado</section>
+<section class="mensalidade">Mensalidades a partir de R$215,32</section>
+
+
+    <header>
+        <section>
+            <ul class="slider">
+                <li>
+                    <input class="imagem" type="radio" id="slide1" name="slide" checked>
+                    <label for="slide1"></label> 
+                    <img src="imagem/primeira-carossel.jpeg">
+                </li>
+                <li>
+                    <input class="imagem" type="radio" id="slide2" name="slide" checked>
+                    <label for="slide2"></label> 
+                    <img src="imagem/terceira-carrossel.jpg">
+                </li>
+                <li>
+                    <input class="imagem" type="radio" id="slide3" name="slide" checked>
+                    <label for="slide3"></label> 
+                    <img src="imagem/segunda-carossel.jpg">
+                </li>
+                </ul>
+        </section>
+
+   <img class="foto-escola" src="imagem/canarinho.jpg">
+    <section class="nome-escola">Escola Canarinho</section>
+    <section class="classificacao">Ensino Infantil</section>
+    <img class="imagem-localizacao" src="imagem/lupinha.svg">
+    <section class="local">Avenida Brasil, Nº 328 <br>
+        Piratininga - Osasco, SP</section>
+    <section class="privado">Ensino Privado</section>
+    <section class="mensalidade">Mensalidades a partir de R$215,32</section>
+    
+    
+        <header>
+            <section>
+                <ul class="slider">
+                    <li>
+                        <input class="imagem" type="radio" id="slide1" name="slide" checked>
+                        <label for="slide1"></label> 
+                        <img src="imagem/primeira-carossel.jpeg">
+                    </li>
+                    <li>
+                        <input class="imagem" type="radio" id="slide2" name="slide" checked>
+                        <label for="slide2"></label> 
+                        <img src="imagem/terceira-carrossel.jpg">
+                    </li>
+                    <li>
+                        <input class="imagem" type="radio" id="slide3" name="slide" checked>
+                        <label for="slide3"></label> 
+                        <img src="imagem/segunda-carossel.jpg">
+                    </li>
+                    </ul>
+            </section>
+
+       <script>
+
+    temp = 2
+    let tempo_para_trocar;
+    var delay = 3 * 1000
+      
+    function ChangeSlide() {
+        var desaparecer = document.getElementById('slide'+temp);
+        temp += 1;
+        desaparecer.checked = false;
+        if(document.getElementById('slide'+temp) == null){temp = 1}
+        var aparecer = document.getElementById('slide'+temp)
+        aparecer.checked = true;
+        
+    }
+     
+    function AutoRun(){
+        if (!tempo_para_trocar) {
+            tempo_para_trocar = setInterval(ChangeSlide, delay);
+          }
+    }
+
+       </script>
+
+
+
+    </header>
+<br><br><br><br><br><br><br><br><br><br><BR><BR>
+    <hr class="linha-quebra"> -->
