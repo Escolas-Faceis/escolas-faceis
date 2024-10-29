@@ -300,6 +300,9 @@ justify-content: space-between;
 }
 
 @media(max-width: 480px){
+    *{
+        color: #141c44;
+    }
      
     .logo{
         position: relative;
@@ -329,14 +332,17 @@ justify-content: space-between;
     }
     .sobre-escola{
         font-size: 25px;
+        color: #141c44;
     }
     .informacao{
         font-size: 15px;
         margin-top: 3%;
+        color: #141c44;
     }
     .lista{
         font-size: 15px;
         margin-top: 3%;
+        color: #141c44;
     }
     .centro {
         flex-direction: column;
