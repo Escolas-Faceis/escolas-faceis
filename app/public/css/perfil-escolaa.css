@@ -1,0 +1,596 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins";
+}
+
+ 
+/* Certifique-se de que o botão está posicionado corretamente */
+#menu li {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+}
+.logo{
+    position: relative;
+    width: 250px;
+    border-radius: 15px;
+    margin: 30px;
+    display: inline;
+    
+}
+.info{
+    flex: 1; /* Permite que a seção de informações ocupe o espaço restante */
+    padding-left: 20px; /* Adiciona espaço à esquerda da imagem */
+    font-family: "Poppins", sans-serif;
+    color:#141c44;
+    font-size: 16px;
+    margin-top:2%;
+}
+.nome-escola{
+    font-size: 26px;
+    padding: 7px;
+    margin-left: 13%;
+    margin: 5px;
+    margin-top: -3%;
+}
+.localidade{
+        font-size: 17px;
+}
+.escolaridade{
+    border: 1px solid #141c44;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 2px 7px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 2.5%;
+    margin: 0.5%;
+}
+.EM{
+    background-color: #00b4b4;
+}
+.TEC{
+    background-color: #15c724;
+}
+
+.EI{
+    background-color: hsl(7, 100%, 73%);
+}
+
+.EFI{
+    background-color: hsl(41, 100%, 72%);
+}
+
+.TEC{
+    background-color: #15c724;
+}
+
+.inf{
+    margin:2%;
+    
+}
+.ingresso{
+    color: #ffbc3e;
+    font-weight: 500;
+    margin: 1%;
+}
+.ingresso:hover{
+    text-decoration: underline;
+}
+
+#separacao{
+    margin-top: 6%;
+    border-right: 1px solid black;
+}
+.sobre-escola{
+    color: #f56d44;
+    margin-left: 15%;
+    margin-top: 2.5%;
+    font-size: 27px;
+}
+.informacao{
+    font-size: 15px;
+    margin-left: 10%;
+    margin-top: 6%;
+    font-family: "Poppins Light", "Poppins", sans-serif;
+}
+.lista{
+    margin-left: 10%;
+    margin-top: 2%;
+    font-size: 15px;
+    font-family: "Poppins Light", "Poppins", sans-serif;
+
+}
+.lista li::marker{
+    color: #f56d44;
+}
+.lista-2{
+    margin-left: 10%;
+    margin-top: 2%;
+    font-size: 15px;
+    font-family: "Poppins Light", "Poppins", sans-serif;
+    float: left;
+} 
+.lista-2 li::marker{
+    color: #f56d44;
+}
+.linha-v{
+    height: 10%;
+    left: 70%;
+    position: absolute;
+    margin-top: 0%;
+}
+.contato-ace{
+    color: #f56d44;
+    margin: 1%;  
+    font-size: 27px;
+    justify-content: center;
+   
+}
+
+.ingresso-ace{
+        color: #f56d44;
+    margin: 1%;  
+    font-size: 27px;
+    justify-content: center;
+}
+
+.ingresso-manner{
+    cursor: default;
+    list-style: none;
+    padding: 6px;
+    justify-content: left;
+    margin: 0;
+}
+
+.ingresso-manner li b{
+    font-weight: 500;
+    margin-right: 1px;
+}
+.fase-name, .valormens{
+    font-weight: 300;
+}
+
+.valormens{
+    font-weight: 300;
+}
+
+.valorm{
+    color: #77b6ea;
+    transition: all 0.3s;
+    font-weight: 500;
+    
+}.valorm:hover{
+    text-decoration: underline;
+}
+
+.divisao-direita{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+
+/* Alinhar e organizar */
+.centro{
+display: flex;
+justify-content: space-between;
+}
+.esquerdo{
+    width: 70%;
+}
+.divisao-direita{
+    height: 100%;
+    width: 20%;
+}
+.divisao-direita article{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.divisao-direita figure{
+    margin: 5px;
+}
+.contato{
+    font-weight: 700;
+    margin-left: 16%;
+    font-size: 30px;
+    
+}
+#insta{
+    width: 60px;
+
+}
+#what{
+    width: 70px;
+    /* margin: 1%; */
+    margin-top: 2%;
+}
+#face{
+    width: 70px;
+    /* margin: 1%; */
+    margin-top: 2%;
+}
+#telefone{
+    width: 80px;
+    /* margin: 1%; */
+    margin-top: 2%;
+}
+#email{
+    margin-top: 2%;
+    width: 70px;
+    /* margin: 1%; */
+}
+
+.social-media{
+    transition: all 0.3s;
+}.social-media:hover{
+    transform: scale(1.1);
+}.aces{
+    transition: all 0.3s;
+}.aces:hover{
+    transform: scale(1.1);
+}
+
+/*TOOLTIPS*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .tooltip .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 150px;
+    max-width: 150px;
+    white-space:normal;
+    transform: translateX(-50%);
+    background-color: white;
+    color: #333;
+    padding: 5px;
+    border: solid #77b6ea 2px;
+    border-radius: 4px;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .tooltip .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%; /* Posição do texto */
+    left: 50%;
+    max-width: 100px; /* Ajuste conforme necessário */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    transform: translateX(-50%);
+    background-color: white;
+    color: #333;
+    padding: 5px;
+    border: solid #77b6ea 2px;
+    border-radius: 4px;
+    white-space: normal; /* Permite quebra de linha */
+    transition: opacity 0.3s, visibility 0.3s;
+    font-size: 12px; /* Tamanho da fonte */
+  }
+  
+
+  
+
+  
+  .tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+.divisao-direita aside{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+@media(max-width: 480px){
+    *{
+        color: #141c44;
+    }
+     
+    .logo{
+        position: relative;
+        width: 200px;
+        margin-left: 30%;
+        display: block;
+    }
+    .nome-escola{
+        font-size: 22px;
+    }
+    .escolaridade{
+         padding: 2px 5px;
+        font-weight: 600;
+        font-size: 12px;
+        margin-left: 2.5%;
+        margin-top: -2%;
+    }
+    .localidade{
+        font-size: 15px;
+    }
+    .instituicao{
+        font-size: 15px;
+    }
+    .ingresso{
+        font-size: 17px;
+        margin-left: 1.5%;
+    }
+    .sobre-escola{
+        font-size: 25px;
+        color: #141c44;
+    }
+    .informacao{
+        font-size: 15px;
+        margin-top: 3%;
+        color: #141c44;
+    }
+    .lista{
+        font-size: 15px;
+        margin-top: 3%;
+        color: #141c44;
+    }
+    .centro {
+        flex-direction: column;
+    }
+    .esquerdo {
+        width: 100%;
+    }
+    .linha-v {
+        display: none;
+    }
+    .divisao-direita {
+        width: 100%;
+    }
+    #insta{
+        width: 40px;
+    }
+    #what{
+        width: 40px;
+    }
+    #face{
+        width: 40px;
+    }
+    #telefone{
+        width: 40px;
+    }
+    #email{
+        width: 40px;
+    }
+    .contato-ace{
+        margin-top: 5%;
+        justify-content: center;
+        font-size: 25px;
+    }
+    #bengala{
+        width: 40px;
+    }
+    #lingua-de-sinais{
+        width: 40px;
+    }
+    #cadeira-de-rodas{
+        width: 40px;
+    }
+    
+} 
+@media(min-width: 481px) and (max-width:720px){
+     
+    .logo{
+        position: relative;
+        margin-left: 32%;
+        
+    }
+    .acessivel{
+        margin-left: 15%;
+    }
+    .centro {
+        flex-direction: column;
+    }
+    .esquerdo {
+        width: 100%;
+    }
+    .linha-v {
+        display: none;
+    }
+    .divisao-direita {
+        width: 100%;
+        justify-content: space-evenly;
+        flex-direction: row;
+    }
+
+    #insta{
+        width: 40px;
+    }
+    #what{
+        width: 40px;
+    }
+    #face{
+        width: 40px;
+    }
+    #telefone{
+        width: 40px;
+    }
+    #email{
+        width: 40px;
+    }
+    .contato-ace{
+        margin-top: 7%;
+    }
+    .divisao-direita aside{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #bengala{
+        width: 40px;
+    }
+    #lingua-de-sinais{
+        width: 40px;
+    }
+    #cadeira-de-rodas{
+        width: 40px;
+    }
+}
+@media(min-width: 721px) and (max-width: 1100px){
+     
+    .logo{
+    position: relative;
+    float: left;
+    margin-top: -1%;
+}
+    .nome-escola{
+        margin-top: 3%;
+        font-size: 25px;
+    }
+    .contato-ace{
+        font-size: 30px;
+        font-weight: 700;
+        font-family: "Poppins Light", "Poppins", sans-serif;
+    }
+    .info{
+        margin-top: 2%;
+        margin: 1%;
+    }
+    #separacao{
+        margin-top: 90px;
+    }
+    .informacao{
+        margin-top: 3%;
+    }
+    .linha-v{
+        display: none;
+    }
+    .centro{
+        flex-direction: column;
+    }
+    .esquerdo{
+        width: 100%;
+    }
+    .divisao-direita{
+        width: 100%;
+    }
+    .contato-ace{
+        margin-top: 10%;
+    }
+    #insta{
+        width: 40px;
+    }
+    #what{
+        width: 40px;
+    }
+    #face{
+        width: 40px;
+    }
+    #telefone{
+        width: 40px;
+    }
+    #email{
+        width: 40px;
+    }
+    #bengala{
+        width: 40px;
+    }
+    #lingua-de-sinais{
+        width: 40px;
+    }
+    #cadeira-de-rodas{
+        width: 40px;
+    }
+    .contato-ace aside{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .divisao-direita{
+        flex-direction: row;
+    }
+    
+}
+@media(min-width: 1101px) and (max-width: 1920px){
+    .nome-escola{
+        
+        margin-top: 2%;
+        padding: -2%;
+    }
+    .logo{
+        position: relative;
+        width: 200px;
+        float: left;
+        margin-top: 0%;
+    }   
+    #separacao{
+        margin-top: 100px;
+    }
+    .info{
+        margin-top: -1%;
+    }
+    .localidade{ 
+        margin-top: -1%;
+        
+    }
+    .escolaridade{
+        margin: 0.5%;
+        display: inline-block;
+        margin-top: -2%;
+    }
+    .linha-v{
+        height:80%;
+        left: 80%;
+        position: absolute;
+        margin-top: 0%
+    }
+    .centro{
+        display: flex;
+        
+    }
+    .ingresso{
+        margin-top: -1%;
+    }
+    .informacao{
+        margin-top: 1%;
+    }
+    #insta{
+        width: 40px;
+    }
+    #what{
+        width: 40px;
+    }
+    #face{
+        width: 40px;
+    }
+    #telefone{
+        width: 40px;
+    }
+    #email{
+        width: 40px;
+    }
+    .contato-ace{
+        margin-top: 7%;
+    }
+    #bengala{
+        width: 40px;
+    }
+    #lingua-de-sinais{
+        width: 40px;
+    }
+    #cadeira-de-rodas{
+        width: 40px;
+    }
+}
+

@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins";
+}
+#container{
+    position: relative;
+}
+#imagem-principal{
+    width: 500px;
+    position: relative;
+}
+#bem-vindo{
+    color: #f56d44;
+    font-size: 20px;
+    left: 3%;
+    margin-top: 4%;
+    position: absolute;
+}
+#texto{
+    position: absolute;
+    margin-top: 10%;
+    left: 2%;
+}
+#lista{
+    
+}
+#lista::marker{
+    color:#f56d44
+}
+@media(min-width:481px) and (max-width:720px){
+    #container{
+        position: relative;
+    }
+    #imagem-principal{
+        width: 720px;
+        position: relative;
+    }
+    #bem-vindo{
+        position: absolute;
+        font-size: 25px;
+        left: 10%;
+        margin-top: -49%;
+    }
+    #texto{
+        font-size: 20px;
+        margin-top: -38%;
+        left: 5%;
+    }
+    #encontre-aqui{
+        color: #77b6ea;
+        font-size: 25px;
+        margin-left: 10%;
+        margin-top: 15%;
+    }
+    #secundaria{
+        width: 250px;
+        margin-left: 15%;
+        margin-top: -2%;
+    }
+    #lista{
+        font-size: 20px;
+        margin-left: 10%;
+        margin-top: 3%;
+        line-height:40px;
+        float: left;
+    }
+    #lista li::marker{
+        color: #f56d44;
+    }
+    
+}
+@media(min-width:721px) and (max-width:1100px){
+   #imagem-principal{
+    width: 1100px;
+    position: relative;
+   } 
+   #bem-vindo{
+    position: absolute;
+    margin-top: -50%;
+    left: 12%;
+    font-size: 32px;
+   }
+   #texto{
+    position: absolute;
+    font-size: 27px;
+    margin-top: -40%;
+    left: 7%;
+   }
+   #encontre-aqui{
+    font-size: 32px;
+    color: #77b6ea;
+    margin-left: 12%;
+    margin-top: 10%;
+   }
+   #lista{
+    font-size: 20px;
+    margin-left: 10%;
+    margin-top: 3%;
+    line-height:40px;
+    float: left;
+   }
+   #lista::marker{
+    color: #f56d44;
+   }
+   #secundaria{
+    width: 400px;
+    margin-left: 13%;
+    margin-top: -5%;
+   }
+}

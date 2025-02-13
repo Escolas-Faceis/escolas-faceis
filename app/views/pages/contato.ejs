@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/contato.css">
+
+    <title> Contato </title>
+</head>
+
+<body>
+    <%- include('../partials/navbar'); %>
+    <section id="centralizar">
+        <main id="form_space">
+
+            <section id="lateral_contato">
+                <span id="pt1">
+                <p >Tem alguma dúvida, encontrou algum erro? Entre em contato conosco pelo e-mail ou mande uma mensagem</p>
+                <section id="email_contato">
+                    <img src="imagem/normal_u3.png" > <a>escolas.faceis@suporte.com</a></span>
+                </section>
+
+            
+                <img src="imagem/contato.png" id="contactus" >
+            
+
+        </main>
+        </section>  
+        <section id="centralizar">
+            <section id="inserir_email_contato">
+            <label for="email_contato_input" id="laranja">Seu melhor e-mail</p>
+            <input type="email" name="email" id="email_contato_input" > 
+
+            <section id="inserir_msg">
+                <textarea id="mensagem_contato" placeholder="Escreva sua mensagem aqui..."></textarea>
+                
+            </section>
+            <section id="alinhar_direita">
+            <button  type="submit"id="orange_button">ENVIAR</button>
+            </section>
+            </section>
+            
+        </section>
+    </section>
+        <%- include('../partials/footer'); %>
+</body>
+</html>

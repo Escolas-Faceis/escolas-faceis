@@ -1,0 +1,47 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    }
+    .imagem-caixa{
+        position: relative;
+    }
+    .caixa1{
+        position: absolute;
+        left: 30%;
+        padding: 10px;
+        width: 277px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-color: white;
+        background-color: #ffffff;
+        font-size: 16px;
+    
+    } 
+    #caixa2{
+        position: absolute;
+        left: 49%;
+        padding: 10px;
+        width: 86px;
+        background-color: #ffffff;
+    
+    }
+    .Buscar{ 
+        position: absolute;
+        right: 373px;
+        background-color:#ffffff;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border:solid 1px;
+        padding: 1px;
+        width:300px;
+      }
+    #txtBusca{
+        float:left;
+        background-color: transparent;
+        padding-left:8px;
+        font-size: 16px;
+        border:none;
+        height:32px;
+        width:250px;
+      }
+      

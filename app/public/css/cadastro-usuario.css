@@ -1,0 +1,123 @@
+@media screen and (max-width: 800px) {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    body{
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+    }
+    p{
+        font-family: 'Poppins', sans-serif;
+    }
+    #texto_lateral{
+        position: relative;
+        display: block;
+        transform: scale(3.5) translate(-190%, 54.3%);
+    }
+    #form{
+        margin-bottom: 90%;
+    }
+    
+}
+
+
+/* :root {
+    --laranja: #f56d44;
+    --azul: rgba(20, 28, 68, 0.99);
+    --azul_claro: #77b6ea;
+}
+
+#form_space {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto; 
+    justify-content: space-evenly;
+}
+
+#form {
+    border: solid;
+    border-radius: 20px;
+    border-color: var(--azul_claro);
+    padding: 15px;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: center;
+    width: 400px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 380px;
+    height: 44px;
+    border-radius: 10px;
+    margin: 6px;
+    font-size: 17px;
+    padding: 0 8px;
+    border: solid var(--azul);
+}
+
+.marker {
+    font-weight: bold;
+    color: var(--laranja);
+}
+
+.spanerro {
+    color: red; 
+}
+
+label {
+    color: var(--azul);
+    padding-right: 8px;
+    font-size: 18px;
+}
+
+#login2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login_button {
+    transition: all 0.3s;
+    background-color: var(--azul_claro);
+    border: solid var(--azul_claro);
+    border-radius: 30px;
+    color: white;
+    width: 250px;
+    height: 70px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#login_button:hover {
+    background-color: white;
+    color: var(--azul_claro);
+    cursor: pointer;
+}
+
+#endereco {
+    display: flex;
+}
+
+#endereco input {
+    width: 600px;
+}
+
+input[type=checkbox] {
+    width: 20px; 
+    height: 20px;
+    appearance: checkbox; 
+    margin-right: 8px; 
+}
+
+#no-account {
+    font-size: 19px;
+    color: #141c44;
+    text-align: center; 
+    margin-top: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+} */

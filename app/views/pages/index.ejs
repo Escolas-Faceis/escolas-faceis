@@ -1,0 +1,103 @@
+    <!DOCTYPE html>
+    <html lang="pt-br">
+
+
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Encontre Escolas - Home </title>
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/index-desk1.css">
+        <link rel="stylesheet" href="css/index-mob.css">
+        <link rel="stylesheet" href="css/menu.css">
+        <link rel="stylesheet" href="css/slider.css">
+    </head>
+
+    <body>
+
+        <%- include('../partials/navbar'); %> 
+
+
+                
+            <main>
+                <section class="imagem-texto">
+                    <img id="imagem" src="imagem/imagemcapa.png">
+                    <label id="texto">Bem vindo ao <br> Escolas Fáceis!</label>
+                    <label id="paragrafo">  ‎ ‎ ‎ ‎ ‎ Somos um portal de<br> pesquisa sobre instituições de <br> ensino.
+                    <br> ‎ ‎ ‎ ‎ ‎ Otimizamos sua experiência <br> ao procurar escolas!</label>
+                </section>
+            </main>
+            <section class="imagem-caixa">
+
+                <input type="text" placeholder="O que você está procurando?" style="color: white;" class="caixa1"  >
+                <select id="caixa2" >
+                    <option value="Estado">Estado</option>
+                    <option value="infantil">AC</option>
+                    <option value="fundamental">AL</option>
+                    <option value="medio">AP</option>
+                    <option value="tecnico">AM</option>
+                    <option value="cursos">BA</option>
+                    <option value="cursos">CE</option>
+                    <option value="cursos">DF</option>
+                    <option value="cursos">ES</option>
+                    <option value="cursos">GO</option>
+                    <option value="cursos">MA</option>
+                    <option value="cursos">MT</option>
+                    <option value="cursos">MS</option>
+                    <option value="cursos">MG</option>
+                    <option value="cursos">PA</option>
+                    <option value="cursos">PB</option>
+                    <option value="cursos">PR</option>
+                    <option value="cursos">PE</option>
+                    <option value="cursos">PI</option>
+                    <option value="cursos">RJ</option>
+                    <option value="cursos">RN</option>
+                    <option value="cursos">RS</option>
+                    <option value="cursos">RO</option>
+                    <option value="cursos">RR</option>
+                    <option value="cursos">SC</option>
+                    <option value="cursos">SP</option>
+                    <option value="cursos">SE</option>
+                    <option value="cursos">TO</option>
+                </select>
+                <input type="text" placeholder="Cidade" class="caixa3">
+            </section>
+
+            <section class="slider">
+                <ul class="slides">
+                    <li class="slide"><img src="imagem/banner-cadastro.png" id="imgs"alt="slide1"></li>
+                    <li class="slide"><img src="imagem/banner_de_publicidade.png" id="imgs" alt="slide2"></li>
+                    <li class="slide"><img src="imagem/banner_de_publicidade1.png" id="imgs" alt="slide3"></li>
+                </ul>
+                <button class="prev b">❮</button>
+                <button class="next b">❯</button>
+                <div class="indicators">
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                </div>
+            </section>
+
+            
+            <section id="info">
+        <section class="aqui aq">Encontre aqui</section>
+        <ul class="aqui2 aq">
+            <li> Ensino Infantil </li>
+            <li>Ensino Fundamental</li>
+            <li>Ensino Médio</li>
+            <li>Cursos Técnicos</li>
+            <li>Cursos Extracurriculares</li>
+        </ul>
+        <img id="imgpequena" src="imagem/segunda.png"></section>
+
+        </body>
+        <%- include('../partials/footer'); %> 
+        
+            <script src="js/slider-home.js"></script>
+
+
+    </html>

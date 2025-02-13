@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/rec-pass.css">
+    <script src="js/mascaras.js" defer></script>
+    <title> Recuperação de Senha </title>
+</head>
+
+<body>
+    <%- include('../partials/navbar'); %>
+
+    <article class="text">
+        <span id="texto">
+        <h1>Esqueceu a senha?</h1>
+        <p>Para recuperar sua senha, insira seu e-mail ou número de telefone cadastrados e uma mensagem será enviada
+            <br> Após  redefinir  a  senha,  ela será atualizada   logo   em seguida!</p></span>
+        <img src="imagem/normal_u9.png" alt="Decorativa">
+    </article>
+    <section class="center">
+    <form action="" id="passwordf">
+        <label for="email" id="email">Email</label><br>
+        <input type="email" id="email"><br><br>
+        <label for="number" id="number">Número de Telefone</label>
+        <br>
+        <input type="text" id="cellphone" maxlength="15"><br><br> <span class="margem">‎</span>
+        <button type="submit" id="enviar" class="center">Enviar</button>
+    </form></section>
+    <aside><p id="retornar"><a href="/login" class="center">Retorne para a seção de login</a></p></aside>
+
+</body>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const numero = document.getElementById('cellphone');
+    
+        numero.addEventListener('keypress', (event) => {
+            const numerLength = numero.value.replace(/[^0-9]/g, '').length; // Contar apenas números
+    
+            // Impedir a inserção de mais caracteres
+            if (numerLength >= 11) {
+                event.preventDefault();
+            }
+    
+            // Formatação do telefone
+            if (numerLength === 0) {
+                numero.value += '(';
+            } else if (numerLength === 2) {
+                numero.value += ') ';
+            } else if (numerLength === 7) {
+                numero.value += '-';
+            }
+        });
+    });
+</script>
+
+<%- include('../partials/footer'); %>
+</html

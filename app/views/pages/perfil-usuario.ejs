@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Perfil Usuário </title>
+    <link rel="stylesheet" href="css/perfil-usuario.css">
+    <link rel="stylesheet" href="css/alerts.css">
+</head>
+
+<body>
+    <%- include('../partials/navbar'); %>
+    <main id="perfil">
+        <section id="banner_perfil"></section>
+
+        <section id="conteudo">
+        <section id="ajustar_esquerda">
+
+        <article id="conteudo_perfil">
+            <section id="sobrepor_banner">
+            <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_perfil">
+            </section>
+            <h2>Nome do Usuário </h2>
+        </article>
+        <section class="alinhar">
+        <article id="botoes">
+            <button id="editar_perfil">Editar Perfil</button>
+            <button id="salvar_botao" type="submit" onclick="document.getElementById('alert').classList.toggle('show');">Salvar Perfil</button>
+        </article>
+        <textarea id="biografia" readonly class="info" placeholder="Sua biografia..."></textarea>
+        </section>
+        </section>
+
+        <label class="alert">
+            <input type="checkbox" class="alertCheckbox alts" id="alts" autocomplete="off" />
+            <section class="alert success" id="alert">
+              <span class="alertClose">X</span>
+              <span class="alertText">Alterações salvas com sucesso!
+                  <br class="clear"/></span>
+            </section>
+          </label>
+
+        <section id="ajustar_direita">
+            <p>Selecione uma cor</p>
+            <span class="info" >
+            <button id="cor"class="info" onclick="mudar_cor(`#f56d44`)" style="background-color: #f56d44;"></button>
+            <button id="cor"class="info" onclick="mudar_cor(`#77b6ea`)" style="background-color: #77b6ea;"></button>
+            <button id="cor"class="info" onclick="mudar_cor(`#ffbc3e`)" style="background-color: #ffbc3e;"></button><br>
+            <button id="cor"class="info" onclick="mudar_cor(`#0f021e`)" style="background-color: #0f021e;"></button>
+            <button id="cor"class="info" onclick="mudar_cor(`white`)" style="background-color: #ffffff;"></button>
+            <button id="cor"class="info" onclick="mudar_cor(`#C7D3DD`)" style="background-color: #C7D3DD;"></button></span>
+        </section>
+        </section>
+
+       <section id="avaliacoes">
+            <h1>Avaliações do usuário</h1>
+
+            <section id="caixa_comentarios">
+                <article id="comentario">
+                    <section id="info_usuario_comentario">
+                    <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
+                    <h3>Nome do usuário</h3>
+                    </section>
+                    <p>• há 3 meses</p>
+                    <section id="texto">
+                        Aqui entra a avaliação do usuário e o que ele achou <img src="imagem/5estrelas.webp" id="estrelas">
+                    </section>
+                </article>
+
+                <article id="comentario">
+                    <section id="info_usuario_comentario">
+                    <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
+                    <h3>Nome do usuário</h3>
+                    </section>
+                    <p>• há 3 meses</p>
+                    <section id="texto">
+                        Aqui entra a avaliação do usuário e o que ele achou <img src="imagem/5estrelas.webp" id="estrelas">
+                    </section>
+                </article>
+
+                <article id="comentario">
+                    <section id="info_usuario_comentario">
+                    <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
+                    <h3>Nome do usuário</h3>
+                    </section>
+                    <p>• há 3 meses</p>
+                    <section id="texto">
+                        Aqui entra a avaliação do usuário e o que ele achou <img src="imagem/5estrelas.webp" id="estrelas">
+                    </section>
+                </article>
+
+                <article id="comentario">
+                    <section id="info_usuario_comentario">
+                    <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
+                    <h3>Nome do usuário</h3> 
+                    </section>
+                    <p>• há 3 meses</p>
+                    <section id="texto">
+                        Aqui entra a avaliação do usuário e o que ele achou <img src="imagem/5estrelas.webp" id="estrelas">
+                    </section>
+                </article>
+            </section>
+
+            
+
+          <!--    <label>
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <section class="alert info">
+                  <span class="alertClose">X</span>
+                  <span class="alertText">Bla Bla Bla<br />Bla Bla<br />Bla
+                      <br class="clear"/></span>
+                </section>
+              </label>
+              
+              <label>
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <section class="alert success">
+                  <span class="alertClose">X</span>
+                  <span class="alertText">Bla Bla Bla<br />Bla Bla
+                      <br class="clear"/></span>
+                </section>
+              </label>
+              
+              <label>
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <section class="alert notice">
+                  <span class="alertClose">X</span>
+                  <span class="alertText">Bla Bla Bla
+                      <br class="clear"/></span>
+                </section>
+              </label>
+              
+              <label>
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <section class="alert warning">
+                  <span class="alertClose">X</span>
+                  <span class="alertText">Bla Bla Bla
+                      <br class="clear"/></span>
+                </section>
+              </label>
+              
+              <label>
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <section class="alert error">
+                  <span class="alertClose">X</span>
+                  <span class="alertText">Bla Bla Bla
+                      <br class="clear"/></span>
+                </section> -->
+              </label>
+    </main>
+    <%- include('../partials/footer'); %>
+
+    <script src="js/usuario-perfil.js">
+       
+</script>
+    </script>
+            
+    
+    </script>
+</body>
+</html>

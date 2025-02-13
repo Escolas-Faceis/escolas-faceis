@@ -1,0 +1,152 @@
+:root {
+    --laranja: #f56d44;
+    --azul: rgba(20, 28, 68, 0.99);
+    --azul_claro: #77b6ea;
+}
+
+/* Estilo do container central */
+#centralizar {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Espaço do formulário de contato */
+#form_space {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilo da lateral de contato */
+#lateral_contato {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: var(--azul);
+    margin-bottom: 15%;
+}
+
+/* Estilo do texto e email */
+#text_email {
+    flex: 1;
+}
+
+/* Estilo da imagem */
+#contactus {
+    width: 20%;
+    position: absolute;
+    height: auto;
+    display: none;
+    float: right;
+    margin-left: 50%;
+    margin-top: -14%;
+}
+
+/* Estilo do e-mail */
+#email_contato {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+#pt1 p {
+    width: 70%;
+}
+
+#email_contato img {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+#email_contato_input,
+#mensagem_contato {
+    width: 450px;
+    border-radius: 10px;
+    font-size: 17px;
+    padding: 10px;
+    border: solid var(--azul_claro);
+    margin: 4px 0;
+}
+
+#mensagem_contato {
+    height: 200px;
+    resize: none;
+    font-family: 'Poppins';
+}
+
+#laranja {
+    color: var(--laranja);
+    font-weight: bold;
+}
+
+/* Botão de enviar */
+#orange_button {
+    background-color: var(--laranja);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    width: 30%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 0;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10%;
+}
+
+#orange_button:hover {
+    background-color: white;
+    color: var(--laranja);
+    cursor: pointer;
+}
+
+/* Alinhamento do botão enviar */
+#alinhar_direita {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+@media screen and (max-width:800px){
+    *{
+        font-family: 'Poppins';
+    }
+    body{
+        overflow-x: hidden;
+    }
+
+    #email_contato{
+        overflow-x: hidden;
+    }
+    #pt1{
+        margin-left: -20%;
+        font-size: 28px;
+    }
+    #pt1 a{
+        font-size: 24px;
+    }
+    #contactus{
+        width: 40%;
+        overflow-x: hidden;
+        margin-top: -35%;
+        margin-left: 50%;
+    }
+
+    #laranja{
+        font-size: 24px;
+    }
+}
+
+@media  (max-width:770px) {
+    #contactus{
+        display: none;
+    }
+    
+}

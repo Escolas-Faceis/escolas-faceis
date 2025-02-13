@@ -1,0 +1,544 @@
+@media screen and (max-width:1920px){
+
+    body{
+        background-color: white;
+    }
+
+    .imagem-texto{
+        position: relative;
+        width: 100%;
+        height: 50%;
+    }
+    #imagem{
+    
+        width: 100%;
+     
+        z-index: 0;
+    }
+    
+    #texto{
+        position: absolute;
+        font-size: 50px;
+        font-family: "Poppins Bold", "Poppins", sans-serif;
+        font-weight: bold;
+        left: 10%;
+        top: 29%;
+        color: #f56d44;
+    }
+    #paragrafo{
+    
+        position: absolute;
+        font-size: 25px;
+        padding-top: 20px;
+        font-family: "Poppins Light", "Poppins", sans-serif;
+        left:10%;
+        top: 46%;
+    
+    }
+    
+    .imagem-caixa{
+        z-index: 1;
+        position: relative;
+        top: -80px;
+        display: flex;  
+        justify-content: center;
+        
+    }
+    .caixa1{
+    
+        color: white;
+        left: 610px;
+        padding: 10px;
+        width: 277px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-left-color: white;
+        border-color: white;
+        background-color: #0a7777;
+        border-style: solid;
+     
+    
+    } 
+    
+    
+    ::-webkit-input-placeholder {
+        color:white;
+    }
+    
+    
+    .imagem-caixa{
+        margin-left: auto;
+    }
+    
+    #caixa2{
+    
+    
+    
+        padding: 9.5px;
+        width: 89px;
+        background-color: #0a7777;
+        color: white;
+        border-color: white;
+        border-style: solid;
+        border: 2px;
+        border-style: solid;
+    }
+    
+    #caixa::placeholder{
+        color: white;
+    }
+    .caixa3{
+        padding: 10px;
+        width: 277px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        background-color: #0a7777;
+        color: white;
+        border-color: white;
+        fill-opacity: 0;
+        
+        border-style: solid;
+    }
+    #caixa1 ::placeholder{
+        color: white;
+    }
+    #info{
+        margin-top: 10%;
+    
+    }
+    
+    .aq{
+        margin-top: 7%;
+    }
+    
+    .aqui{
+        position: absolute;
+        display: inline;
+        color: #77b6ea;
+        font-size: 40px;
+        font-family:  "Poppins SemiBold", "Poppins", sans-serif;
+        top: 1700px;
+        left: 20%;
+    }
+    .aqui2{
+        position: absolute;
+        display: inline;
+        top: 1780px;
+        font-size: 20px;
+        font-family: "Poppins", sans-serif;
+        line-height:60px;
+        left: 20%;
+        list-style:disc;
+        list-style-type:square;
+        
+    } li::marker {color: #f56d44;}
+    #imgpequena{
+        display: flex;
+        position:relative; 
+        margin-top: -100px;
+        margin-left: 50%;
+        height: 450px; 
+        width: 450px;
+    }
+    
+    
+    FOOTER{
+    footer{
+        position: absolute;
+        top: 1970px;
+        background-color: rgba(20, 28, 68, 0.99);
+        margin-top: none;
+        width: 100%;
+        height: 300px;
+    }
+    footer, .pag{
+    
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        color: white;
+        text-decoration: none;
+    
+        
+    }
+    .pag:hover{
+        text-decoration: underline;
+    }
+    #logo-footer{
+        width:15%;
+        margin-left: 4%;;
+        margin-top: 2.5%;
+        position:absolute;
+        margin-right: auto;
+    }
+    .pag{
+    
+    margin-left: 26%;
+    position:static
+    
+    }
+    }
+    
+    .slider {
+        position: absolute;
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        height: 50%;
+    }
+    
+    .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        list-style: none; /* Removelay: flex;on: transform 0.5s ease-in-out; os marcadores */
+        padding: 0; /* Remove o padding padrão */
+        margin: 0; /* Remove a margem padrão */
+    
+    }
+    
+    .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .slide img {
+        width: 100%;
+        height: 300px;
+        display: block;
+        
+            width: 100%;
+            height: auto; /* Mantém a proporção da imagem */
+            display: block;
+        
+        
+    }
+    
+     #kkj{
+        height: 430px;
+     }
+    
+    .b {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(121, 121, 121, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 10;
+    }
+    
+    .prev {
+        left: 10px;
+    }
+    
+    .next {
+        right: 10px;
+    }
+    
+    .indicators {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+    }
+    
+    .indicator {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin: 0 5px;
+        background-color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    .indicator.active {
+        background-color: #676b85;
+    }
+    
+    
+    
+    
+    
+    
+}
+
+@media screen and (max-width:800px){
+
+    body{
+        background-color: rgb(222, 90, 90);
+    }
+
+    .imagem-texto{
+        position: relative;
+        width: 100%;
+        height: 50%;
+        overflow-x: hidden;
+    }
+    #imagem{
+        width: 263%;
+        overflow-x: hidden;
+        z-index: 0;
+    }
+    
+    #texto{
+        position: absolute;
+        font-size: 70px;
+        font-family: "Poppins Bold", "Poppins", sans-serif;
+        font-weight: bold;
+        left: 12%;
+        top: 29%;
+        color: #f56d44;
+    }
+    #paragrafo{
+    
+        position: absolute;
+        font-size: 35px;
+        padding-top: 20px;
+        font-family: "Poppins Light", "Poppins", sans-serif;
+        left:12%;
+        top: 46%;
+    
+    }
+    
+    .imagem-caixa{
+        display: none;
+        
+    }
+    .caixa1{
+    
+        color: white;
+        left: 0;
+        padding: 10px;
+        width: 180px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-left-color: white;
+        border-color: white;
+        background-color: #0a7777;
+        border-style: solid;
+     
+    
+    } 
+    
+    
+    ::-webkit-input-placeholder {
+        color:white;
+    }
+    
+    
+    .imagem-caixa{
+        margin-left: auto;
+    }
+    
+    #caixa2{
+    
+    
+    
+        padding: 9.5px;
+        width: 89px;
+        background-color: #0a7777;
+        color: white;
+        border-color: white;
+        border-style: solid;
+        border: 2px;
+        border-style: solid;
+    }
+    
+    #caixa::placeholder{
+        color: white;
+    }
+    .caixa3{
+        padding: 10px;
+        width: 180px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        background-color: #0a7777;
+        color: white;
+        border-color: white;
+        fill-opacity: 0;
+        
+        border-style: solid;
+    }
+    #caixa1 ::placeholder{
+        color: white;
+    }
+
+    
+    .aq{
+        margin-top: 7%;
+    }
+    
+    .aqui{
+        position: absolute;
+        display: inline;
+        color: #77b6ea;
+        font-size: 40px;
+        font-family:  "Poppins SemiBold", "Poppins", sans-serif;
+        top: 1690px;
+        left: 20%;
+    }
+    .aqui2{
+        position: absolute;
+        display: inline;
+        top: 1780px;
+        font-size: 20px;
+        font-family: "Poppins", sans-serif;
+        line-height:60px;
+        left: 20%;
+        list-style:disc;
+        list-style-type:square;
+        
+    } li::marker {color: #f56d44;}
+    #imgpequena{
+            position:relative; 
+    
+        margin-top: 92%;
+        margin-left: 20%;
+        height: 450px; 
+        width: 450px;
+    }
+    
+    
+    FOOTER{
+    footer{
+        position: absolute;
+        top: 1970px;
+        background-color: rgba(20, 28, 68, 0.99);
+        margin-top: none;
+        width: 100%;
+        height: 300px;
+    }
+    footer, .pag{
+    
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        color: white;
+        text-decoration: none;
+    
+        
+    }
+    .pag:hover{
+        text-decoration: underline;
+    }
+    #logo-footer{
+        width:15%;
+        margin-left: 4%;;
+        margin-top: 2.5%;
+        position:absolute;
+        margin-right: auto;
+    }
+    .pag{
+    
+    margin-left: 26%;
+    position:static
+    
+    }
+    }
+    
+    .slider {
+        position: absolute;
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        height: 250px;
+    }
+    
+    .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        list-style: none; /* Removelay: flex;on: transform 0.5s ease-in-out; os marcadores */
+        padding: 0; /* Remove o padding padrão */
+        margin: 0; /* Remove a margem padrão */
+    
+    }
+    
+    .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .slide img {
+        width: 500px;
+        height: 100px;
+        display: block;
+        
+            width: 100%;
+            height: auto; /* Mantém a proporção da imagem */
+            display: block;
+        
+        
+    }
+
+    #imgs{
+        height: 250px;
+    }
+    
+     #kkj{
+        height: 430px;
+     }
+    
+    .b {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(121, 121, 121, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 10;
+    }
+    
+    .prev {
+        left: 10px;
+    }
+    
+    .next {
+        right: 10px;
+    }
+    
+    .indicators {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+    }
+    
+    .indicator {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin: 0 5px;
+        background-color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    .indicator.active {
+        background-color: #676b85;
+    }
+    
+    
+    
+    
+    
+    
+}
+
+@media screen and (max-width:650px){
+    #imgs{
+        height: 200px;
+    }
+    .info #imagempequena{
+        margin-top: 92%;
+    }
+    
+}
