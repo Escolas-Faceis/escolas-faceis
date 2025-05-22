@@ -16,6 +16,13 @@ body{
     z-index: 0;
 }
 
+main{margin-left: 200px;
+     margin-right: 200px;}
+
+img{display: block;
+    visibility: hidden;
+    }
+
 #texto{
 
     position: absolute;
