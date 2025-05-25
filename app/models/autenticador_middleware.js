@@ -22,15 +22,15 @@ gravarUsuAutenticado = async (req, res, next) => {
     erros = validationResult(req)
     if (erros.isEmpty()) {
         var dadosForm = {
-            user_usuario: req.body.nome_usu,
-            senha_usuario: req.body.senha_usu,
+            email_usuario: req.body.email,
+            senha_usuario: req.body.password,
         };
         var results = await usuario.findUserEmail(dadosForm);
         var total = Object.keys(results).length;
         if (total == 1) {
             if (bcrypt.compareSync(dadosForm.senha_usuario, results[0].senha_usuario)) {
                 var autenticado = {
-                    autenticado: results[0].nome_usuario,
+                    autenticado: results[0].email_usuario,
                     id: results[0].id_usuario,
                     tipo: results[0].tipo_usuario
                 };

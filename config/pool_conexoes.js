@@ -18,5 +18,5 @@ pool.getConnection((err, conn) => {
         console.log("Conectado ao SGBD!")
 })
 
-module.exports = pool.promise()git commit -m "Primeiro commit"
+module.exports = pool.promise()
 //teste
