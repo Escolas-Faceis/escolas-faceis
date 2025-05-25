@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/encontre-escola.css">
+    <link rel="stylesheet" href="css/vizu.css">
+    <title> Encontre Escolas - Mais Filtros </title>
+</head>
+
+<body>
+    <%- include('../partials/navbar'); %>
+
+    <%- include('../partials/search-bar'); %>
+    <%- include('../partials/filtro-atualizado'); %>
+    <script src="js/limitacoes-de-texto.js"></script>
+<!-- Barra de pesquisa-->
+
+    <!-- <section class="search-bar">
+        <input type="text" id="nome-escola-search" name="nome-escola-search" placeholder="Nome da Escola" class="A">
+        <select name="UF" id="regiao-search" class="A">
+            <ul>
+                <option value="regiao"> Região </option>
+                <option value="RNO"> Região Norte</option>
+                <option value="RND"> Região Nordeste </option>
+                <option value="RCE"> Região Centro-Oeste</option>
+                <option value="RSD"> Região Sudeste</option>
+                <option value="RSU"> Região Sul</option>
+
+            </ul>
+            <input type="text" id="cidade-search" name="cidade-search" placeholder="Cidade" class="A">
+        </select>
+    </section> -->
+
+    <!--Primeiro Perfil-->
+    <section class="short-prof" id="eded">
+        <figure><img src="imagem/fieb.png" alt="logo da escola" class="logo"></figure>
+        <section class="info">
+            <h1 class="nome-escola"> FIEB - ITB Brasílio Flores de Azevedo </h1>
+
+            <aside class="niveis">
+                <h5 class="escolaridade EM" >   Ensino Médio</h5>
+                <h5 class="escolaridade TEC" > Cursos Técnicos</h5>
+                <h5 class="escolaridade CSO"> Cursos Extracurriculares</h5>
+            </aside>
+
+            <section class="inf">
+            <p class="localidade "> Jardim Belval - Barueri, SP</p>
+            <p class="instituicao ">FIEB</p></section>
+            <p class="ingresso"> Vestibulinho 2024</p>
+
+            <button type="submit" class="buttao"> <a href="/perfil-escola">VER PERFIL</a></button>
+        </section>
+    </section>
+
+    <!--Segundo Perfil-->
+    <section class="short-prof" id="eded">
+        <figure><img src="imagem/armando.png" alt="logo da escola" class="logo"></figure>
+        <section class="info">
+            <h1 class="nome-escola"> EMEI Armando de Arruda Pereira </h1>
+
+            <aside class="niveis">
+                <h5 class="escolaridade EI" > Ensino Infantil</h5>
+            </aside>
+
+            <section class="inf">
+            <p class="localidade "> Praça da República - São Paulo, SP</p>
+            <p class="instituicao ">Pública</p></section>
+            <p class="ingresso">‎</p>
+
+            <button type="submit" class="buttao"> <a href="/perfil-escola">VER PERFIL</a></button>
+        </section>
+    </section>
+    <!--Terceiro Perfil-->
+    <section class="short-prof" id="eded">
+        <figure><img src="imagem/canarinho.jpg" alt="logo da escola" class="logo"></figure>
+        <section class="info">
+            <h1 class="nome-escola"> Escola Morumbi Alphaville </h1>
+
+            <aside class="niveis">
+                <h5 class="escolaridade EM" >   Ensino Infantil</h5>
+                <h5 class="escolaridade TEC" > Cursos Técnicos</h5>
+                <h5 class="escolaridade CSO"> Cursos Extracurriculares</h5>
+            </aside>
+
+            <section class="inf">
+            <p class="localidade "> Alphaville - Barueri, SP</p>
+            <p class="instituicao ">FIEB</p></section>
+            <p class="ingresso"> Mensalidades Especiais de Meio de Ano</p>
+
+            <button type="submit" class="buttao"> <a href="/perfil-escola">VER PERFIL</a></button>
+        </section>
+    </section>
+    <!--Quarto Perfil-->
+    <section class="short-prof" id="eded">
+        <figure><img src="imagem/fieb.png" alt="logo da escola" class="logo"></figure>
+        <section class="info">
+            <h1 class="nome-escola"> FIEB - ITB Maria Theodora </h1>
+
+            <aside class="niveis">
+                <h5 class="escolaridade EM" >   Ensino Médio</h5>
+                <h5 class="escolaridade TEC" > Cursos Técnicos</h5>
+                <h5 class="escolaridade EFI" >   Ensino Fundamental I</h5>
+                <h5 class="escolaridade EFII" > Cursos Fundamental II</h5>
+ 
+            </aside>
+
+            <section class="inf">
+            <p class="localidade "> Aphaville - Barueri, SP</p>
+            <p class="instituicao ">FIEB</p></section>
+            <p class="ingresso"> Vestibulinho 2024</p>
+
+            <button type="submit" class="buttao"> <a href="/perfil-escola">VER PERFIL</a></button>
+        </section>
+    </section>
+
+     <!--Quinto Perfil-->
+     <section class="short-prof" id="eded">
+        <figure><img src="imagem/cavazza.jpeg" alt="logo da escola" class="logo"></figure>
+        <section class="info">
+            <h1 class="nome-escola"> EMEF Armando Cavazza </h1>
+
+            <aside class="niveis">
+                <h5 class="escolaridade EFI" >   Ensino Fundamental I</h5>
+                <h5 class="escolaridade EFII" > Ensino Fundamental II</h5>
+               
+            </aside>
+
+            <section class="inf">
+            <p class="localidade "> Engenho Novo - Barueri, SP</p>
+            <p class="instituicao ">Pública</p></section>
+            <p class="ingresso">‎ </p>
+
+            <button type="submit" class="buttao"> <a href="/perfil-escola">VER PERFIL</a></button>
+        </section>
+    </section>
+
+    <section id="blank"> <br><br><br><br><br><br><br><br></section>
+
+
+    <script>
+        const ingressos = document.querySelectorAll('.ingresso');
+    
+        ingressos.forEach(ingresso => {
+            const text = ingresso.textContent;
+            const truncatedText = text.length > 30 ? text.slice(0, 30) + '...' : text;
+            ingresso.textContent = truncatedText;
+        });
+    </script>
+    
+
+</body>
+<%- include('../partials/footer'); %>
+</html>

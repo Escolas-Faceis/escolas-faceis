@@ -1,0 +1,276 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    }
+    
+    .search-fields{
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        gap: 0.1%; 
+        padding: 20px;
+        font-size: 14px; 
+        margin-top: 2%;
+        margin-bottom: 0;
+        padding-bottom: 0.1%;
+
+        
+    }
+
+    .A{
+        font-size: 14px;
+        padding:0.5%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+    #nome-escola-search{
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border: 1px solid gray;
+        
+    }
+
+    #cidade-search{
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border: 1px solid gray;
+    }
+
+    #regiao-search{
+        width: 6%;
+        color: #141c44;
+    }
+
+    #search{
+        border: none;
+        background-color: inherit;
+        color: #77b6ea;
+        font-size: 14px;
+        display: flex;
+        margin-left: 36%;
+        margin-top: 0;
+        cursor: pointer;
+
+    }
+    #search::after{
+        content: "\1F50D";
+    }
+
+    #search:hover{
+        text-decoration: underline;
+    }
+
+
+    @media screen and (max-width: 1290px) {
+            *{
+            padding: 0px;
+            margin: 0px;
+        
+            }
+            
+            .search-fields{
+                display: flex;
+                justify-content: center; 
+                align-items: center; 
+                gap: 0.1%; 
+                padding: 20px;
+                font-size: 14px; 
+                margin-top: 2%;
+                margin-bottom: 0;
+                padding-bottom: 0.1%;
+                
+                
+            }
+        
+            .A{
+                font-size: 14px;
+                padding:0.5%;
+        
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        
+            }
+            #nome-escola-search{
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                border: 1px solid gray;
+                
+            }
+        
+            #cidade-search{
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+                border: 1px solid gray;
+            }
+        
+            #regiao-search{
+                width: 10%;
+                text-align: justify;
+            }
+        
+            #search{
+                border: none;
+                background-color: inherit;
+                color: #77b6ea;
+                font-size: 14px;
+                display: flex;
+                margin-left: 31%;
+                margin-top: 0;
+                cursor: pointer;
+        
+            }
+            #search::after{
+                content: "\1F50D";
+            }
+        
+            #search:hover{
+                text-decoration: underline;
+            }
+    }
+
+    @media screen and (max-width: 800px) {
+        *{
+            padding: 0px;
+            margin: 0px;
+        
+            }
+            
+            .search-fields{
+                display: flex;
+                justify-content: center; 
+                align-items: center;
+                gap: 0.1%; 
+                padding: 20px;
+                padding-left: 30px;
+                font-size: 19px; 
+                margin-top: 2%;
+                margin-bottom: 0;
+                padding-bottom: 0.1%;
+                
+                
+            }
+
+            .A{
+                font-size: 21px;
+                padding:0.5%;
+        
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        
+            }
+            #nome-escola-search{
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                border: 1px solid gray;
+                
+            }
+        
+            #cidade-search{
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+                border: 1px solid gray;
+            }
+        
+            #regiao-search{
+                width: 15%;
+                text-align: center;
+            }
+        
+            #search{
+                border: none;
+                background-color: inherit;
+                color: #77b6ea;
+                font-size: 20px;
+                display: flex;
+                margin-left: 8%;
+                margin-top: 0;
+                cursor: pointer;
+        
+            }
+            #search::after{
+                content: "\1F50D";
+            }
+        
+            #search:hover{
+                text-decoration: underline;
+            }
+
+        
+    }
+
+
+    @media screen and (max-width: 520px) {
+        *{
+            padding: 0px;
+            margin: 0px;
+        
+            }
+            
+            .search-fields{
+                display: flex;
+                justify-content: center; 
+                align-items: center;
+                gap: 0.1%; 
+                padding: 20px;
+                padding-left: 30px;
+                font-size: 19px; 
+                margin-top: 2%;
+                margin-bottom: 0;
+                padding-bottom: 0.1%;
+                
+                
+            }
+
+            .A{
+                font-size: 21px;
+                padding:0.5%;
+        
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        
+            }
+            #nome-escola-search{
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                border: 1px solid gray;
+                
+            }
+        
+            #cidade-search{
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+                border: 1px solid gray;
+            }
+        
+            #regiao-search{
+                width: 15%;
+                text-align: center;
+            }
+        
+            #search{
+                border: none;
+                background-color: inherit;
+                color: #77b6ea;
+                font-size: 20px;
+                display: flex;
+                margin-left: 8%;
+                margin-top: 0;
+                cursor: pointer;
+        
+            }
+            #search::after{
+                content: "\1F50D";
+            }
+        
+            #search:hover{
+                text-decoration: underline;
+            }
+
+        
+    } 

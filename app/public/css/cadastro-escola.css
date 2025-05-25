@@ -1,0 +1,212 @@
+:root {
+    --laranja: #f56d44;
+    --azul: rgba(20, 28, 68, 0.99);
+    --azul_claro: #77b6ea;
+}
+
+
+/* TEXTO DE CIMA, IMAGEM E BOTÃO */
+#top_part_space {
+
+    #top_part {
+        color: var(--azul);
+    
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #top_part a {
+        padding-top: 100px;
+        width: 370px;
+        font-size: 38px;
+        line-height: 1.4em;
+        padding-right: 30px;
+    }
+
+    #top_part a p {
+        color: var(--laranja);
+        font-size: 37px;
+        font-weight: bold;
+        margin-top: -10px;
+        padding-top: 0;
+    }
+
+    #top_part img {
+        width: 675px;
+        height: 193px;
+        padding-top: 110px;
+        padding-left: 30px;
+    }
+
+    #top_button {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+    }
+
+    #top_button button {
+        width: 300px;
+        height: 80px;
+        color: var(--laranja);
+        font-size: 30px;
+        font-weight: bold;
+        background-color: white;
+        border: 4px solid var(--laranja);
+        border-radius: 28px;
+        margin-bottom: 10%;
+        transition: all 0.2s;
+    }
+
+    #top_button button:hover {
+        color: white;
+        background-color: var(--laranja);
+        cursor: pointer;
+        
+    }
+}
+
+/* FORMULÁRIO */
+nav {
+    margin-bottom: 40px;
+}
+
+#form_space {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Adiciona alinhamento vertical */
+    width: 100%;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#form {
+    margin-bottom: 15%;
+    border: solid #77b6ea 2px;
+    border-radius: 15px;
+    padding: 3% 2%;
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    width: 40%;
+    max-width: 800px; /* Adiciona largura máxima para responsividade */
+}
+
+#form input[type="text"]{
+  width: 97%;
+}
+#form input[type="email"]{
+    width: 97%;
+  }
+
+  #form input[type="password"]{
+    width: 97%;
+  }
+
+#form #criar_conta{
+    background-color: #77b6ea;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    width: 40%;
+    padding: 2% 4%;
+    font-size: 22px;
+    font-weight: 400;
+    color: white;
+} #form #criar_conta:hover{ background-color: #5298d1;}
+#form_title{
+    font-size: 28px;
+    color: #f56d44;
+    margin: 0;
+}
+
+#form p {
+    font-size: 18px;
+    color: #141c44;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+#form input, select{
+    border: solid rgb(167, 167, 167) 2px;
+    font-size: 17px;
+    border-radius: 10px;
+    padding: 1.5% 2%;
+}
+
+#name_school{
+    width: 95%;
+}
+
+select option{
+    color: #141c44;
+}
+
+.parts_checks{
+    display: flex;
+    margin: 0;
+    
+}
+
+#end p{
+    margin-top:5%;
+    margin-bottom:-23px;
+}
+
+#num{display: flex;}
+
+
+.spanerro {
+    font-size: 12px;
+    color: red;
+    margin-top: 3px;
+}
+
+
+.spanerro {
+    font-size: 12px;
+    color: red;
+    margin-top: 3px;
+}
+
+.parts_checks ul li{
+    list-style-type: none;
+    font-size: 3px;     
+}
+
+#num::-webkit-inner-spin-button{appearance: none;}#num::-webkit-outer-spin-button{appearance: none;}
+
+#checkboxes {
+    display: flex; /* Habilita o Flexbox para o contêiner principal */
+    justify-content: space-around; /* Espaça os itens igualmente */
+    font-size: 3px;
+}
+
+#num, #uf{
+    width: 20%;
+}
+
+
+.parts_checks {
+    flex: 1; /* Faz com que cada parte ocupe o mesmo espaço */
+    margin: 0 10px; /* Espaçamento entre as colunas */
+    font-size: 3px;
+}
+
+.parts_checks ul {
+    padding: 0; /* Remove o padding padrão */
+    font-size: 3px;
+}
+
+.parts_checks ul li {
+    font-size: 16px;
+    list-style-type: none; /* Remove os marcadores da lista */
+    margin-bottom: 5px; /* Espaçamento entre os itens da lista */
+    font-size: 15px;
+    white-space: nowrap;
+    padding:2px 0px
+}

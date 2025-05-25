@@ -1,0 +1,393 @@
+@media screen and (max-width:1200px){
+    :root {
+        --laranja: #f56d44;
+        --azul: rgba(20, 28, 68, 0.99);
+        --azul_claro: #77b6ea;
+    }
+
+    
+#capelo{
+    transform:rotate(10deg) scale(1.3);
+    position: absolute;
+    bottom: 83%;
+    margin-right: -42%;
+    
+}
+
+#picture{
+    margin-top: 10%;
+    overflow-x: hidden;
+}
+
+}
+
+@media screen and (max-width:800px){
+    :root {
+        --laranja: #f56d44;
+        --azul: rgba(20, 28, 68, 0.99);
+        --azul_claro: #77b6ea;
+    }
+
+    html{overflow-x: hidden;}
+    body{overflow-x: hidden;}
+    
+#capelo{
+    transform:rotate(10deg) scale(1.3);
+    position: absolute;
+    bottom: 83.6%;
+    margin-right: -42%;
+}
+
+
+#form_space {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+#form {
+    border: solid;
+    border-radius: 20px;
+    border-color: var(--azul_claro);
+    padding: 15px;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    height: 150%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    height: 44px;
+    border-radius: 10px;
+    margin: 6px;
+    font-size: 17px;
+    padding: 0 8px;
+    border: solid var(--azul);
+}
+
+.marker {
+    font-weight: bold;
+    color: var(--laranja);
+}
+
+p {
+    font-size: 26px;
+    padding-left: 8px;
+    padding-top: 3px;
+    margin-bottom: -2px;
+    color: var(--azul);
+}
+
+h3 {
+    margin-top: 5%;
+}
+
+#no-account {
+    font-size: 22px;
+    color: #141c44;
+    text-align: center; 
+    margin-top: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    white-space: nowrap;
+}
+
+#login2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login_button {
+    transition: all 0.3s;
+    background-color: var(--azul_claro);
+    border: solid var(--azul_claro);
+    border-radius: 30px;
+    color: white;
+    width: 250px;
+    height: 70px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#login_button:hover {
+    background-color: white;
+    color: var(--azul_claro);
+    cursor: pointer;
+}
+
+#texto_lateral {
+    width: 300px;
+    color: var(--azul);
+    margin-left: -30%;
+    flex-wrap: nowrap;
+    margin-bottom: 20%;
+    white-space: nowrap;
+}
+
+#texto_lateral h3 {
+    margin-bottom: 15px;
+    font-size: 35px;
+}
+
+#texto_lateral p {
+    font-size: 23px;
+}
+
+#texto_lateral h3:last-child{white-space: wrap;}
+
+
+#picture {
+    overflow-x: hidden;
+    width: 50%;
+    display: none;
+    position: absolute; 
+    bottom: 0; 
+    right: 10px;
+    left: 60%; 
+    margin-left: -10%;
+    top: 80%;
+    
+}
+
+#conectado {
+    background-color: white;
+    accent-color: var(--laranja);
+    width: 15px;
+    height: 15px;
+}
+
+label {
+    color: var(--azul);
+    padding-right: 8px;
+    font-size: 18px;
+}
+p{margin: 1%;}
+
+#f-password {
+    margin-top: 0;
+    font-size: 20px;
+    text-decoration: none;
+    color: #ffbc3e;
+    margin-left: -3%;
+    transition: all 1s;
+}
+
+#f-password:hover {
+    text-decoration: underline;
+}
+
+#amarelinho{
+    color: #ffbc3e;
+    text-decoration: none;
+}   #amarelinho:hover{text-decoration: underline; cursor: pointer;}
+
+
+#laranjinha{
+    text-decoration: #f56d44;
+    color: #f56d44;
+    transition: all 0.3s;
+}       #laranjinha:hover{ text-decoration: underline;}
+
+h2 {
+    color: var(--laranja);
+    font-size: 40px;
+    padding-top: 10x;
+}
+
+
+}
+
+@media screen and (max-width:450px){
+    :root {
+        --laranja: #f56d44;
+        --azul: rgba(20, 28, 68, 0.99);
+        --azul_claro: #77b6ea;
+    }
+
+    html{overflow-x: hidden;}
+    body{overflow-x: hidden;}
+    
+#capelo{
+    transform:rotate(10deg) scale(1.3);
+    position: absolute;
+    bottom: 83.6%;
+    margin-right: -42%;
+}
+
+
+#form_space {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+#form {
+    border: solid;
+    border-radius: 20px;
+    border-color: var(--azul_claro);
+    padding: 15px;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: center;
+    width: 82%;
+    height: 150%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    height: 44px;
+    border-radius: 10px;
+    margin: 6px;
+    font-size: 19px;
+    padding: 0 8px;
+    border: solid var(--azul);
+}
+
+.marker {
+    font-weight: bold;
+    color: var(--laranja);
+}
+
+p {
+    font-size: 23px;
+    padding-left: 8px;
+    padding-top: 3px;
+    margin-bottom: -2px;
+    color: var(--azul);
+}
+
+h3 {
+    margin-top: 5%;
+}
+
+#no-account {
+    font-size: 20px;
+    color: #141c44;
+    text-align: center; 
+    margin-top: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    white-space: nowrap;
+}
+
+#login2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login_button {
+    transition: all 0.3s;
+    background-color: var(--azul_claro);
+    border: solid var(--azul_claro);
+    border-radius: 26px;
+    color: white;
+    width: 230px;
+    height: 60px;
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#login_button:hover {
+    background-color: white;
+    color: var(--azul_claro);
+    cursor: pointer;
+}
+
+#texto_lateral {
+    width: 300px;
+    color: var(--azul);
+    margin-left: -7%;
+    flex-wrap: nowrap;
+    margin-bottom: 20%;
+    white-space: nowrap;
+}
+
+#texto_lateral h3 {
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+#texto_lateral p {
+    font-size: 17px;
+}
+
+#texto_lateral h3:last-child{white-space: wrap;}
+
+#picture {
+    overflow-x: hidden;
+    width: 50%;
+    display: none;
+    position: absolute; 
+    bottom: 0; 
+    right: 10px;
+    left: 60%; 
+    margin-left: -10%;
+    top: 80%;
+    
+}
+/* 
+input[type=checkbox] {
+    background-color: white;
+    accent-color: var(--laranja);
+    width: 15px;
+    height: 15px;
+} */
+
+label {
+    color: var(--azul);
+    padding-right: 8px;
+    font-size: 18px;
+}
+p{margin: 1%;}
+
+#f-password {
+    margin-top: 0;
+    font-size: 18px;
+    text-decoration: none;
+    color: #ffbc3e;
+    margin-left: -3%;
+    transition: all 1s;
+}
+
+#f-password:hover {
+    text-decoration: underline;
+}
+
+#amarelinho{
+    color: #ffbc3e;
+    text-decoration: none;
+}   #amarelinho:hover{text-decoration: underline; cursor: pointer;}
+
+
+#laranjinha{
+    text-decoration: #f56d44;
+    color: #f56d44;
+    transition: all 0.3s;
+}       #laranjinha:hover{ text-decoration: underline;}
+
+h2 {
+    color: var(--laranja);
+    font-size: 40px;
+    padding-top: 10x;
+}
+
+
+}

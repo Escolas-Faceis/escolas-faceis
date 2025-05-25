@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@media screen and (min-width:851px) {
+  
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(255, 255, 255);
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.recuo { text-indent:4em }
+
+.navbar header {
+  background: #141C44;
+
+}
+
+
+.navbar #check{
+  display: none;
+}
+
+.navbar  #menu {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  padding: 20px 40px;
+  max-height: 83px;
+  font-size: 18px;
+}
+
+#menu li {
+  margin: 0 20px;
+  position: relative;
+
+}
+
+#menu a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+#menu a:hover {
+  color: #fff6d8;
+}
+
+#menu li:nth-child(-n+3) {
+  margin-right: 30px; /* Adiciona espaçamento entre os três primeiros itens */
+}
+
+#menu #inicio{
+  margin-left: 50px;
+}
+
+ .dropdown-arrow:after {
+	content: "\23F7";
+	margin-left: 0 5px;
+
+} 
+
+.navbar summary{
+  margin-bottom: 3px;
+  margin-left: 20px;
+  outline: none;
+  list-style:none;
+
+}
+
+.submenu {
+  display: none; /* Esconde o submenu por padrão */
+  position: absolute;
+  top: 100%; /* Faz o submenu aparecer logo abaixo do item pai */
+  left: 0;
+  background: #a3a7a8;
+  padding: 10px 0;
+  list-style-type: none;
+  z-index: 1;
+  font-size: 16px;
+  width: 200%;
+  white-space:none;
+  text-wrap: nowrap;
+  border-radius: 10px;
+  border-top-left-radius: 0;
+}
+
+.master:hover .submenu {
+  display: block; /* Exibe o submenu ao passar o mouse sobre o item pai */
+}
+
+#menu .submenu li:first-child{
+  margin: auto 7%;
+
+}
+
+.submenu ul li a{
+  margin: 3% 1%;
+  row-gap: 10px;
+  font-size: 7px;
+  line-height: 30px;
+}
+
+#menu .submenu ul li a:hover{
+  color: #adcfeb;
+}
+
+.master{
+  margin-left:-3%;
+  padding: 0;
+}
+
+
+
+.navbar #logo {
+  width: 150px;
+}
+
+#menu button {
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 10px 15px;
+  background-color: #f56d44;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+.aside {
+  margin-left: auto; /* Empurra os itens para o final */
+  display: flex;
+  justify-content: flex-end; /* Alinha os itens à direita */
+  gap: 10px; /* Espaço entre os itens */
+}
+
+
+.navbar button {
+  margin: 0; /* Remove margem do botão */
+  transition: all 0.3s;
+}button:hover{
+  color: white;
+  background-color: #d84214;
+}
+
+
+.navbar button a {
+  color: #ffffff;
+  text-decoration: none;
+} button li a:hover{color: white;}
+}
+
+  @media screen and (max-width: 850px){
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    
+    body {
+      margin: 0;
+      padding: 0;
+      /* faça parecer decente o suficiente */
+      background: rgb(255, 255, 255);
+      color: #ffffff;
+      font-family: "Popping Light", "Avenir", sans-serif;
+      overflow-x: hidden;
+    }
+
+    
+.navbar header{
+      background-color:#141C44;
+    }
+
+	
+.navbar nav{
+		z-index: 3;
+		background-color: #141C44;
+		height: 120px;
+    width: 100vw;
+	}
+
+    
+.navbar #logo{
+      width:25%;
+      display: flex;
+      position: absolute;
+      align-items: right;
+      justify-content: right;
+      margin-left: 50%;
+      margin-right: 10px;
+      margin-top: -7%;
+      padding-bottom: 10px;
+      
+    }
+    
+.navbar a {
+      text-decoration: none;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+    
+    
+.navbar a:hover {
+      color: #fff6d8;
+    }
+    
+    
+.navbar #menuToggle {
+      display: block;
+      position: relative;
+      top: 50px;
+      left: 50px;  
+      z-index: 1;
+      user-select: none;
+      width: 50%;
+    }
+    #menuToggle input {
+      display: block;
+      flex-direction: column;
+      width: 40px;
+      height: 32px;
+      position: absolute;
+      top: -7px;
+      left: -5px;
+      cursor: pointer;  
+      opacity: 0; /* esconder isso */
+      z-index: 2; /* e coloque sobre o hamburger */
+    }
+    /* Apenas um hamburguer rápido */
+    #menuToggle span {
+      display: block;
+      width: 33px;
+      height: 4px;
+      margin-bottom: 5px;
+      position: relative;  
+      background: #cdcdcd;
+      border-radius: 3px;
+      z-index: 1;  
+      transform-origin: 4px 0px;
+      transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                  background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                  opacity 0.55s ease;
+    }
+    
+    #menuToggle span:first-child {
+      transform-origin: 0% 0%;
+    }
+    
+    #menuToggle span:nth-last-child(2) {
+      transform-origin: 0% 100%;
+    }
+    
+    /* Transforme todas as fatias de hambúrguer em um X */
+    #menuToggle input:checked ~ span {
+      opacity: 1;
+      transform: rotate(45deg) translate(-2px, -1px);
+      background: #f8f7f7;
+    }
+    
+    /* Mas vamos esconder o do meio */
+    #menuToggle input:checked ~ span:nth-last-child(3) {
+      opacity: 0;
+      transform: rotate(0deg) scale(0.2, 0.2);
+    }
+    
+    /* e o último deve ir na outra direção */
+    #menuToggle input:checked ~ span:nth-last-child(2) {
+      transform: rotate(-45deg) translate(0, -1px);
+    }
+    
+    /* Faça isso com posicionamento absoluto no canto 
+       superior esquerdo da tela */
+    #menu {
+      position: absolute;
+      width: 100vw;
+      margin: -100px 0 0 -50px;
+      padding: 50px;
+      padding-top: 125px; 
+      background: #141C44;
+      list-style-type: none;  
+      transform-origin: 0% 0%;
+      transform: translate(-100%, 0);
+      transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+      overflow-x: en;
+    }
+    
+    #menu li
+    {
+        font-family: 'Poppins', sans-serif;
+      padding: 10px 10px;
+      font-size: 22px;
+    }
+    
+    /* Vamos deslizar da esquerda */
+    #menuToggle input:checked ~ ul {
+      transform: none;
+    }
+    .master{
+      font-size: 22px;
+      text-decoration: none;
+      color: #ffffff;
+      transition: all 0.3s ease-in-out;
+    }
+
+    summary{
+      list-style-type: none;
+    }
+    
+    .master:hover{
+      color: #f56d44;
+    }
+
+    #submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--primary-color);
+      padding: 10px 0;
+      list-style-type: none;
+      z-index: 1;
+  }
+  
+  #menu summary:hover ul.submenu {
+    display: block;
+    border-radius: 5px;
+  }
+
+    #cadastro:hover{
+      color: white;
+    }
+    
+.navbar button{
+  font-family: 'Poppins', sans-serif;
+      color: #f56d44;
+      font-size: 22px;
+      border-radius: 5px;
+      padding: 5px 10px;
+      background-color: #f55c2d;
+      border: none;
+      transition: all 0.3s ease-in-out;
+    } button:hover{
+      background-color: #d84214;
+    }
+    
+  }
+  

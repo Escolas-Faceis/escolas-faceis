@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.text{
+    margin: 5% 10%;
+    display: flex;
+}
+.text h1{
+    color:#f56d44;
+    font-size: 30px;
+}
+.text p{
+    width: 45%;
+    font-size: 18px;
+    font-weight: 300;
+    color: #141c44;
+}
+.text img{
+    width: 23%;
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 50%;
+}
+
+form{
+    border: #f56d44 solid 2px;
+    border-radius: 15px;
+    width: 20%;
+    margin: 2% 20%;
+    padding: 3% 2%;
+
+}
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form label{
+    font-size: 18px;
+    color: #4091d4;
+    margin-top: 10%;
+}
+
+label{
+    padding-top: 10%;
+}
+
+form input{
+    font-size: 16px;
+    color: #141c44;
+    border: solid rgb(169, 169, 169) 2px;
+    border-radius: 10px;
+    padding: 3% 2%;
+    width: 94%;
+}
+form #enviar {
+    margin: 0 auto; /* Centraliza horizontalmente */
+    width: auto; /* Ajusta para que a largura dependa apenas do padding */
+    padding: 10px 30px; /* Define tamanho do botão */
+    border: none;
+    border-radius: 10px;
+    background-color: #77b6ea;
+    font-weight: 500;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+#margem{
+    margin: 10%;
+}
+form #enviar:hover {
+    background-color: #4091d4;
+}
+input[type="number"]::-webkit-inner-spin-button{appearance: none;}input[type="number"]::-webkit-outer-spin-button{appearance: none;}
+
+#retornar a{
+    text-decoration: none;
+    color: #141c44;
+    margin: 0;
+    margin-top: -2%;
+    margin-bottom: 5%;
+} a:hover{
+    text-decoration: underline; color: #f56d44  ;
+}
+
+@media screen and (max-width:800px){
+    form{
+        width: 50%;
+        padding-top: 5% ;
+        padding-bottom: 5% ;
+    }
+
+    .text img{
+        width: 30%;
+    }
+    .text p {
+        font-size: 17px;
+    }
+}
+
+
+@media screen and (max-width:600px){
+    form{
+        width: 50%;
+        padding-top: 5% ;
+        padding-bottom: 5% ;
+    }
+
+    .text img{
+        width: 40%;
+        margin-left: -5%;
+        display: none;
+    }
+    .text p {
+        font-size: 17px;
+    }
+}
+
+
+@media screen and (max-width:380px){
+
+    form{
+        width: 100%;
+        padding-top: 5% ;
+        padding-bottom: 5% ;
+        margin: 7%;
+    }
+
+    form label{
+        font-size: 16px;
+    }
+
+    .text img{
+        width: 40%;
+        margin-left: -5%;
+    }
+    .text p {
+        font-size: 17px;
+        width: 85%;
+    }
+    #retornar{
+        margin-bottom: 20%;
+    }
+}
+

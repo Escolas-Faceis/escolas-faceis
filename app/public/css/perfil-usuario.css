@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --background_banner: #C7D3DD;
+    
+    --laranja: #f56d44;
+    --azul: rgba(20, 28, 68, 0.99);
+    --azul_claro: #77b6ea;
+    --amarelo: #ffbc3e;
+    --distancia: 100px;
+}
+
+
+body{
+   font-family: 'Poppins', sans-serif;
+   overflow-x: hidden;
+}
+
+
+#banner_perfil {
+   
+    background-color: var(--background_banner);
+    width: 100%;
+    height: 200px;
+}
+
+#conteudo_perfil {
+ margin-left: 254px; /*154 + distancia*/
+ margin-right: var(--distancia);
+ margin-top: 10px;
+ font-family: 'Poppins', sans-serif;
+}
+
+#foto_perfil {
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+#sobrepor_banner {
+    display: flex;
+    flex-direction: row;
+    align-items: self-end;
+    position: absolute;
+    left: var(--distancia);
+    top: 250px;
+    width: 30%;
+}
+
+#botoes {
+    /* margin-top: 52px; */
+    margin-left: var(--distancia);
+    align-items: center;
+    width: 150px;
+    
+}
+
+#conteudo_perfil h2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 5px;
+    color:var(--azul);
+}
+
+#botoes{
+   font-size: 20px;
+}
+
+.input_nome {
+   font-size: 25px;
+   font-weight: bold;
+   margin-left: 5px;
+   color: var(--azul);
+   border: none; /* Remove a borda padrão */
+   background: transparent; /* Fundo transparente */
+   outline: none; /* Remove o contorno ao focar */
+   width: 100%; /* Para que ocupe o espaço necessário */
+   
+}
+
+#botoes #editar_perfil {
+   width: 150px;
+   margin-bottom: 10px;
+   font-size: 19px;
+   background-color: #77b6ea;
+   border-radius: 8px;
+   border: solid #77b6ea;
+   color: white;
+   padding: 5px 8px;
+   font-weight: 500;
+   font-family: 'Poppins', sans-serif;
+   cursor: pointer;
+  transition: all 0.3s;
+}#editar_perfil:hover{opacity:0.7}#editar_perfil:active{background-color: #2b5475;}
+
+#salvar_botao {
+   font-size: 19px;
+    width: 150px;
+    background-color: white;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: gray;
+    padding: 5px 8px;
+    color: gray;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;    
+    flex-wrap: nowrap;
+    transition: all 0.3s;
+}#salvar_botao:hover{background-color: rgb(235, 235, 235); }
+
+#biografia {
+   display: flex;
+   align-items: self-end;
+   resize: none;
+   width: 350px;
+   height: 110px;
+   border-radius: 10px;
+   border-style: solid;
+   padding: 5px;
+   margin-left: 40px; /* ajuste se necessário */
+   font-size: 18px;
+   font-family: 'Poppins', sans-serif;
+}
+
+ #conteudo {
+    display: flex;
+    justify-content: space-between;
+ }
+
+ #ajustar_direita {
+    margin-top: 10px;
+    margin-right: var(--distancia);
+    width: 150px;
+    color: var(--azul);
+ }
+
+ #ajustar_esquerda{
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+
+ }
+
+ #cor {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 1%;
+    border-style: solid;
+    border: 1px solid rgba(105, 105, 105, 0.5);
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s;
+ }#cor:hover{ opacity: 0.7; transform: scale(1.1);}
+
+ #cor:nth-child(6){
+   border: 1px solid rgba(105, 105, 105, 0.5);
+ }
+
+ #avaliacoes {
+    margin: var(--distancia);
+    margin-top: 100px;
+    font-family: 'Poppins', sans-serif;
+ }
+
+ #avaliacoes h1 {
+    text-transform: uppercase;
+    color: var(--laranja);
+    font-family: 'Poppins', sans-serif;
+ }
+
+
+ #comentario {
+    width: 85%;
+    border-style: solid;
+    border-color: lightgray;
+    border-radius: 10px;
+    border-width: 2px;
+    margin-top: 15px;
+    font-family: 'Poppins', sans-serif;
+ }
+
+ #foto_comentario {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 5px;
+ }
+
+ #comentario h3 {
+    font-weight: bold;
+    /* font-size: 20px;
+    margin-top: 10px; */
+    color: var(--azul);
+    font-family: 'Poppins', sans-serif;
+ }
+
+ #info_usuario_comentario {
+    display: flex;
+ }
+
+ #comentario p {
+   margin-top: -12px;
+   margin-left: 50px;
+   color: var(--azul);
+ }
+
+ #texto {
+       margin-left: 50px;
+       margin-bottom: 10px;
+       width: 90%;
+       color: var(--azul);
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       flex-direction: row;
+ }
+
+ #estrelas {
+    width: 15%;
+    height: 15%;   
+    /* position: relative; */
+    left: 50%;
+    bottom: -30px;
+ }
+ .alinhar{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   margin-top: 30px;
+   justify-content: space-between;
+   flex-wrap: wrap;
+ }
+
+ /*RESPONSIVIDADE*/
+ @media screen and (max-width: 810px) {
+   html{
+      overflow-x: hidden;
+   }
+
+  #conteudo{
+   flex-direction: column;
+   align-items: center;
+  }
+  .alinhar{
+   margin-top: 0;
+   margin-left: -120px;
+  }
+  #ajustar_direita{
+   margin: 0;
+  }
+  #ajustar_esquerda{
+   overflow-x: hidden;
+  }
+  #ajustar_direita p{
+   font-size: 18px;
+  }
+  #cor{
+   border-style: none;
+  }
+  #avaliacoes{
+   margin: 30px;
+  }
+  #comentario {
+   width: 100%;
+  }
+  #estrelas{
+   width: 100px;
+  }
+ }
+
+ @media screen and (max-width: 680px) {
+  #conteudo_perfil h2 {
+   width: 110%;
+  }
+  .alinhar{
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   align-items: center;
+  }
+
+  
+
+  #foto_perfil{
+   display: flex;
+   flex-direction: column;
+  }
+  h2{
+   display: flex;
+   flex-direction: column;
+  }
+  #biografia {
+   margin-left: 100px;
+  }
+  #avaliacoes{
+   margin: 10px;
+  }
+
+  #editar_perfil{
+   margin-top: 200px;
+   z-index: 1;
+  }
+  #biografia{
+   transform: translateY(-270px);
+  }
+
+  #ajustar_direita{
+   transform: translate(200px, -640px);
+   display: none;
+  }
+  .alinha{
+   margin-bottom: 0;
+  }
+
+  #cor{
+   display: none;
+  }
+
+  #avaliacoes{
+   transform: translatey(-50px);
+  }
+
+  #comentario:nth-child(4){
+   margin-bottom: 10%;
+  }
+
+ }
+

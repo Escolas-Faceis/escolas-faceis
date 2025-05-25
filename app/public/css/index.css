@@ -1,0 +1,274 @@
+
+body{
+    color: #141c44;
+    font-size: 'Poppins', sans-serif;
+}
+
+.imagem-texto{
+    position: relative;
+    width: 100%;
+    height: 50%;
+}
+#imagem{
+
+    width: 100%;
+ 
+    z-index: 0;
+}
+
+main{margin-left: 200px;
+     margin-right: 200px;}
+
+main img{display: block;
+    visibility: hidden;
+    }
+
+#texto{
+
+    position: absolute;
+    font-size: 55px;
+    font-family: "Poppins Bold", "Poppins", sans-serif;
+    font-weight: bold;
+    left: 9%;
+    top:340px;
+    color: #f56d44;
+}
+#paragrafo{
+    position: absolute;
+    color: #141c44;
+    font-size: 25px;
+    padding-top: 20px;
+    font-family: "Poppins Light", "Poppins", sans-serif;
+    left:9%;
+    top:480px;
+
+}
+
+.imagem-caixa{
+    z-index: 1;
+    position: relative;
+    top: -100px;
+    display: flex;  
+    justify-content: center;
+    
+}
+.caixa1{
+
+    color: white;
+    left: 610px;
+    padding: 10px;
+    width: 277px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-left-color: white;
+    border-color: white;
+    background-color: #0a7777;
+    border-style: solid;
+ 
+
+} 
+
+
+::-webkit-input-placeholder {
+    color:white;
+}
+
+
+.imagem-caixa{
+    margin-left: auto;
+}
+
+#caixa2{
+
+
+
+    padding: 9.5px;
+    width: 89px;
+    background-color: #0a7777;
+    color: white;
+    border-color: white;
+    border-style: solid;
+    border: 2px;
+    border-style: solid;
+}
+
+#caixa::placeholder{
+    color: white;
+}
+.caixa3{
+    padding: 10px;
+    width: 277px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #0a7777;
+    color: white;
+    border-color: white;
+    fill-opacity: 0;
+    
+    border-style: solid;
+}
+#caixa1 ::placeholder{
+    color: white;
+}
+#info{
+    margin-top: 10%;
+
+}
+
+.aq{
+    margin-top: 30%;
+}
+
+.aqui{
+    position: absolute;
+    display: inline;
+    color: #77b6ea;
+    font-size: 40px;
+    font-family:  "Poppins SemiBold", "Poppins", sans-serif;
+    top: 1390px;
+    left: 20%;
+}
+.aqui2{
+    position: absolute;
+    display: inline;
+    top: 1480px;
+    font-size: 20px;
+    color: #141c44;
+    font-family: "Poppins", sans-serif;
+    line-height:60px;
+    left: 20%;
+    list-style:disc;
+    list-style-type:square;
+    
+} li::marker {color: #f56d44;}
+#imgpequena{
+    display: flex;
+    position:relative; 
+
+    margin-left: 50%;
+    height: 450px; 
+    width: 450px;
+}
+
+
+FOOTER{
+footer{
+    position: absolute;
+    top: 1970px;
+    background-color: rgba(20, 28, 68, 0.99);
+    margin-top: none;
+    width: 100%;
+    height: 300px;
+}
+footer, .pag{
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+    text-decoration: none;
+
+    
+}
+.pag:hover{
+    text-decoration: underline;
+}
+#logo-footer{
+    width:15%;
+    margin-left: 4%;;
+    margin-top: 2.5%;
+    position:absolute;
+    margin-right: auto;
+}
+.pag{
+
+margin-left: 26%;
+position:static
+
+}
+}
+
+.slider {
+    position: absolute;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    list-style: none; /* Removelay: flex;on: transform 0.5s ease-in-out; os marcadores */
+    padding: 0; /* Remove o padding padrão */
+    margin: 0; /* Remove a margem padrão */
+
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    height: 400px;
+    display: block;
+    
+        width: 100%;
+        height: auto; /* Mantém a proporção da imagem */
+        display: block;
+    
+    
+}
+
+ #kkj{
+    height: 430px;
+ }
+
+.b {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(121, 121, 121, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.indicators {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.indicator.active {
+    background-color: #676b85;
+}
+
+
+
+
+

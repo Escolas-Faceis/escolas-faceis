@@ -1,0 +1,362 @@
+:root {
+    --laranja: #f56d44;
+    --azul: rgba(20, 28, 68, 0.99);
+    --azul_claro: #77b6ea;
+}
+
+/* TEXTO DE CIMA, IMAGEM E BOTAO */
+#top_part_space {
+    #top_part {
+        color: var(--azul);
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #top_part a {
+        padding-top: 100px;
+        width: 370px;
+        font-size: 45px;
+        line-height: 1.4em;
+        padding-right: 30px;
+    }
+
+    #top_part a p {
+        color: var(--laranja);
+        font-size: 37px;
+        font-weight: bold;
+    }
+
+    #top_part img {
+        width: 675px;
+        height: 193px;
+        padding-top: 110px;
+        padding-left: 30px;
+    }
+
+    #top_button {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+    }
+
+    #top_button button {
+        width: 300px;
+        height: 80px;
+        color: var(--laranja);
+        font-size: 30px;
+        font-weight: bold;
+        background-color: white;
+        border: 4px solid var(--laranja);
+        border-radius: 28px;
+    }
+
+    #top_button button:hover {
+        color: white;
+        background-color: var(--laranja);
+        cursor: pointer;
+    }
+}
+
+/* FORMULÁRIO */
+nav {
+    margin-bottom: 40px;
+}
+
+
+#form_space {
+
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto; 
+    justify-content: space-evenly;
+}
+
+#form, #form2 {
+    border: solid;
+    border-radius: 20px;
+    border-color: var(--azul_claro);
+    padding: 15px;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+#form {
+    width: 400px;
+
+}
+
+#form2 {
+    width: 85px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 380px;
+    height: 44px;
+    border-radius: 10px;
+    margin: 6px;
+    font-size: 17px;
+    padding: 0 8px;
+    border: solid var(--azul);
+}
+
+
+.marker {
+    font-weight: bold;
+    color: var(--laranja);
+}
+
+select {
+    width: 90px;
+    height: 43px;
+    border-radius: 10px;
+    margin: 4px;
+    font-size: 17px;
+    padding: 0 8px;
+    border: solid var(--azul);
+    background-color: white;
+}
+
+p {
+    font-size: 20px;
+    padding-left: 8px;
+    padding-top: 3px;
+    margin-bottom: -2px;
+    color: var(--azul);
+}
+
+p:first-child{
+    margin-top: 5%;
+}
+
+h3:nth-child(1){
+    margin-top: 5%;
+}
+h3:nth-of-type(2){
+    margin-top: 5%;
+}
+#amarelinho{
+    color: #ffbc3e;
+}#amarelinho:hover{text-decoration: underline; cursor: pointer;}
+h2 {
+    color: var(--laranja);
+    font-size: 40px;
+    padding-top: 10x;
+}
+
+#endereco {
+    display: flex;
+}
+
+#endereco input {
+    width: 600px;
+}
+
+#pequeno input {
+    width: 70px;
+}
+
+#checkboxes {
+    width: 100%;
+    display: flex;
+}
+
+#parts_checks {
+    display: block;
+    padding-left: 15px;
+    margin-right: 50px;
+}
+
+#no-account{
+    font-size: 19px;
+    color: #141c44;
+    text-align: center; 
+    margin-top: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#picture{
+    width: 28%;
+    display: inline;
+ 
+    position: absolute; 
+    bottom: 0; 
+    right: -20px; 
+    margin: 0;
+    top: 63%;
+    }
+    input[type=checkbox] {
+        width: 20px; /* Aumente o tamanho se necessário */
+        height: 20px;
+        appearance: checkbox; /* Reseta a aparência padrão */
+        margin-right: 2px; /* Espaço entre o checkbox e o label */
+    }
+    
+
+label {
+    color: var(--azul);
+    padding-right: 8px;
+    font-size: 18px;
+    white-space: nowrap;
+
+}
+
+#criar_conta {
+    background-color: white;
+    border: solid var(--azul_claro);
+    border-radius: 30px;
+    color: var(--azul_claro);
+    width: 250px;
+    height: 70px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#criar_conta:hover {
+    background-color: var(--azul_claro);
+    color: white;
+    cursor: pointer;
+}
+
+#submit_button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login_button {
+    transition: all 0.3s;
+    background-color: var(--azul_claro);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    width: 250px;
+    height: 70px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px;
+    
+}
+
+.spanerro{
+    color: #f56d44;
+}
+
+#login_button:hover {
+    background-color: #3d8fd2;
+    color: white;
+    cursor: pointer;
+}
+
+#texto_lateral {
+    width: 300px;
+    color: var(--azul);
+}
+
+#texto_lateral h3 {
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+
+#texto_lateral p {
+    font-size: 18px;
+}
+
+#texto_lateral img {
+    width: 200%;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+#lateral_contato {
+    width: 20%;
+}
+
+#lateral_contato img {
+    align-self: center;
+    margin-right: 5px;
+}
+
+#email_contato_input,
+#mensagem_contato {
+    width: 450px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 4px;
+    font-size: 27px;
+    padding: 0 8px;
+    border: solid var(--azul_claro);
+}
+
+#mensagem_contato {
+    height: 200px;
+    resize: none;
+}
+
+#alinhar_direita {
+    display: flex;
+    justify-content: right;
+}
+
+#orange_button {
+    background-color: var(--laranja);
+    border: solid var(--laranja);
+    border-radius: 10px;
+    color: white;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#laranjinha{
+    text-decoration: #f56d44;
+    color: #f56d44;
+    transition: all 0.3s;
+}#laranjinha:hover{
+    text-decoration: underline;
+}
+
+#orange_button:hover {
+    background-color: white;
+    color: var(--laranja);
+    cursor: pointer;
+}
+
+#f-password {
+    font-size: 17px;
+    text-decoration: none;
+    color: #ffbc3e;
+    margin-left: 3%;
+    transition: all 1s;
+}
+
+#f-password:hover {
+    text-decoration: underline;
+}
+
+#conectado {
+    margin-left: 5%;
+}
+
+#no_account {
+    font-size: 17px;
+}

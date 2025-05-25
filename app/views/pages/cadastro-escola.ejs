@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cadastrar Escola</title>
+
+    <link rel="stylesheet" href="css/cadastro-escola.css">
+    <script>
+        function rolar_pra_baixo(){
+        window.scrollTo({
+        top: 600,
+        behavior: 'smooth'
+        })
+        }
+
+    </script>
+</head>
+
+<body>
+    <%
+    let  erroValidacao =  {"name_school":"","adress":"","adress_n":"", "city":"", "email":"","password":"","reppassword":"", cnpj:""};
+    let  msgErro =  {"name_school":"","adress":"","adress_n":"", "city":"", "email":"","password":"","reppassword":"", cnpj:""};
+    if(erros) {
+        erros.errors.forEach(function(erro) {
+            if (erro.path == "name_school") {
+                erroValidacao.name_school = "erro",
+                msgErro.name_school = erro.msg
+            }
+            if (erro.path == "email") {
+                erroValidacao.email = "erro",
+                msgErro.email = erro.msg
+            }
+            if (erro.path == "password") {
+                erroValidacao.password = "erro",
+                msgErro.password = erro.msg
+            }
+            if (erro.path == "reppassword") {
+                erroValidacao.reppassword = "erro",
+                msgErro.reppassword = erro.msg
+            }
+            if (erro.path == "adress") {
+                erroValidacao.adress = "erro",
+                msgErro.adress = erro.msg
+            }
+            if (erro.path == "adress_n") {
+                erroValidacao.adress_n = "erro",
+                msgErro.adress_n = erro.msg
+            }
+            if (erro.path == "city") {
+                erroValidacao.city = "erro",
+                msgErro.city = erro.msg
+            }
+            if (erro.path  == "cnpj"){
+                erroValidacao.cnpj = "erro";
+                msgErro.cnpj = erro.msg;                
+             }  
+
+        })
+    }; %>
+
+
+    <%- include('../partials/navbar'); %><!DOCTYPE html>
+    <nav id="top_part_space">
+    <section id="top_part">
+        <a>
+            Inscreva sua instituição para alcançar seus <p>futuros alunos!</p>
+        </a>
+        <img src="imagem/asasa.png">
+    </section>
+    <section id="top_button">
+    <button onclick="rolar_pra_baixo()">VAMOS LÁ!</button>
+    </section>
+    </nav>
+
+    <section id="centralizar">
+    <main id="form_space">
+        <section id="form">
+            <form action="cadastro_escola_post" method="POST">
+                <h2 id="form_title">Informações Básicas</h2>
+
+                <p>Nome da Escola</p>
+                <input type="text" id="name_school" name="name_school" value="<%= valores.name_school %>" class="<%= erroValidacao.name_school%>">
+                <span class="spanerro"><%=msgErro.name_school%></span>
+
+                
+                    <section class="endereco">
+                        <section id="end">
+                    <p>Endereço</p><br>
+                    <input type="text" id="end" name="adress" value="<%= valores.adress %>" class="<%= erroValidacao.adress%>">
+                    <span class="spanerro"><%=msgErro.adress%></span></section>
+                    <section id="numero"><p>N°</p>
+                    
+                    <input type="number" id="num" name="adress_n" value="<%= valores.adress_n %>" class="<%= erroValidacao.adress_n%>">
+                    <span class="spanerro"><%=msgErro.adress_n%></span>
+                    </section> 
+            
+                    </section>
+                
+                <section class="endereco">
+                    <section>
+                    <p>Cidade</p>
+                    <input type="text" id="city" name="city" value="<%= valores.city %>" class="<%= erroValidacao.city%>">
+                    <span class="spanerro"><%=msgErro.city%></span>
+                    </section>
+                    <section>
+                    <p>Estado</p>
+                    <section id="pequeno">
+                        <select id="uf">
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SC</option>
+                            <option value="SP">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
+                          </select>
+                    </section>
+                    <section><p id="cnpj">CNPJ</p>
+                        <input type="text" maxlength="18" id="cnpj_input" name="cnpj" value="<%= valores.cnpj %>" class="<%= erroValidacao.cnpj %>">
+                        <span class="spanerro"><%= msgErro.cnpj %></span>
+                
+                        
+                    </section> 
+                    </section>
+                
+            </section>
+            
+            
+            <section id="checkboxes">
+                <section class="parts_checks"> 
+                
+                <ul><p>Tipo de Ensino</p>
+                <li>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Educação Infantil</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="ef1">
+                    <label for="ef1">Ensino Fundamental</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="ef2">
+                    <label for="ef2">Ensino Médio</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="ei">
+                    <label for="ei">Educação Integrado</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="etec">
+                    <label for="etec">Cursos Técnicos</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="cso">
+                    <label for="cso">Cursos Extracurriculares</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="educacao_infantil">
+                    <label for="educacao_infantil">Cursos de Idioma</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="outroe">
+                    <label for="outroe">Outro</label>
+                </li></ul>
+                </section>
+
+                <section class="parts_checks"> 
+                    <ul><p>Turnos</p>
+                    <li>
+                        <input type="checkbox" id="m">
+                        <label for="m">Manhã</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t">
+                        <label for="t">Tarde</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="int">
+                        <label for="int">Integral</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="n">
+                        <label for="n">Noite</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="sab">
+                        <label for="sab">*Sábado </label>
+                    </li></ul>
+                
+                    </section>
+
+                    <section class="parts_checks"> 
+                        <ul><p>Rede</p>
+                        <li>
+                            <input type="checkbox" id="muni">
+                            <label for="muni">Municipal</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="est">
+                            <label for="est">Estadual</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="fund">
+                            <label for="fund">Fundação</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="part">
+                            <label for="part">Particular</label></li>
+                        </ul> </section>
+                       
+                        </section>
+
+                        <p>E-mail</p>
+            <input type="email" id="email" name="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
+            <span class="spanerro"><%=msgErro.email%></span>
+
+            <p>Senha</p>
+            <input type="password" id="senha" name="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
+            <span class="spanerro"><%=msgErro.password%></span>
+
+            <p>Confirmação de Senha</p>
+            <input type="password" id="repetir_senha" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
+            <span class="spanerro"><%=msgErro.reppassword%></span>
+
+            <section class="concordancias">
+                <input type="checkbox" id="politica_privacidade">
+                <label for="politica_privacidade">Concordo com a Política de Privacidade</label>
+
+                <input type="checkbox" id="novidades">
+                <label for="novidades">Desejo receber as novidades do site por e-mail</label>
+            </section>
+            
+            <section id="submit_button">
+            <input type="submit" id="criar_conta" value="CRIAR CONTA" />
+            </section>
+            </section>
+            
+
+            
+            </form>
+        </section>
+    </main>
+</section>
+    <%- include('../partials/footer'); %>
+    <script src="js/mascaras.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/filtro.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="slide.js"></script>
+    
+    <title> Modelo App Node </title>
+</head>
+
+<body>
+    <script src="js/double-slider.js"></script>
+    <script src="js/slide.js"></script>
+
+    <!-- Barra de pesquisa -->
+
+    <!-- <section class="search-bar">
+        <input type="text" id="nome-escola-search" name="nome-escola-search" placeholder="Nome da Escola">
+        <select name="UF" id="regiao-search">
+            <ul>
+                <option value="regiao"> Região </option>
+                <option value="RNO"> Região Norte</option>
+                <option value="RND"> Região Nordeste </option>
+                <option value="RCE"> Região Centro-Oeste</option>
+                <option value="RSD"> Região Sudeste</option>
+                <option value="RSU"> Região Sul</option>
+
+            </ul>
+            <input type="text" id="cidade-search" name="cidade-search" placeholder="Cidade">
+        </select>
+    </section> -->
+
+    <section id="filtro">
+    <h4 id="filtros"  name="filtros">Filtros</h4>
+
+<section class="filter-schools" id="panel">
+    <!--   <input type="checkbox" name="z" id="z"><label for="z"></label>    -->
+
+    <section id="escolaridade" class="sec">
+
+        <!-- educação infantil -> edu-inf
+             ensino fundamental I -> fund1
+             ensino fundamental II -> fund2
+             ensino médio -> e-med
+             ensino integrado -> e-int
+             cursos técnicos -> e-tec
+             cursos extracurriculares -> cursos 
+             bolsa de estudos -> bes -->
+
+        <h4 id="niveis-de-ensino"> Níveis de Ensino</h4>
+        <ul>
+        <li><input type="checkbox" name="edu-inf" id="edu-inf"><label for="edu-inf">Educação Infantil</label></li>
+        <li><input type="checkbox" name="fund1" id="fund1"><label for="fund1">Ensino Fundamental I</label></li>
+        <li><input type="checkbox" name="fund2" id="fund2"><label for="fund2">Ensino Fundamental II</label></li>
+        <li><input type="checkbox" name="e-med" id="e-med"><label for="e-med">Ensino Médio</label></li>
+        <li><input type="checkbox" name="e-int" id="e-int"><label for="e-int">Ensino Integrado</label></li>
+        <li><input type="checkbox" name="e-tec" id="e-tec"><label for="e-tec">Cursos Técnicos</label></li>
+        <li><input type="checkbox" name="cursos" id="cursos"><label for="cursos">Cursos Extracurriculares</label></li>
+        </ul>
+        </section>
+
+    <section id="rede" class="sec">
+        <h4 id="rede-escolar"> Rede</h4>
+        <ul>
+        <li><input type="checkbox" name="municipal" id="municipal"><label for="municipal">Municipal</label></li>
+        <li><input type="checkbox" name="estadual" id="estadual"><label for="estadual">Estadual</label></li>
+        <li><input type="checkbox" name="fundacao" id="fundacao"><label for="fundacao">Fundação/Instituto</label></li>
+        <li><input type="checkbox" name="privada" id="privada"><label for="privada">Privada</label></li>
+            <ul>
+                
+                    
+                <section class="range-slider"><h4 id="mens">Mensalidade</h6>
+                    <span class="range-input">
+                        
+                        <section class="range-price">      
+                            <label for="min">Min</label>
+                            <input type="number" name="min" value="300"> <br>      
+                            <label for="max">Max</label>
+                            <input type="number" name="max" value="700">      
+                          </section>
+                      
+                    
+                    <input type="checkbox" name="bes" id="bes"><label for="bes">Bolsa de Estudos</label>
+                </section>
+                
+            </ul>
+        </ul>
+    </section>
+
+    <section id="periodo" class="sec">
+        <h4 id="turno"> Turno</h4>
+        <ul>
+        <li><input type="checkbox" name="manha" id="manha"><label for="manha">Manhã</label></li>
+        <li><input type="checkbox" name="tarde" id="tarde"><label for="tarde">Tarde</label></li>
+        <li><input type="checkbox" name="integral" id="integral"><label for="integral"> Integral</label></li>
+        <li><input type="checkbox" name="noite" id="noite"><label for="noite">Noturno</label></li>
+        </ul>
+    </section>
+
+    <section id="outro" class="sec">
+        <h4 id="outros">Outros</h4>
+        <ul>
+        <li><input type="checkbox" name="ace" id="ace"><label for="ace">Acessibilidade</label></li>
+        <li><input type="checkbox" name="eja" id="eja"><label for="eja">EJA</label></li>
+        <li><input type="checkbox" name="bilingue" id="bilingue"><label for="bilingue">Escola Bilingue</label></li>
+        </ul>
+    </section>
+
+    <p><button type="submit" id="filtrar"> Filtrar </button></p>
+
+</section></section>
+
+
+</body>
+
+<script>
+    
+    document.getElementById("filtrar").addEventListener("click", function() {
+        // Obtemos todos os checkboxes de níveis de ensino
+        const nivelEnsinoCheckboxes = document.querySelectorAll('input[type="checkbox"][name="edu-inf"], input[type="checkbox"][name="fund1"], input[type="checkbox"][name="fund2"], input[type="checkbox"][name="e-med"], input[type="checkbox"][name="e-int"], input[type="checkbox"][name="e-tec"], input[type="checkbox"][name="cursos"]');
+        
+        // Verificamos qual checkbox está marcado
+        for (let checkbox of nivelEnsinoCheckboxes) {
+            if (checkbox.checked) {
+                // Redireciona para a página correspondente
+                switch (checkbox.name) {
+                    case "edu-inf":
+                        window.location.href = "/edu-infantil"; // Página Educação Infantil
+                        break;
+                    case "fund1":
+                        window.location.href = "/ensino-fund1"; // Página Ensino Fundamental I
+                        break;
+                    case "fund2":
+                        window.location.href = "/ensino-fund2"; // Página Ensino Fundamental II
+                        break;
+                    case "e-med":
+                        window.location.href = "/ensino-medio"; // Página Ensino Médio
+                        break;
+                    case "e-int":
+                        window.location.href = "/ensino-integrado"; // Página Ensino Integrado
+                        break;
+                    case "e-tec":
+                        window.location.href = "/cursos-tecnicos"; // Página Cursos Técnicos
+                        break;
+                    case "cursos":
+                        window.location.href = "/cursos-extracurriculares"; // Página Cursos Extracurriculares
+                        break;
+                }
+                break; // Para sair do loop após encontrar a primeira opção marcada
+            }
+        }
+    });
+
+    
+    // Verifica se a URL contém "mais-filtros"
+    if (window.location.pathname.includes("mais-filtros")) {
+        // Exibe a seção de "escolaridade"
+        document.getElementById("panel").style.display = "block";
+    }
+
+</script>
+
+</script>
+
+</html>
