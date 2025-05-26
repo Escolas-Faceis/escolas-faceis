@@ -1,0 +1,13 @@
+.tema-claro{
+    --laranja: #ff5c2a;
+    --fundo: #f5f5f5;
+    --azulbase: #141c44;
+    --azulsec: #77b6ea;
+    --amarelo: #ffbc3e;
+    --letras: #02030a;
+}
+
+.tema-escuro{
+    --letras: #f5f5f5;
+    --fundo: #010207;
+}

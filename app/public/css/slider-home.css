@@ -1,16 +1,13 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
 
 .slider {
-    position: relative;
+
     width: 100%;
     overflow: hidden;
+    margin: 30px 0 30px 0;
 }
 
 .slides {
-    display: flex;
+    display: block;
     transition: transform 0.5s ease-in-out;
 }
 

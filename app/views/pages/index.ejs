@@ -17,55 +17,20 @@
         <link rel="stylesheet" href="css/slider.css">
     </head>
 
-    <body>
+    <body class="tema-claro">
 
         <%- include('../partials/navbar'); %> 
 
 
                 
-            <main>
-                <section class="imagem-texto">
-                    <img id="imagem" src="imagem/imagemcapa.png">
-                    <label id="texto">Bem vindo ao Escolas Fáceis!</label>
-                    <label id="paragrafo" class="text recuo"> Somos um portal de pesquisa sobre instituições de ensino.<br>
-                    <span class="text recuo"> Otimizamos sua experiência ao procurar escolas!</label>
-                </section>
-            </main>
-            <section class="imagem-caixa">
-
-                <input type="text" placeholder="O que você está procurando?" style="color: white;" class="caixa1"  >
-                <select id="caixa2" >
-                    <option value="Estado">Estado</option>
-                    <option value="infantil">AC</option>
-                    <option value="fundamental">AL</option>
-                    <option value="medio">AP</option>
-                    <option value="tecnico">AM</option>
-                    <option value="cursos">BA</option>
-                    <option value="cursos">CE</option>
-                    <option value="cursos">DF</option>
-                    <option value="cursos">ES</option>
-                    <option value="cursos">GO</option>
-                    <option value="cursos">MA</option>
-                    <option value="cursos">MT</option>
-                    <option value="cursos">MS</option>
-                    <option value="cursos">MG</option>
-                    <option value="cursos">PA</option>
-                    <option value="cursos">PB</option>
-                    <option value="cursos">PR</option>
-                    <option value="cursos">PE</option>
-                    <option value="cursos">PI</option>
-                    <option value="cursos">RJ</option>
-                    <option value="cursos">RN</option>
-                    <option value="cursos">RS</option>
-                    <option value="cursos">RO</option>
-                    <option value="cursos">RR</option>
-                    <option value="cursos">SC</option>
-                    <option value="cursos">SP</option>
-                    <option value="cursos">SE</option>
-                    <option value="cursos">TO</option>
-                </select>
-                <input type="text" placeholder="Cidade" class="caixa3">
+        <main>
+            <section class="call2action">
+                <h1 class="title">A escola certa transforma o futuro <br> Encontre a sua aqui</h1>
+                <h2 class="text1">Compare escolas, veja avaliações e filtre de acordo com o que procura. Encontre a melhor opção para você e sua família!</h2>
+                <button type="button" ><a href="/encontre-escolas"">Ver escolas</a></button>
             </section>
+        </main>
+
 
             <section class="slider">
                 <ul class="slides">
@@ -82,22 +47,26 @@
                 </div>
             </section>
 
+            <section class="buscaN">
+                <h2 class="title">Encontre a escola ideal para você</h2>
+                <ul class="niveis">
+                    <li>Eucação Infantil</li>
+                    <li>Ensino Fundamental I</li>
+                    <li>Ensino Fundamental II</li>
+                    <li>Ensino Médio</li>
+                    <li>Cursos Técnicos</li>
+                    <li>Cursos Extracurriculares</li>🔍, ✅
+                </ul>
+            </section>
             
-            <section id="info">
-        <section class="aqui aq">Encontre aqui</section>
-        <ul class="aqui2 aq">
-            <li> Ensino Infantil </li>
-            <li>Ensino Fundamental</li>
-            <li>Ensino Médio</li>
-            <li>Cursos Técnicos</li>
-            <li>Cursos Extracurriculares</li>
-        </ul>
-        <img id="imgpequena" src="imagem/segunda.png"></section>
 
         </body>
         <%- include('../partials/footer'); %> 
-        
+
             <script src="js/slider-home.js"></script>
 
+
+
+      
 
     </html>

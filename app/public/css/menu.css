@@ -1,19 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+  --laranja: #f56d44;
+  --fundo: #ffffff;
+  --letras: #000000;
+  --azulbase: #141c44;
+  --azulsec: #77b6ea;
+  --amarelo: #ffbc3e;
+
+}
+
+.tema-claro{
+  --laranja: #ff5c2a;
+  --fundo: #f5f5f5;
+  --azulbase: #141c44;
+  --azulsec: #77b6ea;
+  --amarelo: #ffbc3e;
+  --letras: #02030a;
+  transition: all 0.2s ease-in;
+}
+
+.tema-escuro{
+  --letras: #f5f5f5;
+  --fundo: #030303;
+  transition: all 0.2s ease-in;
+}
+#menu #tema{
+  background-color: none;
+  background-position: center;
+  background-color: #141C44;
+  transition: all 0.2s ease-in;
+  margin-right: -25px;
+  margin-left: -10px;
+}
+
+.sun{
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg data-v-56bd7dfc='' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-sun-medium-icon lucide-sun-medium'%3E%3Ccircle cx='12' cy='12' r='4'%3E%3C/circle%3E%3Cpath d='M12 3v1'%3E%3C/path%3E%3Cpath d='M12 20v1'%3E%3C/path%3E%3Cpath d='M3 12h1'%3E%3C/path%3E%3Cpath d='M20 12h1'%3E%3C/path%3E%3Cpath d='m18.364 5.636-.707.707'%3E%3C/path%3E%3Cpath d='m6.343 17.657-.707.707'%3E%3C/path%3E%3Cpath d='m5.636 5.636.707.707'%3E%3C/path%3E%3Cpath d='m17.657 17.657.707.707'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.moon{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-moon-star-icon lucide-moon-star'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9'/%3E%3Cpath d='M20 3v4'/%3E%3Cpath d='M22 5h-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 65%;
+}
+
 @media screen and (min-width:851px) {
   
 body {
   margin: 0;
   padding: 0;
-  background: rgb(255, 255, 255);
+  background: var(--fundo);
+  color: var(--letras);
   font-family: 'Poppins', sans-serif;
 
 }
 
 .recuo { text-indent:4em }
 
+
+
+
+
 .navbar header {
-  background: #141C44;
+  background: var(--azulbase);
 
 }
 
@@ -124,7 +174,7 @@ body {
   color: #ffffff;
   border-radius: 5px;
   padding: 10px 15px;
-  background-color: #f56d44;
+  background-color: var(--laranja);
   border: none;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
@@ -135,7 +185,11 @@ body {
   display: flex;
   justify-content: flex-end; /* Alinha os itens à direita */
   gap: 10px; /* Espaço entre os itens */
+  display: flex;
+  margin-right: 0;
 }
+
+
 
 
 .navbar button {
@@ -157,25 +211,25 @@ body {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
     
-    body {
+    body, html {
       margin: 0;
       padding: 0;
       /* faça parecer decente o suficiente */
-      background: rgb(255, 255, 255);
-      color: #ffffff;
+      background: var(--fundo);
+      color: var(--letras);
       font-family: "Popping Light", "Avenir", sans-serif;
       overflow-x: hidden;
     }
 
     
 .navbar header{
-      background-color:#141C44;
+      background-color:var(--azulbase);
     }
 
 	
 .navbar nav{
 		z-index: 3;
-		background-color: #141C44;
+		background-color: var(--azulbase);
 		height: 120px;
     width: 100vw;
 	}
@@ -236,7 +290,7 @@ body {
       position: relative;  
       background: #cdcdcd;
       border-radius: 3px;
-      z-index: 1;  
+      z-index: 2;  
       transform-origin: 4px 0px;
       transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
                   background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
@@ -272,8 +326,9 @@ body {
     /* Faça isso com posicionamento absoluto no canto 
        superior esquerdo da tela */
     #menu {
-      position: absolute;
-      width: 100vw;
+      position: sticky;
+  top: 0; /* fica grudado no topo quando chega lá */
+      width:100vw;
       margin: -100px 0 0 -50px;
       padding: 50px;
       padding-top: 125px; 
@@ -282,7 +337,8 @@ body {
       transform-origin: 0% 0%;
       transform: translate(-100%, 0);
       transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-      overflow-x: en;
+      overflow-x: hidden;
+      z-index: 1;
     }
     
     #menu li
@@ -291,11 +347,16 @@ body {
       padding: 10px 10px;
       font-size: 22px;
     }
-    
+
     /* Vamos deslizar da esquerda */
     #menuToggle input:checked ~ ul {
       transform: none;
     }
+
+
+
+    
+
     .master{
       font-size: 22px;
       text-decoration: none;
@@ -308,7 +369,7 @@ body {
     }
     
     .master:hover{
-      color: #f56d44;
+      color: var(--laranja);
     }
 
     #submenu {
@@ -333,7 +394,7 @@ body {
     
 .navbar button{
   font-family: 'Poppins', sans-serif;
-      color: #f56d44;
+      color: var(--laranja);
       font-size: 22px;
       border-radius: 5px;
       padding: 5px 10px;

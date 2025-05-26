@@ -214,7 +214,7 @@
         height: 430px;
      }
     
-    .b {
+    /* .b {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -255,7 +255,7 @@
     
     .indicator.active {
         background-color: #676b85;
-    }
+    } */
     
     
     
