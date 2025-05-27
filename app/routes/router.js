@@ -4,6 +4,7 @@ const { body, validationResult} = require("express-validator")
 var {validarTelefone} = require("../helpers/validacoes");
 var mysql = require("mysql2");
 const dotenv = require('dotenv');
+const usuarioController = require("../controllers/usuarioController");
 dotenv.config();
 
 module.exports = function () {
@@ -87,75 +88,13 @@ router.get('/adm', function(req, res) {
 
 
 router.post(
-    "/login_post",
-    body("email").isEmail().withMessage("Email inválido."),
-    body("password").isStrongPassword().withMessage("Senha muito fraca!"),
-    function (req, res) {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        console.log(errors);
-        return res.render("pages/login", { "erros": errors, "valores":req.body,"retorno":null});
-      }
-  
-        return res.render("pages/perfil-usuario", { "erros": null, "valores":req.body,"retorno":req.body});
-    }
-  );
+    "/login_post", usuarioController.regrasValidacaoLogin,);
 
   router.post(
-    "/registro_post",
-    body("name").isLength({min:3,max:50}).withMessage("Nome Inválido"),
-    body("email").isEmail().withMessage("Email inválido."),
-    body("cellphone").custom((value) => {
-        if (validarTelefone(value)) {
-          return true;
-        } else {
-          throw new Error('Telefone inválido!');
-        }
-        }),
-        body("password").isStrongPassword().withMessage("Senha muito fraca!"),
-        body("reppassword").custom((value, { req }) => {
-            return value === req.body.password;
-        }).withMessage("Senhas estão diferentes"),
-    function (req, res) {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        console.log(errors);
-        return res.render("pages/cadastro-usuario", { "erros": errors, "valores":req.body,"retorno":null});
-      }
-  
-        return res.render("pages/perfil-usuario", { "erros": null, "valores":req.body,"retorno":req.body});
-    }
-  );
+    "/registro_post", usuarioController.regrasValidacaoUsuario,);
 
   router.post(
-    "/cadastro_escola_post",
-    body("name_school").isLength({min:3,max:70}).withMessage("Nome Inválido"),
-    body("adress").isLength({min:3, max:50}).withMessage("Endereço Inválido"),
-    body("adress_n").isNumeric().withMessage("Insira um número"),
-    body("city").isLength({min:3,max:30}).withMessage("Insira uma cidade válida"),
-    body("email").isEmail().withMessage("Email inválido."),
-    body("password").isStrongPassword().withMessage("Senha muito fraca!"),
-    body("reppassword").custom((value, { req }) => {
-            return value === req.body.password;
-        }).withMessage("Senhas estão diferentes"),
-    body("cnpj")
-    .isLength({ min: 18, max: 18 }).withMessage('O CNPJ tem 18 caracteres!')
-    .custom((value) => {
-      if (validarCNPJ(value)) {
-        return true;
-      } else {
-        throw new Error('CNPJ inválido!');
-      }
-    }),
-    function (req, res) {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        console.log(errors);
-        return res.render("pages/cadastro-escola", { "erros": errors, "valores":req.body,"retorno":null});
-      }
-  
-        return res.render("pages/perfil-usuario", { "erros": null, "valores":req.body,"retorno":req.body});
-    }
+    "/cadastro_escola_post", usuarioController.regrasValidacaoEscola,
   );
 
 module.exports = router;
