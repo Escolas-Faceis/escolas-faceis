@@ -94,7 +94,7 @@ router.post(
     "/registro_post", usuarioController.regrasValidacaoUsuario,);
 
   router.post(
-    "/cadastro_escola_post", usuarioController.regrasValidacaoEscola,
+    "/cadastro_escola_post", escolaController.regrasValidacaoEscola,
   );
 
 module.exports = router;
