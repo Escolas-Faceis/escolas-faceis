@@ -1,4 +1,4 @@
- const escolaModel = require("../models/escolaModel");
+const escolaModel = require("../models/escolaModel");
 const moment = require("moment");
 const { body, validationResult } = require("express-validator");
 

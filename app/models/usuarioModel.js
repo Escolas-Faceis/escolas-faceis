@@ -66,4 +66,4 @@ const usuarioModel = {
 };
     
 
-module.exports = tarefasModel
+module.exports = usuarioModel
