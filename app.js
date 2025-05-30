@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const env = require("dotenv").config();
 
 app.use(express.static("app/public"));
 
@@ -21,8 +22,10 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }));
-
-
 app.listen(port, () => {
   console.log(`Servidor ouvindo na porta ${port}\nhttp://localhost:${port}`);
 });
+
+
+
+
