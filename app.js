@@ -25,6 +25,7 @@ app.use(session({
 app.listen(port, () => {
   console.log(`Servidor ouvindo na porta ${port}\nhttp://localhost:${port}`);
 });
+app.use(express.urlencoded({ extended: true }))
 
 
 

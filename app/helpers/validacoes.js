@@ -31,9 +31,6 @@ function validarTelefone(value){
     return true;
 }
 
-module.exports = {validarTelefone}
-
-
 function validarCNPJ(cnpj) {
  
     cnpj = cnpj.replace(/[^\d]+/g,'');
@@ -88,4 +85,4 @@ function validarCNPJ(cnpj) {
     
 }
 
-module.exports = {validarCNPJ}
+module.exports = {validarTelefone, validarCNPJ}

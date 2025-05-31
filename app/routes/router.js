@@ -5,7 +5,7 @@ var {validarTelefone} = require("../helpers/validacoes");
 var mysql = require("mysql2");
 const dotenv = require('dotenv');
 const usuarioController = require("../controllers/usuarioController");
-const escolaController = require("../controllers/usuarioController");
+const escolaController = require("../controllers/escolaController");
 dotenv.config();
 
 module.exports = function () {
@@ -95,6 +95,6 @@ router.post(
     "/registro_post", usuarioController.regrasValidacaoUsuario,);
 
   router.post(
-    "/cadastro_escola_post", usuarioController.regrasValidacaoEscola,);
+    "/cadastro_escola_post", escolaController.regrasValidacaoEscola, escolaController.cadastrarEscola);
 
 module.exports = router;
