@@ -76,39 +76,64 @@
     </nav>
 
     <section id="centralizar">
+
     <main id="form_space">
         <section id="form">
-            <form action="cadastro_escola_post" method="POST">
+            <!-- Formulário  -->
+            <form action="cadastro_escola_post" method="POST" id="multiSteps">
+
+                <span class="step active">
                 <h2 id="form_title">Informações Básicas</h2>
 
                 <p>Nome da Escola</p>
-                <input type="text" id="name_school" name="name_school" value="<%= valores.name_school %>" class="<%= dadosescola.linkinstahr%>">
+                <input type="text" id="name_school" name="name_school" value="<%= valores.name_school %>" class="<%= erroValidacao.name_school%>">
                 <span class="spanerro"><%=msgErro.name_school%></span>
+                <p>E-mail</p>
+                    <input type="email" id="email" name="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
+            <span class="spanerro"><%=msgErro.email%></span>
 
-                
+            <p>Senha</p>
+            <input type="password" id="senha" name="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
+            <span class="spanerro"><%=msgErro.password%></span>
+
+            <p>Confirmação de Senha</p>
+            <input type="password" id="repetir_senha" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
+            <span class="spanerro"><%=msgErro.reppassword%></span>
+
+            <p id="cnpj">CNPJ</p>
+            <input type="text" maxlength="18" id="cnpj_input" name="cnpj" placeholder="00.000.00/00000-00" value="<%= valores.cnpj %>" class="<%= erroValidacao.cnpj %>">
+            <span class="spanerro"><%= msgErro.cnpj %></span>
+
+            <section class="gonbackButtons">
+                <button type="button" class="next">Próximo</button> </span>
+            </section>
+                    </span>
+
+
+            <span class="step">
+                <h2 id="form_title">Endereço</h2>
                     <section class="endereco">
                         <section id="end">
+                            <section class="essential">
+                    <p>CEP</p> <br>
+                    <input type="text" id="cep" placeholder="00000-000" name="cep" value="<%= valores.cep %>" class="<%= erroValidacao.cep%>">
+                    <span class="spanerro"><%=msgErro.cep%></span>
+                    <section id="numero"><p>N°</p><br>
+                    <section class="dupla">
+                    <input type="number" id="num" name="adress_n" value="<%= valores.adress_n %>" class="<%= erroValidacao.adress_n%>">
+                    
+
+                    </section>
+                    
                     <p>Endereço</p><br>
                     <input type="text" id="end" name="adress" value="<%= valores.adress %>" class="<%= erroValidacao.adress%>">
                     <span class="spanerro"><%=msgErro.adress%></span></section>
-                    <section id="numero"><p>N°</p>
                     
-                    <input type="number" id="num" name="adress_n" value="<%= valores.adress_n %>" class="<%= erroValidacao.adress_n%>">
-                    <span class="spanerro"><%=msgErro.adress_n%></span>
-                    </section> 
-            
-                    </section>
-                
-                <section class="endereco">
-                    <section>
-                    <p>Cidade</p>
-                    <input type="text" id="city" name="city" value="<%= valores.city %>" class="<%= erroValidacao.city%>">
-                    <span class="spanerro"><%=msgErro.city%></span>
-                    </section>
-                    <section>
-                    <p>Estado</p>
-                    <section id="pequeno">
+
+                        <section id="pequeno">
+                            <p>Estado</p><br>
                         <select id="uf">
+                            
                             <option value="AC">AC</option>
                             <option value="AL">AL</option>
                             <option value="AP">AP</option>
@@ -137,10 +162,23 @@
                             <option value="SE">SE</option>
                             <option value="TO">TO</option>
                           </select>
+                    </section></section>
+                    <span class="spanerro"><%=msgErro.adress_n%></span>
+                    </section> 
+            
                     </section>
-                    <section><p id="cnpj">CNPJ</p>
-                        <input type="text" maxlength="18" id="cnpj_input" name="cnpj" value="<%= valores.cnpj %>" class="<%= erroValidacao.cnpj %>">
-                        <span class="spanerro"><%= msgErro.cnpj %></span>
+                
+                <section class="endereco">
+                    <section>
+                        
+                    <p>Cidade</p>
+                    <input type="text" id="city" name="city" value="<%= valores.city %>" class="<%= erroValidacao.city%>">
+                    <span class="spanerro"><%=msgErro.city%></span>
+                    </section>
+                    <section>
+                    
+                    
+                    <section>
                 
                         
                     </section> 
@@ -148,8 +186,16 @@
                 
             </section>
             
-            
+            <section class="gonbackButtons">
+                <button type="button" class="prev">Voltar</button>
+                <button type="button" class="next">Próximo</button> </span>
+            </section>
+            </span>
+
+            <span class="step">
+                 <h2 id="form_title">Sobre a sua escola</h2>
             <section id="checkboxes">
+               
                 <section class="parts_checks"> 
                 
                 <ul><p>Tipo de Ensino</p>
@@ -232,29 +278,28 @@
                         </ul> </section>
                        
                         </section>
+                        
 
-                        <p>E-mail</p>
-            <input type="email" id="email" name="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
-            <span class="spanerro"><%=msgErro.email%></span>
+            
+            <section class="gonbackButtons">
+                <button type="button" class="prev">Voltar</button>
+                 
+            </section>
 
-            <p>Senha</p>
-            <input type="password" id="senha" name="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
-            <span class="spanerro"><%=msgErro.password%></span>
+            <section class="submit"><input type="submit" id="criar_conta" value="CRIAR CONTA" /></section>  
+            </span>
+                        
+            
 
-            <p>Confirmação de Senha</p>
-            <input type="password" id="repetir_senha" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
-            <span class="spanerro"><%=msgErro.reppassword%></span>
-
-            <section class="concordancias">
+            <!-- <section class="concordancias">
                 <input type="checkbox" id="politica_privacidade">
                 <label for="politica_privacidade">Concordo com a Política de Privacidade</label>
 
                 <input type="checkbox" id="novidades">
                 <label for="novidades">Desejo receber as novidades do site por e-mail</label>
             </section>
-            
-            <section id="submit_button">
-            <input type="submit" id="criar_conta" value="CRIAR CONTA" />
+             -->
+
             </section>
             </section>
             
@@ -266,6 +311,7 @@
 </section>
     <%- include('../partials/footer'); %>
     <script src="js/mascaras.js"></script>
+    <script src="js/formMultiStep.js"></script>
 </body>
 
 </html>

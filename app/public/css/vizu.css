@@ -5,8 +5,15 @@
     text-decoration: none; 
 
 }
+:root{
+    --letra:#141c44;
+    --fundo: white;
+}
 
-
+.tema-escuro{
+    --letra: #ffffff;
+    --fundo: #030303;
+}
 
     .short-prof{
         margin: 2% auto ;
@@ -16,7 +23,7 @@
         display: flex; 
         border: 1px solid gray;
         border-radius: 15px;
-        background-color: white;
+        background-color: inherit;
         z-index: 0; 
 
     }
@@ -36,7 +43,7 @@
         flex: 1; /* Permite que a seção de informações ocupe o espaço restante */
         padding-left: 8px; /* Adiciona espaço à esquerda da imagem */
         font-family: "Poppins", sans-serif;
-        color:#141c44;
+        color:var(--letra);
         font-size: 16px;;
     }
     
@@ -154,7 +161,7 @@
         margin-top: 1%;
         flex: 1; /* Permite que a seção de informações ocupe o espaço restante */
         font-family: "Poppins", sans-serif;
-        color:#141c44;
+        color:var(--letra);
         font-size: 16px;;
     }
     
@@ -233,7 +240,7 @@
     
 
     html{
-        background-color: white ;
+        background-color: var(--fundo) ;
         overflow-x: hidden;
     }
 
@@ -268,7 +275,7 @@
         margin-top: 1%;
         flex: 1;
         font-family: "Poppins", sans-serif;
-        color:#141c44;
+        color:var(--letra);
         font-size: 16px;;
         margin-left: 0;
     }

@@ -40,7 +40,7 @@
     }
 
     #regiao-search{
-        width: 6%;
+        width: 90px;
         color: #141c44;
     }
 
@@ -50,7 +50,7 @@
         color: #77b6ea;
         font-size: 14px;
         display: flex;
-        margin-left: 36%;
+        margin-left: 33%;
         margin-top: 0;
         cursor: pointer;
 

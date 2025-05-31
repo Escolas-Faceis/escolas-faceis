@@ -4,3 +4,9 @@ e digite:
 **** (npm config set strict-ssl false) para liberar o proxy
 
 **** npm install
+
+para atualizar no repositório exercutar o comando
+
+git push -u origin main --force
+
+https://console.clever-cloud.com/users/me/addons/addon_73172caa-0787-4dd0-b420-46c9d6ad6929
