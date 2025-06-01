@@ -1,0 +1,19 @@
+
+    <h1>Escolas Cadastradas</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Endereço</th>
+        </tr>
+        <% usuarios.forEach(usuario => { %>
+            <tr>
+                <td><%= usuario.id_usuario %></td>
+                <td><%= usuario.nome_usuario %></td>
+                <td><%= usuario.senha_usuario %></td>
+                <td><%= usuario.tipo_usuario %></td>
+            </tr>
+        <% }) %>
+    </table>

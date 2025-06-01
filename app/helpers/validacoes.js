@@ -1,18 +1,13 @@
-function validarTelefone(value){
-    telefone = value.replace(/[^\d]+/g,'');
-
-    //verifica se tem a qtde de numero correto
-    if (!(telefone.length >= 10 && telefone.length <= 11)) return false;
-
-    //Se tiver 11 caracteres, verificar se começa com 9 o celular
-    if (telefone.length == 11 && parseInt(telefone.substring(2, 3)) != 9) return false;
-
-    //verifica se não é nenhum numero digitado errado (propositalmente)
-    for (var n = 0; n < 10; n++) {
-        if (telefone == new Array(11).join(n) || telefone == new Array(12).join(n)) return false;
+function validarTelefone(value) {
+    let telefone = value.replace(/[^\d]+/g, '');
+    if (!(telefone.length >= 10 && telefone.length <= 11)) {
+        return false;
     }
-
-    //DDDs validos
+    // Se tiver 11 caracteres, verificar se começa com 9 o celular
+    if (telefone.length === 11 && telefone[2] !== '9') {
+        return false;
+    }
+     //DDDs validos
     var codigosDDD = [11, 12, 13, 14, 15, 16, 17, 18, 19,
         21, 22, 24, 27, 28, 31, 32, 33, 34,
         35, 37, 38, 41, 42, 43, 44, 45, 46,

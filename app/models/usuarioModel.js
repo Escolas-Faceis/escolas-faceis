@@ -38,21 +38,24 @@ const usuarioModel = {
         }  
     },
     
-    create: async (dadosForm) => {
+    create: async (dados) => {
+
         try {
-            const [linhas, campos] = await pool.query('INSERT INTO usuarios SET ?', [dadosForm])
-            console.log(linhas);
-            console.log(campos);
-            return linhas;
-        } catch (error) {
-            console.log(error);
-            return null;
-        }  
+            const [resultados] = await pool.query("INSERT INTO usuarios "
+                + " (nome_usuario,email_usuario, telefone_usuario, senha_usuario, tipo_usuario, status_usuario) "
+                + " VALUES(?,?,?,?, Comum, 1) ", [dados.name, dados.email, dados.cellphone, dados.password]);
+            console.log(resultados);
+            return resultados;
+        } catch (erro) {
+            console.log(erro);
+            return false;
+        }
+
     },
 
-    update: async (dadosForm, id) => {
+    update: async (dados, id) => {
         try {
-            const [linhas] = await pool.query('UPDATE tarefas SET ? WHERE id_tarefa = ?', [dadosForm, id])
+            const [linhas] = await pool.query('UPDATE tarefas SET ? WHERE id_tarefa = ?', [dados, id])
             return linhas;
         } catch (error) {
             return error;

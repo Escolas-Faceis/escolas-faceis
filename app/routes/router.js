@@ -1,11 +1,11 @@
 var express = require("express");
 var router = express.Router();
 const { body, validationResult} = require("express-validator")
-var {validarTelefone} = require("../helpers/validacoes");
 var mysql = require("mysql2");
 const dotenv = require('dotenv');
 const usuarioController = require("../controllers/usuarioController");
 const escolaController = require("../controllers/escolaController");
+const loginController = require("../controllers/loginController");
 dotenv.config();
 
 module.exports = function () {
@@ -89,12 +89,21 @@ router.get('/adm', function(req, res) {
 
 
 router.post(
-    "/login_post", usuarioController.regrasValidacaoLogin,);
+    "/login_post", loginController.regrasValidacaoLogin, loginController.login);
 
   router.post(
-    "/registro_post", usuarioController.regrasValidacaoUsuario,);
+    "/registro_post", usuarioController.regrasValidacaoUsuario, 
+    (req, res) =>{
+        usuarioController.cadastrar(req, res);
+    }
+);
 
   router.post(
-    "/cadastro_escola_post", escolaController.regrasValidacaoEscola, escolaController.cadastrarEscola);
+    "/cadastro_escola_post",
+    escolaController.regrasValidacaoEscola,
+    (req, res) =>{
+        escolaController.cadastrarEscola(req, res);
+    }
+);
 
 module.exports = router;

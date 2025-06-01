@@ -1,79 +1,75 @@
- const usuarioModel = require("../models/usuarioModel");
-  const escolaModel = require("../models/usuarioModel");
+const usuarioModel = require("../models/usuarioModel");
+const escolaModel = require("../models/usuarioModel");
 const moment = require("moment");
 const { body, validationResult } = require("express-validator");
+const { validarTelefone } = require("../helpers/validacoes");
 
 const usuarioController = {
-    
+
     regrasValidacaoUsuario: [
-         body("name").isLength({min:3,max:50}).withMessage("Nome Inválido"),
-    body("email").isEmail().withMessage("Email inválido."),
-    body("cellphone").custom((value) => {
-        if (validarTelefone(value)) {
-          return true;
-        } else {
-          throw new Error('Telefone inválido!');
-        }
-        }),
-        body("password").isStrongPassword().withMessage("Senha muito fraca!"),
-        body("reppassword").custom((value, { req }) => {
-            return value === req.body.password;
-        }).withMessage("Senhas estão diferentes"),
-    function (req, res) {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        console.log(errors);
-        return res.render("pages/cadastro-usuario", { "erros": errors, "valores":req.body,"retorno":null});
-      }
-  
-        return res.render("pages/perfil-usuario", { "erros": null, "valores":req.body,"retorno":req.body});
-    }
-    ],
-    regrasValidacaoLogin: [
-         body("email").isEmail().withMessage("Email inválido."),
-            body("password").isStrongPassword().withMessage("Senha muito fraca!"),
-            function (req, res) {
-              const errors = validationResult(req);
-              if (!errors.isEmpty()) {
+        body("name")
+            .isLength({ min: 3, max: 50 })
+            .withMessage("Nome Inválido"),
+        body("email")
+            .isEmail()
+            .withMessage("Email inválido."),
+        body("cellphone")
+            .custom(value => {
+                if (!validarTelefone(value)) {
+                    throw new Error('Telefone inválido');
+                }
+                return true;
+            }),
+        body("password")
+            .isStrongPassword()
+            .withMessage("Senha muito fraca!"),
+        body("reppassword")
+            .custom((value, { req }) => value === req.body.password)
+            .withMessage("Senhas estão diferentes"),
+        function (req, res) {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
                 console.log(errors);
-                return res.render("pages/login", { "erros": errors, "valores":req.body,"retorno":null});
-              }
-          
-                return res.render("pages/perfil-usuario", { "erros": null, "valores":req.body,"retorno":req.body});
+                return res.render("pages/cadastro-usuario", { "erros": errors, "valores": req.body, "retorno": null });
             }
+            return res.render("pages/perfil-usuario", { "erros": null, "valores": req.body, "retorno": req.body });
+        }
     ],
 
-    function (req, res) {
-      // Validar os dados recebidos
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        console.log(errors);
-        return res.render("pages/cadastro-escola", { "erros": errors, "valores":req.body,"retorno":null});
-      }
-  
-        return res.render("pages/perfil-usuario", { "erros": null, "valores":req.body,"retorno":req.body});
-      }
+    cadastrarUsuario: async (req, res) => {
+        try {
+            let listaErros = validationResult(req);
+            if (!listaErros.isEmpty()) {
+                // erro no formulário
+                console.log(listaErros);
+                return res.render("pages/cadastro-usuario", {
+                    erros: listaErros,
+                    valores: req.body
+                });
+            }
+            // não tem erro no formulário
+            const dados = {
+                name: req.body.name,
+                email: req.body.email,
+                cellphone: req.body.cellphone,
+                password: req.body.password
+            };
+            let resultado = await usuarioModel.create(dados);
 
-    ,
-
-    listarUsuarios: async (req, res) =>{
-        res.locals.moment = moment;
-        try{
-        let pagina = req.query.pagina == undefined ? 1 : req.query.pagina;
-        let results = null
-        let regPagina = 10
-        let inicio = parseInt(pagina - 1) * regPagina
-        let totReg = await usuarioModel.totalReg();
-        let totPaginas = Math.ceil(totReg[0].total / regPagina);
-        results = await usuarioModel.findPage(inicio, regPagina);
-        let paginador = totReg[0].total <= regPagina ? null : { "pagina_atual": pagina, "total_reg": totReg[0].total, "total_paginas": totPaginas };
-        res.render("pages/index-adm", { tarefas: results, paginador: paginador });
-        }
-        
-            catch (e) {
-            console.error("Erro ao listar usuários:", e);
-            res.status(500).send("Erro ao listar usuários");
-            res.json({ erro: "Falha ao acessar dados" });
+            if (resultado) {
+                return res.render("pages/index");
+            } else {
+                return res.render("pages/cadastro-usuario", {
+                    erros: { errors: [{ msg: "Erro ao cadastrar." }] },
+                    valores: req.body
+                });
+            }
+        } catch (error) {
+            console.log(error);
+            return res.render("pages/cadastro-usuario", {
+                erros: { errors: [{ msg: "Erro interno no servidor." }] },
+                valores: req.body
+            });
         }
     }
 
