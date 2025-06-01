@@ -1,72 +1,70 @@
-    <!DOCTYPE html>
-    <html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 
 
-    <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Encontre Escolas - Home </title>
-        <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="css/index-desk1.css">
-        <link rel="stylesheet" href="css/index-mob.css">
-        <link rel="stylesheet" href="css/menu.css">
-        <link rel="stylesheet" href="css/slider.css">
-    </head>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontre Escolas - Home</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index-desk1.css">
+    <link rel="stylesheet" href="css/index-mob.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/slider.css">
+</head>
 
-    <body class="tema-claro">
+<body class="tema-claro">
 
-        <%- include('../partials/navbar'); %> 
-
-
-                
-        <main>
-            <section class="call2action">
-                <h1 class="title">A escola certa transforma o futuro <br> Encontre a sua aqui</h1>
-                <h2 class="text1">Compare escolas, veja avaliações e filtre de acordo com o que procura. Encontre a melhor opção para você e sua família!</h2>
-                <button type="button" ><a href="/encontre-escolas"">Ver escolas</a></button>
-            </section>
-        </main>
+    <%- include('../partials/navbar'); %>
 
 
-            <section class="slider">
-                <ul class="slides">
-                    <li class="slide"><img src="imagem/banner-cadastro.png" id="imgs"alt="slide1"></li>
-                    <li class="slide"><img src="imagem/banner_de_publicidade.png" id="imgs" alt="slide2"></li>
-                    <li class="slide"><img src="imagem/banner_de_publicidade1.png" id="imgs" alt="slide3"></li>
-                </ul>
-                <button class="prev b">❮</button>
-                <button class="next b">❯</button>
-                <div class="indicators">
-                    <span class="indicator"></span>
-                    <span class="indicator"></span>
-                    <span class="indicator"></span>
-                </div>
-            </section>
+    <main>
+        <section class="call2action">
+            <h1 class="title">A escola certa transforma o futuro <br> Encontre a sua aqui</h1>
+            <h2 class="text1">Compare escolas, veja avaliações e filtre de acordo com o que procura. Encontre a melhor opção para você e sua família!</h2>
+            <button type="button"><a href="/encontre-escolas">Ver escolas</a></button>
+        </section>
+    </main>
 
-            <section class="buscaN">
-                <h2 class="title">Encontre a escola ideal para você</h2>
-                <ul class="niveis">
-                    <li>Eucação Infantil</li>
-                    <li>Ensino Fundamental I</li>
-                    <li>Ensino Fundamental II</li>
-                    <li>Ensino Médio</li>
-                    <li>Cursos Técnicos</li>
-                    <li>Cursos Extracurriculares</li>
-                </ul>
-            </section>
-            
 
-        </body>
-        <%- include('../partials/footer'); %> 
+    <section class="slider">
+        <ul class="slides">
+            <li class="slide"><img src="imagem/banner-cadastro.png" id="imgs" alt="slide1"></li>
+            <li class="slide"><img src="imagem/banner_de_publicidade.png" id="imgs" alt="slide2"></li>
+            <li class="slide"><img src="imagem/banner_de_publicidade1.png" id="imgs" alt="slide3"></li>
+        </ul>
+        <button class="prev b">❮</button>
+        <button class="next b">❯</button>
+        <div class="indicators">
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+        </div>
+    </section>
 
-            <script src="js/slider-home.js"></script>
+    <section class="buscaN">
+        <h2 class="title">Encontre a escola ideal para você</h2>
+        <ul class="niveis">
+            <li>Eucação Infantil</li>
+            <li>Ensino Fundamental I</li>
+            <li>Ensino Fundamental II</li>
+            <li>Ensino Médio</li>
+            <li>Cursos Técnicos</li>
+            <li>Cursos Extracurriculares</li>
+        </ul>
+    </section>
+
+
+    <%- include('../partials/footer'); %>
+
+    <script src="js/slider-home.js"></script>
 
 
 
-      
+</body>
 
-    </html>
+</html>

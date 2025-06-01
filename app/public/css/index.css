@@ -62,3 +62,76 @@ body{
     margin: 15px;
     font-size: 17px;
 }
+
+
+@media (max-width: 800px) {
+    .text1 {
+        width: 90%;
+        font-size: 18px;
+    }
+
+    .title {
+        font-size: 26px;
+    }
+
+    .call2action {
+        margin: 5%;
+        text-align: left;
+    }
+
+    .call2action button {
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+
+    .buscaN {
+        margin: 5%;
+    }
+
+    .buscaN li {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    .text1 {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .call2action {
+        margin: 5%;
+        text-align: left;
+    }
+
+    .call2action button {
+        font-size: 16px;
+        padding: 7px 14px;
+    }
+
+    .buscaN li {
+        font-size: 15px;
+    }
+}
+@media (max-width: 340px) {
+    .text1 {
+        font-size: 12px;
+    }
+
+    .title {
+        font-size: 15px;
+    }
+
+    .call2action button {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .buscaN li {
+        font-size: 12px;
+    }
+}

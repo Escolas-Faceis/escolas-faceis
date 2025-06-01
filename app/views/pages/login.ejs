@@ -5,56 +5,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Login</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/login-us.css">
     <link rel="stylesheet" href="css/login-mob.css">
 </head>
 
 <body>
     <%
-    let  erroValidacao =  {"email":"", "password":"" };
-    let  msgErro =  {"email":"", "password":"" };
-    if(erros) {
-        erros.errors.forEach(function(erro) {
-            if (erro.path == "email") {
-                erroValidacao.email = "erro",
-                msgErro.email = erro.msg
-            }
-            if (erro.path == "password") {
-                erroValidacao.password = "erro",
-                msgErro.password = erro.msg
-            }
-        })
-    }; %>
+        let erroValidacao = { "email": "", "password": "" };
+        let msgErro = { "email": "", "password": "" };
+        if (erros) {
+            erros.errors.forEach(function (erro) {
+                if (erro.path == "email") {
+                    erroValidacao.email = "erro",
+                    msgErro.email = erro.msg
+                }
+                if (erro.path == "password") {
+                    erroValidacao.password = "erro",
+                    msgErro.password = erro.msg
+                }
+            })
+        };
+    %>
 
     <%- include('../partials/navbar'); %>
 
-
-        <section id="centralizar">
+    <section id="centralizar">
         <main id="form_space">
             <img src="imagem/normal_capelo_u29.svg" id="capelo" alt="Decoração" width="51" height="38">
             <section id="form">
-
                 <form action="/login_post" method="POST">
                     <p id="email"><label for="email">Email</label></p>
-                    <input type="email" id="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
+                    <input type="email" id="email" name="email" value="<%= valores.email %>" class="<%= erroValidacao.email %>">
+                    <span class="spanerro"><%= msgErro.email %></span>
 
-                    <span class="spanerro"><%=msgErro.email%></span>
                     <p id="senha"><label for="password">Senha</label></p>
-                    <input type="password" id="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">    
-                    <span class="spanerro"><%=msgErro.password%></span>
-                    <section>
-                    <span id="conect"><input type="checkbox" id="conectado" name="conectado"><label for="conectado">Desejo me manter conectado</label></span>
-                    <p><a  id="f-password" href="#">Esqueci minha senha</a></p>
-                    </section>
-                
-                <section id="login2">
-                <input type="submit" id="login_button" value="LOGIN" href="/perfil-usuario">
-                </section>
+                    <input type="password" id="password" name="password" value="<%= valores.password %>" class="<%= erroValidacao.password %>">
+                    <span class="spanerro"><%= msgErro.password %></span>
 
-                <section id="centralizar">
-                <span id="no-account">Não tem uma conta? <a id="laranjinha" href="/cadastro-usuario">Cadastre-se</a></p>
-                </section>
+                    <section>
+                        <span id="conect">
+                            <input type="checkbox" id="conectado" name="conectado">
+                            <label for="conectado">Desejo me manter conectado</label>
+                        </span>
+                        <p><a id="f-password" href="#">Esqueci minha senha</a></p>
+                    </section>
+
+                    <section id="login2">
+                        <input type="submit" id="login_button" value="LOGIN" href="/perfil-usuario">
+                    </section>
+
+                    <section id="centralizar">
+                        <span id="no-account">
+                            Não tem uma conta? <a id="laranjinha" href="/cadastro-usuario">Cadastre-se</a>
+                        </span>
+                    </section>
                 </form>
             </section>
 
@@ -64,13 +69,14 @@
                 <p><span class="marker">✓</span> Se inscrever para testes de admissão;</p>
                 <p><span class="marker">✓</span> Marcar presença em eventos;</p>
                 <p>Entre outros!</p>
-                <h3>Junte-se a nossa <a href="/cadastro-usuario" id="amarelinho">comunidade</a href="/cadastro-usuario">!</h3>
-                
+                <h3>Junte-se a nossa <a href="/cadastro-usuario" id="amarelinho">comunidade</a>!</h3>
             </section>
-        </main> <img id="picture" alt="Decorativa" src="imagem/login_image.png">
-        </section>
-<script src="js/mascaras.js"></script>
+        </main>
+        <img id="picture" alt="Decorativa" src="imagem/login_image.png">
+    </section>
 
+    <script src="js/mascaras.js"></script>
+    <%- include('../partials/footer'); %>
 </body>
-<%- include('../partials/footer'); %>
+
 </html>

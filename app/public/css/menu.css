@@ -7,10 +7,9 @@
   --azulbase: #141c44;
   --azulsec: #77b6ea;
   --amarelo: #ffbc3e;
-
 }
 
-.tema-claro{
+.tema-claro {
   --laranja: #ff5c2a;
   --fundo: #f5f5f5;
   --azulbase: #141c44;
@@ -20,12 +19,13 @@
   transition: all 0.2s ease-in;
 }
 
-.tema-escuro{
+.tema-escuro {
   --letras: #f5f5f5;
   --fundo: #030303;
   transition: all 0.2s ease-in;
 }
-#menu #tema{
+
+#menu #tema {
   background-color: none;
   background-position: center;
   background-color: #141C44;
@@ -34,376 +34,349 @@
   margin-left: -10px;
 }
 
-.sun{
+.sun {
   background-repeat: no-repeat;
   background-image: url("data:image/svg+xml,%3Csvg data-v-56bd7dfc='' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-sun-medium-icon lucide-sun-medium'%3E%3Ccircle cx='12' cy='12' r='4'%3E%3C/circle%3E%3Cpath d='M12 3v1'%3E%3C/path%3E%3Cpath d='M12 20v1'%3E%3C/path%3E%3Cpath d='M3 12h1'%3E%3C/path%3E%3Cpath d='M20 12h1'%3E%3C/path%3E%3Cpath d='m18.364 5.636-.707.707'%3E%3C/path%3E%3Cpath d='m6.343 17.657-.707.707'%3E%3C/path%3E%3Cpath d='m5.636 5.636.707.707'%3E%3C/path%3E%3Cpath d='m17.657 17.657.707.707'%3E%3C/path%3E%3C/svg%3E");
 }
 
-.moon{
+.moon {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-moon-star-icon lucide-moon-star'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9'/%3E%3Cpath d='M20 3v4'/%3E%3Cpath d='M22 5h-4'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-size: 65%;
 }
 
 @media screen and (min-width:851px) {
-  
-body {
-  margin: 0;
-  padding: 0;
-  background: var(--fundo);
-  color: var(--letras);
-  font-family: 'Poppins', sans-serif;
 
-}
-
-.recuo { text-indent:4em }
-
-
-
-
-
-.navbar header {
-  background: var(--azulbase);
-
-}
-
-
-.navbar #check{
-  display: none;
-}
-
-.navbar  #menu {
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  padding: 20px 40px;
-  max-height: 83px;
-  font-size: 18px;
-}
-
-#menu li {
-  margin: 0 20px;
-  position: relative;
-
-}
-
-#menu a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 16px;
-  transition: color 0.3s ease;
-}
-
-#menu a:hover {
-  color: #fff6d8;
-}
-
-#menu li:nth-child(-n+3) {
-  margin-right: 30px; /* Adiciona espaçamento entre os três primeiros itens */
-}
-
-#menu #inicio{
-  margin-left: 50px;
-}
-
- .dropdown-arrow:after {
-	content: "\23F7";
-	margin-left: 0 5px;
-
-} 
-
-.navbar summary{
-  margin-bottom: 3px;
-  margin-left: 20px;
-  outline: none;
-  list-style:none;
-
-}
-
-.submenu {
-  display: none; /* Esconde o submenu por padrão */
-  position: absolute;
-  top: 100%; /* Faz o submenu aparecer logo abaixo do item pai */
-  left: 0;
-  background: #a3a7a8;
-  padding: 10px 0;
-  list-style-type: none;
-  z-index: 1;
-  font-size: 16px;
-  width: 200%;
-  white-space:none;
-  text-wrap: nowrap;
-  border-radius: 10px;
-  border-top-left-radius: 0;
-}
-
-.master:hover .submenu {
-  display: block; /* Exibe o submenu ao passar o mouse sobre o item pai */
-}
-
-#menu .submenu li:first-child{
-  margin: auto 7%;
-
-}
-
-.submenu ul li a{
-  margin: 3% 1%;
-  row-gap: 10px;
-  font-size: 7px;
-  line-height: 30px;
-}
-
-#menu .submenu ul li a:hover{
-  color: #adcfeb;
-}
-
-.master{
-  margin-left:-3%;
-  padding: 0;
-}
-
-
-
-.navbar #logo {
-  width: 150px;
-}
-
-#menu button {
-  color: #ffffff;
-  border-radius: 5px;
-  padding: 10px 15px;
-  background-color: var(--laranja);
-  border: none;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-}
-
-.aside {
-  margin-left: auto; /* Empurra os itens para o final */
-  display: flex;
-  justify-content: flex-end; /* Alinha os itens à direita */
-  gap: 10px; /* Espaço entre os itens */
-  display: flex;
-  margin-right: 0;
-}
-
-
-
-
-.navbar button {
-  margin: 0; /* Remove margem do botão */
-  transition: all 0.3s;
-}button:hover{
-  color: white;
-  background-color: #d84214;
-}
-
-
-.navbar button a {
-  color: #ffffff;
-  text-decoration: none;
-} button li a:hover{color: white;}
-}
-
-  @media screen and (max-width: 850px){
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-    
-    body, html {
-      margin: 0;
-      padding: 0;
-      /* faça parecer decente o suficiente */
-      background: var(--fundo);
-      color: var(--letras);
-      font-family: "Popping Light", "Avenir", sans-serif;
-      overflow-x: hidden;
-    }
-
-    
-.navbar header{
-      background-color:var(--azulbase);
-    }
-
-	
-.navbar nav{
-		z-index: 3;
-		background-color: var(--azulbase);
-		height: 120px;
-    width: 100vw;
-	}
-
-    
-.navbar #logo{
-      width:25%;
-      display: flex;
-      position: absolute;
-      align-items: right;
-      justify-content: right;
-      margin-left: 50%;
-      margin-right: 10px;
-      margin-top: -7%;
-      padding-bottom: 10px;
-      
-    }
-    
-.navbar a {
-      text-decoration: none;
-      color: #ffffff;
-      transition: color 0.3s ease;
-    }
-    
-    
-.navbar a:hover {
-      color: #fff6d8;
-    }
-    
-    
-.navbar #menuToggle {
-      display: block;
-      position: relative;
-      top: 50px;
-      left: 50px;  
-      z-index: 1;
-      user-select: none;
-      width: 50%;
-    }
-    #menuToggle input {
-      display: block;
-      flex-direction: column;
-      width: 40px;
-      height: 32px;
-      position: absolute;
-      top: -7px;
-      left: -5px;
-      cursor: pointer;  
-      opacity: 0; /* esconder isso */
-      z-index: 2; /* e coloque sobre o hamburger */
-    }
-    /* Apenas um hamburguer rápido */
-    #menuToggle span {
-      display: block;
-      width: 33px;
-      height: 4px;
-      margin-bottom: 5px;
-      position: relative;  
-      background: #cdcdcd;
-      border-radius: 3px;
-      z-index: 2;  
-      transform-origin: 4px 0px;
-      transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-                  background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-                  opacity 0.55s ease;
-    }
-    
-    #menuToggle span:first-child {
-      transform-origin: 0% 0%;
-    }
-    
-    #menuToggle span:nth-last-child(2) {
-      transform-origin: 0% 100%;
-    }
-    
-    /* Transforme todas as fatias de hambúrguer em um X */
-    #menuToggle input:checked ~ span {
-      opacity: 1;
-      transform: rotate(45deg) translate(-2px, -1px);
-      background: #f8f7f7;
-    }
-    
-    /* Mas vamos esconder o do meio */
-    #menuToggle input:checked ~ span:nth-last-child(3) {
-      opacity: 0;
-      transform: rotate(0deg) scale(0.2, 0.2);
-    }
-    
-    /* e o último deve ir na outra direção */
-    #menuToggle input:checked ~ span:nth-last-child(2) {
-      transform: rotate(-45deg) translate(0, -1px);
-    }
-    
-    /* Faça isso com posicionamento absoluto no canto 
-       superior esquerdo da tela */
-    #menu {
-      position: sticky;
-  top: 0; /* fica grudado no topo quando chega lá */
-      width:100vw;
-      margin: -100px 0 0 -50px;
-      padding: 50px;
-      padding-top: 125px; 
-      background: #141C44;
-      list-style-type: none;  
-      transform-origin: 0% 0%;
-      transform: translate(-100%, 0);
-      transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-      overflow-x: hidden;
-      z-index: 1;
-    }
-    
-    #menu li
-    {
-        font-family: 'Poppins', sans-serif;
-      padding: 10px 10px;
-      font-size: 22px;
-    }
-
-    /* Vamos deslizar da esquerda */
-    #menuToggle input:checked ~ ul {
-      transform: none;
-    }
-
-
-
-    
-
-    .master{
-      font-size: 22px;
-      text-decoration: none;
-      color: #ffffff;
-      transition: all 0.3s ease-in-out;
-    }
-
-    summary{
-      list-style-type: none;
-    }
-    
-    .master:hover{
-      color: var(--laranja);
-    }
-
-    #submenu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--primary-color);
-      padding: 10px 0;
-      list-style-type: none;
-      z-index: 1;
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--fundo);
+    color: var(--letras);
+    font-family: 'Poppins', sans-serif;
   }
-  
+
+  .recuo {
+    text-indent: 4em;
+  }
+
+  .navbar header {
+    background: var(--azulbase);
+  }
+
+  .navbar #check {
+    display: none;
+  }
+
+  .navbar #menu {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    padding: 20px 40px;
+    max-height: 83px;
+    font-size: 18px;
+  }
+
+  #menu li {
+    margin: 0 20px;
+    position: relative;
+  }
+
+  #menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+
+  #menu a:hover {
+    color: #fff6d8;
+  }
+
+  #menu li:nth-child(-n+3) {
+    margin-right: 30px;
+  }
+
+  #menu #inicio {
+    margin-left: 50px;
+  }
+
+  .dropdown-arrow:after {
+    content: "\23F7";
+    margin-left: 0 5px;
+  }
+
+  .navbar summary {
+    margin-bottom: 3px;
+    margin-left: 20px;
+    outline: none;
+    list-style: none;
+  }
+
+  .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #a3a7a8;
+    padding: 10px 0;
+    list-style-type: none;
+    z-index: 1;
+    font-size: 16px;
+    width: 200%;
+    white-space: none;
+    text-wrap: nowrap;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+  }
+
+  .master:hover .submenu {
+    display: block;
+  }
+
+  #menu .submenu li:first-child {
+    margin: auto 7%;
+  }
+
+  .submenu ul li a {
+    margin: 3% 1%;
+    row-gap: 10px;
+    font-size: 7px;
+    line-height: 30px;
+  }
+
+  #menu .submenu ul li a:hover {
+    color: #adcfeb;
+  }
+
+  .master {
+    margin-left: -3%;
+    padding: 0;
+  }
+
+  .navbar #logo {
+    width: 150px;
+  }
+
+  #menu button {
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: var(--laranja);
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .aside {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    display: flex;
+    margin-right: 0;
+  }
+
+  .navbar button {
+    margin: 0;
+    transition: all 0.3s;
+  }
+
+  button:hover {
+    color: white;
+    background-color: #d84214;
+  }
+
+  .navbar button a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  button li a:hover {
+    color: white;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    background: var(--fundo);
+    color: var(--letras);
+    font-family: "Popping Light", "Avenir", sans-serif;
+    overflow-x: hidden;
+  }
+
+  .navbar header {
+    background-color: var(--azulbase);
+  }
+
+  .navbar nav {
+    z-index: 3;
+    background-color: var(--azulbase);
+    height: 120px;
+    width: 100vw;
+  }
+
+  .navbar #logo {
+    width: 25%;
+    display: flex;
+    position: absolute;
+    align-items: right;
+    justify-content: right;
+    margin-left: 50%;
+    margin-right: 10px;
+    margin-top: -7%;
+    padding-bottom: 10px;
+  }
+
+  .navbar a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s ease;
+  }
+
+  .navbar a:hover {
+    color: #fff6d8;
+  }
+
+  .navbar #menuToggle {
+    display: block;
+    position: relative;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+    user-select: none;
+    width: 50%;
+  }
+
+  #menuToggle input {
+    display: block;
+    flex-direction: column;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+  }
+
+  #menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #cdcdcd;
+    border-radius: 3px;
+    z-index: 2;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+  }
+
+  #menuToggle span:first-child {
+    transform-origin: 0% 0%;
+  }
+
+  #menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+  }
+
+  #menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #f8f7f7;
+  }
+
+  #menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+
+  #menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+  }
+
+  #menu {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    margin: -100px 0 0 -50px;
+    padding: 50px;
+    padding-top: 125px;
+    background: #141C44;
+    list-style-type: none;
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    overflow-x: hidden;
+    z-index: 1;
+  }
+
+  #menu li {
+    font-family: 'Poppins', sans-serif;
+    padding: 10px 10px;
+    font-size: 22px;
+  }
+
+  #menuToggle input:checked ~ ul {
+    transform: none;
+  }
+
+  .master {
+    font-size: 22px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: all 0.3s ease-in-out;
+  }
+
+  summary {
+    list-style-type: none;
+  }
+
+  .master:hover {
+    color: var(--laranja);
+  }
+
+  #submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--primary-color);
+    padding: 10px 0;
+    list-style-type: none;
+    z-index: 1;
+  }
+
   #menu summary:hover ul.submenu {
     display: block;
     border-radius: 5px;
   }
 
-    #cadastro:hover{
-      color: white;
-    }
-    
-.navbar button{
-  font-family: 'Poppins', sans-serif;
-      color: var(--laranja);
-      font-size: 22px;
-      border-radius: 5px;
-      padding: 5px 10px;
-      background-color: #f55c2d;
-      border: none;
-      transition: all 0.3s ease-in-out;
-    } button:hover{
-      background-color: #d84214;
-    }
-    
+  #cadastro:hover {
+    color: white;
   }
-  
+
+  .navbar button {
+    font-family: 'Poppins', sans-serif;
+    color: var(--laranja);
+    font-size: 22px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #f55c2d;
+    border: none;
+    transition: all 0.3s ease-in-out;
+  }
+
+  button:hover {
+    background-color: #d84214;
+  }
+}
