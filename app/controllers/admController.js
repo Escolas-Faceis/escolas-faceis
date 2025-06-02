@@ -1,32 +1,9 @@
-const usuarioModel = require("../models/usuarioModel");
-const escolaModel = require("../models/usuarioModel");
+const admModel = require("../models/admModel");
 const moment = require("moment");
 const { body, validationResult } = require("express-validator");
 const { validarTelefone } = require("../helpers/validacoes");
 
-const usuarioController = {
-
-    regrasValidacaoUsuario: [
-        body("name")
-            .isLength({ min: 3, max: 50 })
-            .withMessage("Nome Inválido"),
-        body("email")
-            .isEmail()
-            .withMessage("Email inválido."),
-        body("cellphone")
-            .custom(value => {
-                if (!validarTelefone(value)) {
-                    throw new Error('Telefone inválido');
-                }
-                return true;
-            }),
-        body("password")
-            .isStrongPassword()
-            .withMessage("Senha muito fraca!"),
-        body("reppassword")
-            .custom((value, { req }) => value === req.body.password)
-            .withMessage("Senhas estão diferentes"),
-    ],
+const admController = {
 
     cadastrarUsuario: async (req, res) => {
         try {
@@ -61,8 +38,19 @@ const usuarioController = {
                 valores: req.body
             });
         }
-    }
+    },
+
+    listarUsuarios: async (req, res) => {
+        try {
+            const usuarios = await admModel.findAll();
+            console.log("USUÁRIOS DO BANCO:", usuarios);
+            res.render('pages/adm/index-adm', { usuarios });
+        } catch (error) {
+            console.log(error);
+            res.render('pages/adm/index-adm', { usuarios: [] });
+        }
+    },
 
 }
 
-module.exports = usuarioController;
+module.exports = admController;

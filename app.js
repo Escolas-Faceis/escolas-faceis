@@ -14,6 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 var rotas = require("./app/routes/router");
 app.use("/", rotas);
 
+const rotaAdm = require("./app/routes/router-adm");
+app.use("/adm", rotaAdm);
+
 const session = require('express-session');
 
 app.use(session({

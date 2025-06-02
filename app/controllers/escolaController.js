@@ -54,7 +54,7 @@ const escolaController = {
                 // 'numero': req.body.adress_n,
                 // 'cnpj': req.body.cnpj
             };
-            console.log("Dados enviados para o banco:", dados); // <-- Adicione esta linha
+            console.log("Dados enviados para o banco:", dados);
             let resultado = await escolaModel.create(dados);
             if (resultado) {
                 return res.render('pages/index');

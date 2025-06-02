@@ -2,6 +2,23 @@ var pool = require("../../config/pool_conexoes");
 
 
 const usuarioModel = {
+
+    create: async (dados) => {
+        try {
+            const [resultados] = await pool.query(
+                "INSERT INTO usuarios (nome_usuario, email_usuario, telefone_usuario, senha_usuario, tipo_usuario, status_usuario) VALUES (?, ?, ?, ?, ?, ?)",
+                [dados.name, dados.email, dados.cellphone, dados.password, "Comum", 1]
+            );
+            console.log(resultados);
+            return resultados;
+        } catch (erro) {
+            console.log(erro);
+            return false;
+        }
+    },
+
+
+
     findAll: async () => {
         try {
             const [linhas] = await pool.query('SELECT * FROM usuarios WHERE status_usuario = 1')
@@ -38,21 +55,6 @@ const usuarioModel = {
         }  
     },
     
-    create: async (dados) => {
-
-        try {
-            const [resultados] = await pool.query("INSERT INTO usuarios "
-                + " (nome_usuario,email_usuario, telefone_usuario, senha_usuario, tipo_usuario, status_usuario) "
-                + " VALUES(?,?,?,?, Comum, 1) ", [dados.name, dados.email, dados.cellphone, dados.password]);
-            console.log(resultados);
-            return resultados;
-        } catch (erro) {
-            console.log(erro);
-            return false;
-        }
-
-    },
-
     update: async (dados, id) => {
         try {
             const [linhas] = await pool.query('UPDATE tarefas SET ? WHERE id_tarefa = ?', [dados, id])

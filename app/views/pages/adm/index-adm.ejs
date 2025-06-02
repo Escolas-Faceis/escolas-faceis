@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/inicio.css">
+   </head>
+   <body>
+        <%- include('../../partials/navbar'); %>
+
+ <section class="container body-content">
+        <h2>Lista de clientes</h2>
+
+        <%- include('../../partials/dev'); %>
+
+<p>
+    <a href="/adm/adm-usuario-novo" class="btn btn-success"> Novo</a>
+</p>
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+        <th>Imagem de Perfil</th>
+        <th>Status</th>
+    </tr>
+    <% if (usuarios && usuarios.length > 0) { %>
+        <% usuarios.forEach(usuario => { %>
+            <tr>
+                <td><%= usuario.nome_usuario %></td>
+                <td><%= usuario.email_usuario %></td>
+                <td><%= usuario.telefone_usuario || 'Não informado' %></td>
+                <td>
+                    <% if (usuario.img_perfil_pasta) { %>
+                        <img alt="imagem de perfil" id="img-preview" src="<%= usuario.img_perfil_pasta %>" style="max-width:100px; max-height:100px;" />
+                    <% } else { %>
+                        <img alt="imagem de perfil" id="img-preview" src="../imagem/img_login.png" style="max-width:100px; max-height:100px;" />
+                    <% } %>
+                </td>
+                <td><%= usuario.status_usuario === 1 ? 'Ativo' : 'Inativo' %></td>
+            </tr>
+        <% }); %>
+    <% } else { %>
+        <tr>
+            <td colspan="5">Nenhum usuário encontrado.</td>
+        </tr>
+    <% } %>
+
+</table></section>
+
+        <%- include('../../partials/footer'); %>   
+        </body>
+</html>
