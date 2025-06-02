@@ -16,6 +16,7 @@
 
         
     }
+    
 
     .A{
         font-size: 14px;
@@ -203,74 +204,153 @@
         
     }
 
+@media screen and (max-width: 730px) {
+    .search-fields {
+        display: flex;
+        flex-wrap: wrap; /* permite quebrar só se for MUITO necessário */
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        padding: 15px;
+        font-size: 15px;
+        margin-top: 2%;
+        padding-bottom: 0.5%;
+    }
 
-    @media screen and (max-width: 520px) {
-        *{
-            padding: 0px;
-            margin: 0px;
+    .A {
+        font-size: 15px;
+        padding: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         
-            }
-            
-            .search-fields{
-                display: flex;
-                justify-content: center; 
-                align-items: center;
-                gap: 0.1%; 
-                padding: 20px;
-                padding-left: 30px;
-                font-size: 19px; 
-                margin-top: 2%;
-                margin-bottom: 0;
-                padding-bottom: 0.1%;
-                
-                
-            }
+    }
 
-            .A{
-                font-size: 21px;
-                padding:0.5%;
-        
-                display: flex;
-                justify-content: center;
-                align-items: center;
-        
-            }
-            #nome-escola-search{
-                border-top-left-radius: 15px;
-                border-bottom-left-radius: 15px;
-                border: 1px solid gray;
-                
-            }
-        
-            #cidade-search{
-                border-top-right-radius: 15px;
-                border-bottom-right-radius: 15px;
-                border: 1px solid gray;
-            }
-        
-            #regiao-search{
-                width: 15%;
-                text-align: center;
-            }
-        
-            #search{
-                border: none;
-                background-color: inherit;
-                color: #77b6ea;
-                font-size: 20px;
-                display: flex;
-                margin-left: 8%;
-                margin-top: 0;
-                cursor: pointer;
-        
-            }
-            #search::after{
-                content: "\1F50D";
-            }
-        
-            #search:hover{
-                text-decoration: underline;
-            }
+    #nome-escola-search{
+        font-size: 14px;
+        padding: 6px;
+        border: 1px solid gray;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        width: 170px;
+    }
+    #cidade-search {
+        font-size: 14px;
+        padding: 6px;
+        border: 1px solid gray;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        width: 170px;
+    }
 
-        
-    } 
+    #regiao-search {
+        width: 80px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    #search {
+        border: none;
+        background-color: inherit;
+        color: #77b6ea;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        margin-left: 15%;
+        cursor: pointer;
+    }
+
+    #search::after {
+        content: "\1F50D";
+    }
+
+    #search:hover {
+        text-decoration: underline;
+    }
+}
+
+
+@media screen and (max-width: 481px) {
+    .search-fields {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+        gap: 10px;
+        font-size: 17px;
+        margin-top: 2%;
+        padding-bottom: 0.1%;
+    }
+
+    .A {
+        font-size: 18px;
+        padding: 5px;
+        justify-content: center;
+    }
+
+    #nome-escola-search,
+    #cidade-search {
+        border-radius: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #regiao-search {
+        width: 100%;
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    #search {
+        border: none;
+        background-color: inherit;
+        color: #77b6ea;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        transform: translate(-45%, -65%);
+
+        cursor: pointer;
+    }
+
+    #search::after {
+        content: "\1F50D";
+    }
+
+    #search:hover {
+        text-decoration: underline;
+    }
+}
+    @media screen and (max-width: 330px) {
+    .search-fields {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+        gap: 10px;
+        font-size: 16px;
+    }
+
+    .A {
+        font-size: 16px;
+        padding: 5px;
+        justify-content: center;
+    }
+
+    #nome-escola-search,
+    #cidade-search {
+        border-radius: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #regiao-search {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    #search {
+        margin: 10px auto 0 auto;
+        font-size: 18px;
+        justify-content: center;
+        transform: translate(-65%, -190%);
+    }
+}

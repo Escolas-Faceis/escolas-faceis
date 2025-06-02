@@ -212,7 +212,7 @@ padding: 2%;
     color: var(--azul-claro);
     font-weight: normal;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 18px;
 }#filtros:hover{
     text-decoration: underline;
 }
@@ -223,7 +223,7 @@ padding: 2%;
     margin-right: -40%;
     margin-top: -4%;
     margin-bottom: 6%;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 #filtrar{
@@ -245,10 +245,10 @@ padding: 2%;
 }
 
 #filtro, h4{
-    font-size: 20px;
+    font-size: 18px;
 }
 #filtro label{
-    font-size: 19px;
+    font-size: 14px;
 }
 
 #filtrar:hover{
@@ -278,6 +278,7 @@ input{
     gap: 10px;
     margin-top: 4.8%;
     margin-left: -10%;
+
     }
 
     .sec{
@@ -317,5 +318,18 @@ h1{
     z-index:0;
 }
 
+
+}
+
+@media screen and (max-width:481px){
+
+    .filter-schools{
+        width: 100%;
+        margin-left: -5%;
+       
+    }
+    #filtros{
+         transform: translate(0, -30px);
+    }
 
 }

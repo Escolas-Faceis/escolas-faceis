@@ -100,7 +100,7 @@
     background-color: var(--laranja);
     border: none;
     border-radius: 8px;
-    color: var(--letra);
+    color: white;
     width: 30%;
     height: 40px;
     font-size: 18px;
@@ -112,8 +112,8 @@
 }
 
 #orange_button:hover {
-    background-color: inherit;
-    color: var(--laranja);
+    background-color: #da4619;
+    color: white;
     cursor: pointer;
 }
 
@@ -159,4 +159,36 @@
         display: none;
     }
     
+}
+
+@media screen and (max-width: 550px) {
+    #form_space {
+        width: 90%;
+    }
+
+    #email_contato_input,
+    #mensagem_contato {
+        width: 100%;
+    }
+
+    #inserir_email_contato{
+        text-wrap: nowrap;
+    }
+
+    #orange_button {
+        width: 100%;
+    }
+
+    #pt1 {
+        font-size: 20px;
+ 
+    }
+     #pt1 a {
+        font-size: 18px;
+ 
+    }
+
+    #centralizar{
+        width:50%;
+    }
 }
