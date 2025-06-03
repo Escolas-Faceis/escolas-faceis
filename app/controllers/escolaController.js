@@ -50,9 +50,9 @@ const escolaController = {
                 'name_school': req.body.name_school,
                 'email': req.body.email,
                 'password': req.body.password,
-                // 'cep': req.body.cep,
-                // 'numero': req.body.adress_n,
-                // 'cnpj': req.body.cnpj
+                'cep': req.body.cep,
+                'numero': req.body.adress_n,
+                'cnpj': req.body.cnpj
             };
             console.log("Dados enviados para o banco:", dados);
             let resultado = await escolaModel.create(dados);

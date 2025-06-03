@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Escola</title>
     <link rel="stylesheet" href="css/cadastro-escola.css">
+    <script src="js/apiCEP.js"></script>
     <script>
         function rolar_pra_baixo() {
             window.scrollTo({
@@ -133,20 +134,21 @@
                                 <section class="ob">
                                     <section class="cep">
                                         <p>CEP</p> <br>
-                                        <input type="text" id="cep" placeholder="00000-000" name="cep" value="<%= valores.cep %>" class="<%= erroValidacao.cep%>">
+                                        <input type="text" id="cep" placeholder="00000-000" name="cep" value="<%= valores.cep %>" class="<%= erroValidacao.cep%>" onblur="pesquisacep(this.value);" onkeyup="mascaraCEP(event)">
                                         <span class="spanerro"><%=msgErro.cep%></span>
                                     </section>
                                     <section class="complemento">
                                         <p>N°</p><br>
                                         <input type="text" id="num" name="adress_n" value="<%= valores.adress_n %>" class="<%= erroValidacao.adress_n%>">
+                                        <span class="spanerro"><%=msgErro.adress_n%></span>
                                     </section>
                                 </section>
                             </section>
 
                             <p>Endereço</p><br>
-                            <input type="text" id="end" name="adress" value="<%= valores.adress %>" class="<%= erroValidacao.adress%>">
+                            <input type="text" id="logradouro" name="adress" value="<%= valores.adress %>" class="<%= erroValidacao.adress%>">
                             <span class="spanerro"><%=msgErro.adress%></span>
-                            <span class="spanerro"><%=msgErro.adress_n%></span>
+
 
                             <section class="endereco">
                                 <section>

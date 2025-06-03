@@ -1,0 +1,5 @@
+                    <% if (usuario.img_perfil_pasta) { %>
+                        <img alt="imagem de perfil" id="img-preview" src="<%= usuario.img_perfil_pasta %>" style="max-width:100px; max-height:100px;" />
+                    <% } else { %>
+                        <img alt="imagem de perfil" id="img-preview" src="../imagem/img_login.png" style="max-width:100px; max-height:100px;" />
+                    <% } %>

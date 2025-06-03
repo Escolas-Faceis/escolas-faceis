@@ -1,855 +1,211 @@
-/*           CSS Padrão para todos os dispositivos   */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-* {
-    box-sizing: border-box;
+:root {
+  --laranja: #f56d44;
+  --fundo: #ffffff;
+  --letras: #0f0d22;
+  --azulbase: #141c44;
+  --azulsec: #77b6ea;
+  --amarelo: #ffbc3e;
+  --toggle-theme: #ffbc3e;
+  --tr: #f5f7fa;
+  --letras2: #222;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-
-@media only screen and (max-width: 480px) {
-    #container {
-        min-width: 415px;
-        height: 100vmax;
-    }
-
-    /*                                              cabeçalho                                                   */
-
-    header {
-        width: 100%;
-        height: 103vmin;
-        min-height: 400px;
-        margin-bottom: 5px;
-        background-color: #426cb4;
-    }
-
-    header div {
-        height: 15vmin;
-    }
-
-    header h1 {
-        background-color: #c7ebfc;
-        color: #5a52b3;
-        font-size: 1.6rem;
-        height: 13vmin;
-        font-weight: bold;
-        text-align: center;
-        padding-top: 4vmin;
-    }
-
-    header div>img:first-child {
-        height: 15vmin;
-    }
-
-    header img[src="imagem/hotel.png"] {
-        width: 100%;
-        min-height: 75vmin;
-        min-width: 415px;
-    }
-
-
-
-    a>img {
-        position: relative;
-        top: -1vmin;
-        width: 60px;
-        margin-left: 10vw;
-    }
-
-
-    div.logado {
-        display: flex;
-    }
-
-    div.logado a:nth-child(2) img {
-        margin-left: 0px;
-        margin-top: 10px;
-        border-radius: 30px;
-    }
-
-    div.logado p {
-        color: white;
-        margin-left: 10px;
-        margin-top: 5px
-    }
-
-    div.logado p a {
-        color: #c7ebfc;
-        text-decoration: none;
-    }
-
-    /*************************************************  Form Login/cadastro.htm  *********************************************/
-    .login-page {
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        padding-top: 20vw;
-        width: 100vw;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .login-page h2 {
-        font-size: 1.8rem;
-        position: relative;
-        top: -40px;
-        color: white;
-        font-weight: bolder;
-        font-size: 1.8rem;
-        width: 80%;
-        padding-left: 20%;
-    }
-
-    .form-cadastro {
-        background: #304e82;
-        font-family: "Roboto", sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        position: relative;
-        max-width: 360px;
-        margin: 0 auto 100px;
-        padding: 10px 25px;
-        text-align: center;
-        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    }
-
-    .form-cadastro a:first-child {
-        text-decoration: none;
-    }
-
-    .form-cadastro span:nth-child(1) {
-        color: white;
-        font-size: 58px;
-        display: block;
-        text-align: right;
-    }
-
-    /*                                                   INICIO ERROS FORMULARIOS                                              */
-
-    .field-validation-error {
-        display: block;
-        width: 100%;
-    }
-
-    .erro-valicacao {
-        color: white;
-        background-color: red;
-        min-height: 22px;
-        padding-top: 3px;
-        text-align: center;
-        margin: -15px 0px 10px;
-    }
-
-
-    .form-cadastro input {
-        font-family: "Roboto", sans-serif;
-        outline: 0;
-        background: #f2f2f2;
-        width: 100%;
-        border: 0;
-        margin: 0 0 15px;
-        padding: 15px;
-        box-sizing: border-box;
-        font-size: 14px;
-    }
-
-    .form-cadastro button {
-        font-family: "Roboto", sans-serif;
-        text-transform: uppercase;
-        outline: 0;
-        background: #4CAF50;
-        width: 100%;
-        border: 0;
-        padding: 15px;
-        color: #FFFFFF;
-        font-size: 14px;
-        -webkit-transition: all 0.3 ease;
-        transition: all 0.3 ease;
-        cursor: pointer;
-    }
-
-    .form-cadastro button:hover,
-    .form-cadastro button:active,
-    .form-cadastro button:focus {
-        background: #22a2da;
-    }
-
-    .form-cadastro .message {
-        margin: 30px 0 10px 0px;
-        color: #c7ebfc;
-        font-size: 12px;
-    }
-
-    .form-cadastro .message a {
-        margin-left: 5px;
-        color: white;
-        font-weight: bolder;
-        text-decoration: none;
-    }
-
-    /*************************************************  Form Login/cadastro.htm  *********************************************/
-
-
-
-    /*                                  Menu  Hamburger                                                         */
-    #painel-menu {
-        display: block;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        z-index: 1;
-    }
-
-    #painel-menu a {
-        text-decoration: none;
-        color: #fff;
-        transition: color 0.3s ease;
-    }
-
-    #painel-menu a:hover {
-        color: #303685;
-    }
-
-    #painel-menu input {
-        display: block;
-        width: 40px;
-        height: 32px;
-        position: absolute;
-        top: -7px;
-        left: -5px;
-        cursor: pointer;
-        opacity: 0;
-        /* esconder*/
-        z-index: 2;
-        /* colocando acima do menu */
-    }
-
-    /*
- * criando o menu com os spans
-*/
-    #painel-menu span {
-        display: block;
-        width: 45px;
-        height: 8px;
-        margin-bottom: 5px;
-        position: relative;
-        background: white;
-        border-radius: 3px;
-        z-index: 1;
-        transform-origin: 4px 0px;
-        transition: transform 0.7s ease;
-    }
-
-    #painel-menu span:first-child {
-        transform-origin: 0 0;
-    }
-
-    #painel-menu span:nth-last-child(2) {
-        transform-origin: 0% 100%;
-    }
-
-    /* 
-* Transformando os spans em 
-* uma cruz.
-*/
-    #painel-menu input:checked~span {
-        opacity: 1;
-        transform: rotate(45deg) translate(-2px, -1px);
-        background: white;
-    }
-
-    /*
-* escondendo o span do meio.
-*/
-    #painel-menu input:checked~span:nth-last-child(3) {
-        opacity: 0;
-        transform: rotate(0deg) scale(0.2, 0.2);
-    }
-
-    /*
-* mudando a direção do ultimo span
-*/
-    #painel-menu input:checked~span:nth-last-child(2) {
-        transform: rotate(-45deg) translate(0, -1px);
-    }
-
-    /*
-* posicionando o menu no topo e à direita
-* 
-*/
-    ul {
-        position: absolute;
-        width: 200px;
-        height: 280px;
-        /* escondendo o menu */
-        margin: -100px 0 0 -130px;
-        padding: 105px 0 0 20px;
-        background: #169bd5;
-        list-style-type: none;
-        transform-origin: 0 0;
-        transform: translate(100%, 0);
-        font-size: 4.2vmin;
-        transition: transform 0.7s ease;
-    }
-
-    ul li {
-        padding: 10px 0;
-        font-size: 22px;
-    }
-
-    /*
-* para deslizar para a direita basta retirar o efeto transform
-*/
-    #painel-menu input:checked~ul {
-        transform: none;
-    }
-
-    /*                                           FIM Hamburger                                               */
-
-    /*                                          FIM Cabeçalho                                                   */
-
-    main {
-        width: 100vmin;
-    }
-
-    .card-dir,
-    .card-esq {
-        width: 95vmin;
-        margin: 15px auto;
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        grid-template-rows: 6vmin 15vmin 15vmin 5vmin;
-    }
-
-    .card-dir h3,
-    .card-esq h3 {
-        background-color: #426cb4;
-        color: white;
-        font-size: 1.2rem;
-        font-weight: bold;
-        padding: 6px;
-    }
-
-    .card-dir p,
-    .card-esq p {
-        padding: 5px;
-    }
-
-    .card-dir a,
-    .card-esq a {
-        color: #c8e39e;
-        font-size: 1rem;
-        font-weight: bold;
-        text-align: right;
-        margin-top: 5px;
-    }
-
-    .card-esq a {
-        text-align: left;
-    }
-
-    .card-dir img {
-        height: 42vmin;
-        grid-row: span 4;
-    }
-
-    .card-esq {
-        grid-template-columns: minmax(100px, auto) 2fr;
-    }
-
-    .card-esq h3,
-    .card-esq p,
-    .card-esq a {
-        grid-column-start: 1;
-    }
-
-    .card-esq img {
-        height: 41vmin;
-        grid-row-start: 1;
-        grid-column-start: 2;
-    }
-
-    /*                                                       CTA                                                             */
-
-    #cta {
-        background-color: #c7ebfc;
-        height: 25vmin;
-        text-align: center;
-    }
-
-    #cta button {
-        background-color: #169bd5;
-        border: 1px solid #169bd5;
-        color: white;
-        font-size: 2.2rem;
-        margin: 6vmin auto;
-        border-radius: 40px;
-        width: 60vmin;
-        height: 13vmin;
-    }
-
-    /*                                                    FIM CTA                                                             */
-
-    #perfil h1 {
-        font-size: 48px;
-        color: #169BD5;
-        padding: 2px 0 10px 0;
-        font-weight: bold;
-        text-align: center;
-        padding: 30px 0;
-    }
-
-    #perfil h1:after {
-        content: ' ';
-        display: block;
-        width: 100%;
-        height: 2px;
-        margin-top: 10px;
-        background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
-    }
-
-    p {
-        margin-bottom: 15px;
-    }
-
-    .content p:first-child {
-        margin: 0px;
-    }
-
-    label {
-        color: #169BD5;
-        position: relative;
-    }
-
-    /*estilo dos input,  menos o checkbox */
-    input:not([type="checkbox"]) {
-        width: 100%;
-        margin-top: 4px;
-        padding: 10px;
-        border: 1px solid #b2b2b2;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
-        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
-        -webkit-transition: all 0.2s linear;
-        transition: all 0.2s linear;
-    }
-
-    /*estilo do botão submit */
-    input[type="submit"] {
-        width: 50%;
-        cursor: pointer;
-        background: rgb(61 179 70);
-        padding: 8px 5px;
-        color: #fff;
-        font-size: 20px;
-        border: 1px solid #fff;
-        margin-bottom: 10px;
-        text-shadow: 0 1px 1px #333;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        transition: all 0.2s linear;
-    }
-
-    /*estilo do botão submit no hover */
-    input[type="submit"]:hover {
-        background: #4ab3c6;
-    }
-
-
-    #perfil input:not([type="checkbox"]) {
-        width: 97%;
-    }
-
-    #perfil {
-        padding: 18px 6% 60px 6%;
-        margin: 20px 0;
-        background: #f7f7f7;
-        border: 1px solid rgba(147, 184, 189, 0.8);
-        border-radius: 5px;
-    }
-
-    #perfil p b {
-        color: red;
-        font-size: 0.8em;
-        font-weight: bolder;
-    }
-
-    #perfil p>span.aviso {
-        color: #0d88f4;
-    }
-
-    #img-preview {
-        width: 90px;
-        border-radius: 50px;
-        margin: 19px auto;
-        display: block;
-    }
-
-    /*+++++++++++++++++++++++ FORM PERFIL ++++++++++++++++++++++++++++++++++++++++++++*/
-
-
-    /*                                                       RODAPÉ                                                          */
-
-    footer {
-        background-color: #426cb4;
-        color: white;
-        margin-top: 10px;
-    }
-
-    footer section:first-child {
-        padding: 5px;
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-template-rows: 18vmin 65vmin;
-    }
-
-    footer section address {
-        grid-column-start: 2;
-        grid-row-start: 1;
-        padding: 5px;
-        font-size: 0.8rem;
-    }
-
-    footer section:first-child img:first-child {
-        grid-column-start: 1;
-        margin-top: 0.8vmin;
-    }
-
-    footer section:first-child iframe {
-        grid-column-start: 1;
-        grid-column: span 2;
-        width: 100%;
-        height: 65vmin;
-    }
-
-    footer section:last-child {
-        background-color: #c7ebfc;
-        display: grid;
-        height: 100px;
-        grid-template-columns: 1fr 1fr 1fr;
-        justify-content: center;
-    }
-
-    footer section:last-child img {
-        width: 80px;
-        height: 80px;
-        margin: 10px auto;
-    }
-
-    /*                                                   FIM RODAPÉ                                                          */
-
+.tema-claro {
+  --laranja: #ff5c2a;
+  --fundo: #f5f5f5;
+  --azulbase: #141c44;
+  --azulsec: #77b6ea;
+  --amarelo: #ffbc3e;
+  --letras: #02030a;
+  transition: all 0.2s ease-in;
 
 }
 
-@media only screen and (min-width: 481px) and (max-width: 839px) {
-    #container {
-        width: 100vw;
-        min-width: 600px;
-        margin: 0 auto;
-        height: 100vh;
-        /* background-color: lightskyblue; */
-    }
+.tema-escuro {
+  --letras: #f5f5f5;
+  --fundo: #030303;
+  transition: all 0.2s ease-in;
+    --toggle-theme: white;
+        --tr: #171824;
+          --letras2: white;
+}
 
-    header {
-        width: 100%;
-        height: 90VW;
-        min-height: 400px;
-        margin-bottom: 5px;
-        background-color: #426cb4;
-    }
+.table {
+  width: 95%;
+  margin: 24px auto;   
+  margin-bottom: 10%;     
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1rem;
+  background: var(--fundo);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: 16px;       
+  overflow: hidden;         
+}
 
-    header div {
-        height: 15vmin;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 10vw 5vw;
-        background-color: #426cb4;
+#title{
+    color:var(--laranja);
+    margin: 2% 5%;
+    font-size:25px
+}
 
-    }
+.table th, .table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+}
 
+.table th {
+  background:var(--tr);
+  color:var(--letras2);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
 
-    header h1 {
-        background-color: #c7ebfc;
-        color: #5a52b3;
-        font-size: 2rem;
-        font-weight: bold;
-        text-align: center;
-        padding: 3vmin 0px;
-        height: 10vmin;
-        position: relative;
-        top: 55vmin;
-    }
+.table tr:last-child td {
+  border-bottom: none; /* Remove border from last row */
+}
 
-    header div>img:first-child {
-        height: 10vw;
-        grid-column: span 2;
-    }
+.table th{
+    background-color: var(--tr);
+}
 
-    header img[src="imagem/hotel.png"] {
-        width: 100%;
-        min-height: 75vmin;
-        min-width: 415px;
-        margin-top: -10vmin;
-    }
+.table tr:hover {
+  background:var(--tr);
+}
 
-    a>img {
-        /* position: relative; */
-        /* top: -1vmin; */
-        width: 60px;
-        /* margin-left: 10vw; */
-        padding: 1.2vh 0;
-    }
+.table img {
+  border: 2px solid #eaeaea;
+  background: var(--tr);
+  object-fit: cover;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
 
-    nav {
-        grid-row-start: 2;
-        grid-column: span 3;
-    }
+.table td:last-child, .table th:last-child {
+  text-align: center;
+}
 
-    nav div {
-        background-color: white;
-    }
+.table td {
+  vertical-align: middle;
+}
 
-
-
-
-    /*                                  Menu  Hamburger                                                         */
-    #painel-menu {
-        display: block;
-    }
-
-    #painel-menu a {
-        text-decoration: none;
-        color: #fff;
-        transition: color 0.3s ease;
-    }
-
-    #painel-menu a:hover {
-        color: #303685;
-    }
-
-    #painel-menu input,
-    #painel-menu span {
-        display: none;
-    }
-
-    ul {
-        background: #169bd5;
-        list-style-type: none;
-        font-size: 4.2vmin;
-        text-align: center;
-        margin: 0px;
-    }
-
-    ul li {
-        padding: 10px 0;
-        font-size: 22px;
-        display: inline-block;
-    }
-
-    /*
-* para deslizar para a direita basta retirar o efeto transform
-*/
-    #painel-menu input:checked~ul {
-        transform: none;
-    }
-
-    /*                                           FIM Hamburger  */
-
-
-
-
-
-    main {
-        width: 100vmin;
-    }
-
-    .card-dir,
-    .card-esq {
-        width: 95vmin;
-        margin: 15px auto 3vh auto ;
-        display: grid;
-        grid-template-columns:  1fr;
-        grid-template-rows: 43vh 1fr 1fr 1fr;
-        border: 1px solid #426cb4;
-        /* margin-bottom: 3vh; */
-    }
-    
-    
-    .card-esq {
-        margin: 15px auto 3vh auto ;
-        grid-template-columns:  1fr;
-        grid-template-rows: 45vh 1fr 1fr 1fr;
-        border: 1px solid #426cb4;   
-    }
-    
-
-    .card-dir h3,
-    .card-esq h3 {
-        background-color: #426cb4;
-        color: white;
-        font-size: 1.2rem;
-        font-weight: bold;
-        padding: 6px;
-    }
-
-    .card-dir p,
-    .card-esq p {
-        padding: 5px;
-    }
-
-    .card-dir a,
-    .card-esq a {
-        color: #c8e39e;
-        font-size: 1rem;
-        font-weight: bold;
-        text-align: right;
-        margin-top: 5px;
-    }
-
-    .card-dir img, .card-esq img {
-        width: 100%;
-    }
-    .card-esq img {
-        grid-row-start: 1;
-    }
-    .card-esq h3 {
-        grid-row-start: 2;
-    }
-    .card-esq p {
-        padding: 5px;
-    }
-
-    
-    /*                                                       CTA                                                             */
-
-    #cta {
-        background-color: #c7ebfc;
-        height: 25vmin;
-        text-align: center;
-    }
-
-    #cta button {
-        background-color: #169bd5;
-        border: 1px solid #169bd5;
-        color: white;
-        font-size: 2.2rem;
-        margin: 6vmin auto;
-        border-radius: 40px;
-        width: 60vmin;
-        height: 13vmin;
-    }
-
-    /*                                                    FIM CTA     
-   /*                                                       RODAPÉ                                                          */
-
-    footer {
-        background-color: #426cb4;
-        color: white;
-        margin-top: 10px;
-    }
-
-    footer section:first-child {
-        padding: 5px;
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-template-rows: 18vmin 65vmin;
-    }
-
-    footer section address {
-        grid-column-start: 2;
-        grid-row-start: 1;
-        padding: 5px;
-        font-size: 0.8rem;
-    }
-
-    footer section:first-child img:first-child {
-        grid-column-start: 1;
-        margin-top: 0.8vmin;
-    }
-
-    footer section:first-child iframe {
-        grid-column-start: 1;
-        grid-column: span 2;
-        width: 100%;
-        height: 65vmin;
-    }
-
-    footer section:last-child {
-        background-color: #c7ebfc;
-        display: grid;
-        height: 100px;
-        grid-template-columns: 1fr 1fr 1fr;
-        justify-content: center;
-    }
-
-    footer section:last-child img {
-        width: 80px;
-        height: 80px;
-        margin: 10px auto;
-    }
-
-    /*                                                   FIM RODAPÉ       */
-    /* div.logado {
-        display: flex;
-    }
-
-    div.logado a:nth-child(2) img {
-        margin-left: 0px;
-        margin-top: 10px;
-        border-radius: 30px;
-    }
-
-    div.logado p {
-        color: white;
-        margin-left: 10px;
-        margin-top: 5px
-    }
-
-    div.logado p a {
-        color: #c7ebfc;
-        text-decoration: none;
-    } */
-
+.welcome h1{
+    font-weight: 350;
+    margin: 0 0 0 2%;
+    color: var(--letras);
+    font-size: 20px;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media only screen and (min-width: 840px) and (max-width: 1024px) {
-    #container {
-        width: 90vmin;
-        margin: 0 auto;
-        height: 100vmax;
-        background-color: antiquewhite;
-    }
+.notificador ul {
+  padding: 0px;
+  height: 50px;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
 }
 
-@media only screen and (min-width: 1025px) {
-    #container {
-        width: 80vmin;
-        margin: 0 auto;
-        height: 100vmax;
-        background-color: burlywood;
-    }
+.notificador ul li {
+  display: inline-block;
+  width: 40px;
+  margin: 5px 1px;
+  list-style: none;
+}
+
+.notificador ul li a {
+  width: 40px;
+  height: 35px;
+  padding-top: 10px;
+  display: block;
+  background-color: #11a6cb;
+  text-decoration: none;  
+  border: 1px solid #11a6cb;
+  color:white;
+  font-weight: bold
+}
+
+.notificador ul li a:hover {
+  background-color: #097995;
+  color:white;
+  text-decoration: none;
+}
+
+.notificador ul li a.atual {
+  background-color: white;
+  color:red;
+  border: 1px solid red;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Responsive for 800px */
+@media (max-width: 800px) {
+  .table {
+    font-size: 0.92rem;
+    width: 99%;
+    margin: 16px auto;
+  }
+  .table th, .table td {
+    padding: 8px 8px;
+  }
+  #title {
+    font-size: 20px;
+    margin: 2% 2%;
+  }
+  .welcome h1 {
+    font-size: 17px;
+    margin-left: 2%;
+  }
+}
+
+/* Responsive for 500px */
+@media (max-width: 500px) {
+  .table {
+    font-size: 0.85rem;
+    width: 100%;
+    margin: 8px 0;
+    border-radius: 8px;
+  }
+  .table th, .table td {
+    padding: 6px 4px;
+    font-size: 0.9em;
+  }
+  #title {
+    font-size: 16px;
+    margin: 2% 2%;
+  }
+  .welcome h1 {
+    font-size: 14px;
+    margin-left: 2%;
+  }
+  .table th, .table td {
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+}
+
+/* Responsive for 300px */
+@media (max-width: 300px) {
+  .table {
+    font-size: 0.7rem;
+    width: 100%;
+    margin: 4px 0;
+    border-radius: 4px;
+  }
+  .table th, .table td {
+    padding: 3px 2px;
+    font-size: 0.8em;
+  }
+  #title {
+    font-size: 12px;
+    margin: 2% 2%;
+  }
+  .welcome h1 {
+    font-size: 10px;
+    margin-left: 1%;
+  }
 }

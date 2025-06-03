@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .adm-submenu {
+  width: 100%;
+  background: var(--azulsec, #77b6ea);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 0;
+}
+
+.adm-submenu ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0 32px;
+  height: 48px;
+  align-items: center;
+}
+
+.adm-submenu li {
+  position: relative;
+}
+
+.adm-submenu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s;
+  padding: 8px 12px;
+  display: block;
+}
+
+.adm-submenu a:hover {
+  color: var(--amarelo, #f7d54a);
+}
+
+.adm-submenu .submenu {
+    display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #222b4c;
+  min-width: 140px;
+  height: fit-content;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 0 8px 8px 8px;
+  padding: 8px 0;
+  z-index: 20;
+  flex-direction: column;
+}
+
+.adm-submenu .submenu li {
+  width: 100%;
+}
+
+.adm-submenu .has-submenu:hover .submenu,
+.adm-submenu .has-submenu:focus-within .submenu {
+  display: flex;
+}
+
+.adm-submenu .submenu a {
+  color: #fff;
+  padding: 8px 20px;
+  font-size: 0.98rem;
+}
+
+.adm-submenu .submenu a:hover {
+  background: var(--azulsec, #77b6ea);
+  color: #222;
+}
+    </style>
+   </head>
+   <body>
+<nav class="adm-submenu">
+  <ul>
+    <li class="has-submenu">
+      <a href="../pages/adm/adm-list.ejs">Lista de Usuários</a>
+      <ul class="submenu">
+        <li><a href="/adm/escolas">Escolas</a></li>
+        <li><a href="/adm/padrao">Padrão</a></li>
+        <li><a href="/adm/adm">ADM</a></li>
+      </ul>
+    </li>
+    <li><a href="/logout">Sair</a></li>
+  </ul>
+</nav>
+        
+        </body>
+</html>

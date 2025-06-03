@@ -27,6 +27,14 @@ dotenv.config();
 //     }
 // }
 
+const {
+  verificarUsuAutenticado,
+  limparSessao,
+  gravarUsuAutenticado,
+  verificarUsuAutorizado,
+} = require("../models/autenticador_middleware");
+
+
 
 router.get('/', function(req, res) {
     res.render('pages/index');
