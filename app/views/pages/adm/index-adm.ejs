@@ -16,6 +16,7 @@
         <h2 id="title">Usuários Ativos</h2>
 <table class="table">
     <tr>
+        <th>ID</th>
         <th>Nome</th>
         <th>E-mail</th>
         <th>Telefone</th>
@@ -25,6 +26,7 @@
     <% if (usuarios && usuarios.length > 0) { %>
         <% usuarios.forEach(usuario => { %>
             <tr>
+                <td><%= usuario.id_usuario %></td>
                 <td><%= usuario.nome_usuario %></td>
                 <td><%= usuario.email_usuario %></td>
                 <td><%= usuario.telefone_usuario || 'Não informado' %></td>

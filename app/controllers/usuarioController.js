@@ -3,6 +3,8 @@ const escolaModel = require("../models/usuarioModel");
 const moment = require("moment");
 const { body, validationResult } = require("express-validator");
 const { validarTelefone } = require("../helpers/validacoes");
+const bcrypt = require("bcryptjs");
+var salt = bcrypt.genSaltSync(12);
 
 const usuarioController = {
 
@@ -41,7 +43,7 @@ const usuarioController = {
                 name: req.body.name,
                 email: req.body.email,
                 cellphone: req.body.cellphone,
-                password: req.body.password
+                password: bcrypt.hashSync(req.body.password, salt)
             };
             console.log("Dados enviados para o banco:", dados);
             let resultado = await usuarioModel.create(dados);

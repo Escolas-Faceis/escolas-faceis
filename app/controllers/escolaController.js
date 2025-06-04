@@ -2,7 +2,8 @@ const escolaModel = require("../models/escolaModel");
 const moment = require("moment");
 const { body, validationResult } = require("express-validator");
 const { validarCNPJ } = require("../helpers/validacoes");
-
+const bcrypt = require("bcryptjs");
+var salt = bcrypt.genSaltSync(12);
 
 const escolaController = {
     regrasValidacaoEscola: [
@@ -49,7 +50,7 @@ const escolaController = {
             const dados = {
                 'name_school': req.body.name_school,
                 'email': req.body.email,
-                'password': req.body.password,
+                'password': bcrypt.hashSync(req.body.password, salt),
                 'cep': req.body.cep,
                 'numero': req.body.adress_n,
                 'cnpj': req.body.cnpj

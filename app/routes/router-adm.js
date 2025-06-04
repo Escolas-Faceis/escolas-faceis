@@ -6,9 +6,14 @@ router.get("/", (req, res)=>{
     res.render("pages/index-adm", { usuarios });
 });
 
-router.get("/adm-novo", (req, res)=>{
+router.get("/novo", (req, res)=>{
     res.render("pages/adm-usuario-novo");
 });
+
+router.get("/list", (req, res)=>{
+    res.render("pages/adm-list");
+});
+
 
 
 module.exports = router;
