@@ -16,115 +16,109 @@
 }
 
     .short-prof{
-        margin: 2% auto ;
+        margin: 2% auto;
         width: 65%;
-        padding: 1% 5%;
+        padding: 1.5% 4%;
         position: relative;
-        display: flex; 
-        border: 1px solid gray;
-        border-radius: 15px;
-        background-color: inherit;
-        z-index: 0; 
+        display: flex;
+        border: 1.5px solid #e0e4ef;
+        border-radius: 18px;
+        background-color: var(--fundo);
+        box-shadow: 0 4px 18px rgba(20,28,68,0.09);
+        z-index: 0;
+        transition: box-shadow 0.2s, border 0.2s;
 
     }
     
     .logo{
         overflow: hidden;
         object-fit: cover;
-        position: static;
-        width: 180px;
-        border-radius: 15px;
-        margin-left: -18%;
-        margin-top: 10%;
+        width: 150px;
+        height: 150px;
+        border-radius: 14px;
+        margin-left: -10%;
+        margin-top: 6%;
+
+        border: 1px solid #e0e4ef;
+        background: #fff;
     }
     
     .info{
         margin-top: 1%;
-        flex: 1; /* Permite que a seção de informações ocupe o espaço restante */
-        padding-left: 8px; /* Adiciona espaço à esquerda da imagem */
+        flex: 1;
+        padding-left: 16px;
         font-family: "Poppins", sans-serif;
-        color:var(--letra);
-        font-size: 16px;;
+        color: var(--letra);
+        font-size: 16px;
     }
     
     .nome-escola{
         font-size: 22px;
-        padding: 5px;
+        padding: 5px 0 8px 0;
+        font-weight: 700;
+        color: var(--letra);
     }
+
     .niveis{
-        display: flex; /* Usar flexbox para organizar os elementos em linha */
-        flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se necessário */
-        gap: 10px; /* Adiciona espaço entre os itens */
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 4px;
     }
     
     .escolaridade{
-        border: 1px solid #141c44;
-        border-radius: 20px;
+
+        border-radius: 18px;
         display: inline-block;
-        padding: 2px 7px;
+        padding: 3px 12px;
         font-weight: 600;
         font-size: 14px;
-        cursor: default ;
+        background: #f5f7fa;
+        color: #141c44;
+        cursor: default;
+        box-shadow: 0 1px 4px rgba(20,28,68,0.04);
     }
-    .EM{
-        background-color: #00b4b4;
-    }
-    .TEC{
-        background-color: #15c724;
-    }
-    
-    .EI{
-        background-color:  #ff7184;
-    }
-    
-    .EFI{
-        background-color: #a765e6;
-    }
-    .EFII{
-        background-color: #22ddb5;
-    }
-    
-    .TEC{
-        background-color: #15c724;
-    }
+    .EM { background-color: #00b4b4; color: #fff; }
+    .TEC { background-color: #15c724; color: #fff; }
+    .EI { background-color: #ff7184; color: #fff; }
+    .EFI { background-color: #a765e6; color: #fff; }
+    .EFII { background-color: #22ddb5; color: #fff; }
+    .CSO { background-color: mediumslateblue; color: #fff; }
 
-    .CSO{
-        background-color: mediumslateblue;
-    }
-    
     .inf{
-        margin:2%
+        margin: 2% 0 0 0;
+        color: var(--letra);
+        font-size: 1rem;
     }
     
     .ingresso{
         color: #ffbc3e;
         font-weight: 500;
-        margin: 2%;
+        margin: 2% 0 0 0;
+        cursor: pointer;
+        transition: text-decoration 0.2s;
     }
     .ingresso:hover{
         text-decoration: underline;
-        cursor: pointer;
     }
     .buttao {
-    
-        float:inline-end;
-        position: static;
-        color: #ffffff;
-        background-color: #f56d44;
-        border-radius: 5px;
+        margin-top: 18px;
+        padding: 0.6rem 1.5rem;
+        font-size: 1.08rem;
+        font-weight: 700;
+        color: #fff;
+        background: #f56d44;
         border: none;
-        font-size: 19px;
-        font-weight: 600;
-        transition: all 0.3s;
-        padding: 0.4rem;
-      }
-      .buttao:hover{
-        border-color: #b33f1c;
-        font-size: 19px;
-        color: white;
-        background-color: #c13d15;
-      }
-      
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(245,109,68,0.10);
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .buttao:hover {
+        background: #c13d15;
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(245,109,68,0.18);
+    }
 
 @media screen and (max-width: 1000px) {
     

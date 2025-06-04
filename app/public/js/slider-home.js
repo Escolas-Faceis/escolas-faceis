@@ -45,3 +45,4 @@ indicators.forEach((indicator, index) => {
 });
 
 updateCarousel();
+

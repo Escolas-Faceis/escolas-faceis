@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="/imagem/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encontre Escolas - Home</title>
     <link rel="stylesheet" href="css/index.css">
@@ -39,11 +40,11 @@
         </ul>
         <button class="prev b">❮</button>
         <button class="next b">❯</button>
-        <div class="indicators">
+        <section class="indicators">
             <span class="indicator"></span>
             <span class="indicator"></span>
             <span class="indicator"></span>
-        </div>
+        </section>
     </section>
 
     <section class="buscaN">
@@ -58,12 +59,110 @@
         </ul>
     </section>
 
+        <section class="carrossel-escolas">
+        <h2 class="title">Escolas em destaque</h2>
+        <section class="carrossel-container">
+            <button class="carrossel-btn prev" onclick="moverCarrossel(-1)">❮</button>
+            <section class="carrossel-lista" id="carrosselLista">
+                <section class="escola-card">
+                    <img src="imagem/escola-padrao.png" alt="Escola Alpha">
+                    <h3>Escola Ábaco</h3>
+                    <p>Ensino Fundamental e Médio • 4.8 ★</p>
+                </section>
+                <section class="escola-card">
+                    <img src="imagem/escola-padrao.png" alt="Colégio Beta">
+                    <h3>Colégio Objetivo</h3>
+                    <p>Educação Infantil e Fundamental • 4.7 ★</p>
+                </section>
+                <section class="escola-card">
+                    <img src="imagem/escola-padrao.png" alt="Instituto Gama">
+                    <h3>Instituto Gama</h3>
+                    <p>Técnico e Médio • 4.9 ★</p>
+                </section>
+                <section class="escola-card">
+                    <img src="imagem/escola-padrao.png" alt="Escola Delta">
+                    <h3>Escola Canarinho</h3>
+                    <p>Ensino Fundamental II • 4.6 ★</p>
+                </section>
+                                <section class="escola-card">
+                    <img src="imagem/escola-padrao.png" alt="Escola Alpha">
+                    <h3>Escola Ábaco</h3>
+                    <p>Ensino Fundamental e Médio • 4.8 ★</p>
+                </section>
+                <section class="escola-card">
+                    <img src="imagem/escola-padrao.png" alt="Colégio Beta">
+                    <h3>Colégio Objetivo</h3>
+                    <p>Educação Infantil e Fundamental • 4.7 ★</p>
+                </section>
+                <section class="escola-card">
+                    <img src="imagem/escola-padrao.png" alt="Instituto Gama">
+                    <h3>Instituto Gama</h3>
+                    <p>Técnico e Médio • 4.9 ★</p>
+                </section>
+                <section class="escola-card">
+                    <img src="imagem/escola-padrao.png" alt="Escola Delta">
+                    <h3>Escola Canarinho</h3>
+                    <p>Ensino Fundamental II • 4.6 ★</p>
+                </section>
+                <!-- Adicione mais cards conforme desejar -->
+            </section>
+            <button class="carrossel-btn next" onclick="moverCarrossel(1)">❯</button>
+        </section>
+    </section>
+
+    <section class="cta-dupla">
+        <section class="cta-coluna">
+            <h3>É responsável, aluno ou familiar?</h3>
+            <p>Cadastre-se gratuitamente para avaliar escolas, deixar comentários e ajudar outras famílias a escolherem melhor!</p>
+            <a href="/cadastro-usuario" class="cta-btn usuario">Quero me cadastrar como usuário</a>
+        </section>
+        <section class="cta-coluna">
+            <h3>É uma escola?</h3>
+            <p>Cadastre sua escola para aparecer nas buscas, receber avaliações, destacar seus diferenciais e atrair mais alunos!</p>
+            <a href="/cadastro-escola" class="cta-btn escola">Quero cadastrar minha escola</a>
+        </section>
+    </section>
+
+
+
 
     <%- include('../partials/footer'); %>
 
     <script src="js/slider-home.js"></script>
 
+<script>
+const lista = document.getElementById('carrosselLista');
+const cards = lista.querySelectorAll('.escola-card');
+const cardWidth = cards[0].offsetWidth + 24; // 24px gap
+let posicao = 0;
+let autoInterval;
 
+// Função para mover o carrossel
+function moverCarrossel(direcao = 1) {
+    posicao += direcao;
+    if (posicao < 0) {
+        posicao = cards.length - 1;
+    } else if (posicao >= cards.length) {
+        posicao = 0;
+    }
+    lista.scrollTo({ left: posicao * cardWidth, behavior: 'smooth' });
+}
+
+// Passa automaticamente a cada 3 segundos
+function iniciarAutoCarrossel() {
+    autoInterval = setInterval(() => moverCarrossel(1), 3000);
+}
+
+// Para o auto quando mouse está sobre o carrossel
+lista.addEventListener('mouseenter', () => clearInterval(autoInterval));
+lista.addEventListener('mouseleave', iniciarAutoCarrossel);
+
+// Inicia o carrossel automático ao carregar
+window.addEventListener('DOMContentLoaded', () => {
+    lista.scrollLeft = 0;
+    iniciarAutoCarrossel();
+});
+</script>
 
 </body>
 

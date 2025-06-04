@@ -1,5 +1,30 @@
 
+:root {
+  --laranja: #f56d44;
+  --fundo: #ffffff;
+  --letras: #000000;
+  --azulbase: #141c44;
+  --azulsec: #77b6ea;
+  --amarelo: #ffbc3e;
+  --toggle-theme: #ffbc3e;
+}
 
+.tema-claro {
+  --laranja: #ff5c2a;
+  --fundo: #f5f5f5;
+  --azulbase: #141c44;
+  --azulsec: #77b6ea;
+  --amarelo: #ffbc3e;
+  --letras: #02030a;
+  transition: all 0.2s ease-in;
+}
+
+.tema-escuro {
+  --letras: #f5f5f5;
+  --fundo: #030303;
+  transition: all 0.2s ease-in;
+    --toggle-theme: white;
+}
 /* TEXTO DE CIMA, IMAGEM E BOTAO */
 #top_part_space {
     #top_part {
@@ -73,7 +98,7 @@ nav {
 #form, #form2 {
     border: solid;
     border-radius: 20px;
-    border-color: var(--azul_claro);
+    border-color: var(--azulsec);
     padding: 15px;
     margin-bottom: 10%;
     display: flex;
@@ -99,7 +124,8 @@ input[type="password"] {
     margin: 6px;
     font-size: 17px;
     padding: 0 8px;
-    border: solid var(--azul);
+    border: solid rgb(167, 167, 167) 2px;
+    
 }
 
 
@@ -115,7 +141,7 @@ select {
     margin: 4px;
     font-size: 17px;
     padding: 0 8px;
-    border: solid var(--azul);
+    border: solid rgb(167, 167, 167) 2px;
     background-color: white;
 }
 
@@ -207,9 +233,9 @@ label {
 
 #criar_conta {
     background-color: white;
-    border: solid var(--azul_claro);
+    border: solid var(--azulsec);
     border-radius: 30px;
-    color: var(--azul_claro);
+    color: var(--azulsec);
     width: 250px;
     height: 70px;
     font-size: 25px;
@@ -218,7 +244,7 @@ label {
 }
 
 #criar_conta:hover {
-    background-color: var(--azul_claro);
+    background-color: var(--azulsec);
     color: white;
     cursor: pointer;
 }
@@ -239,7 +265,7 @@ label {
 
 #login_button {
     transition: all 0.3s;
-    background-color: var(--azul_claro);
+    background-color: var(--azulsec);
     border: none;
     border-radius: 30px;
     color: white;
@@ -256,7 +282,7 @@ label {
 }
 
 #login_button:hover {
-    background-color: #3d8fd2;
+    background-color: #489ce0;
     color: white;
     cursor: pointer;
 }
@@ -276,7 +302,7 @@ label {
 }
 
 #texto_lateral img {
-    width: 200%;
+    width: 400px;
     margin-top: 10%;
     margin-left: 10%;
 }
@@ -298,7 +324,7 @@ label {
     margin: 4px;
     font-size: 27px;
     padding: 0 8px;
-    border: solid var(--azul_claro);
+    border: solid var(--azulsec);
 }
 
 #mensagem_contato {

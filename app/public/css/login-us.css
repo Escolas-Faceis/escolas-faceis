@@ -27,7 +27,7 @@ nav {
 }
 
 #form {
-    border: solid;
+    border: 1px solid;
     border-radius: 20px;
     border-color: var(--azul_claro);
     padding: 15px;
@@ -46,7 +46,7 @@ input[type="password"] {
     margin: 6px;
     font-size: 17px;
     padding: 0 8px;
-    border: solid var(--azul);
+    border: solid rgb(167, 167, 167) 2px;
 }
 
 #email, #senha{
@@ -90,7 +90,7 @@ h3 {
 #login_button {
     transition: all 0.3s;
     background-color: var(--azul_claro);
-    border: solid var(--azul_claro);
+    border: 1px solid var(--azul_claro);
     border-radius: 30px;
     color: white;
     width: 250px;

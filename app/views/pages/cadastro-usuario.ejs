@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/cadastro-usuario.css">
+    <link rel="icon" type="image/png" href="/imagem/favicon.png">
     <title> Cadastro </title>
 </head>
 
@@ -67,14 +68,7 @@
                 <p>Confirmação de Senha</p>
                 <input type="password" id="reppassword" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
                 <span class="spanerro"><%=msgErro.reppassword%></span>
-                <div>
-                <input type="checkbox" id="politica">
-                <label for="politica">Concordo com a política de privacidade</label>
-                <p></p>
-                <input type="checkbox" id="novidades">
-                <label for="novidades">Desejo receber as novidades por e-mail</label>
-                <p>
-                </div>
+
             
             <section id="login2">
             <a href="/perfil-usuario"><input type="submit" id="login_button" value="CRIAR CONTA" /></a>
