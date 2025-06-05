@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const admController = require("../controllers/admController");
 
-router.get("/", (req, res)=>{
-    console.log(usuarios)
-    res.render("pages/index-adm", { usuarios });
-});
+// Use o controller para buscar usuários e escolas
+router.get("/", admController.listarUsuarios, admController.listarEscolas, );
 
 router.get("/novo", (req, res)=>{
     res.render("pages/adm-usuario-novo");
@@ -14,6 +13,8 @@ router.get("/list", (req, res)=>{
     res.render("pages/adm-list");
 });
 
-
+router.get("/escolas", (req, res)=>{
+    res.render("pages/adm-list-escolas");
+});
 
 module.exports = router;

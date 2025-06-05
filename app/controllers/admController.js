@@ -40,14 +40,29 @@ const admController = {
         }
     },
 
-    listarUsuarios: async (req, res) => {
+    listarUsuarios: async (req, res, next) => {
         try {
             const usuarios = await admModel.findAll();
-            console.log("USUÁRIOS DO BANCO:", usuarios);
-            res.render('pages/adm/index-adm', { usuarios });
+            req.usuarios = usuarios;
+            next();
         } catch (error) {
-            console.log(error);
-            res.render('pages/adm/index-adm', { usuarios: [] });
+            req.usuarios = [];
+            next();
+        }
+    },
+
+    listarEscolas: async (req, res) => {
+        try {
+            const escolas = await admModel.findAllSchools();
+            res.render('pages/adm/index-adm', {
+                usuarios: req.usuarios || [],
+                escolas: escolas || []
+            });
+        } catch (error) {
+            res.render('pages/adm/index-adm', {
+                usuarios: req.usuarios || [],
+                escolas: []
+            });
         }
     },
 

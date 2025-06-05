@@ -44,6 +44,38 @@
 
 </table></section>
 
+<section class="container body-content">
+        <h2 id="title">Escolas Ativas</h2>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>CNPJ</th>
+        <th>CEP</th>
+        <th>Número</th>
+        <th>Status</th>
+    </tr>
+    <% if (escolas && escolas.length > 0) { %>
+        <% escolas.forEach(escola => { %>
+            <tr>
+                <td><%= escola.id_usuario %></td>
+                <td><%= escola.nome_usuario %></td>
+                <td><%= escola.email_usuario %></td>
+                <td><%= escola.cnpj || 'Não informado' %></td>
+                <td><%= escola.cep || 'Não informado' %></td>
+                <td><%= escola.numero || 'Não informado' %></td>
+                <td><%= escola.status_usuario === 1 ? 'Ativo ✅' : 'Inativo ❌' %></td>
+            </tr>
+        <% }); %>
+    <% } else { %>
+        <tr>
+            <td colspan="5">Nenhum usuário encontrado.</td>
+        </tr>
+    <% } %>
+
+</table></section>
+
         <%- include('../../partials/footer'); %>   
         </body>
 </html>

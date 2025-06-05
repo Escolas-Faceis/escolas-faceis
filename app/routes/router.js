@@ -92,7 +92,7 @@ router.get('/navbar', function(req, res) {
     res.render('partials/navbar');
 });
 
-router.get('/adm', admController.listarUsuarios);
+router.get('/adm', admController.listarUsuarios, admController.listarEscolas);
 
 
 router.post(

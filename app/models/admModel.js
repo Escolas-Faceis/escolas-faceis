@@ -11,6 +11,21 @@ const admModel = {
         }
     },
 
+    findAllSchools: async () => {
+        try {
+            const [results] = await pool.query(`
+                SELECT u.*, e.cnpj, e.cep, e.numero
+                FROM usuarios u
+                JOIN escolas e ON u.id_usuario = e.id_usuario
+                WHERE u.status_usuario = 1 AND u.tipo_usuario = 'Escola'
+            `);  
+            return results;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+
     create: async (dados) => {
         try {
             const [resultados, estrutura] = await pool.query(
@@ -22,6 +37,18 @@ const admModel = {
         } catch (erro) {
             console.log(erro);
             return false;
+        }
+    },
+
+    findAllSchoolsData: async () => {
+        try {
+            const [escolas] = await pool.query(
+                "SELECT id_usuario, nome_usuario, email_usuario, cnpj, tipo_usuario, status_usuario FROM escolas"
+            );
+            return escolas;
+        } catch (error) {
+            console.log(error);
+            return [];
         }
     }
 }
