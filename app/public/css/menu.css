@@ -411,19 +411,46 @@
     top: 0;
     right: 0;
     background: var(--toggle-theme);
+    width: 30px;
+    height: 30px;
   }
 
   .sun {
   background-repeat: no-repeat;
-  background-size: 65%;
+  background-size: 45%;
   background-position: center;
   /* ...existing code... */
 }
 
 .moon {
   background-repeat: no-repeat;
-  background-size: 65%;
+  background-size: 45%;
   background-position: center;
   /* ...existing code... */
 }
+}
+
+
+@media screen and (max-width: 500px) {
+  .navbar #logo {
+    width: 100px;
+    margin-left: 60%;
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 0;
+    left: 0;
+    position: relative;
+  }
+
+  #menu li,
+  .master,
+  .navbar button,
+  #menu button {
+    font-size: 12px;
+  }
+
+  #menu {
+    font-size: 12px;
+    padding: 60px 6px 10px 6px;
+  }
 }
