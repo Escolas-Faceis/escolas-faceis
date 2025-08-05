@@ -17,29 +17,59 @@ limparSessao = (req, res, next) => {
     next()
 }
 
+// gravarUsuAutenticado = async (req, res, next) => {
+//     var autenticado =  { autenticado: null, id: null, tipo: null };
+//     erros = validationResult(req)
+//     if (erros.isEmpty()) {
+//         var dadosForm = {
+//             email_usuario: req.body.email,
+//             senha_usuario: req.body.password,
+//         };
+//         var results = await usuario.findUserEmail(dadosForm);
+//         var total = Object.keys(results).length;
+//         if (total == 1) {
+//             if (bcrypt.compareSync(dadosForm.senha_usuario, results[0].senha_usuario)) {
+//                 var autenticado = {
+//                     autenticado: results[0].email_usuario,
+//                     id: results[0].id_usuario,
+//                     tipo: results[0].tipo_usuario
+//                 };
+//             }
+//         } 
+//     } 
+//     req.session.autenticado = autenticado;
+//     next();
+// }
+
 gravarUsuAutenticado = async (req, res, next) => {
-    var autenticado =  { autenticado: null, id: null, tipo: null };
     erros = validationResult(req)
     if (erros.isEmpty()) {
         var dadosForm = {
-            email_usuario: req.body.email,
-            senha_usuario: req.body.password,
+            user_usuario: req.body.nome_usu,
+            senha_usuario: req.body.senha_usu,
         };
         var results = await usuario.findUserEmail(dadosForm);
         var total = Object.keys(results).length;
         if (total == 1) {
             if (bcrypt.compareSync(dadosForm.senha_usuario, results[0].senha_usuario)) {
                 var autenticado = {
-                    autenticado: results[0].email_usuario,
+                    autenticado: results[0].nome_usuario,
                     id: results[0].id_usuario,
                     tipo: results[0].tipo_usuario
                 };
+            } else {
+                var autenticado = null;
             }
-        } 
-    } 
+        } else {
+            var autenticado = null;
+        }
+    } else {
+        var autenticado = null;
+    }
     req.session.autenticado = autenticado;
     next();
 }
+
 
 verificarUsuAutorizado = (tipoPermitido, destinoFalha) => {
     return (req, res, next) => {

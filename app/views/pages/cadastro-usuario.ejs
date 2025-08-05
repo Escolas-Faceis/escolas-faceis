@@ -8,39 +8,81 @@
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/cadastro-usuario.css">
     <link rel="icon" type="image/png" href="/imagem/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <title> Cadastro </title>
+    <script>
+        function notify(title, text, type, position, timeout = 5000) {
+            new Notify({
+                status: type,
+                title: title,
+                text: text,
+                effect: 'fade',
+                speed: 500,
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: timeout,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: position
+            });
+        }
+    </script>
 </head>
 
 <body>
     <%
-    
+    let  msgErro = "";
     let  erroValidacao =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
-    let  msgErro =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
+    let  avisoErro =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
     if(erros) {
         erros.errors.forEach(function(erro) {
             if (erro.path == "name") {
                 erroValidacao.name = "erro",
-                msgErro.name = erro.msg
+                avisoErro.name = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
             }
             if (erro.path == "email") {
                 erroValidacao.email = "erro",
-                msgErro.email = erro.msg
+                avisoErro.email = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
             }
             if (erro.path == "password") {
                 erroValidacao.password = "erro",
-                msgErro.password = erro.msg
+                avisoErro.password = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
             }
             if (erro.path == "reppassword") {
                 erroValidacao.reppassword = "erro",
-                msgErro.reppassword = erro.msg
+                avisoErro.reppassword = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
             }
             if (erro.path == "cellphone") {
                 erroValidacao.cellphone = "erro",
-                msgErro.cellphone = erro.msg
+                avisoErro.cellphone = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
             }
         })
-    }; %>
-
+       if(msgErro != ""){
+        %>
+        <script>
+                let msgErro ="<%= msgErro %>"
+                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"),
+                 "error", "center", 5000)                        
+            </script>
+        <%
+        }
+    }
+    if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+                if("<%= dadosNotificacao.tipo %>" == "success"){
+                    setTimeout(function(){window.location="/sair"}, 3000)
+                }                        
+        </script>
+    <% } %>
     <%- include('../partials/navbar'); %>
 
     <section id="centralizar">
@@ -50,28 +92,28 @@
             <form action="/registro_post" method="POST">
 
                 <p>Nome</p>
-                <input type="text" name="name" id="name" value="<%= valores.name %>" class="<%= erroValidacao.name%>">
+                <input type="text" name="name" id="name" value="<%= valores.name %>" class="<%= erroValidacao.name%>  erroValidacao">
                 <span class="spanerro"><%=msgErro.name%></span>
 
                 <p>Email</p>
-                <input type="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
+                <input type="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>  erroValidacao">
                 <span class="spanerro"><%=msgErro.email%></span>
 
                 <p>Número de Telefone</p>
-                <input type="text" name="cellphone" id="cellphone" value="<%= valores.cellphone %>"maxlenght="15" class="<%= erroValidacao.cellphone%>">
+                <input type="text" name="cellphone" id="cellphone" value="<%= valores.cellphone %>"maxlenght="15" class="<%= erroValidacao.cellphone%>  erroValidacao" >
                 <span class="spanerro"><%=msgErro.cellphone%></span>
 
                 <p>Senha</p>
-                <input type="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
+                <input type="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>  erroValidacao">
                 <span class="spanerro"><%=msgErro.password%></span>
 
                 <p>Confirmação de Senha</p>
-                <input type="password" id="reppassword" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
+                <input type="password" id="reppassword" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>  erroValidacao">
                 <span class="spanerro"><%=msgErro.reppassword%></span>
 
             
             <section id="login2">
-            <a href="/perfil-usuario"><input type="submit" id="login_button" value="CRIAR CONTA" /></a>
+                <input type="submit" id="login_button" value="CRIAR CONTA" />
             </section>
 
             </form>

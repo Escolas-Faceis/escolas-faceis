@@ -40,7 +40,7 @@ router.get('/', function(req, res) {
     res.render('pages/index');
 });
 router.get('/cadastro-escola', function(req, res) {
-    res.render('pages/cadastro-escola',  { "erros": null, "valores": {"name_school":"","adress":"","adress_n":"", "city":"","state":"", "email":"","password":"","reppassword":""},"retorno":null });
+    res.render('pages/cadastro-escola',  { "erros": null, dadosNotificacao: null, "valores": {"name_school":"","adress":"","adress_n":"", "city":"","state":"", "email":"","password":"","reppassword":""},"retorno":null });
 });
 router.get('/encontre-escolas', function(req, res) {
     res.render('pages/encontre-escolas');
@@ -49,7 +49,7 @@ router.get('/contato', function(req, res) {
     res.render('pages/contato');
 });
 router.get('/cadastro-usuario', function(req, res) {
-    res.render('pages/cadastro-usuario', { "erros": null, "valores": {"name":"","email":"","password":"", "reppassword":"","cellphone":""},"retorno":null });
+    res.render('pages/cadastro-usuario', { "erros": null, dadosNotificacao: null,"valores": {"name":"","email":"","password":"", "reppassword":"","cellphone":""},"retorno":null });
 });
 router.get('/perfil-escola', function(req, res) {
     res.render('pages/perfil-escola');

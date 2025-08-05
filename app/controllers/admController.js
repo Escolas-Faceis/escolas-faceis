@@ -66,6 +66,8 @@ const admController = {
         }
     },
 
+    
+
 }
 
 module.exports = admController;
