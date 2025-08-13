@@ -94,6 +94,18 @@ router.get('/navbar', function(req, res) {
 
 router.get('/adm', admController.listarUsuarios, admController.listarEscolas);
 
+router.get('/ativacao-de-conta', function(req, res) {
+    res.render('pages/ativacao');
+});
+ 
+router.get('/redefinir-senha', function(req, res) {
+    res.render('pages/redefinicao-senha');
+});
+ 
+router.get('/redefinir-senha-st2', function(req, res) {
+    res.render('pages/redefinir');
+});
+
 
 router.post(
     "/login_post", loginController.regrasValidacaoLogin, loginController.login);
