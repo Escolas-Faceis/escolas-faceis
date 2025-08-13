@@ -1,25 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/vizu.css">
+    <link rel="stylesheet" href="css/redefinir.css">
     <title> Encontre Escolas! </title>
 </head>
-
+ 
 <body>
     <%- include('../partials/navbar'); %>
-
-
+ 
+    <section class="center">
         <section class="box">
-            <h1 class="titulo"> Digite o código de verificação</h1>
-            <article class="text"> </article>
-            
+            <section>
+            <label for="senha" class="titulo">Nova senha</label> <br><input type="password" name="senha" id="senha" class="inp">
+            <article class="text">
+               
+            </article>
+            <label for="csenha" class="titulo">Confirmar nova senha</label> <br><input type="password" name="csenha" id="csenha" class="inp">
+            <br><button type="submit" name="submit" id="submit">Alterar</button>
+            </section>
         </section>
-    
-
+        <figure><img src="imagem/login-amico.png" id="decor" alt="Decorativo"></figure>
+    </section>
+ 
 </body>
 <%- include('../partials/footer'); %>
 </html>
+ 
+<!DOCTYPE html>
+<html lang="pt-br">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/vizu.css">
+    <link rel="stylesheet" href="css/redefinir.css">
+    <title> Encontre Escolas! </title>
+</head>
+ 
+<body>
+    <%- include('../partials/navbar'); %>
+ 
+    <section class="center">
+        <section class="box">
+            <section>
+            <label for="senha" class="titulo">Nova senha</label> <br><input type="password" name="senha" id="senha" class="inp">
+            <article class="text">
+               
+            </article>
+            <label for="csenha" class="titulo">Confirmar nova senha</label> <br><input type="password" name="csenha" id="csenha" class="inp">
+            <br><button type="submit" name="submit" id="submit">Alterar</button>
+            </section>
+        </section>
+        <figure><img src="imagem/login-amico.png" id="decor" alt="Decorativo"></figure>
+    </section>
+ 
+</body>
+<%- include('../partials/footer'); %>
+</html>
+ 
