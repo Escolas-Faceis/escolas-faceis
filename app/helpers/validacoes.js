@@ -80,4 +80,49 @@ function validarCNPJ(cnpj) {
     
 }
 
-module.exports = {validarTelefone, validarCNPJ}
+
+async function validarCep() {
+    // const inputCep = document.querySelector("#cep");
+    // const msgAviso = document.querySelector("#msgAviso");
+    // const dadosCepUnitario = document.getElementById("dadosCepUnitario");
+
+    // // Limpa mensagens anteriores
+    // msgAviso.innerHTML = "";
+    // dadosCepUnitario.innerHTML = "";
+
+    const cepValue = inputCep.value.replace("-", "").replace(" ", "");
+
+    try {
+        const urlViaCEP = `https://viacep.com.br/ws/${cepValue}/json/`;
+        let response = await fetch(urlViaCEP);
+        let json = await response.json();
+
+        if (json.erro) {
+            msgAviso.innerHTML = `<p>O CEP ${cepValue} não é válido.</p>`;
+        } else {
+            dadosCepUnitario.innerHTML = `
+                <ul id="json-campos">
+                    <li><strong>CEP:</strong> ${json.cep}</li>
+                    <li><strong>Logradouro:</strong> ${json.logradouro}</li>
+                    <li><strong>Bairro:</strong> ${json.bairro}</li>
+                    <li><strong>Cidade:</strong> ${json.localidade}</li>
+                    <li><strong>UF:</strong> ${json.uf}</li>
+                </ul>`;
+        }
+    } catch (e) {
+        msgAviso.innerHTML = "<p>Erro ao buscar o CEP. Tente novamente.</p>";
+    }
+}
+
+// Exemplo de uso: botão com id="btnEnviaCep"
+// document.addEventListener("DOMContentLoaded", function() {
+//     const btnEnviaCep = document.querySelector("#btnEnviaCep");
+//     if (btnEnviaCep) {
+//         btnEnviaCep.addEventListener("click", function(e) {
+//             e.preventDefault();
+//             validarCep();
+//         });
+//     }
+// });
+
+module.exports = {validarTelefone, validarCNPJ, validarCep}

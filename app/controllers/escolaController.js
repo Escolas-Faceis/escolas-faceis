@@ -42,10 +42,15 @@ const escolaController = {
     ],
 
     cadastrarEscola: async (req, res) => {
-        try {
-            let erros = validationResult(req);
+
+        let erros = validationResult(req);
             if (!erros.isEmpty()) {
-                return res.render('pages/cadastro-escola', { "erros": erros, dadosNotificacao: null, "valores": req.body });
+                console.log(erros);
+                return res.render('pages/cadastro-escola', { 
+                    erros, 
+                    valores: req.body,
+                    dadosNotificacao: null
+                });
             }
             const dados = {
                 'name_school': req.body.name_school,
@@ -56,15 +61,15 @@ const escolaController = {
                 'cnpj': req.body.cnpj
             };
             console.log("Dados enviados para o banco:", dados);
-            let resultado = await escolaModel.create(dados);
-            if (resultado) {
-                return res.render('pages/index');
-            } else {
-                return res.render('pages/cadastro-escola', {
-                    "erros": { errors: [{ msg: "Erro ao cadastrar." }] },
-                    "valores": req.body
-                });
-            }
+           
+        try {
+
+            let create = escolaModel.create(dados);
+            res.render("pages/cadastro-escola", {
+                erros: null, dadosNotificacao: {
+                    titulo: "Cadastro realizado!", mensagem: "Nova escola criada com sucesso!", tipo: "success"
+                }, valores: req.body
+            })
 
 
 

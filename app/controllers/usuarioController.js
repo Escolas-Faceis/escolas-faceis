@@ -20,19 +20,31 @@ const usuarioController = {
                     throw new Error('Email em uso!');
                 }
             }),
-        body("cellphone")
+        body("cep")
             .custom(async value => {
                 if (!validarTelefone(value)) {
-                    throw new Error('Telefone inválido');
+                    throw new Error('Cep inválido');
                 }
 
-                const emailUsu = await usuarioModel.findCampoCustom({'cellphone': value});
+                const emailUsu = await usuarioModel.findCampoCustom({'cep': value});
                 if (emailUsu > 0) {
-                    throw new Error('Número de telefone em uso!');
+                    throw new Error('Número de Cep em uso!');
                 }
                 return true;
-            })
-            ,
+            }),
+                    body("cep")
+            .custom(async value => {
+                if (!validarCep(value)) {
+                    throw new Error('Cep inválido');
+                }
+
+                const cepUsu = await usuarioModel.findCampoCustom({'cep': value});
+                if (cepUsu > 0) {
+                    throw new Error('Número de Cep em uso!');
+                }
+                return true;
+            }),
+
         body("password")
             .isStrongPassword()
             .withMessage("Senha muito fraca!"),

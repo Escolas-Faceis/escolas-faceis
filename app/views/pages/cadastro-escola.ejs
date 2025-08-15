@@ -8,6 +8,8 @@
     <title>Cadastrar Escola</title>
     <link rel="icon" type="image/png" href="/imagem/favicon.png">
     <link rel="stylesheet" href="css/cadastro-escola.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <link rel="icon" type="image/png" href="/imagem/favicon.png">
     <script src="js/apiCEP.js"></script>
     <script>
@@ -43,6 +45,7 @@
 
 <body>
     <%
+        let  msgErro = "";
         let erroValidacao = {
             "name_school": "",
             "adress": "",
@@ -64,43 +67,42 @@
             "reppassword": "",
             cnpj: ""
         };
-        let msgErro = "";
         if (erros) {
             erros.errors.forEach(function (erro) {
                 if (erro.path == "name_school") {
                     avisoErro.name_school = "erro",
-                        msgErro.name_school += `* ${erro.msg} <br>`;
+                        msgErro += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "email") {
                     avisoErro.email = "erro",
-                        msgErro.email += `* ${erro.msg} <br>`;
+                        msgErro += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "password") {
                     avisoErro.password = "erro",
-                        msgErro.password += `* ${erro.msg} <br>`;
+                        msgErro += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "reppassword") {
                     avisoErro.reppassword = "erro",
-                        msgErro.reppassword += `* ${erro.msg} <br>`;
+                        msgErro += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "adress") {
                     avisoErro.adress = "erro",
-                        msgErro.adress += `* ${erro.msg} <br>`;
+                        msgErro += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "adress_n") {
                     avisoErro.adress_n = "erro",
-                        msgErro.adress_n += `* ${erro.msg} <br>`;
+                        msgErro += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "city") {
                     avisoErro.city = "erro",
-                        msgErro.city += `* ${erro.msg} <br>`;
+                        msgErro += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "cnpj") {
                     avisoErro.cnpj = "erro";
-                    msgErro.cnpj += `* ${erro.msg} <br>`;
+                    msgErro += `* ${erro.msg} <br>`;
                 }
-            })
-       if(msgErro != ""){
+            })  
+        if(msgErro != ""){
         %>
         <script>
                 let msgErro ="<%= msgErro %>"
@@ -160,7 +162,7 @@
                         <span class="spanerro"><%=msgErro.reppassword%></span>
 
                         <p id="cnpj">CNPJ</p>
-                        <input type="text" maxlength="18" id="cnpj_input" name="cnpj" placeholder="00.000.00/00000-00" value="<%= valores.cnpj %>" class="<%= erroValidacao.cnpj %>">
+                        <input type="text" maxlength="18" id="cnpj_input" name="cnpj" maxlength="18" placeholder="00.000.00/00000-00" value="<%= valores.cnpj %>" class="<%= erroValidacao.cnpj %>">
                         <span class="spanerro"><%= msgErro.cnpj %></span>
 
                         <section class="gonbackButtons">
@@ -175,7 +177,7 @@
                                 <section class="ob">
                                     <section class="cep">
                                         <p>CEP</p> <br>
-                                        <input type="text" id="cep" placeholder="00000-000" name="cep" value="<%= valores.cep %>" class="<%= erroValidacao.cep%>" onblur="pesquisacep(this.value);" onkeyup="mascaraCEP(event)">
+                                        <input type="text" id="cep" placeholder="00000-000" name="cep" maxlength="9" value="<%= valores.cep %>" class="<%= erroValidacao.cep%>" onblur="pesquisacep(this.value);" onkeyup="mascaraCEP(event)">
                                         <span class="spanerro"><%=msgErro.cep%></span>
                                     </section>
                                     <section class="complemento">
@@ -313,6 +315,7 @@
     <%- include('../partials/footer'); %>
     <script src="js/mascaras.js"></script>
     <script src="js/formMultiStep.js"></script>
+    <!-- <script src="js/validationButton.js"></script> -->
 </body>
 
 </html>
