@@ -107,6 +107,7 @@ router.get('/redefinir-senha-st2', function(req, res) {
 });
 
 
+
 router.post(
     "/login_post", loginController.regrasValidacaoLogin, loginController.login);
 
