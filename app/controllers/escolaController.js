@@ -45,7 +45,7 @@ const escolaController = {
         try {
             let erros = validationResult(req);
             if (!erros.isEmpty()) {
-                return res.render('pages/cadastro-escola', { "erros": erros, "valores": req.body });
+                return res.render('pages/cadastro-escola', { "erros": erros, dadosNotificacao: null, "valores": req.body });
             }
             const dados = {
                 'name_school': req.body.name_school,
@@ -65,6 +65,9 @@ const escolaController = {
                     "valores": req.body
                 });
             }
+
+
+
         } catch (error) {
             console.log(error);
             return res.render('pages/cadastro-escola', {

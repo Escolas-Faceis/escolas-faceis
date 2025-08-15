@@ -18,6 +18,27 @@
             })
         }
     </script>
+
+    <script>
+        function notify(title, text, type, position, timeout = 5000) {
+            new Notify({
+                status: type,
+                title: title,
+                text: text,
+                effect: 'fade',
+                speed: 500,
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: timeout,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: position
+            });
+        }
+    </script>
+
 </head>
 
 <body>
@@ -32,7 +53,8 @@
             "reppassword": "",
             cnpj: ""
         };
-        let msgErro = {
+        
+        let avisoErro= {
             "name_school": "",
             "adress": "",
             "adress_n": "",
@@ -42,43 +64,60 @@
             "reppassword": "",
             cnpj: ""
         };
+        let msgErro = "";
         if (erros) {
             erros.errors.forEach(function (erro) {
                 if (erro.path == "name_school") {
-                    erroValidacao.name_school = "erro",
-                        msgErro.name_school = erro.msg
+                    avisoErro.name_school = "erro",
+                        msgErro.name_school += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "email") {
-                    erroValidacao.email = "erro",
-                        msgErro.email = erro.msg
+                    avisoErro.email = "erro",
+                        msgErro.email += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "password") {
-                    erroValidacao.password = "erro",
-                        msgErro.password = erro.msg
+                    avisoErro.password = "erro",
+                        msgErro.password += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "reppassword") {
-                    erroValidacao.reppassword = "erro",
-                        msgErro.reppassword = erro.msg
+                    avisoErro.reppassword = "erro",
+                        msgErro.reppassword += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "adress") {
-                    erroValidacao.adress = "erro",
-                        msgErro.adress = erro.msg
+                    avisoErro.adress = "erro",
+                        msgErro.adress += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "adress_n") {
-                    erroValidacao.adress_n = "erro",
-                        msgErro.adress_n = erro.msg
+                    avisoErro.adress_n = "erro",
+                        msgErro.adress_n += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "city") {
-                    erroValidacao.city = "erro",
-                        msgErro.city = erro.msg
+                    avisoErro.city = "erro",
+                        msgErro.city += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "cnpj") {
-                    erroValidacao.cnpj = "erro";
-                    msgErro.cnpj = erro.msg;
+                    avisoErro.cnpj = "erro";
+                    msgErro.cnpj += `* ${erro.msg} <br>`;
                 }
             })
-        };
-    %>
+       if(msgErro != ""){
+        %>
+        <script>
+                let msgErro ="<%= msgErro %>"
+                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"),
+                 "error", "center", 5000)                        
+            </script>
+        <%
+        }
+    }
+    if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+                if("<%= dadosNotificacao.tipo %>" == "success"){
+                    setTimeout(function(){window.location="/sair"}, 3000)
+                }                        
+        </script>
+    <% } %>
 
     <%- include('../partials/navbar'); %>
 

@@ -92,23 +92,23 @@
             <form action="/registro_post" method="POST">
 
                 <p>Nome</p>
-                <input type="text" name="name" id="name" value="<%= valores.name %>" class="<%= erroValidacao.name%>  erroValidacao">
+                <input type="text" name="name" id="name" value="<%= valores.name %>" class="<%= erroValidacao.name%>">
                 <span class="spanerro"><%=msgErro.name%></span>
 
                 <p>Email</p>
-                <input type="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>  erroValidacao">
+                <input type="email" name="email" id="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
                 <span class="spanerro"><%=msgErro.email%></span>
 
                 <p>Número de Telefone</p>
-                <input type="text" name="cellphone" id="cellphone" value="<%= valores.cellphone %>"maxlenght="15" class="<%= erroValidacao.cellphone%>  erroValidacao" >
+                <input type="text" name="cellphone" id="cellphone" value="<%= valores.cellphone %>"maxlenght="15" class="<%= erroValidacao.cellphone%>" >
                 <span class="spanerro"><%=msgErro.cellphone%></span>
 
                 <p>Senha</p>
-                <input type="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>  erroValidacao">
+                <input type="password" name="password" id="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
                 <span class="spanerro"><%=msgErro.password%></span>
 
                 <p>Confirmação de Senha</p>
-                <input type="password" id="reppassword" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>  erroValidacao">
+                <input type="password" id="reppassword" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
                 <span class="spanerro"><%=msgErro.reppassword%></span>
 
             

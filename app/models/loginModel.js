@@ -34,3 +34,5 @@ const loginModel = {
 
 
 };
+
+module.exports = loginModel;
