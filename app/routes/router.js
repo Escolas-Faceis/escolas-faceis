@@ -9,24 +9,6 @@ const loginController = require("../controllers/loginController");
 const admController = require("../controllers/admController");
 dotenv.config();
 
-// module.exports = function () {
-//     try {
-//         let conexao = mysql.createConnection({
-//             host: process.env.HOST,
-//             user: process.env.USER,
-//             password: process.env.PASSWORDITB,
-//             database: process.env.DATABASE,
-//             port: process.env.PORT
-//         });
-//         console.log("Conexão estabelecida!");
-//         return conexao;
-//     } catch (e) {
-//         console.log("Falha ao estabelecer a conexão!");
-//         console.log(e);
-//         return null;
-//     }
-// }
-
 const {
   verificarUsuAutenticado,
   limparSessao,
@@ -36,8 +18,8 @@ const {
 
 
 
-router.get('/', function(req, res) {
-    res.render('pages/index');
+router.get("/", verificarUsuAutenticado, function (req, res) {
+  res.render("pages/index", req.session.autenticado);
 });
 router.get('/cadastro-escola', function(req, res) {
     res.render('pages/cadastro-escola',  { "erros": null, dadosNotificacao: null, "valores": {"name_school":"","adress":"","adress_n":"", "city":"","state":"", "email":"","password":"","reppassword":""},"retorno":null });
@@ -49,7 +31,7 @@ router.get('/contato', function(req, res) {
     res.render('pages/contato');
 });
 router.get('/cadastro-usuario', function(req, res) {
-    res.render('pages/cadastro-usuario', { "erros": null, dadosNotificacao: null,"valores": {"name":"","email":"","password":"", "reppassword":"","cellphone":""},"retorno":null });
+    res.render('pages/cadastro-usuario', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""} });
 });
 router.get('/perfil-escola', function(req, res) {
     res.render('pages/perfil-escola');
@@ -106,7 +88,9 @@ router.get('/redefinir-senha-st2', function(req, res) {
     res.render('pages/redefinir');
 });
 
-
+router.get("/sair", limparSessao, function (req, res) {
+  res.redirect("/");
+});
 
 router.post(
     "/login_post", loginController.regrasValidacaoLogin, loginController.login);
