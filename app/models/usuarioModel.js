@@ -67,10 +67,10 @@ const usuarioModel = {
     findCampoCustom: async (criterioWhere) => {
     try {
         const [resultados] = await pool.query(
-            "SELECT count(*) totalReg FROM usuario WHERE ?",
+            "SELECT count(*) email_usuario FROM usuarios WHERE ?",
             [criterioWhere]
         )
-        return resultados[0].totalReg;
+        return resultados[0].email_usuario;
     } catch (error) {
         console.log(error);
         return error;

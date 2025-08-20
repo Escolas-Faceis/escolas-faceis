@@ -20,29 +20,11 @@ const usuarioController = {
                     throw new Error('Email em uso!');
                 }
             }),
-        body("cep")
+        body("cellphone")
             .custom(async value => {
                 if (!validarTelefone(value)) {
-                    throw new Error('Cep inválido');
+                    throw new Error('Número de telefone inválido');
                 }
-
-                const emailUsu = await usuarioModel.findCampoCustom({'cep': value});
-                if (emailUsu > 0) {
-                    throw new Error('Número de Cep em uso!');
-                }
-                return true;
-            }),
-                    body("cep")
-            .custom(async value => {
-                if (!validarCep(value)) {
-                    throw new Error('Cep inválido');
-                }
-
-                const cepUsu = await usuarioModel.findCampoCustom({'cep': value});
-                if (cepUsu > 0) {
-                    throw new Error('Número de Cep em uso!');
-                }
-                return true;
             }),
 
         body("password")
@@ -70,7 +52,7 @@ const usuarioController = {
                     dadosNotificacao: null
                 });
             }
-
+            res.redirect("/login");
             console.log("Dados enviados para o banco:", dados);
             // let resultado = await usuarioModel.create(dados);
 

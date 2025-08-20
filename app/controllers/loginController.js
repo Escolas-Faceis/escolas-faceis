@@ -17,9 +17,9 @@ const loginController = {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             console.log(errors);
-            return res.render("pages/login", { "erros": errors, "valores": req.body, "retorno": null });
+            return res.render("pages/login", { "erros": errors, dadosNotificacao: null, "valores": req.body, "retorno": null });
         }
-        return res.render("pages/perfil-usuario", { "erros": null, "valores": req.body, "retorno": req.body });
+        return res.render("pages/login", { "erros": null, dadosNotificacao: null, "valores": req.body, "retorno": req.body });
     },
 
     logar: (req, res) => {
