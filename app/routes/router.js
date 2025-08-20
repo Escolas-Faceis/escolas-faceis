@@ -22,7 +22,7 @@ router.get("/", verificarUsuAutenticado, function (req, res) {
   res.render("pages/index", req.session.autenticado);
 });
 router.get('/cadastro-escola', function(req, res) {
-    res.render('pages/cadastro-escola',  { "erros": null, dadosNotificacao: null, "valores": {"name_school":"","adress":"","adress_n":"", "city":"","state":"", "email":"","password":"","reppassword":""},"retorno":null });
+    res.render('pages/cadastro-escola',  { "erros": null, dadosNotificacao: null, "valores": {"name_school":"","adress":"","adress_n":"", "city":"", "cep":"", "state":"", "email":"","password":"","reppassword":""},"retorno":null });
 });
 
 router.get('/encontre-escolas', function(req, res) {

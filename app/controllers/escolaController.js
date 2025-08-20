@@ -25,7 +25,9 @@ const escolaController = {
         body("password")
             .isStrongPassword()
             .withMessage("Senha muito fraca!"),
-            
+        body("cep")
+            .isLength({ min: 9, max: 9 })
+            .withMessage("CEP inválido"),
         body("reppassword")
             .custom((value, { req }) => value === req.body.password)
             .withMessage("Senhas estão diferentes"),

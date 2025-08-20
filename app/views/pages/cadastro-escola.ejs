@@ -51,6 +51,7 @@
             "adress": "",
             "adress_n": "",
             "city": "",
+            "cep": "",
             "email": "",
             "password": "",
             "reppassword": "",
@@ -62,6 +63,7 @@
             "adress": "",
             "adress_n": "",
             "city": "",
+            "cep": "",
             "email": "",
             "password": "",
             "reppassword": "",
@@ -83,6 +85,10 @@
                 }
                 if (erro.path == "reppassword") {
                     avisoErro.reppassword = "erro",
+                        msgErro += `* ${erro.msg} <br>`;
+                }
+                if (erro.path == "cep") {
+                    avisoErro.cep = "erro",
                         msgErro += `* ${erro.msg} <br>`;
                 }
                 if (erro.path == "adress") {
