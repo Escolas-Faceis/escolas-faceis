@@ -22,7 +22,7 @@ router.get("/", verificarUsuAutenticado, function (req, res) {
   res.render("pages/index", req.session.autenticado);
 });
 router.get('/cadastro-escola', function(req, res) {
-    res.render('pages/cadastro-escola',  { "erros": null, dadosNotificacao: null, "valores": {"name_school":"","adress":"","adress_n":"", "city":"", "cep":"", "state":"", "email":"","password":"","reppassword":""},"retorno":null });
+    res.render('pages/cadastro-escola',  { "erros": null, dadosNotificacao: null, "valores": {"name_school":"","adress":"","adress_n":"", "city":"","state":"", "email":"","password":"","reppassword":""},"retorno":null });
 });
 
 router.get('/encontre-escolas', function(req, res) {
@@ -65,7 +65,7 @@ router.get('/mais-filtros', function(req, res) {
     res.render('pages/mais-filtros');
 });
 router.get('/login', function(req, res) {
-    res.render('pages/login', { "erros": null, dadosNotificacao: null, "valores": {"email":"","password":"", "cnpj":""},"retorno":null });
+    res.render('pages/login', { "erros": null, "dadosNotificacao": null, "valores": {"email":"","password":"", "cnpj":""},"retorno":null });
 });
 router.get('/perfil-escola-e', function(req, res) {
   res.render('pages/perfil-escola-e');
@@ -94,7 +94,7 @@ router.get("/sair", limparSessao, function (req, res) {
 });
 
 router.post(
-    "/login_post", loginController.regrasValidacaoLogin, loginController.login);
+    "/login_post", loginController.regrasValidacaoLogin, gravarUsuAutenticado, loginController.logar);
 
   router.post(
     "/registro_post",

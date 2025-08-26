@@ -29,13 +29,12 @@ gravarUsuAutenticado = async (req, res, next) => {
         var results = await usuario.findUserEmail(dadosForm);
         var total = Object.keys(results).length;
         if (total == 1) {
-            if (bcrypt.compareSync(dadosForm.senha_usuario, results[0].senha_usuario)) {
+            if (bcrypt.compareSync(req.body.password, results[0].senha_usuario)) {
                 var autenticado = {
-                    autenticado: results[0].email_usuario,
+                    autenticado: results[0].nome_usuario,
                     id: results[0].id_usuario,
                     tipo: results[0].tipo_usuario
                 };
-            console.log("Usuário autenticado:", autenticado);
             }
         } 
     } 
