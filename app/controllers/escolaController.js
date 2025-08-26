@@ -32,8 +32,8 @@ const escolaController = {
             .custom((value, { req }) => value === req.body.password)
             .withMessage("Senhas estão diferentes"),
         body("cnpj")
-            .isLength({ min: 18, max: 18 })
-            .withMessage('O CNPJ tem 18 caracteres!')
+            .isLength({ min: 14, max: 18 })
+            .withMessage('O CNPJ deve ter entre 14 e 18 caracteres!')
             .custom(value => {
                 if (!validarCNPJ(value)) {
                     throw new Error('CNPJ inválido');
@@ -44,37 +44,54 @@ const escolaController = {
     ],
 
     cadastrarEscola: async (req, res) => {
-
         let erros = validationResult(req);
-            if (!erros.isEmpty()) {
-                console.log(erros);
-                return res.render('pages/cadastro-escola', { 
-                    erros, 
-                    valores: req.body,
-                    dadosNotificacao: null
-                });
-            }
-            const dados = {
-                'name_school': req.body.name_school,
-                'email': req.body.email,
-                'password': bcrypt.hashSync(req.body.password, salt),
-                'cep': req.body.cep,
-                'numero': req.body.adress_n,
-                'cnpj': req.body.cnpj
-            };
-            console.log("Dados enviados para o banco:", dados);
-           
+        if (!erros.isEmpty()) {
+            console.log(erros);
+            return res.render('pages/cadastro-escola', { 
+                erros, 
+                valores: req.body,
+                dadosNotificacao: null
+            });
+        }
+        const dados = {
+            'tipos_ensino': req.body.tipos_ensino_values || [],
+            'turnos': req.body.turnos_values || [],
+            'redes': req.body.redes_values || [],
+            'name_school': req.body.name_school,
+            'email': req.body.email,
+            'password': bcrypt.hashSync(req.body.password, salt),
+            'cep': req.body.cep,
+            'numero': req.body.adress_n,
+            'cnpj': req.body.cnpj
+        };
+        console.log("Dados enviados para o banco:", dados);
+       
         try {
-
-            let create = escolaModel.create(dados);
+            let create = await escolaModel.create(dados);
+            
+            // Processar os dados das checkboxes
+            const id_escola = create; // ID da escola criada
+            if (dados.tipos_ensino.length > 0) {
+                for (const tipo of dados.tipos_ensino) {
+                    await escolaModel.associarTipoEnsino(id_escola, tipo);
+                }
+            }
+            if (dados.turnos.length > 0) {
+                for (const turno of dados.turnos) {
+                    await escolaModel.associarTurno(id_escola, turno);
+                }
+            }
+            if (dados.redes.length > 0) {
+                for (const rede of dados.redes) {
+                    await escolaModel.associarRede(id_escola, rede);
+                }
+            }
+            
             res.render("pages/cadastro-escola", {
                 erros: null, dadosNotificacao: {
                     titulo: "Cadastro realizado!", mensagem: "Nova escola criada com sucesso!", tipo: "success"
                 }, valores: req.body
-            })
-
-
-
+            });
         } catch (error) {
             console.log(error);
             return res.render('pages/cadastro-escola', {

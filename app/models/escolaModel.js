@@ -27,7 +27,7 @@ const escolaModel = {
                 `INSERT INTO escolas (cep, numero, cnpj, tipo_ensino, rede, id_usuario) VALUES (?, ?, ?, "Escola", 1, ?);`,
                 [dados.cep, dados.numero, dados.cnpj, id_usuario]
             );
-
+            
             await conn.commit();
             return id_usuario;
         } catch (erro) {
