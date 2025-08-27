@@ -13,15 +13,6 @@ const loginController = {
             .withMessage("Senha é obrigatória.")
 
     ],
-    login: (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            console.log(errors);
-            return res.render("pages/login", { "erros": errors, dadosNotificacao: null, "valores": req.body, "retorno": null });
-        }
-        
-        return res.render("pages/login", { "erros": null, dadosNotificacao: null, "valores": req.body, "retorno": req.body });
-    },
     logar: (req, res) => {
         const erros = validationResult(req);
         if (!erros.isEmpty()) {
