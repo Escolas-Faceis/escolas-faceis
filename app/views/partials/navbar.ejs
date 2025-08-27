@@ -48,13 +48,9 @@
                                 </details>
                       
                                 <a href="/contato"><li>Contato</li></a>
-                                <% if (autenticado && autenticado.autenticado) { %>
-                    
-                                    <a href="/perfil" class="aside"><li>Meu Perfil</li></a>
-                                    <a href="/sair" class="aside"><li>Sair</li></a>
-                                <% }else{ %>
-                                <a href="/login" class="aside"><li>Login</li></a> 
-                                <li><button><a href="/cadastro-escola" class="aside" id="cadastro">Cadastre sua Escola</a></button></li> <% } %>
+                                
+                                <a href="/login" class="aside"><li>Login</li></a>
+                                <li><button><a href="/cadastro-escola" class="aside" id="cadastro">Cadastre sua Escola</a></button></li>
                         <button onclick="toggleTheme()" class="sun aside" id="tema"></button></ul>
                     </section>
                 </nav>
