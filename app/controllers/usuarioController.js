@@ -15,7 +15,7 @@ const usuarioController = {
             .isEmail()
             .withMessage("Email inválido.")
             .custom(async value => {
-                const emailUsu = await usuarioModel.findCampoCustom({'email': value});
+                const emailUsu = await usuarioModel.findCampoCustom(value);
                 if (emailUsu > 0) {
                     throw new Error('Email em uso!');
                 }
@@ -52,7 +52,6 @@ const usuarioController = {
                     dadosNotificacao: null
                 });
             }
-            res.redirect("/login");
             console.log("Dados enviados para o banco:", dados);
             // let resultado = await usuarioModel.create(dados);
 
@@ -67,11 +66,15 @@ const usuarioController = {
 
         try {
             
-             let create = usuarioModel.create(dados);
-            res.render("pages/cadastro-usuario", {
-                erros: null, dadosNotificacao: {
-                    titulo: "Cadastro realizado!", mensagem: "Novo usuário criado com sucesso!", tipo: "success"
-                }, valores: req.body
+            let create = await usuarioModel.create(dados);
+            return res.render("pages/cadastro-usuario", {
+                erros: null, 
+                dadosNotificacao: {
+                    titulo: "Cadastro realizado!", 
+                    mensagem: "Novo usuário criado com sucesso!", 
+                    tipo: "success"
+                }, 
+                valores: req.body
             })
             
             
