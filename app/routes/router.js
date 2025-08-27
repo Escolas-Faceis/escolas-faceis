@@ -19,7 +19,7 @@ const {
 
 
 router.get("/", verificarUsuAutenticado, function (req, res) {
-  res.render("pages/index", req.session.autenticado);
+  res.render("pages/index");
 });
 router.get('/cadastro-escola', function(req, res) {
     res.render('pages/cadastro-escola',  { "erros": null, dadosNotificacao: null, "valores": {"name_school":"","adress":"","adress_n":"", "city":"","state":"", "email":"","password":"","reppassword":""},"retorno":null });

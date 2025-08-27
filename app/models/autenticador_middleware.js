@@ -44,15 +44,17 @@ gravarUsuAutenticado = async (req, res, next) => {
 
 verificarUsuAutorizado = (tipoPermitido, destinoFalha) => {
     return (req, res, next) => {
-        if (req.session.autenticado.autenticado != null &&
-            tipoPermitido.find(function (element) { return element == req.session.autenticado.tipo }) != undefined) {
+        if (
+            req.session.autenticado.autenticado != null &&
+            tipoPermitido.includes(req.session.autenticado.tipo)
+        ) {
             console.log("Usuário autorizado:", req.session.autenticado);
-                next();
+            next();
         } else {
-            res.render(destinoFalha, req.session.autenticado);
             console.log("Usuário não autorizado:", req.session.autenticado);
+            res.render(destinoFalha)
         }
-    };
+    }
 }
 
 module.exports = {
