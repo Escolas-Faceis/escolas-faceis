@@ -1,0 +1,136 @@
+* {
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estrutura principal */
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Espaço entre navbar - conteúdo - footer */
+body {
+    justify-content: flex-start;
+}
+
+/* Caixa principal */
+.caixa {
+    border: solid #77b6ea 2px;
+    border-radius: 10px;
+    width: 500px; /* menor */
+    padding: 20px;
+    margin: 40px auto; /* centraliza entre navbar e footer */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    box-shadow: 0 2px 10px #00000020;
+}
+
+/* Título */
+h2 {
+    color: #f56d44;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Inputs e textareas */
+#caixa_nome, 
+#cep, 
+#num, 
+#caixa_nome_lado, 
+#sobre {
+    border: solid rgb(167, 167, 167) 2px;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 8px 10px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Ajustar textarea */
+#sobre {
+    height: 60px;
+    resize: none;
+}
+
+/* Grupos lado a lado */
+.ob {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Títulos dos campos */
+#nome_escola {
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+/* Checkboxes */
+#checkboxes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.parts_checks {
+    flex: 1;
+}
+
+.parts_checks ul, 
+.part_baixo ul {
+    padding: 0;
+    list-style: none;
+}
+
+.parts_checks ul li, 
+.part_baixo ul li {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+/* Acessibilidade */
+#Acessibilidade {
+    margin-top: 20px;
+}
+
+/* Botão salvar */
+#salvar_button {
+    transition: all 0.3s;
+    background-color: #77b6ea;
+    border: 1px solid #77b6ea;
+    border-radius: 25px;
+    color: white;
+    width: 200px; /* menor */
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#salvar2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#salvar_button:hover {
+    background-color: white;
+    color: #77b6ea;
+    cursor: pointer;
+}
+
+.block{
+    display: block;
+    margin-top: auto;
+}

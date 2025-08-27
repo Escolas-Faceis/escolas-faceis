@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Editavel Escola</title>
+    <link rel="stylesheet" href="../css/perfil_esc_edi.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="js.js" defer></script>
+
+</head>
+<body>
+     <%- include('../partials/navbar'); %>
+    <section class="caixa">
+        <section class="dentro">
+       
+        <h2>Editar Perfil</h2>    
+         <main class="w-100 box">
+                <section class="w-100 box">
+                    <form class="box" id="form-form">
+                        <!-- image -->
+                        <section class="image-upload box">
+                            <img id="image-preview" src="" class="w-100 h-100">
+                            <i class="bi bi-cloud-arrow-up"></i>
+                            <input id="image-field" type="file">
+                        </section>
+                     </form>
+                </section>
+            </main>
+        <section>
+        <p id="nome_escola"><label for="escola">Nome da Escola</label></p>
+        <input type="text" id="caixa_nome" name="nomedaescola">
+        
+        <p id="nome_escola"><label for="escola">E-mail</label></p>
+        <input type="text" id="caixa_nome" name="email">
+        
+        <p id="nome_escola"><label for="escola">CNPJ</label></p>
+        <input type="text" id="caixa_nome" name="cnpj" placeholder="00.000.00/00000-00" disabled>
+            <!-- <section class="lado">
+                <p id="nome_escola">CEP</p> 
+                <input type="text" id="caixa_nome_lado" placeholder="00000-000" name="cep">
+        
+        <p id="nome_escola"><label for="escola">N°</label></p>
+        <input type="text" id="caixa_nome_lado" name="numeroescola">
+        
+            </section> -->
+            <section class="ob">
+                <section class="cep">
+                    <p>CEP</p> <br>
+                    <input type="text" id="cep" placeholder="00000-000" name="cep">
+                    <span class="spanerro"></span>
+                </section>
+                <section class="complemento">
+                    <p id="numero">N°</p><br>
+                    <input type="text" id="num" name="adress_n" >
+                    <span class="spanerro"></span>
+                </section>
+            </section>
+
+        <p id="nome_escola"><label for="escola">Endereço</label></p>
+        <input type="text" id="caixa_nome" name="endereco">
+      
+        <p id="nome_escola"><label for="escola">Cidade</label></p>
+        <input type="text" id="caixa_nome" name="cidade">
+
+        <p id="nome_escola"><label for="sobre">Sobre a Escola</label></p>
+        <textarea name="Sobre a Escola" id="sobre"></textarea>
+        
+        <p id="nome_escola"><label for="sobre">Sobre o Ensino</label></p>
+        <textarea name="Sobre o Ensino" id="sobre"></textarea>
+
+        <p id="nome_escola"><label for="sobre">Sobre a Estrutura</label></p>
+        <textarea name="Sobre a Estrutura" id="sobre"></textarea>
+
+
+        
+        <section id="checkboxes">
+            <section class="parts_checks">
+                <ul>
+                    <p id="nome_escola">Tipo de Ensino</p>
+                    <li>
+                        <input type="checkbox" id="educacao_infantil" name="educacao_infantil" value="Educação Infantil">
+                        <label for="educacao_infantil">Educação Infantil</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="ef1" name="ef1" value="Ensino Fundamental">
+                        <label for="ef1">Ensino Fundamental</label>
+                    </li>
+        <li>
+            <input type="checkbox" id="ef2" name="ef2" value="Ensino Médio">
+            <label for="ef2">Ensino Médio</label>
+        </li>
+        <li>
+            <input type="checkbox" id="ei" name="ei" value="Educação Integrada">
+            <label for="ei">Educação Integrada</label>
+        </li>
+        <li>
+            <input type="checkbox" id="etec" name="etec" value="Cursos Técnicos">
+            <label for="etec">Cursos Técnicos</label>
+        </li>
+        <li>
+            <input type="checkbox" id="cso" name="cso" value="Cursos Extracurriculares">
+            <label for="cso">Cursos Extracurriculares</label>
+        </li>
+        <li>
+            <input type="checkbox" id="idi" name="idi" value="Cursos de Idioma">
+            <label for="idi">Cursos de Idioma</label>
+        </li>
+
+    </ul>
+</section>
+
+<section class="parts_checks">
+    <ul>
+        <p id="nome_escola">Turnos</p>
+        <li>
+            <input type="checkbox" id="m" name="m" value="Manhã">
+            <label for="m">Manhã</label>
+        </li>
+        <li>
+            <input type="checkbox" id="t" name="t" value="Tarde">
+            <label for="t">Tarde</label>
+        </li>
+        <li>
+            <input type="checkbox" id="int" name="int" value="Integral">
+            <label for="int">Integral</label>
+        </li>
+        <li>
+            <input type="checkbox" id="n" name="n" value="Noite">
+            <label for="n">Noite</label>
+        </li>
+        <li>
+            <input type="checkbox" id="sab" name="sab" value="Sábado">
+            <label for="sab"><b style="color:red; font-weight: 300;">*</b>Sábado </label>
+        </li>
+    </ul>
+</section>
+
+<section class="parts_checks">
+    <ul>
+        <p id="nome_escola">Rede</p>
+        <li>
+            <input type="checkbox" id="muni" name="muni" value="Municipal">
+            <label for="muni">Municipal</label>
+        </li>
+        <li>
+            <input type="checkbox" id="est" name="est" value="Estadual">
+            <label for="est">Estadual</label>
+        </li>
+        <li>
+            <input type="checkbox" id="fund" name="fund" value="Fundação">
+            <label for="fund">Fundação</label>
+        </li>
+        <li>
+            <input type="checkbox" id="part" name="part" value="Particular">
+            <label for="part">Particular</label>
+        </li>
+    </ul>
+</section>
+</section>
+</section>
+<section id="Acessibilidade">
+    <section class="part_baixo">
+        <ul>
+            <p id="nome_escola">Acessibilidades</p>
+            <li>
+                <input type="checkbox" id="educacao_infantil" name="educacao_infantil" value="Educação Infantil">
+                <label for="educacao_infantil">Atendimento Educacional Especializado</label>
+            </li>
+            <li>
+                <input type="checkbox" id="ef1" name="ef1" value="Ensino Fundamental">
+                <label for="ef1">Acessibilidade para PcDs</label>
+            </li>
+<li>
+    <input type="checkbox" id="ef2" name="ef2" value="Ensino Médio">
+    <label for="ef2">Acessibilidade para deficientes visuais</label>
+</li>
+<li>
+    <input type="checkbox" id="ei" name="ei" value="Educação Integrada">
+    <label for="ei">Ensino em Libras</label>
+</li>
+</ul>
+    </section>
+
+</section>
+<p id="nome_escola"><label for="escola">Instagram</label></p>
+<input type="text" id="caixa_nome" name="cnpj" placeholder="https://www.instagram.com">
+<p id="nome_escola"><label for="escola">Facebook</label></p>
+<input type="text" id="caixa_nome" name="cnpj" placeholder="https://www.facebook.com">
+<p id="nome_escola"><label for="escola">Whatsapp</label></p>
+<input type="text" id="caixa_nome" name="cnpj" placeholder="00 00000-0000">
+<p id="nome_escola"><label for="escola">Número para Contato</label></p>
+<input type="text" id="caixa_nome" name="cnpj" placeholder="00 00000-0000">
+<p id="nome_escola"><label for="escola">E-mail</label></p>
+<input type="text" id="caixa_nome" name="cnpj" placeholder="Usuario@gmail.copm">
+        
+<section id="salvar2">
+    <input type="submit" id="salvar_button" value="Salvar">
+</section>
+</section>
+<section class="block">
+<%- include('../partials/footer'); %></section>
+    
+</body>
+</html>
