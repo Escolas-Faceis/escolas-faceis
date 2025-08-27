@@ -20,13 +20,15 @@ app.set("views", "./app/views");
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
-var rotas = require("./app/routes/router");
-app.use("/", rotas);
-
 app.use((req, res, next) => {
   res.locals.autenticado = req.session.autenticado;
   next();
 });
+
+var rotas = require("./app/routes/router");
+app.use("/", rotas);
+
+
 
 const rotaAdm = require("./app/routes/router-adm");
 app.use("/adm", rotaAdm);
