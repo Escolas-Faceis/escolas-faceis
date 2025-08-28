@@ -27,17 +27,25 @@ gravarUsuAutenticado = async (req, res, next) => {
             senha_usuario: req.body.password,
         };
         var results = await usuario.findUserEmail(dadosForm);
+        console.log("Resultados do banco:", results);
         var total = Object.keys(results).length;
         if (total == 1) {
             if (bcrypt.compareSync(req.body.password, results[0].senha_usuario)) {
-                var autenticado = {
+                autenticado = {
                     autenticado: results[0].nome_usuario,
                     id: results[0].id_usuario,
                     tipo: results[0].tipo_usuario
                 };
+                console.log("Usuário autenticado:", autenticado);
+            } else {
+                console.log("Senha incorreta");
             }
-        } 
-    } 
+        } else {
+            console.log("Usuário não encontrado");
+        }
+    } else {    
+        console.log("Erros de validação:", erros.array());
+    }
     req.session.autenticado = autenticado;
     next();
 }

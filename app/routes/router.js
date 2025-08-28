@@ -75,7 +75,9 @@ router.get('/navbar', function(req, res) {
     res.render('partials/navbar');
 });
 
-router.get('/adm', admController.listarUsuarios, admController.listarEscolas);
+router.get('/adm', admController.listarUsuarios, admController.listarEscolas, verificarUsuAutorizado(["ADM"], 'pages/dev'), function(req, res) {
+    res.render('pages/adm/index-adm', { autenticado: req.session.autenticado });
+});
 
 router.get('/ativacao-de-conta', function(req, res) {
     res.render('pages/ativacao');

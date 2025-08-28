@@ -177,10 +177,9 @@
   .aside {
     margin-left: auto;
     display: flex;
-    justify-content: flex-end;
     gap: 10px;
-    display: flex;
-    margin-right: 0;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   .navbar button {
@@ -324,6 +323,8 @@
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
     overflow-x: hidden;
     z-index: 1;
+    display: flex;
+    align-items: center;
   }
 
   #menu li {
