@@ -38,7 +38,7 @@ router.get('/perfil-escola', function(req, res) {
     res.render('pages/perfil-escola');
 });
 router.get('/perfil-usuario', function(req, res) {
-    res.render('pages/perfil-usuario');
+    res.render('pages/perfil-usuario',  {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""} });
 });
 router.get('/edu-infantil', function(req, res) {
     res.render('pages/edu-infantil');
@@ -107,11 +107,23 @@ router.post(
 );
 
   router.post(
+    "/perfil_usuario_post",
+    usuarioController.regrasValidacaoUsuario,
+);
+
+  router.post(
     "/cadastro_escola_post",
     escolaController.regrasValidacaoEscola,
     (req, res) =>{
         escolaController.cadastrarEscola(req, res);
     }
 );
+
+
+//DEV
+
+router.get('/perfil', function(req, res) {
+    res.render('pages/perfil', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""}, arquivo:"" });
+});
 
 module.exports = router;

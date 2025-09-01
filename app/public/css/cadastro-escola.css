@@ -135,7 +135,7 @@ nav {
   padding: 2% 4%;
   font-size: 22px;
   font-weight: 400;
-  color: white;
+  color: var(--fundo);
   transition: all 0.3s ease-in-out;
   transform: translateY(10px);
 }
@@ -184,6 +184,11 @@ select option {
 .parts_checks {
   display: flex;
   margin: 0;
+}
+
+input{
+  background-color: var(--fundo);
+  color: var(--letras);
 }
 
 #end p {

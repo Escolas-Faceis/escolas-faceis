@@ -10,8 +10,78 @@
     <link rel="stylesheet" href="css/alerts.css">
     <link rel="icon" type="image/png" href="/imagem/favicon.png">
 </head>
+    <script>
+        function notify(title, text, type, position, timeout = 5000) {
+            new Notify({
+                status: type,
+                title: title,
+                text: text,
+                effect: 'fade',
+                speed: 500,
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: timeout,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: position
+            });
+        }
+    </script>
+</head>
 
 <body>
+    <%
+    let  msgErro = "";
+    let  erroValidacao =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
+    let  avisoErro =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
+    if(erros) {
+        erros.errors.forEach(function(erro) {
+            if (erro.path == "name") {
+                erroValidacao.name = "erro",
+                avisoErro.name = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
+            }
+            if (erro.path == "email") {
+                erroValidacao.email = "erro",
+                avisoErro.email = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
+            }
+            if (erro.path == "password") {
+                erroValidacao.password = "erro",
+                avisoErro.password = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
+            }
+            if (erro.path == "reppassword") {
+                erroValidacao.reppassword = "erro",
+                avisoErro.reppassword = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
+            }
+            if (erro.path == "cellphone") {
+                erroValidacao.cellphone = "erro",
+                avisoErro.cellphone = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
+            }
+        })
+       if(msgErro != ""){
+        %>
+        <script>
+                let msgErro ="<%= msgErro %>"
+                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"),
+                 "error", "center", 5000)                        
+            </script>
+        <%
+        }
+    }
+    if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+                if("<%= dadosNotificacao.tipo %>" == "success"){
+                    setTimeout(function(){window.location="/sair"}, 3000)
+                }                        
+        </script>
+    <% } %>
     <%- include('../partials/navbar'); %>
     <main id="perfil">
         <section id="banner_perfil"></section>
@@ -23,7 +93,7 @@
             <section id="sobrepor_banner">
             <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_perfil">
             </section>
-            <h2>Nome do Usuário </h2>
+            <h2><%= valores.nome_usu ? valores.nome_usu : "Visitante" %> </h2>
         </article>
         <section class="alinhar">
         <article id="botoes">

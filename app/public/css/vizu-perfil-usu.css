@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --background_banner: #C7D3DD;
+    --laranja: #f56d44;
+    --azul: rgba(20, 28, 68, 0.99);
+    --azul_claro: #77b6ea;
+    --amarelo: #ffbc3e;
+    --distancia: 100px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    background: #fff;
+}
+
+#banner_perfil {
+    background-color: var(--background_banner);
+    width: 100%;
+    min-height: 180px;
+    height: 200px;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+
+#perfil-foto-publica {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 16px rgba(20,28,68,0.08);
+    position: absolute;
+    left: 50%;
+    top: 120px;
+    transform: translateX(-50%);
+    background: #eee;
+    z-index: 2;
+}
+
+#conteudo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    margin-top: 90px;
+    position: relative;
+    z-index: 2;
+}
+
+#ajustar_esquerda {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 320px;
+    flex: 2;
+    gap: 20px;
+}
+
+#conteudo_perfil {
+    position: relative;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#conteudo_perfil h2 {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: var(--azul);
+    margin: 0;
+    word-break: break-word;
+    max-width: 350px;
+    text-align: center;
+}
+
+.alinhar {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.separador{
+    margin:5%
+}
+
+#biografia {
+    width: 320px;
+    min-width: 200px;
+    max-width: 100%;
+    height: 110px;
+    border-radius: 10px;
+    border: none;
+    padding: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    resize: none;
+    background: #fafafa;
+    margin: 0;
+}
+
+#ajustar_direita {
+    margin-top: 10px;
+    width: 180px;
+    min-width: 120px;
+    color: var(--azul);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    flex: 1;
+}
+
+#cor {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #aaa;
+    cursor: not-allowed;
+    margin: 3px;
+    transition: all 0.3s;
+    opacity: 0.7;
+}
+
+#avaliacoes {
+    margin: 40px auto;
+    max-width: 900px;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+#avaliacoes h1 {
+    text-transform: uppercase;
+    color: var(--laranja);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+#caixa_comentarios {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#comentario {
+    width: 100%;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    padding: 16px;
+    background: #fafafa;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+#info_usuario_comentario {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#foto_comentario {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #eee;
+}
+
+#comentario h3 {
+    font-weight: bold;
+    color: var(--azul);
+    font-size: 1rem;
+    margin: 0;
+}
+
+#comentario p {
+    margin: 8px 0 0 50px;
+    color: var(--azul);
+    font-size: 0.9rem;
+}
+
+#texto {
+    margin-left: 50px;
+    margin-bottom: 10px;
+    width: 90%;
+    color: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 10px;
+    word-break: break-word;
+}
+
+#estrelas {
+    width: 80px;
+    height: auto;
+}
+
+/* MOBILE */
+@media screen and (max-width: 931px) {
+    #avaliacoes{
+        margin:5%;
+        width: 90%;
+    }
+    #perfil-foto-publica{
+        width:150px;
+        height: auto;
+    }
+
+}
