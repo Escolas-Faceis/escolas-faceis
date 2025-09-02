@@ -126,4 +126,9 @@ router.get('/perfil', function(req, res) {
     res.render('pages/perfil', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""}, arquivo:"" });
 });
 
+router.get('/perfil1', function(req, res) {
+    res.render('pages/perfil copy', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""}, arquivo:"" });
+});
+
+
 module.exports = router;

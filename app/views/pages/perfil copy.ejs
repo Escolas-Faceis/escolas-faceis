@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="css/vizu-perfil-usu.css">
+    <link rel="stylesheet" href="css/alerts.css">
+    <link rel="icon" type="image/png" href="/imagem/favicon.png">
+</head>
+<body>
+    <%- include('../partials/navbar'); %>
+    <main id="perfil">
+        <section id="banner_perfil">
+            <img src="<%= arquivo && arquivo.imagem ? arquivo.imagem : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
+        </section>
+        <section id="conteudo">
+            <section id="ajustar_esquerda">
+                <article id="conteudo_perfil" class="alinhar" style="align-items:center;">
+                    <h2 style="margin-top:20px;">
+                        <%= arquivo && arquivo.nome_usu ? arquivo.nome_usu : "Visitante" %>
+                    </h2>
+                </article>
+                <section class="alinhar" style="width:100%;justify-content:center;">
+                    <article class="bio"><%= arquivo && arquivo.biografia ? arquivo.biografia : "Este usuário não possui biografia :/" %></article> 
+                </section>
+                <section class="botoes alinhar">
+                    <button class="edit" type="button">Editar perfil</button>
+                </section>
+
+                <section class="separador"></section>
+            </section>
+        </section>
+        <section id="avaliacoes">
+            <h1>Avaliações do usuário</h1>
+            <section id="caixa_comentarios">
+                <% for(let i=0; i<3; i++){ %>
+                <article id="comentario">
+                    <section id="info_usuario_comentario">
+                        <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
+                        <h3>Nome do usuário</h3>
+                    </section>
+                    <p>• há 3 meses</p>
+                    <section id="texto">
+                        Aqui entra a avaliação do usuário e o que ele achou <img src="imagem/5estrelas.webp" id="estrelas">
+                    </section>
+                </article>
+                <% } %>
+            </section>
+        </section>
+    </main>
+    <%- include('../partials/footer'); %>
+    <script src="js/usuario-perfil.js"></script>
+</body>
+</html>

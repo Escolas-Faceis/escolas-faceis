@@ -1,15 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-:root{
-    --background_banner: #C7D3DD;
-    
+:root {
     --laranja: #f56d44;
-    --azul: rgba(20, 28, 68, 0.99);
-    --azul_claro: #77b6ea;
+    --fundo: #ffffff;
+    --azul-base: #141c44;
+    --letras: #000000;
+    --azulbase: #141c44;
+    --azulsec: #77b6ea;
     --amarelo: #ffbc3e;
-    --distancia: 100px;
-}
-
+  }
+  
+  .tema-claro {
+    --laranja: #ff5c2a;
+    --fundo: #f5f5f5;
+    --azul-base: #141c44;
+    --azulbase: #141c44;
+    --azulsec: #77b6ea;
+    --amarelo: #ffbc3e;
+    --letras: #02030a;
+    transition: all 0.2s ease-in;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .tema-escuro {
+  --azulbase: #77b6ea;
+  
+    --letras: #f5f5f5;
+    --fundo: #030303;
+    --fundo2: #111111;
+    transition: all 0.2s ease-in;
+    --azul-base: #ffffff;
+  }
+  
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -23,6 +45,11 @@ body {
     min-height: 180px;
     height: 200px;
     margin-bottom: 0;
+}
+
+.edit{
+    font-size: large
+    ;
 }
 
 #conteudo {
@@ -185,6 +212,7 @@ body {
     background: #fafafa;
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
+    background-color: var(--fundo2);
 }
 
 #info_usuario_comentario {
@@ -197,8 +225,7 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    object-fit: cover;
-    background: #eee;
+    object-fit: cover; 
 }
 
 #comentario h3 {
