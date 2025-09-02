@@ -227,6 +227,7 @@ body{
     align-items: center;
     transition: box-shadow 0.2s, transform 0.2s;
     cursor: pointer;
+
 }
 .escola-card img {
     width: 90px;

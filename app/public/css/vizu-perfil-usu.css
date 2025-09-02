@@ -42,6 +42,25 @@ body {
     background: var(--fundo);
 }
 
+.edit{
+    text-decoration: none;
+    margin-top: 3%;
+    background-color: var(--amarelo);
+    padding: 5px 10px 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+    font-family: "Poppins";
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+}.edit:hover{
+    background-color: #ffb327;
+    scale: 1.05;
+}
+
+
 #banner_perfil {
     background-color: var(--background_banner);
     width: 100%;
