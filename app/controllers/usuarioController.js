@@ -53,16 +53,6 @@ const usuarioController = {
                 });
             }
             console.log("Dados enviados para o banco:", dados);
-            // let resultado = await usuarioModel.create(dados);
-
-            // if (resultado) {
-            //     return res.render("pages/index");
-            // } else {
-            //     return res.render("pages/cadastro-usuario", {
-            //         erros: { errors: [{ msg: "Erro ao cadastrar." }] },
-            //         valores: req.body
-            //     });
-            // }
 
         try {
             
