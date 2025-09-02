@@ -344,7 +344,7 @@
     transition: all 0.3s ease-in-out;
   }
 
-  summary {
+  summary { 
     list-style-type: none;
   }
 
