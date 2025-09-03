@@ -20,6 +20,7 @@ const {
 
 router.get("/", verificarUsuAutenticado, function (req, res) {
   res.render("pages/index");
+
 });
 router.get('/cadastro-escola', function(req, res) {
     res.render('pages/cadastro-escola',  { "erros": null, dadosNotificacao: null, "valores": {"name_school":"","adress":"","adress_n":"", "city":"","state":"", "email":"","password":"","reppassword":""},"retorno":null });
@@ -75,9 +76,6 @@ router.get('/navbar', function(req, res) {
     res.render('partials/navbar');
 });
 
-router.get('/adm', admController.listarUsuarios, admController.listarEscolas, verificarUsuAutorizado(["ADM"], 'pages/dev'), function(req, res) {
-    res.render('pages/adm/index-adm', { autenticado: req.session.autenticado });
-});
 
 router.get('/ativacao-de-conta', function(req, res) {
     res.render('pages/ativacao');
@@ -134,7 +132,9 @@ router.get('/perfil#', function(req, res) {
     res.render('pages/perfil-usu-e', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""}, arquivo:"" });
 });
 
-
+router.get('/401', function(req, res) {
+    res.render('partials/401');
+});
 
 
 module.exports = router;

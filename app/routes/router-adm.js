@@ -1,16 +1,45 @@
 const express = require("express");
 const router = express.Router();
 const admController = require("../controllers/admController");
-const admControllerPainel = require("../controllers/admController");
+const admControllerPainel = require("../controllers/admControllerPainel");
+const { verificarUsuAutenticado, verificarUsuAutorizado } = require("../models/autenticador_middleware");
 
-// Use o controller para buscar usuários e escolas
-router.get("/", admController.listarUsuarios, admController.listarEscolas, );
+router.get("/",
+    verificarUsuAutenticado,
+    admControllerPainel.listarUsuarios,
+    admControllerPainel.listarEscolas,
+    verificarUsuAutorizado(["ADM"], 'partials/401', '/adm'),
+    function(req, res) {
+        res.render('pages/adm/index-adm', {
+            autenticado: req.session.autenticado,
+            usuarios: res.locals.usuarios,
+            escolas: res.locals.escolas
+        });
+    }
+);
 
-router.get("/list", admControllerPainel.listarUsuarios, admControllerPainel.listarEscolas); 
+router.get("/list",
+    verificarUsuAutenticado,
+    admControllerPainel.listarUsuarios,
+    admControllerPainel.listarEscolas,
+    function(req, res) {
+        res.render('pages/adm/adm-list', {
+            autenticado: req.session.autenticado,
+            usuarios: res.locals.usuarios,
+            escolas: res.locals.escolas
+        });
+    }
+);
 
-router.get("/list-escolas", admControllerPainel.listarEscolas);
-
-// router.get("/list-padrao", admControllerPainel.listarDefault);
-
+router.get("/list-escolas",
+    verificarUsuAutenticado,
+    admControllerPainel.listarEscolas,
+    function(req, res) {
+        res.render('pages/adm/adm-list-escolas', {
+            autenticado: req.session.autenticado,
+            escolas: res.locals.escolas
+        });
+    }
+);
 
 module.exports = router;

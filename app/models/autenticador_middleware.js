@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator");
 const usuario = require("./loginModel");
 const bcrypt = require("bcryptjs");
+const hash = bcrypt.hashSync('Senha@123', 10);
 
 verificarUsuAutenticado = (req, res, next) => {
     if (req.session.autenticado) {
@@ -50,7 +51,7 @@ gravarUsuAutenticado = async (req, res, next) => {
     next();
 }
 
-verificarUsuAutorizado = (tipoPermitido, destinoFalha) => {
+verificarUsuAutorizado = (tipoPermitido, destinoFalha = '../401.ejs') => {
     return (req, res, next) => {
         if (
             req.session.autenticado.autenticado != null &&
