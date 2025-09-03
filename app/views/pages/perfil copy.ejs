@@ -18,14 +18,14 @@
             <section id="ajustar_esquerda">
                 <article id="conteudo_perfil" class="alinhar" style="align-items:center;">
                     <h2 style="margin-top:20px;">
-                        <%= arquivo && arquivo.nome_usu ? arquivo.nome_usu : "Visitante" %>
+                        <%=autenticado ? autenticado.autenticado : "Visitante" %>
                     </h2>
                 </article>
                 <section class="alinhar" style="width:100%;justify-content:center;">
                     <article class="bio"><%= arquivo && arquivo.biografia ? arquivo.biografia : "Este usuário não possui biografia :/" %></article> 
                 </section>
                 <section class="botoes alinhar">
-                    <button class="edit" type="button"><a class="edit" href="/perfil#" target="">Editar perfil</a></button>
+                    <button class="edit" type="button"><a class="edit" href="/info" target="">Editar perfil</a></button>
                 </section>
 
                 <section class="separador"></section>

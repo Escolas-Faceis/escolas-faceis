@@ -130,10 +130,13 @@ router.get('/perfil1', function(req, res) {
     res.render('pages/perfil copy', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""}, arquivo:"" });
 });
 
-router.get('/perfil#', function(req, res) {
-    res.render('pages/perfil-usu-e', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""}, arquivo:"" });
+router.get('/info', function(req, res) {
+    res.render('pages/perfil-usu-i'),  {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""}, arquivo:"" };
 });
 
+router.post('/info#', function(req, res) {
+    'pages/perfil-usu-i', usuarioController.regrasValidacaoUsuario;
+});
 
 
 

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Perfil</title>
+  <link rel="stylesheet" href="/css/info.css">
+</head>
+<body>
+    <script>
+        function notify(title, text, type, position, timeout = 5000) {
+            new Notify({
+                status: type,
+                title: title,
+                text: text,
+                effect: 'fade',
+                speed: 500,
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: timeout,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: position
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <%
+    let  msgErro = "";
+    let  erroValidacao =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
+    let  avisoErro =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
+    if(erros) {
+        erros.errors.forEach(function(erro) {
+            if (erro.path == "name") {
+                erroValidacao.name = "erro",
+                avisoErro.name = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
+            }
+            if (erro.path == "email") {
+                erroValidacao.email = "erro",
+                avisoErro.email = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
+            }
+            if (erro.path == "password") {
+                erroValidacao.password = "erro",
+                avisoErro.password = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
+            }
+            if (erro.path == "reppassword") {
+                erroValidacao.reppassword = "erro",
+                avisoErro.reppassword = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
+            }
+            if (erro.path == "cellphone") {
+                erroValidacao.cellphone = "erro",
+                avisoErro.cellphone = erro.msg
+                msgErro += `* ${erro.msg} <br>`;
+            }
+        })
+       if(msgErro != ""){
+        %>
+        <script>
+                let msgErro ="<%= msgErro %>"
+                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"),
+                 "error", "center", 5000)                        
+            </script>
+        <%
+        }
+    }
+    if (dadosNotificacao) { %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+                if("<%= dadosNotificacao.tipo %>" == "success"){
+                    setTimeout(function(){window.location="/sair"}, 3000)
+                }                        
+        </script>
+    <% } %>
+  <%- include('../partials/navbar'); %>
+
+  <main class="container">
+   
+    
+    <form action="/usuario/editar" method="POST" enctype="multipart/form-data" class="form-editar-perfil">
+        <h1>Editar Perfil</h1>
+      <section class="form-group">
+        <label for="foto">Foto de Perfil</label>
+        <input type="file" name="foto" id="foto" accept="image/*">
+      </section>
+
+      <section class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" value="<%= %>" required>
+      </section>
+
+      <section class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="<%=  %>" required>
+      </section>
+
+
+      <section class="form-group">
+        <label for="telefone">Telefone</label>
+        <input type="tel" name="telefone" id="telefone" value="<%=  %>"  maxlength="15"  required>
+      </section>
+
+      <section class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" id="senha" placeholder="Digite a nova senha">
+      </section>
+
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </main>
+
+  <%- include('../partials/footer'); %>
+</body>
+</html>

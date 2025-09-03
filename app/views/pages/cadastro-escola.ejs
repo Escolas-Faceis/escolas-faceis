@@ -152,23 +152,23 @@
                         <h2 id="form_title">Informações Básicas</h2>
 
                         <p>Nome da Escola</p>
-                        <input type="text" id="name_school" name="name_school" value="<%= valores.name_school %>" class="<%= erroValidacao.name_school%>">
+                        <input type="text"  id="name_school" name="name_school" value="<%= valores.name_school %>" class="<%= erroValidacao.name_school%>" required>
                         <span class="spanerro"><%=msgErro.name_school%></span>
 
                         <p>E-mail</p>
-                        <input type="email" id="email" name="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>">
+                        <input type="email" id="email" name="email" value="<%= valores.email %>" class="<%= erroValidacao.email%>" required>
                         <span class="spanerro"><%=msgErro.email%></span>
 
                         <p>Senha</p>
-                        <input type="password" id="senha" name="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>">
+                        <input type="password" id="senha" name="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>" required>
                         <span class="spanerro"><%=msgErro.password%></span>
 
                         <p>Confirmação de Senha</p>
-                        <input type="password" id="repetir_senha" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>">
+                        <input type="password" id="repetir_senha" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>" required>
                         <span class="spanerro"><%=msgErro.reppassword%></span>
 
                         <p id="cnpj">CNPJ</p>
-                        <input type="text" maxlength="18" id="cnpj_input" name="cnpj" maxlength="18" placeholder="00.000.00/00000-00" value="<%= valores.cnpj %>" class="<%= erroValidacao.cnpj %>">
+                        <input type="text" maxlength="18" id="cnpj_input" name="cnpj" maxlength="18" placeholder="00.000.00/00000-00" value="<%= valores.cnpj %>" class="<%= erroValidacao.cnpj %>" required>
                         <span class="spanerro"><%= msgErro.cnpj %></span>
 
                         <section class="gonbackButtons">

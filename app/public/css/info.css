@@ -1,0 +1,184 @@
+/* Container do formulário */
+.form-editar-perfil {
+    margin: 3% auto 15% auto;
+    border: 2px solid var(--azulsec);
+    border-radius: 15px;
+    padding:  0 2% 1% 2%;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    max-width: 800px;
+    background-color: var(--fundo);
+    color: var(--letras);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Título do formulário */
+  .form-editar-perfil h1 {
+    color: var(--laranja);
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    align-items: center;
+    align-content: center;
+    display: flex;
+    justify-content:left;
+  }
+  
+  /* Grupos de campos */
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Labels */
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 18px;
+    color: var(--azulbase);
+  }
+  
+  /* Inputs de texto, email, tel, senha e file */
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="password"],
+  .form-group input[type="file"] {
+    border: 2px solid rgb(167, 167, 167);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 15px;
+    background-color: var(--fundo);
+    color: var(--letras);
+    transition: border-color 0.3s ease-in-out;
+    width: 97%;
+    max-width: 100%;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .form-group input[type="file"] {
+    padding: 6px 10px;
+  }
+  
+  /* Foco nos inputs */
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--laranja);
+  }
+  
+  /* Botão de submit */
+  .form-editar-perfil button[type="submit"] {
+    background-color: var(--azulsec);
+    color: var(--fundo);
+    font-size: 22px;
+    font-weight: 400;
+    padding: 14px 0;
+    width: 40%;
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+    transform: translateY(10px);
+  }
+  
+  .form-editar-perfil button[type="submit"]:hover {
+    background-color: #5298d1;
+    transform: scale(1.01);
+  }
+  
+  /* Responsividade para telas menores que 800px */
+  @media (max-width: 800px) {
+    .form-editar-perfil {
+      width: 90%;
+      padding: 4%;
+      margin-bottom: 40px;
+    }
+  
+    .form-editar-perfil button[type="submit"] {
+      width: 100%;
+      font-size: 20px;
+      padding: 12px 0;
+    }
+  
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="password"],
+    .form-group input[type="file"] {
+      width: 100%;
+    }
+  }
+  
+  /* Responsividade para telas menores que 500px */
+  @media (max-width: 500px) {
+    .form-editar-perfil {
+      padding: 6vw 2vw;
+      margin-bottom: 24px;
+    }
+  
+    .form-editar-perfil h1 {
+      font-size: 22px;
+    }
+  
+    .form-group label {
+      font-size: 14px;
+    }
+  
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="password"],
+    .form-group input[type="file"] {
+      font-size: 15px;
+      padding: 10px 8px;
+    }
+  
+    .form-editar-perfil button[type="submit"] {
+      font-size: 18px;
+      padding: 10px 0;
+    }
+  }
+  
+  /* Responsividade para telas menores que 300px */
+  @media (max-width: 300px) {
+    .form-editar-perfil {
+      width: 94vw;
+      padding: 10px 2vw 16px 2vw;
+      margin: 12px auto 18px auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(20, 28, 68, 0.07);
+      border: none;
+    }
+  
+    .form-editar-perfil h1 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  
+    .form-group label {
+      font-size: 12px;
+    }
+  
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="password"],
+    .form-group input[type="file"] {
+      font-size: 13px;
+      padding: 6px 4px;
+      margin-bottom: 10px;
+    }
+  
+    .form-editar-perfil button[type="submit"] {
+      font-size: 16px;
+      padding: 8px 0;
+      width: 100%;
+      border-radius: 7px;
+      margin-top: 8px;
+    }
+  }
+  
