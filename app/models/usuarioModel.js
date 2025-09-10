@@ -70,7 +70,7 @@ const usuarioModel = {
     
     update: async (dados, id) => {
         try {
-            const [linhas] = await pool.query('UPDATE tarefas SET ? WHERE id_tarefa = ?', [dados, id])
+            const [linhas] = await pool.query('UPDATE usuarios SET ? WHERE id_usuario = ?', [dados, id])
             return linhas;
         } catch (error) {
             return error;

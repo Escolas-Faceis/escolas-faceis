@@ -129,12 +129,9 @@ router.get('/perfil1', function(req, res) {
 });
 
 router.get('/info', function(req, res) {
-    res.render('pages/perfil-usu-i'),  {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""}, arquivo:"" };
+    res.render('pages/perfil-usu-i', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""} })
 });
 
-router.post('/info#', function(req, res) {
-    'pages/perfil-usu-i', usuarioController.regrasValidacaoUsuario;
-});
 
 router.get('/401', function(req, res) {
     res.render('partials/401');

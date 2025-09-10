@@ -93,7 +93,7 @@
 
       <section class="form-group">
         <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" value="<%= %>" required>
+        <input type="text" name="nome" id="nome" value="<%= valores && valores.name ? valores.name : '' %>" required>
       </section>
 
       <section class="form-group">
