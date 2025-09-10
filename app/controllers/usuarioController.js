@@ -113,7 +113,7 @@ const usuarioController = {
             } else {
                 view = "pages/perfil copy";
             }
-            res.render(view, { listaErros: null, dadosNotificacao: null, valores: campos })
+            res.render(view, { erros: null, dadosNotificacao: null, valores: campos })
         } catch (e) {
             console.log(e);
             let view;
@@ -125,7 +125,7 @@ const usuarioController = {
                 view = "pages/perfil copy";
             }
             res.render(view, {
-                listaErros: null, dadosNotificacao: null, valores: {
+                erros: null, dadosNotificacao: null, valores: {
                     img_perfil_banco: "", img_perfil_pasta: "", name: "", email: "",
                      telefone: "", senha: "", biografia: ""
                 }
@@ -133,6 +133,76 @@ const usuarioController = {
         }
     },
 
+    gravarPerfil: async (req, res) => {
+
+        const erros = validationResult(req);
+        const erroMulter = req.session.erroMulter;
+        if (!erros.isEmpty() || erroMulter != null ) {
+            lista =  !erros.isEmpty() ? erros : {formatter:null, errors:[]};
+            if(erroMulter != null ){
+                lista.errors.push(erroMulter);
+            } 
+            return res.render("pages/perfil", { erros: lista, dadosNotificacao: null, valores: req.body })
+        }
+        try {
+            var dados = {
+                nome: req.body.nome,
+                email: req.body.email,
+                telefone: req.body.telefone,
+                biografia: req.body.biografia,
+                img_perfil_banco: req.session.autenticado.img_perfil_banco,
+                img_perfil_pasta: req.session.autenticado.img_perfil_pasta,
+            };
+            if (req.body.senha != "") {
+                dados.senha_usuario = bcrypt.hashSync(req.body.senha, salt);
+            }
+            if (!req.file) {
+                console.log("Falha no carregamento");
+            } else {
+                //Armazenando o caminho do arquivo salvo na pasta do projeto 
+                caminhoArquivo = "app/public/imagem/uploads" + req.file.filename;
+                //Se houve alteração de imagem de perfil apaga a imagem anterior
+                if(dados.img_perfil_pasta != caminhoArquivo ){
+                    removeImg(dados.img_perfil_pasta);
+                }
+                dados.img_perfil_pasta = caminhoArquivo;
+                dados.img_perfil_banco = null;
+
+                // //Armazenando o buffer de dados binários do arquivo 
+                // dados.img_perfil_banco = req.file.buffer;                
+                // //Apagando a imagem armazenada na pasta
+                // if(dados.img_perfil_pasta != null ){
+                //     removeImg(dados.img_perfil_pasta);
+                // }
+                // dados.img_perfil_pasta = null; 
+            }
+            let resultUpdate = await usuarioModel.update(dados, req.session.autenticado.id);
+            if (!resultUpdate.isEmpty) {
+                if (resultUpdate.changedRows == 1) {
+                    var result = await usuario.findId(req.session.autenticado.id);
+                    var autenticado = {
+                        autenticado: result[0].nome_usuario,
+                        id: result[0].id_usuario,
+                        tipo: result[0].tipo_usuario,
+                        img_perfil_banco: result[0].img_perfil_banco != null ? `data:image/jpeg;base64,${result[0].img_perfil_banco.toString('base64')}` : null,
+                        img_perfil_pasta: result[0].img_perfil_pasta
+                    };
+                    req.session.autenticado = autenticado;
+                    var campos = {
+                        nome: result[0].nome_usuario, email: result[0].email_usuario,
+                        img_perfil_pasta: result[0].img_perfil_pasta, img_perfil_banco: result[0].img_perfil_banco,
+                        biografia: result[0].biografia_usuario, telefone: result[0].telefone_usuario, senha_usu: ""
+                    }
+                    res.render("pages/perfil", { erros: null, dadosNotificacao: { titulo: "Perfil! atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos });
+                }else{
+                    res.render("pages/perfil", { erros: null, dadosNotificacao: { titulo: "Perfil! atualizado com sucesso", mensagem: "Sem alterações", tipo: "success" }, valores: dados });
+                }
+            }
+        } catch (e) {
+            console.log(e)
+            res.render("pages/perfil", { erros: erros, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: req.body })
+        }
+    },
     
 
 }

@@ -119,23 +119,15 @@ router.post(
 );
 
 
-//DEV
-
-router.get('/perfil', 
-    verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401", console.log("não autorizado")),
-    function(req, res) {
-    usuarioController.mostrarPerfil(req, res);
-});
-
 router.get('/perfil1', 
-    verificarUsuAutorizado(['Escola','Comum', 'ADM'], "partials/401", console.log("não autorizado")),
+    verificarUsuAutorizado(['Escola','Comum', 'ADM'], "partials/401"),
     function(req, res) {
     const usuarioController = require("../controllers/usuarioController");
     usuarioController.mostrarPerfil(req, res);
 });
 
 router.get('/info',
-    verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401", console.log("não autorizado")),
+    verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401"),
     function(req, res) {
     const usuarioController = require("../controllers/usuarioController");
     usuarioController.mostrarPerfil(req, res);

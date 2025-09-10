@@ -84,7 +84,7 @@
   <main class="container">
    
     
-    <form action="/usuario/editar" method="POST" enctype="multipart/form-data" class="form-editar-perfil">
+    <form action="/info_post" method="POST" enctype="multipart/form-data" class="form-editar-perfil">
         <h1>Editar Perfil</h1>
       <section class="form-group">
         <label for="foto">Foto de Perfil</label>
@@ -109,8 +109,8 @@
       </section>
 
       <section class="form-group">
-      <label for="telefone">Biografia</label>
-      <textarea name="telefone" id="telefone"><%= valores.biografia ? valores.biografia : '' %></textarea>
+      <label for="biografia">Biografia</label>
+      <textarea name="biografia" id="biografia"><%= valores.biografia ? valores.biografia : '' %></textarea>
       </section>
 
       <section class="form-group">
