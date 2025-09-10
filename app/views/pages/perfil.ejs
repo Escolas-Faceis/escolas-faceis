@@ -12,17 +12,19 @@
     <%- include('../partials/navbar'); %>
     <main id="perfil">
         <section id="banner_perfil">
-            <img src="<%= arquivo && arquivo.imagem ? arquivo.imagem : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
+            <img src="<%= valores && valores.img_perfil_banco ? valores.img_perfil_banco : (valores && valores.img_perfil_pasta ? '/imagem/' + valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png') %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
         </section>
         <section id="conteudo">
             <section id="ajustar_esquerda">
                 <article id="conteudo_perfil" class="alinhar" style="align-items:center;">
                     <h2 style="margin-top:20px;">
-                        <%= arquivo && arquivo.nome_usu ? arquivo.nome_usu : "Visitante" %>
+                        <%= valores && valores.nome ? valores.nome : "Visitante" %>
                     </h2>
                 </article>
                 <section class="alinhar" style="width:100%;justify-content:center;">
-                    <%= arquivo && arquivo.biografia ? arquivo.biografia : "Este usuário não possui biografia :/" %>
+                    <p><strong>Email:</strong> <%= valores && valores.email ? valores.email : "Não informado" %></p>
+                    <p><strong>Telefone:</strong> <%= valores && valores.telefone ? valores.telefone : "Não informado" %></p>
+                    <%= valores && valores.biografia ? valores.biografia : "Este usuário não possui biografia :/" %>
                 </section>
                 <section class="separador"></section>
             </section>

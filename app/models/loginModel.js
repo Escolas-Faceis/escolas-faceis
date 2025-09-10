@@ -17,8 +17,8 @@ const loginModel = {
             findId: async (id) => {
             try {
                 const [resultados] = await pool.query(
-                    "SELECT u.id_usuario, u.nome_usuario, u.user_usuario, " +
-                    "u.senha_usuario, u.email_usuario, u.fone_usuario, u.tipo_usuario, " +
+                    "SELECT u.id_usuario, u.nome_usuario, " +
+                    "u.senha_usuario, u.email_usuario, u.telefone_usuario, u.tipo_usuario, " +
                     "u.status_usuario,u.numero_usuario, u.cep_usuario,u.img_perfil_banco, u.img_perfil_pasta," +
                     "t.id_tipo_usuario, t.descricao_usuario " +
                     "FROM usuario u, tipo_usuario t where u.status_usuario = 1 and " +

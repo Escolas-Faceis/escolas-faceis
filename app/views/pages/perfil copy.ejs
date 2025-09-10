@@ -12,17 +12,17 @@
     <%- include('../partials/navbar'); %>
     <main id="perfil">
         <section id="banner_perfil">
-            <img src="<%= arquivo && arquivo.imagem ? arquivo.imagem : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
+            <img src="<%= valores && valores.img_perfil_banco ? valores.img_perfil_banco : (valores && valores.img_perfil_pasta ? '/imagem/' + valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png') %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
         </section>
         <section id="conteudo">
             <section id="ajustar_esquerda">
                 <article id="conteudo_perfil" class="alinhar" style="align-items:center;">
                     <h2 style="margin-top:20px;">
-                        <%=autenticado ? autenticado.autenticado : "Visitante" %>
+                        <%= valores.name ? valores.name : "Visitante" %>
                     </h2>
                 </article>
-                <section class="alinhar" style="width:100%;justify-content:center;">
-                    <article class="bio"><%= arquivo && arquivo.biografia ? arquivo.biografia : "Este usuário não possui biografia :/" %></article> 
+                <section class="alinhar" >
+                    <article class="bio"><%= valores.biografia ? valores.biografia : "Este usuário não possui biografia ainda" %></article> 
                 </section>
                 <section class="botoes alinhar">
                     <% if(autenticado && autenticado.autenticado){ %> <button class="edit" type="button"><a class="edit" href="/info" target="">Editar perfil</a></button> <% } %>

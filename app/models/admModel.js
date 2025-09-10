@@ -1,3 +1,4 @@
+
 var pool = require("../../config/pool_conexoes");
 
 const admModel = {
@@ -14,11 +15,11 @@ const admModel = {
     findAllSchools: async () => {
         try {
             const [results] = await pool.query(`
-                SELECT u.*, e.cnpj, e.cep, e.numero
+                SELECT u.id_usuario, u.nome_usuario, u.email_usuario, u.status_usuario, e.cnpj, e.endereco, e.numero
                 FROM usuarios u
-                JOIN escolas e ON u.id_usuario = e.usuario_id
+                JOIN escolas e ON u.id_usuario = e.id_usuario
                 WHERE u.status_usuario = 1 AND u.tipo_usuario = 'Escola'
-            `);  
+            `);
             return results;
         } catch (error) {
             console.log(error);

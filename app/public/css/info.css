@@ -61,6 +61,20 @@
   .form-group input[type="file"] {
     padding: 6px 10px;
   }
+  .form-group textarea{
+    resize: none;
+    height: 90px;
+    border: 2px solid rgb(167, 167, 167);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 15px;
+    background-color: var(--fundo);
+    color: var(--letras);
+    transition: border-color 0.3s ease-in-out;
+    width: 97%;
+    max-width: 100%;
+    font-family: 'Poppins', sans-serif;
+  }
   
   /* Foco nos inputs */
   .form-group input:focus {
@@ -69,7 +83,7 @@
   }
   
   /* Botão de submit */
-  .form-editar-perfil button[type="submit"] {
+  .form-editar-perfil input[type="submit"] {
     background-color: var(--azulsec);
     color: var(--fundo);
     font-size: 22px;
@@ -85,7 +99,7 @@
     transform: translateY(10px);
   }
   
-  .form-editar-perfil button[type="submit"]:hover {
+  .form-editar-perfil input[type="submit"]:hover {
     background-color: #5298d1;
     transform: scale(1.01);
   }
@@ -98,7 +112,7 @@
       margin-bottom: 40px;
     }
   
-    .form-editar-perfil button[type="submit"] {
+    .form-editar-perfil input[type="submit"] {
       width: 100%;
       font-size: 20px;
       padding: 12px 0;
@@ -137,7 +151,7 @@
       padding: 10px 8px;
     }
   
-    .form-editar-perfil button[type="submit"] {
+    .form-editar-perfil input[type="submit"] {
       font-size: 18px;
       padding: 10px 0;
     }
@@ -173,7 +187,7 @@
       margin-bottom: 10px;
     }
   
-    .form-editar-perfil button[type="submit"] {
+    .form-editar-perfil input[type="submit"] {
       font-size: 16px;
       padding: 8px 0;
       width: 100%;

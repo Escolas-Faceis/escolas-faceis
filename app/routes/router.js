@@ -7,6 +7,7 @@ const usuarioController = require("../controllers/usuarioController");
 const escolaController = require("../controllers/escolaController");
 const loginController = require("../controllers/loginController");
 const admController = require("../controllers/admController");
+const uploadFile = require("../helpers/uploader");
 dotenv.config();
 
 const {
@@ -120,17 +121,35 @@ router.post(
 
 //DEV
 
-router.get('/perfil', function(req, res) {
-    res.render('pages/perfil', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""}, arquivo:"" });
+router.get('/perfil', 
+    verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401", console.log("não autorizado")),
+    function(req, res) {
+    usuarioController.mostrarPerfil(req, res);
 });
 
-router.get('/perfil1', function(req, res) {
-    res.render('pages/perfil copy', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""}, arquivo:"" });
+router.get('/perfil1', 
+    verificarUsuAutorizado(['Escola','Comum', 'ADM'], "partials/401", console.log("não autorizado")),
+    function(req, res) {
+    const usuarioController = require("../controllers/usuarioController");
+    usuarioController.mostrarPerfil(req, res);
 });
 
-router.get('/info', function(req, res) {
-    res.render('pages/perfil-usu-i', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""} })
+router.get('/info',
+    verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401", console.log("não autorizado")),
+    function(req, res) {
+    const usuarioController = require("../controllers/usuarioController");
+    usuarioController.mostrarPerfil(req, res);
 });
+
+router.post(
+  "/info_post",
+  uploadFile("imagem-perfil_usu"),
+  usuarioController.regrasValidacaoUsuario,
+  verificarUsuAutorizado([1, 2, 3], "partials/401"),
+  async function (req, res) {
+    usuarioController.gravarPerfil(req, res);
+  }
+);
 
 
 router.get('/401', function(req, res) {

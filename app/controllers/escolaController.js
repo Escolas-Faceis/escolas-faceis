@@ -53,40 +53,35 @@ const escolaController = {
                 dadosNotificacao: null
             });
         }
+        const tiposEnsinoValues = Array.isArray(req.body.tipos_ensino_values) ? req.body.tipos_ensino_values : [req.body.tipos_ensino_values].filter(Boolean);
+        const turnosValues = Array.isArray(req.body.turnos_values) ? req.body.turnos_values : [req.body.turnos_values].filter(Boolean);
+        const redesValues = Array.isArray(req.body.redes_values) ? req.body.redes_values : [req.body.redes_values].filter(Boolean);
+
         const dados = {
-            'tipos_ensino': req.body.tipos_ensino_values || [],
-            'turnos': req.body.turnos_values || [],
-            'redes': req.body.redes_values || [],
+            'tipos_ensino': tiposEnsinoValues,
+            'turnos': turnosValues,
+            'redes': redesValues,
             'name_school': req.body.name_school,
             'email': req.body.email,
             'password': bcrypt.hashSync(req.body.password, salt),
             'cep': req.body.cep,
             'numero': req.body.adress_n,
-            'cnpj': req.body.cnpj
+            'cnpj': req.body.cnpj,
+            'endereco': req.body.adress,
+            'cidade': req.body.city,
+            'estado': req.body.estado || 'SP',
+            'email_escola': req.body.email,
+            'senha_escola': bcrypt.hashSync(req.body.password, salt),
+            'nome_escola': req.body.name_school,
+            'tipo_ensino_str': tiposEnsinoValues.join(','),
+            'turnos_str': turnosValues.join(','),
+            'redes_str': redesValues.join(',')
         };
         console.log("Dados enviados para o banco:", dados);
        
         try {
             let create = await escolaModel.create(dados);
-            
-            // Processar os dados das checkboxes
-            const id_escola = create; // ID da escola criada
-            if (dados.tipos_ensino.length > 0) {
-                for (const tipo of dados.tipos_ensino) {
-                    await escolaModel.associarTipoEnsino(id_escola, tipo);
-                }
-            }
-            if (dados.turnos.length > 0) {
-                for (const turno of dados.turnos) {
-                    await escolaModel.associarTurno(id_escola, turno);
-                }
-            }
-            if (dados.redes.length > 0) {
-                for (const rede of dados.redes) {
-                    await escolaModel.associarRede(id_escola, rede);
-                }
-            }
-            
+
             res.render("pages/cadastro-escola", {
                 erros: null, dadosNotificacao: {
                     titulo: "Cadastro realizado!", mensagem: "Nova escola criada com sucesso!", tipo: "success"
@@ -96,7 +91,8 @@ const escolaController = {
             console.log(error);
             return res.render('pages/cadastro-escola', {
                 "erros": { errors: [{ msg: "Erro interno no servidor." }] },
-                "valores": req.body
+                "valores": req.body,
+                "dadosNotificacao": null
             });
         }
     }

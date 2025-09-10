@@ -41,14 +41,20 @@ const usuarioModel = {
         }
     },
 
-    findId: async (id) => {
-        try {
-            const [linhas,campos] = await pool.query('SELECT * FROM usuarios WHERE status_usuario = 1 and id_usuario = ?',[id] )
-            return linhas;
-        } catch (error) {
-            return error;
-        }
-    },
+                findId: async (id) => {
+                try {
+                    const [resultados] = await pool.query(
+                        "SELECT u.id_usuario, u.nome_usuario, " +
+                        "u.senha_usuario, u.email_usuario, u.telefone_usuario, u.tipo_usuario, " +
+                        "u.status_usuario, u.img_perfil_banco, u.img_perfil_pasta, u.biografia_usuario " +
+                        "FROM usuarios u WHERE u.id_usuario = ? AND u.status_usuario = 1", [id]
+                    )
+                    return resultados;
+                } catch (error) {
+                    console.log(error);
+                    return error;
+                }
+            },
 
     findPage: async (pagina, total) => {
         try {

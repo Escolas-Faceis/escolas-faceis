@@ -45,6 +45,7 @@ body {
     min-height: 180px;
     height: 200px;
     margin-bottom: 0;
+    z-index:0;
 }
 
 

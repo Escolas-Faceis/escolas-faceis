@@ -88,7 +88,8 @@
         <h1>Editar Perfil</h1>
       <section class="form-group">
         <label for="foto">Foto de Perfil</label>
-        <input type="file" name="foto" id="foto" accept="image/*">
+        <input type="file" name="imagem-perfil_usu" id="imagem-perfil_usu"  onchange="loadImg(event)">
+        <img class="img-perfil"  id="img-preview" src="<%=  %>">
       </section>
 
       <section class="form-group">
@@ -98,21 +99,26 @@
 
       <section class="form-group">
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<%=  %>" required>
+        <input type="email" name="email" id="email" value="<%= valores.email ? valores.email : '' %>" required>
       </section>
 
 
       <section class="form-group">
         <label for="telefone">Telefone</label>
-        <input type="tel" name="telefone" id="telefone" value="<%=  %>"  maxlength="15"  required>
+        <input type="tel" name="telefone" id="telefone" value="<%= valores.cellphone ? valores.cellphone : '' %>"  maxlength="15"  required>
+      </section>
+
+      <section class="form-group">
+      <label for="telefone">Biografia</label>
+      <textarea name="telefone" id="telefone"><%= valores.biografia ? valores.biografia : '' %></textarea>
       </section>
 
       <section class="form-group">
         <label for="senha">Senha</label>
-        <input type="password" name="senha" id="senha" placeholder="Digite a nova senha">
+        <input type="password" name="senha" id="senha" placeholder="Não preencha este campo para manter a senha atual">
       </section>
 
-      <button type="submit">Salvar Alterações</button>
+      <input type="submit" value="Salvar Alterações" id="submit-btn" />
     </form>
   </main>
 

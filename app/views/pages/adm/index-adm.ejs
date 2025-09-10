@@ -52,7 +52,7 @@
         <th>Nome</th>
         <th>E-mail</th>
         <th>CNPJ</th>
-        <th>CEP</th>
+        <th>Endereço</th>
         <th>Número</th>
         <th>Status</th>
     </tr>
@@ -63,14 +63,14 @@
                 <td><%= escola.nome_usuario %></td>
                 <td><%= escola.email_usuario %></td>
                 <td><%= escola.cnpj || 'Não informado' %></td>
-                <td><%= escola.cep || 'Não informado' %></td>
+                <td><%= escola.endereco || 'Não informado' %></td>
                 <td><%= escola.numero || 'Não informado' %></td>
                 <td><%= escola.status_usuario === 1 ? 'Ativo ✅' : 'Inativo ❌' %></td>
             </tr>
         <% }); %>
     <% } else { %>
         <tr>
-            <td colspan="5">Nenhum usuário encontrado.</td>
+            <td colspan="7">Nenhuma escola encontrada.</td>
         </tr>
     <% } %>
 
