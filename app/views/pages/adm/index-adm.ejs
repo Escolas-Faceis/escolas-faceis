@@ -38,11 +38,29 @@
         <% }); %>
     <% } else { %>
         <tr>
-            <td colspan="5">Nenhum usuário encontrado.</td>
+            <td colspan="6">Nenhum usuário encontrado.</td>
         </tr>
     <% } %>
+</table>
 
-</table></section>
+<% if(paginador){ %>
+<aside class="paginador">
+    <ul>
+        <% for(var i=1; i <= paginador.totPaginas; i++){ %>
+            <% if(paginador.paginaAtual == i){ %>
+                <li>
+                    <a href="?pagina=<%= i %>" class="atual"><%= i %></a>
+                </li>
+            <% } else { %>
+                <li>
+                    <a href="?pagina=<%= i %>"><%= i %></a>
+                </li>
+            <% } %>
+        <% } %>
+    </ul>
+</aside>
+<% } %>
+ </section>
 
 <section class="container body-content">
         <h2 id="title">Escolas Ativas</h2>
@@ -75,6 +93,7 @@
     <% } %>
 
 </table></section>
+<section class="s"></section>
 
         <%- include('../../partials/footer'); %>   
         </body>

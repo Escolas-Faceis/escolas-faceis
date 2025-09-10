@@ -34,8 +34,7 @@
 
 .table {
   width: 95%;
-  margin: 24px auto;   
-  margin-bottom: 10%;     
+  margin: 24px auto 0px auto;    
   border-collapse: separate;
   border-spacing: 0;
   font-size: 1rem;
@@ -95,7 +94,7 @@
 
 .welcome h1{
     font-weight: 350;
-    margin: 0 0 0 2%;
+    margin: 5% 0 0 2%;
     color: var(--letras);
     font-size: 20px;
 }
@@ -133,6 +132,9 @@
   color:white;
   text-decoration: none;
 }
+.s{
+  margin-top:10%
+}
 
 .notificador ul li a.atual {
   background-color: white;
@@ -140,6 +142,51 @@
   border: 1px solid red;
   font-weight: bold;
   text-decoration: none;
+}
+
+.paginador {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.paginador ul {
+  padding: 0;
+  list-style: none;
+  display: inline-flex;
+  background: var(--fundo);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.paginador ul li {
+  margin: 0;
+}
+
+.paginador ul li a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: var(--letras2);
+  background: var(--tr);
+  border-right: 1px solid #ddd;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.paginador ul li:last-child a {
+  border-right: none;
+}
+
+.paginador ul li a:hover {
+  background: var(--azulsec);
+  color: white;
+}
+
+.paginador ul li a.atual {
+  background: var(--laranja);
+  color: white;
+  font-weight: bold;
 }
 
 /* Responsive for 800px */

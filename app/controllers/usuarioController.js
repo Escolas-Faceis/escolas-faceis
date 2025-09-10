@@ -102,7 +102,7 @@ const usuarioController = {
                 name: results[0].nome_usuario, email: results[0].email_usuario,
                 img_perfil_pasta: results[0].img_perfil_pasta,
                 img_perfil_banco: results[0].img_perfil_banco != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
-                telefone: results[0].fone_usuario, senha: "", biografia: results[0].biografia_usuario
+                telefone: results[0].telefone_usuario, senha: "", biografia: results[0].biografia_usuario
             }
 
             let view;

@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/css/info.css">
 </head>
 <body>
+  <script src="/js/mascaras.js"></script>
     <script>
         function notify(title, text, type, position, timeout = 5000) {
             new Notify({
@@ -105,7 +106,7 @@
 
       <section class="form-group">
         <label for="telefone">Telefone</label>
-        <input type="tel" name="telefone" id="telefone" value="<%= valores.cellphone ? valores.cellphone : '' %>"  maxlength="15"  required>
+        <input type="tel" name="telefone" id="telefone" value="<%= valores.telefone ? valores.telefone : '' %>"  maxlength="15" onload="mascaraTelefone()" required>
       </section>
 
       <section class="form-group">
@@ -124,4 +125,5 @@
 
   <%- include('../partials/footer'); %>
 </body>
+
 </html>

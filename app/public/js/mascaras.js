@@ -16,9 +16,9 @@ input.addEventListener('keypress', () => {
 
 
     //TELEFONE CELULAR
-
+    function mascaraTelefone(telefone) {
     document.addEventListener('DOMContentLoaded', function () {
-        const numero = document.getElementById('cellphone');
+        const numero = document.getElementById('cellphone' || 'telefone');
     
         numero.addEventListener('keypress', (event) => {
             const numerLength = numero.value.replace(/[^0-9]/g, '').length; // Contar apenas números
@@ -38,4 +38,4 @@ input.addEventListener('keypress', () => {
             }
         });
     });
-    
+}

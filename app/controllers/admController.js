@@ -43,6 +43,7 @@ const admController = {
     listarUsuarios: async (req, res, next) => {
         try {
             const usuarios = await admModel.findAll();
+            
             req.usuarios = usuarios;
             next();
         } catch (error) {
@@ -54,15 +55,33 @@ const admController = {
     listarEscolas: async (req, res) => {
         try {
             const escolas = await admModel.findAllSchools();
-            res.render('pages/adm/index-adm', {
+            res.render('pages/adm/adm-list', {
                 usuarios: req.usuarios || [],
                 escolas: escolas || []
             });
         } catch (error) {
-            res.render('pages/adm/index-adm', {
+            res.render('pages/adm/adm-list', {
                 usuarios: req.usuarios || [],
                 escolas: []
             });
+        }
+    },
+
+    listarUsuariosPaginados: async (req, res, next) => {
+        res.locals.moment = moment;
+        try {
+            let pagina = parseInt(req.query.pagina) || 1;
+            let results = null;
+            let regPagina = 10;
+            let inicio = (pagina - 1) * regPagina;
+            let totalReg = await admModel.totalReg();
+            let totPaginas = Math.ceil(totalReg[0].total / regPagina);
+            results = await admModel.findPage(inicio, regPagina);
+            let paginador = totalReg[0].total <= regPagina ? null : { "paginaAtual": pagina, "totalReg": totalReg[0].total, "totPaginas": totPaginas };
+            res.render('pages/adm/index-adm', { usuarios: results, paginador: paginador });
+        } catch (error) {
+            console.log(error);
+            res.render('pages/adm/index-adm', { usuarios: [], paginador: null });
         }
     },
 

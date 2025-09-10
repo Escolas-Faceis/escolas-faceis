@@ -8,6 +8,7 @@ router.get("/",
     verificarUsuAutenticado,
     admControllerPainel.listarUsuarios,
     admControllerPainel.listarEscolas,
+    admController.listarUsuariosPaginados,
     verificarUsuAutorizado(["ADM"], 'partials/401'),
     function(req, res) {
         res.render('pages/adm/index-adm', {
@@ -21,8 +22,8 @@ router.get("/",
 router.get("/list",
     verificarUsuAutenticado,
     verificarUsuAutorizado(["ADM"], 'partials/401'),
-    admControllerPainel.listarUsuarios,
-    admControllerPainel.listarEscolas,
+    admController.listarUsuarios,
+    admController.listarEscolas,
     function(req, res) {
         res.render('pages/adm/adm-list', {
             autenticado: req.session.autenticado,

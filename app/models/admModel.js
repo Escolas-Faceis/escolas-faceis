@@ -51,7 +51,41 @@ const admModel = {
             console.log(error);
             return [];
         }
-    }
+    },
+
+    findPage: async (pagina, total) => {
+        try {
+            const [linhas] = await pool.query('SELECT * FROM usuarios WHERE status_usuario = 1 LIMIT ?,?', [pagina, total]);
+            return linhas;
+        } catch (error) {
+            return error;
+        }
+    },
+    
+    totalReg: async () => {
+        try {
+            const [linhas] = await pool.query(
+                "SELECT count(*) total FROM usuarios WHERE status_usuario = 1"
+            )
+            return linhas;
+        } catch (error) {
+            console.log(error);
+            return error;
+        }},
+
+    findCampoCustom: async (criterioWhere) => {
+            try {
+                const [resultados] = await pool.query(
+                    "SELECT count(*) totalReg FROM usuario WHERE ?",
+                    [criterioWhere]
+                )
+                return resultados[0].totalReg;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        },
+
 }
 
 module.exports = admModel;
