@@ -1,34 +1,26 @@
 const admModel = require("../models/admModel");
-const moment = require("moment");
-const { body, validationResult } = require("express-validator");
-const { validarTelefone } = require("../helpers/validacoes");
 
 const admControllerPainel = {
-
-    listarEscolas: async (req, res) => {
+    listarEscolas: async (req, res, next) => {
         try {
             const escolas = await admModel.findAllSchools();
-            res.render('pages/adm/adm-list-escolas', { escolas: escolas || [] });
+            res.locals.escolas = escolas || [];
         } catch (error) {
-            res.render('pages/adm/adm-list-escolas', { escolas: [] });
+            res.locals.escolas = [];
         }
+        next();
     },
 
-        listarUsuarios: async (req, res) => {
+    listarUsuarios: async (req, res, next) => {
         try {
-            const escolas = await admModel.findAllSchools();
-            res.render('pages/adm/adm-list', {
-                usuarios: req.usuarios || [],
-                escolas: escolas || []
-            });
+            const usuarios = await admModel.findAllUsers();
+            console.log('USUÁRIOS:', usuarios); // Veja o que retorna!
+            res.locals.usuarios = usuarios || [];
         } catch (error) {
-            res.render('pages/adm/adm-list', {
-                usuarios: req.usuarios || [],
-                escolas: []
-            });
+            res.locals.usuarios = [];
         }
+        next();
     },
-
 }
 
 module.exports = admControllerPainel;
