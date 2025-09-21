@@ -6,10 +6,11 @@ const { verificarUsuAutenticado, verificarUsuAutorizado } = require("../models/a
 
 router.get("/",
     verificarUsuAutenticado,
+    verificarUsuAutorizado(["ADM"], 'partials/401'),
     admControllerPainel.listarUsuarios,
     admControllerPainel.listarEscolas,
     admController.listarUsuariosPaginados,
-    verificarUsuAutorizado(["ADM"], 'partials/401'),
+    
     function(req, res) {
         res.render('pages/adm/index-adm', {
             autenticado: req.session.autenticado,
@@ -18,6 +19,8 @@ router.get("/",
         });
     }
 );
+
+
 
 router.get("/list",
     verificarUsuAutenticado,

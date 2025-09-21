@@ -61,7 +61,7 @@ verificarUsuAutorizado = (tipoPermitido, destinoFalha = '../401.ejs') => {
             next();
         } else {
             console.log("Usuário não autorizado:", req.session.autenticado);
-            res.render(destinoFalha)
+            return res.render(destinoFalha)
         }
     }
 }

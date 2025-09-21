@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada</title>
+    <style>
+        body {
+            background: #f5f6fa;
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .dev-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .msgDev {
+            color: #141c44;
+            text-align: center;
+            margin: 0 0 24px 0;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+        .dev-img {
+            width: 30%;
+            max-width: 90vw;
+            margin: 0 auto;
+            display: block;
+        }
+        .btn-fofo {
+            margin-top: 30px;
+            background: #f56d44;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 14px 14px;
+            font-size: 1.1rem;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(245,109,68,0.13);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        .btn-fofo:hover, .btn-fofo:focus {
+            background: #ff7d4d;
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 8px 24px rgba(245,109,68,0.18);
+        }
+        @media (max-width: 600px) {
+            .msgDev {
+                font-size: 1.05rem;
+            }
+            .dev-img {
+                width: 180px;
+            }
+            .btn-fofo {
+                width: 90vw;
+                padding: 12px 0;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="dev-container">
+        <h2 class="msgDev">Ops! Página não encontrada.</h2>
+        <img src="/imagem/401.png" alt="Erro 404" class="dev-img">
+        <a href="/"><button class="btn-fofo">Voltar para a página inicial</button></a>
+    </section>
+</body>
+</html>
