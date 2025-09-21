@@ -1,10 +1,9 @@
-
 var pool = require("../../config/pool_conexoes");
 
 const admModel = {
     findAll: async () => {
         try {
-            const [results] = await pool.query("SELECT * FROM usuarios WHERE status_usuario = 1");  
+            const [results] = await pool.query("SELECT * FROM usuarios WHERE status_usuario = 1");
             return results;
         } catch (error) {
             console.log(error);
@@ -61,7 +60,7 @@ const admModel = {
             return error;
         }
     },
-    
+
     totalReg: async () => {
         try {
             const [linhas] = await pool.query(
@@ -85,6 +84,7 @@ const admModel = {
                 return error;
             }
         },
+
 
 }
 

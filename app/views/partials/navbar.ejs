@@ -1,31 +1,23 @@
-<link rel="stylesheet" href="css/menu.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <link rel="icon" type="image/png" href="/imagem/favicon.png">
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <title>Escolas Faceis</title>
-            <link rel="stylesheet" href="teste.css">
-        </head>
-        <body><span class="navbar">
-            <header>
-                <nav role="navigation">
-                <section id="menuToggle">
-                    <input id="check" type="checkbox">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    
-                        <ul id="menu">
-    <a href="/"><img src="imagem/logo.png" alt="" id="logo"></a>
+
+<link rel="stylesheet" href="/css/menu.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+
+<span class="navbar">
+    <header>
+        <nav role="navigation">
+        <section id="menuToggle">
+            <input id="check" type="checkbox">
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <ul id="menu">
+    <a href="/"><img src="/imagem/logo.png" alt="" id="logo"></a>
     <a href="/"><li id="inicio">Ínicio</li></a>
     <details class="master">
         <summary><li id="lista-summary">
@@ -53,11 +45,13 @@
         <button onclick="toggleTheme()" class="sun" id="tema"></button>
     </section>
 </ul>
-                    </section>
-                </nav>
-            </header></span>
+            </section>
+        </nav>
+    </header>
+</span>
 
-    <%  if(autenticado && autenticado.tipo === "ADM") { %> <%- include('navbar-adm'); %> <% } %>
-        </body>
-        <script src="js/theme-toggle.js"></script>
-    </html>
+<% if(autenticado && autenticado.tipo === "ADM") { %>
+    <%- include('navbar-adm'); %>
+<% } %>
+
+<script src="/js/theme-toggle.js"></script>

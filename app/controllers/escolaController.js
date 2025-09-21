@@ -53,9 +53,13 @@ const escolaController = {
                 dadosNotificacao: null
             });
         }
-        const tiposEnsinoValues = Array.isArray(req.body.tipos_ensino_values) ? req.body.tipos_ensino_values : [req.body.tipos_ensino_values].filter(Boolean);
-        const turnosValues = Array.isArray(req.body.turnos_values) ? req.body.turnos_values : [req.body.turnos_values].filter(Boolean);
-        const redesValues = Array.isArray(req.body.redes_values) ? req.body.redes_values : [req.body.redes_values].filter(Boolean);
+        const tiposEnsinoValues = Array.isArray(req.body.ensino) ? req.body.ensino : [req.body.ensino].filter(Boolean);
+        const turnosValues = Array.isArray(req.body.turno) ? req.body.turno : [req.body.turno].filter(Boolean);
+        const redesValues = Array.isArray(req.body.rede) ? req.body.rede : [req.body.rede].filter(Boolean);
+
+        console.log("Checkbox values received - ensino:", tiposEnsinoValues);
+        console.log("Checkbox values received - turno:", turnosValues);
+        console.log("Checkbox values received - rede:", redesValues);
 
         const dados = {
             'tipos_ensino': tiposEnsinoValues,
@@ -81,6 +85,7 @@ const escolaController = {
        
         try {
             let create = await escolaModel.create(dados);
+            console.log("Result of create:", create);
 
             res.render("pages/cadastro-escola", {
                 erros: null, dadosNotificacao: {
