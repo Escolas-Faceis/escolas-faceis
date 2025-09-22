@@ -62,6 +62,7 @@
 <% } %>
  </section>
 
+
 <section class="container body-content">
         <h2 id="title">Escolas Ativas</h2>
 <table class="table">
@@ -72,6 +73,9 @@
         <th>CNPJ</th>
         <th>Endereço</th>
         <th>Número</th>
+        <th>Tipo de Ensino</th>
+        <th>Turnos</th>
+        <th>Rede</th>
         <th>Status</th>
     </tr>
     <% if (escolas && escolas.length > 0) { %>
@@ -81,20 +85,24 @@
                 <td><%= escola.nome_usuario %></td>
                 <td><%= escola.email_usuario %></td>
                 <td><%= escola.cnpj || 'Não informado' %></td>
+
                 <td><%= escola.endereco || 'Não informado' %></td>
                 <td><%= escola.numero || 'Não informado' %></td>
+                <td><%= escola.tipo_ensino || 'Não informado' %></td>
+                <td><%= escola.turnos || 'Não informado' %></td>
+                <td><%= escola.rede || 'Não informado' %></td>
                 <td><%= escola.status_usuario === 1 ? 'Ativo ✅' : 'Inativo ❌' %></td>
             </tr>
         <% }); %>
     <% } else { %>
         <tr>
-            <td colspan="7">Nenhuma escola encontrada.</td>
+            <td colspan="10">Nenhuma escola encontrada.</td>
         </tr>
     <% } %>
 
 </table></section>
 <section class="s"></section>
 
-        <%- include('../../partials/footer'); %>   
+        <%- include('../../partials/footer'); %>
         </body>
 </html>

@@ -36,7 +36,9 @@
     <a href="/contato"><li>Contato</li></a>
     <section class="aside">
         <% if(autenticado && autenticado.autenticado){ %>
-            <a href="/perfil1"><li>Perfil</li></a>
+            <% if( autenticado && autenticado.tipo === "Escola" ) { %>
+                <a href="/adm"><li>Admin</li></a> <a href="/perfil1"><li>Perfil</li></a> <%}%>
+            <a href="/perfil1"><li>            <img src="<%= valores && valores.img_perfil_banco ? valores.img_perfil_banco : (valores && valores.img_perfil_pasta ? '/imagem/' + valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png') %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário"></li></a>
             <a href="/sair"><li>Sair</li></a>
         <% } else { %>
             <a href="/login"><li>Login</li></a>
