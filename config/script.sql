@@ -87,7 +87,8 @@ CREATE TABLE IF NOT EXISTS redes (
 -- Inserir dados padrão para tipos de ensino
 INSERT IGNORE INTO tipos_ensino (nome_tipo_ensino) VALUES
 ('Educação Infantil'),
-('Ensino Fundamental'),
+('Ensino Fundamental I'),
+('Ensino Fundamental II'),
 ('Ensino Médio'),
 ('Educação Integrada'),
 ('Cursos Técnicos'),

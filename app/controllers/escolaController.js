@@ -1,7 +1,7 @@
 const escolaModel = require("../models/escolaModel");
 const moment = require("moment");
 const { body, validationResult } = require("express-validator");
-const { validarCNPJ } = require("../helpers/validacoes");
+const { validarCNPJ, cnpjExiste, emailExiste } = require("../helpers/validacoes");
 const bcrypt = require("bcryptjs");
 var salt = bcrypt.genSaltSync(12);
 
@@ -21,7 +21,14 @@ const escolaController = {
             .withMessage("Insira uma cidade válida"),
         body("email")
             .isEmail()
-            .withMessage("Email inválido."),
+            .withMessage("Email inválido.")
+            .custom(async value => {
+                const exists = await emailExiste(value);
+                if (exists) {
+                    throw new Error('Email já cadastrado');
+                }
+                return true;
+            }),
         body("password")
             .isStrongPassword()
             .withMessage("Senha muito fraca!"),
@@ -37,6 +44,13 @@ const escolaController = {
             .custom(value => {
                 if (!validarCNPJ(value)) {
                     throw new Error('CNPJ inválido');
+                }
+                return true;
+            })
+            .custom(async value => {
+                const exists = await cnpjExiste(value);
+                if (exists) {
+                    throw new Error('CNPJ já cadastrado');
                 }
                 return true;
             }),
@@ -87,6 +101,28 @@ const escolaController = {
             let create = await escolaModel.create(dados);
             console.log("Result of create:", create);
 
+            if (create && create.success === false) {
+                // Handle specific database errors
+                let errorMessage = "Erro no banco de dados. Tente novamente.";
+                let notificationType = "error";
+                
+                if (create.code === 'ER_DATA_TOO_LONG') {
+                    errorMessage = "Dados muito longos para um dos campos. Verifique o tamanho dos dados inseridos.";
+                } else if (create.code === 'ER_DUP_ENTRY') {
+                    errorMessage = create.userMessage || "Dados duplicados encontrados. Verifique os campos únicos.";
+                }
+                
+                return res.render('pages/cadastro-escola', {
+                    "erros": null,
+                    "valores": req.body,
+                    "dadosNotificacao": {
+                        titulo: "Erro no Cadastro",
+                        mensagem: errorMessage,
+                        tipo: notificationType
+                    }
+                });
+            }
+
             res.render("pages/cadastro-escola", {
                 erros: null, dadosNotificacao: {
                     titulo: "Cadastro realizado!", mensagem: "Nova escola criada com sucesso!", tipo: "success"
@@ -100,7 +136,36 @@ const escolaController = {
                 "dadosNotificacao": null
             });
         }
-    }
+    },
+
+    listarEscolas: async (req, res) => {
+        try {
+            const escolas = await escolaModel.findAllSorted();
+            res.render('pages/encontre-escolas', { escolas });
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Erro interno do servidor');
+        }
+    },
+
+    
+    paginarEscolas: async (req, res, next) => {
+        res.locals.moment = moment;
+        try {
+            let pagina = parseInt(req.query.pagina) || 1;
+            let results = null;
+            let regPagina = 5;
+            let inicio = (pagina - 1) * regPagina;
+            let totalReg = await escolaModel.totalReg();
+            let totPaginas = Math.ceil(totalReg[0].total / regPagina);
+            results = await escolaModel.findPage(inicio, regPagina);
+            let paginador = totalReg[0].total <= regPagina ? null : { "paginaAtual": pagina, "totalReg": totalReg[0].total, "totPaginas": totPaginas };
+            res.render('pages/encontre-escolas', { escolas: results, paginador: paginador });
+        } catch (error) {
+            console.log(error);
+            res.render('pages/encontre-escolas', { escolas: [], paginador: null });
+        }
+    },
 }
 
 module.exports = escolaController;

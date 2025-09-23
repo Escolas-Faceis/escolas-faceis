@@ -1,7 +1,7 @@
 const usuarioModel = require("../models/usuarioModel");
 const moment = require("moment");
 const { body, validationResult } = require("express-validator");
-const { validarTelefone } = require("../helpers/validacoes");
+const { validarTelefone, telefoneExiste } = require("../helpers/validacoes");
 const bcrypt = require("bcryptjs");
 const https = require("https");
 var salt = bcrypt.genSaltSync(12);
@@ -26,6 +26,13 @@ const usuarioController = {
                 if (!validarTelefone(value)) {
                     throw new Error('Número de telefone inválido');
                 }
+            })
+            .custom(async value => {
+                const exists = await telefoneExiste(value);
+                if (exists) {
+                    throw new Error('CNPJ já cadastrado');
+                }
+                return true;
             }),
 
         body("password")

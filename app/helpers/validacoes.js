@@ -1,3 +1,4 @@
+const pool = require("../../config/pool_conexoes");
 function validarTelefone(value) {
     let telefone = value.replace(/[^\d]+/g, '');
     if (!(telefone.length >= 10 && telefone.length <= 11)) {
@@ -80,16 +81,8 @@ function validarCNPJ(cnpj) {
     
 }
 
-
 async function validarCep() {
-    // const inputCep = document.querySelector("#cep");
-    // const msgAviso = document.querySelector("#msgAviso");
-    // const dadosCepUnitario = document.getElementById("dadosCepUnitario");
-
-    // // Limpa mensagens anteriores
-    // msgAviso.innerHTML = "";
-    // dadosCepUnitario.innerHTML = "";
-
+    
     const cepValue = inputCep.value.replace("-", "").replace(" ", "");
 
     try {
@@ -114,15 +107,44 @@ async function validarCep() {
     }
 }
 
-// Exemplo de uso: botão com id="btnEnviaCep"
-// document.addEventListener("DOMContentLoaded", function() {
-//     const btnEnviaCep = document.querySelector("#btnEnviaCep");
-//     if (btnEnviaCep) {
-//         btnEnviaCep.addEventListener("click", function(e) {
-//             e.preventDefault();
-//             validarCep();
-//         });
-//     }
-// });
+const emailExiste = async (email) => {
+    try {
+        const [rows] = await pool.query(
+            'SELECT id_usuario FROM usuarios WHERE email_usuario = ?',
+            [email]
+        );
+        return rows.length > 0;
+    } catch (error) {
+        console.log('Erro ao verificar email:', error);
+        return false;
+    }
+};
 
-module.exports = {validarTelefone, validarCNPJ, validarCep}
+const cnpjExiste = async (cnpj) => {
+    try {
+        const [rows] = await pool.query(
+            'SELECT id_escola FROM escolas WHERE cnpj = ?',
+            [cnpj]
+        );
+        return rows.length > 0;
+    } catch (error) {
+        console.log('Erro ao verificar CNPJ:', error);
+        return false;
+    }
+};
+
+const telefoneExiste = async (telefone) => {
+    try {
+        const [rows] = await pool.query(
+            'SELECT id_usuario FROM usuarios WHERE telefone_usuario = ?',
+            [telefone]
+        );
+        return rows.length > 0;
+    } catch (error) {
+        console.log('Erro ao verificar telefone:', error);
+        return false;
+    }
+};
+
+
+module.exports = {validarTelefone, validarCNPJ, validarCep, emailExiste, cnpjExiste, telefoneExiste};

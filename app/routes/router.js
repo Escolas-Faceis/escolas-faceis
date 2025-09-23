@@ -27,9 +27,7 @@ router.get('/cadastro-escola', function(req, res) {
     res.render('pages/cadastro-escola',  { "erros": null, dadosNotificacao: null, "valores": {"name_school":"","adress":"","adress_n":"", "city":"","state":"", "email":"","password":"","reppassword":""},"retorno":null });
 });
 
-router.get('/encontre-escolas', function(req, res) {
-    res.render('pages/encontre-escolas');
-});
+router.get('/encontre-escolas', escolaController.paginarEscolas);
 router.get('/contato', function(req, res) {
     res.render('pages/contato');
 });

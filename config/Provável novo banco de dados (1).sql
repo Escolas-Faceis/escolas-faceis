@@ -77,11 +77,11 @@ CREATE TABLE escolas (
 -- ========================
 DROP TABLE IF EXISTS avaliacoes;
 CREATE TABLE avaliacoes(
-    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    id_aval INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     id_escola INT NOT NULL,
     id_usuario INT NOT NULL,
-    CONSTRAINT fk_id_escola FOREIGN KEY (id_escola) REFERENCES escolas(id),
-    CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+    CONSTRAINT fk_id_escola FOREIGN KEY (id_escola) REFERENCES escolas(id_escola),
+    CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     nota TINYINT NOT NULL CHECK (nota BETWEEN 1 AND 5),
     comentario VARCHAR(255) DEFAULT NULL,
     data DATETIME DEFAULT CURRENT_TIMESTAMP
