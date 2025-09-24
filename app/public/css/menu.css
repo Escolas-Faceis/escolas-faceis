@@ -182,6 +182,14 @@
     justify-content: flex-end;
   }
 
+  #perfil-foto-navbar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0px solid #ffffff;
+  }
+
   .navbar button {
     margin: 0;
     transition: all 0.3s;

@@ -76,9 +76,11 @@ const usuarioModel = {
     
     update: async (dados, id) => {
         try {
-            const [linhas] = await pool.query('UPDATE usuarios SET ? WHERE id_usuario = ?', [dados, id])
+            const [linhas] = await pool.query('UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, telefone_usuario = ?, biografia_usuario = ?, img_perfil_banco = ?, img_perfil_pasta = ?, senha_usuario = ? WHERE id_usuario = ?', 
+                [dados.nome, dados.email, dados.telefone, dados.biografia, dados.img_perfil_banco, dados.img_perfil_pasta, dados.senha_usuario, id])
             return linhas;
         } catch (error) {
+            console.log("Erro na atualização do usuário: ", error);
             return error;
         }  
     },

@@ -186,7 +186,7 @@ const usuarioController = {
             let resultUpdate = await usuarioModel.update(dados, req.session.autenticado.id);
             if (!resultUpdate.isEmpty) {
                 if (resultUpdate.changedRows == 1) {
-                    var result = await usuario.findId(req.session.autenticado.id);
+                    var result = await usuarioModel.findId(req.session.autenticado.id);
                     var autenticado = {
                         autenticado: result[0].nome_usuario,
                         id: result[0].id_usuario,
