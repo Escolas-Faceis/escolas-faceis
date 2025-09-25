@@ -7,7 +7,7 @@ const usuarioController = require("../controllers/usuarioController");
 const escolaController = require("../controllers/escolaController");
 const loginController = require("../controllers/loginController");
 const admController = require("../controllers/admController");
-const uploadFile = require("../helpers/uploader");
+const uploadFile = require("../helpers/uploader")('public/images/uploads');
 dotenv.config();
 
 const {
@@ -135,7 +135,7 @@ router.post(
   "/info_post",
   uploadFile("imagem-perfil_usu"),
   usuarioController.regrasValidacaoUsuario,
-  verificarUsuAutorizado([1, 2, 3], "partials/401"),
+  verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401"),
   async function (req, res) {
     usuarioController.gravarPerfil(req, res);
   }
