@@ -4,9 +4,43 @@ const { body, validationResult } = require("express-validator");
 const { validarTelefone, telefoneExiste } = require("../helpers/validacoes");
 const bcrypt = require("bcryptjs");
 const https = require("https");
+const { removeImg } = require("../helpers/removeImg");
+const path = require("path");
 var salt = bcrypt.genSaltSync(12);
 
 const usuarioController = {
+
+    regrasValidacaoPerfil: [
+        body("nome")
+            .isLength({ min: 3, max: 50 })
+            .withMessage("Nome Inválido"),
+        body("email")
+            .isEmail()
+            .withMessage("Email inválido.")
+            .custom(async (value, { req }) => {
+                const emailUsu = await usuarioModel.findCampoCustom(value);
+                if (emailUsu > 0) {
+                    const current = await usuarioModel.findId(req.session.autenticado.id);
+                    if (current[0].email_usuario !== value) {
+                        throw new Error('Email em uso!');
+                    }
+                }
+            }),
+        body("telefone")
+            .custom(async value => {
+                if (!validarTelefone(value)) {
+                    throw new Error('Número de telefone inválido');
+                }
+            }),
+        body("biografia")
+            .optional()
+            .isLength({ max: 255 })
+            .withMessage("Biografia muito longa"),
+        body("senha")
+            .optional()
+            .isStrongPassword()
+            .withMessage("Senha muito fraca!"),
+    ],
 
     regrasValidacaoUsuario: [
         body("name")
@@ -107,7 +141,7 @@ const usuarioController = {
 
             let campos = {
                 name: results[0].nome_usuario, email: results[0].email_usuario,
-                img_perfil_pasta: results[0].img_perfil_pasta,
+                img_perfil_pasta: results[0].img_perfil_pasta ? results[0].img_perfil_pasta.replace('app/public/uploads', '') : null,
                 img_perfil_banco: results[0].img_perfil_banco != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
                 telefone: results[0].telefone_usuario, senha: "", biografia: results[0].biografia_usuario
             }
@@ -148,66 +182,57 @@ const usuarioController = {
             lista =  !erros.isEmpty() ? erros : {formatter:null, errors:[]};
             if(erroMulter != null ){
                 lista.errors.push(erroMulter);
-            } 
-            return res.render("pages/perfil", { erros: lista, dadosNotificacao: null, valores: req.body })
+                delete req.session.erroMulter; // clear after use
+            }
+            return res.render("pages/perfil-usu-i", { erros: lista, dadosNotificacao: null, valores: req.body })
         }
         try {
+            let currentUser = await usuarioModel.findId(req.session.autenticado.id);
             var dados = {
                 nome: req.body.nome,
                 email: req.body.email,
                 telefone: req.body.telefone,
                 biografia: req.body.biografia,
-                img_perfil_banco: req.session.autenticado.img_perfil_banco,
-                img_perfil_pasta: req.session.autenticado.img_perfil_pasta,
+                senha_usuario: req.body.senha != "" ? bcrypt.hashSync(req.body.senha, salt) : currentUser[0].senha_usuario,
+                img_perfil_id: currentUser[0].img_perfil_id
             };
-            if (req.body.senha != "") {
-                dados.senha_usuario = bcrypt.hashSync(req.body.senha, salt);
-            }
-            if (!req.file) {
-                console.log("Falha no carregamento");
-            } else {
-                //Armazenando o caminho do arquivo salvo na pasta do projeto 
-                caminhoArquivo = "app/public/imagem/uploads" + req.file.filename;
-                //Se houve alteração de imagem de perfil apaga a imagem anterior
-                if(dados.img_perfil_pasta != caminhoArquivo ){
-                    removeImg(dados.img_perfil_pasta);
+            if (req.file) {
+                let nomeImagem = req.file.originalname;
+                let caminho = "app/public/imagem/uploads/" + req.file.filename;
+                let newId = await usuarioModel.insertImage(nomeImagem, caminho);
+                dados.img_perfil_id = newId;
+                // remove old if exists
+                if (currentUser[0].img_perfil_id != null) {
+                    removeImg(currentUser[0].img_perfil_pasta);
                 }
-                dados.img_perfil_pasta = caminhoArquivo;
-                dados.img_perfil_banco = null;
-
-                // //Armazenando o buffer de dados binários do arquivo 
-                // dados.img_perfil_banco = req.file.buffer;                
-                // //Apagando a imagem armazenada na pasta
-                // if(dados.img_perfil_pasta != null ){
-                //     removeImg(dados.img_perfil_pasta);
-                // }
-                // dados.img_perfil_pasta = null; 
             }
             let resultUpdate = await usuarioModel.update(dados, req.session.autenticado.id);
-            if (!resultUpdate.isEmpty) {
-                if (resultUpdate.changedRows == 1) {
+            if (resultUpdate.affectedRows > 0) {
+                if (resultUpdate.changedRows >= 1) {
                     var result = await usuarioModel.findId(req.session.autenticado.id);
                     var autenticado = {
                         autenticado: result[0].nome_usuario,
                         id: result[0].id_usuario,
                         tipo: result[0].tipo_usuario,
                         img_perfil_banco: result[0].img_perfil_banco != null ? `data:image/jpeg;base64,${result[0].img_perfil_banco.toString('base64')}` : null,
-                        img_perfil_pasta: result[0].img_perfil_pasta
+                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public/uploads', '') : null
                     };
                     req.session.autenticado = autenticado;
                     var campos = {
                         nome: result[0].nome_usuario, email: result[0].email_usuario,
-                        img_perfil_pasta: result[0].img_perfil_pasta, img_perfil_banco: result[0].img_perfil_banco,
-                        biografia: result[0].biografia_usuario, telefone: result[0].telefone_usuario, senha_usu: ""
+                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public/uploads', '') : null, img_perfil_banco: result[0].img_perfil_banco,
+                        biografia: result[0].biografia_usuario, telefone: result[0].telefone_usuario, senha: ""
                     }
-                    res.render("pages/perfil", { erros: null, dadosNotificacao: { titulo: "Perfil! atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos });
+                    res.render("pages/perfil-usu-i", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos });
                 }else{
-                    res.render("pages/perfil", { erros: null, dadosNotificacao: { titulo: "Perfil! atualizado com sucesso", mensagem: "Sem alterações", tipo: "success" }, valores: dados });
+                res.render("pages/perfil-usu-i", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Sem alterações", tipo: "success" }, valores: req.body });
                 }
+            } else {
+            res.render("pages/perfil-usu-i", { erros: null, dadosNotificacao: { titulo: "Erro ao atualizar", mensagem: "Nenhuma alteração foi feita", tipo: "error" }, valores: req.body });
             }
         } catch (e) {
             console.log(e)
-            res.render("pages/perfil", { erros: erros, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: req.body })
+            res.render("pages/perfil-usu-i", { erros: { errors: [{ msg: "Erro interno no servidor." }] }, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: req.body })
         }
     },
     

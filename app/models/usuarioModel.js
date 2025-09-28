@@ -46,8 +46,10 @@ const usuarioModel = {
                     const [resultados] = await pool.query(
                         "SELECT u.id_usuario, u.nome_usuario, " +
                         "u.senha_usuario, u.email_usuario, u.telefone_usuario, u.tipo_usuario, " +
-                        "u.status_usuario, u.img_perfil_banco, u.img_perfil_pasta, u.biografia_usuario " +
-                        "FROM usuarios u WHERE u.id_usuario = ? AND u.status_usuario = 1", [id]
+                        "u.status_usuario, u.img_perfil_id, i.caminho_imagem as img_perfil_pasta, u.biografia_usuario, " +
+                        "NULL as img_perfil_banco " +
+                        "FROM usuarios u LEFT JOIN imagens i ON u.img_perfil_id = i.id_imagem " +
+                        "WHERE u.id_usuario = ? AND u.status_usuario = 1", [id]
                     )
                     return resultados;
                 } catch (error) {
@@ -74,27 +76,40 @@ const usuarioModel = {
         }  
     },
     
+    insertImage: async (nome, caminho) => {
+        try {
+            const [resultados] = await pool.query(
+                "INSERT INTO imagens (nome_imagem, caminho_imagem) VALUES (?, ?)",
+                [nome, caminho]
+            );
+            return resultados.insertId;
+        } catch (erro) {
+            console.log(erro);
+            return false;
+        }
+    },
+
     update: async (dados, id) => {
         try {
-            const [linhas] = await pool.query('UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, telefone_usuario = ?, biografia_usuario = ?, img_perfil_banco = ?, img_perfil_pasta = ?, senha_usuario = ? WHERE id_usuario = ?', 
-                [dados.nome, dados.email, dados.telefone, dados.biografia, dados.img_perfil_banco, dados.img_perfil_pasta, dados.senha_usuario, id])
+            const [linhas] = await pool.query('UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, telefone_usuario = ?, biografia_usuario = ?, img_perfil_id = ?, senha_usuario = ? WHERE id_usuario = ?',
+                [dados.nome, dados.email, dados.telefone, dados.biografia, dados.img_perfil_id, dados.senha_usuario, id])
             return linhas;
         } catch (error) {
             console.log("Erro na atualização do usuário: ", error);
-            return error;
-        }  
+            throw error;
+        }
     },
 
-    findCampoCustom: async (criterioWhere) => {
+    findCampoCustom: async (email) => {
     try {
         const [resultados] = await pool.query(
-            "SELECT count(*) email_usuario FROM usuarios WHERE ?",
-            [criterioWhere]
+            "SELECT count(*) as count FROM usuarios WHERE email_usuario = ?",
+            [email]
         )
-        return resultados[0].email_usuario;
+        return resultados[0].count;
     } catch (error) {
         console.log(error);
-        return error;
+        throw error;
     }
 },
 

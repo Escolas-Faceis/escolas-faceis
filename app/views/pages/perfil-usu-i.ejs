@@ -31,6 +31,12 @@
 
 <body>
     <%
+    let arquivo = {"imagem":"/imagem/img-perfil.png"}
+        if(valores.img_perfil_pasta != null){
+            arquivo.imagem = valores.img_perfil_pasta
+        }else if(valores.img_perfil_banco != null){ 
+            arquivo.imagem = valores.img_perfil_banco;
+        }
     let  msgErro = "";
     let  erroValidacao =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
     let  avisoErro =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
@@ -89,8 +95,8 @@
         <h1>Editar Perfil</h1>
       <section class="form-group">
         <label for="foto">Foto de Perfil</label>
-        <input type="file" name="imagem-perfil_usu" id="imagem-perfil_usu"  onchange="loadImg(event)">
-        <img class="img-perfil"  id="img-preview" src="<%=  %>">
+        <input type="file" name="imagem_perfil_usu" id="imagem_perfil_usu"  onchange="loadImg(event)">
+        <img class="img-perfil"  id="img-preview" src="<%= arquivo.imagem %>">
       </section>
 
       <section class="form-group">

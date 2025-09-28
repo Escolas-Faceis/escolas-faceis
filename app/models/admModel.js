@@ -15,7 +15,7 @@ const admModel = {
         try {
             const [results] = await pool.query(`
                 SELECT u.id_usuario, u.nome_usuario, u.email_usuario, u.status_usuario,
-                       e.cnpj, e.endereco, e.numero, e.tipo_ensino, e.turnos, e.rede
+                       e.cnpj, e.endereco, e.cep, e.numero, e.tipo_ensino, e.turnos, e.rede
                 FROM usuarios u
                 JOIN escolas e ON u.id_usuario = e.id_usuario
                 WHERE u.status_usuario = 1 AND u.tipo_usuario = 'Escola'

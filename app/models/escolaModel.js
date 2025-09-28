@@ -43,8 +43,8 @@ const escolaModel = {
 
 
             await conn.query(
-                `INSERT INTO escolas (id_usuario, nome_escola, endereco, numero, cidade, estado, cep, cnpj, tipo_ensino, turnos, rede, email_escola, senha_escola) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
-                [id_usuario, dados.nome_escola, dados.endereco, dados.numero, dados.cidade, dados.estado, dados.cep, dados.cnpj, dados.tipo_ensino_str, dados.turnos_str, dados.redes_str, dados.email_escola, dados.senha_escola]
+                `INSERT INTO escolas (id_usuario, nome_escola, endereco, numero, cep, cnpj, tipo_ensino, turnos, rede, email_escola, senha_escola) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+                [id_usuario, dados.nome_escola, dados.endereco, dados.numero, dados.cep, dados.cnpj, dados.tipo_ensino_str, dados.turnos_str, dados.redes_str, dados.email_escola, dados.senha_escola]
             );
             
             await conn.commit();

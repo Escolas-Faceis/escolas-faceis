@@ -12,7 +12,7 @@
     <%- include('../partials/navbar'); %>
     <main id="perfil">
         <section id="banner_perfil">
-            <img src="<%= valores && valores.img_perfil_banco ? valores.img_perfil_banco : (valores && valores.img_perfil_pasta ? '/imagem/' + valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png') %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
+            <img src="<%= valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
         </section>
         <section id="conteudo">
             <section id="ajustar_esquerda">
@@ -38,7 +38,7 @@
                 <article id="comentario">
                     <section id="info_usuario_comentario">
                         <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
-                        <h3>Nome do usuário</h3>
+                        <h3><%= valores.name ? valores.name : "Visitante" %></h3>
                     </section>
                     <p>• há 3 meses</p>
                     <section id="texto">
