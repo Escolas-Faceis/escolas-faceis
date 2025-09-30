@@ -1,43 +1,178 @@
-/* Container do formulário */
+:root {
+  --laranja: #f56d44;
+  --fundo: #ffffff;
+  --letras: #000000;
+  --azulbase: #141c44;
+  --azulsec: #77b6ea;
+  --amarelo: #ffbc3e;
+}
+
+.tema-claro {
+  --laranja: #f85321;
+  --fundo: #f5f5f5;
+  --azulbase: #141c44;
+  --azulsec: #77b6ea;
+  --amarelo: #ffbc3e;
+  --letras: #02030a;
+  transition: all 0.2s ease-in;
+}
+
+.tema-escuro {
+  --letras: #f5f5f5;
+  --fundo: #030303;
+  transition: all 0.2s ease-in;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f6fa;
+}
+
+body {
+  justify-content: flex-start;
+}
+
+
 .form-editar-perfil {
     margin: 3% auto 15% auto;
-    border: 2px solid var(--azulsec);
-    border-radius: 15px;
-    padding:  0 2% 1% 2%;
+    border: 1.5px solid #77b6ea;
+    border-radius: 18px;
+    padding:  40px 48px;
     display: flex;
     flex-direction: column;
-    width: 40%;
-    max-width: 800px;
-    background-color: var(--fundo);
+    width: 700px;
+    max-width: 98vw;
+    background-color: #fff;
     color: var(--letras);
     font-family: 'Poppins', sans-serif;
+    box-shadow: 0 6px 32px #77b6ea33;
   }
   
-  /* Título do formulário */
+
+  
+#imagem_perfil_usu {display:none;}
+
+.img-perfil {
+    cursor: pointer;
+}
+
+#mini-preview {
+    position: relative;
+    width: 300px;
+    height: 120px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#mini-banner {
+    width: 100%;
+    height: 80px;
+}
+
+#mini-foto {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+    left: 50%;
+    top: 50px;
+    transform: translateX(-50%);
+    background: #eee;
+}
+
+input[type="color"] {
+  border-radius: 50%;
+  inline-size: 30px;
+  block-size: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(153, 153, 153);
+}
+
+.photo-color-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.photo-section, .color-section {
+  flex: 1;
+}
+
+.color-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#color-preview {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+  
+  .fototo{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--fundo);
+    box-shadow: 0 4px 16px rgba(20,28,68,0.08);
+
+    left: 50%;
+    top: 120px;
+    transform: translateX(-50%);
+    background: #eee;
+    z-index: 2;
+}
+
   .form-editar-perfil h1 {
     color: var(--laranja);
-    font-size: 28px;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 24px;
     font-weight: 700;
-    align-items: center;
-    align-content: center;
-    display: flex;
-    justify-content:left;
+    text-align: center;
   }
   
-  /* Grupos de campos */
+ 
   .form-group {
-    margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    /* border-bottom: 1px solid #e3eaf2; */
     display: flex;
     flex-direction: column;
+    gap: 6px;
   }
   
-  /* Labels */
+  .form-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+
   .form-group label {
+    font-size: 15px;
     font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 18px;
-    color: var(--azulbase);
+    color: #141c44;
+    margin-bottom: 4px;
+    margin-top: 0;
+    display: block;
   }
   
   /* Inputs de texto, email, tel, senha e file */
@@ -45,16 +180,18 @@
   .form-group input[type="email"],
   .form-group input[type="tel"],
   .form-group input[type="password"],
-  .form-group input[type="file"] {
-    border: 2px solid rgb(167, 167, 167);
-    border-radius: 10px;
-    padding: 8px 12px;
+  .form-group input[type="file"],
+  .form-group textarea {
+    border: 1.5px solid #c7d3dd;
     font-size: 15px;
-    background-color: var(--fundo);
+    border-radius: 10px;
+    padding: 10px 12px;
+    width: 100%;
+    background: #f8fbff;
     color: var(--letras);
-    transition: border-color 0.3s ease-in-out;
-    width: 97%;
-    max-width: 100%;
+    transition: border 0.2s;
+    margin-bottom: 0;
+    margin-top: 0;
     font-family: 'Poppins', sans-serif;
   }
   
@@ -63,136 +200,91 @@
   }
   .form-group textarea{
     resize: none;
-    height: 90px;
-    border: 2px solid rgb(167, 167, 167);
-    border-radius: 10px;
-    padding: 8px 12px;
-    font-size: 15px;
-    background-color: var(--fundo);
-    color: var(--letras);
-    transition: border-color 0.3s ease-in-out;
-    width: 97%;
-    max-width: 100%;
-    font-family: 'Poppins', sans-serif;
+    height: 120px;
   }
   
   /* Foco nos inputs */
-  .form-group input:focus {
-    outline: none;
+  .form-group input:focus,
+  .form-group textarea:focus {
     border-color: var(--laranja);
+    outline: none;
   }
   
   /* Botão de submit */
   .form-editar-perfil input[type="submit"] {
-    background-color: var(--azulsec);
-    color: var(--fundo);
-    font-size: 22px;
-    font-weight: 400;
+    background-color: #77b6ea;
+    color: white;
+    font-size: 1.15rem;
+    font-weight: bold;
     padding: 14px 0;
-    width: 40%;
+    width: 220px;
     border: none;
-    border-radius: 28px;
+    border-radius: 25px;
     cursor: pointer;
-    margin: 0 auto;
-    transition: all 0.3s ease-in-out;
-    font-family: 'Poppins', sans-serif;
-    transform: translateY(10px);
+    margin: 32px auto 0 auto;
+    box-shadow: 0 2px 10px #77b6ea44;
+    letter-spacing: 1px;
+    transition: all 0.3s;
   }
   
   .form-editar-perfil input[type="submit"]:hover {
-    background-color: #5298d1;
+    background-color: #fff;
+    color: #77b6ea;
+    border: 2px solid #77b6ea;
     transform: scale(1.01);
   }
   
   /* Responsividade para telas menores que 800px */
   @media (max-width: 800px) {
     .form-editar-perfil {
-      width: 90%;
-      padding: 4%;
-      margin-bottom: 40px;
+      width: 98vw;
+      max-width: 98vw;
+      padding: 24px 8px;
+      margin: 24px auto;
     }
-  
-    .form-editar-perfil input[type="submit"] {
+    .form-editar-perfil h1 {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+    .form-group input[type="submit"] {
       width: 100%;
-      font-size: 20px;
+      font-size: 1rem;
       padding: 12px 0;
-    }
-  
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="tel"],
-    .form-group input[type="password"],
-    .form-group input[type="file"] {
-      width: 100%;
     }
   }
   
   /* Responsividade para telas menores que 500px */
   @media (max-width: 500px) {
     .form-editar-perfil {
-      padding: 6vw 2vw;
-      margin-bottom: 24px;
+      padding: 12px 2px;
     }
-  
     .form-editar-perfil h1 {
-      font-size: 22px;
-    }
-  
-    .form-group label {
-      font-size: 14px;
-    }
-  
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="tel"],
-    .form-group input[type="password"],
-    .form-group input[type="file"] {
-      font-size: 15px;
-      padding: 10px 8px;
-    }
-  
-    .form-editar-perfil input[type="submit"] {
-      font-size: 18px;
-      padding: 10px 0;
-    }
-  }
-  
-  /* Responsividade para telas menores que 300px */
-  @media (max-width: 300px) {
-    .form-editar-perfil {
-      width: 94vw;
-      padding: 10px 2vw 16px 2vw;
-      margin: 12px auto 18px auto;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(20, 28, 68, 0.07);
-      border: none;
-    }
-  
-    .form-editar-perfil h1 {
-      font-size: 18px;
+      font-size: 1.1rem;
       margin-bottom: 10px;
     }
-  
     .form-group label {
-      font-size: 12px;
-    }
-  
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="tel"],
-    .form-group input[type="password"],
-    .form-group input[type="file"] {
       font-size: 13px;
-      padding: 6px 4px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="password"],
+    .form-group input[type="file"],
+    .form-group textarea {
+      font-size: 13px;
+      padding: 8px 6px;
+    }
+    .form-editar-perfil input[type="submit"] {
+      width: 98vw;
+      font-size: 1rem;
+      margin-top: 18px;
+    }
+    .form-group {
+      padding-bottom: 8px;
       margin-bottom: 10px;
     }
-  
-    .form-editar-perfil input[type="submit"] {
-      font-size: 16px;
-      padding: 8px 0;
-      width: 100%;
-      border-radius: 7px;
-      margin-top: 8px;
-    }
   }
-  

@@ -10,6 +10,7 @@ verificarUsuAutenticado = (req, res, next) => {
         var autenticado = { autenticado: null, id: null, tipo: null };
     }
     req.session.autenticado = autenticado;
+    res.locals.autenticado = autenticado;
     next();
 }
 
@@ -35,7 +36,9 @@ gravarUsuAutenticado = async (req, res, next) => {
                 autenticado = {
                     autenticado: results[0].nome_usuario,
                     id: results[0].id_usuario,
-                    tipo: results[0].tipo_usuario
+                    tipo: results[0].tipo_usuario,
+                    img_perfil_banco: results[0].img_perfil_banco != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
+                    img_perfil_pasta: results[0].img_perfil_pasta ? results[0].img_perfil_pasta.replace('app/public', '') : null
                 };
                 console.log("Usuário autenticado:", autenticado);
             } else {

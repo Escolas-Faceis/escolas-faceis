@@ -10,8 +10,16 @@
 </head>
 <body>
     <%- include('../partials/navbar'); %>
+    <style>
+        :root {
+            --background_banner: <%= valores.cor_banner || '#C7D3DD' %>;
+        }
+        #banner_perfil {
+            background-color: var(--background_banner);
+        }
+    </style>
     <main id="perfil">
-        <section id="banner_perfil">
+        <section id="banner_perfil" >
             <img src="<%= valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
         </section>
         <section id="conteudo">

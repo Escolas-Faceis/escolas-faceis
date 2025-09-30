@@ -84,7 +84,7 @@
     <% } %>
     <%- include('../partials/navbar'); %>
     <main id="perfil">
-        <section id="banner_perfil"></section>
+        <section id="banner_perfil" style="background-color:'<%= valores.cor_banner || #C7D3DD %>'" value="<%= valores && valores.cor_banner ? valores.cor_banner : '#C7D3DD' %>"></section>
 
         <section id="conteudo">
         <section id="ajustar_esquerda">

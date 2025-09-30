@@ -141,9 +141,10 @@ const usuarioController = {
 
             let campos = {
                 name: results[0].nome_usuario, email: results[0].email_usuario,
-                img_perfil_pasta: results[0].img_perfil_pasta ? results[0].img_perfil_pasta.replace('app/public/uploads', '') : null,
+                img_perfil_pasta: results[0].img_perfil_pasta ? results[0].img_perfil_pasta.replace('app/public', '') : null,
                 img_perfil_banco: results[0].img_perfil_banco != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
-                telefone: results[0].telefone_usuario, senha: "", biografia: results[0].biografia_usuario
+                telefone: results[0].telefone_usuario, senha: "", biografia: results[0].biografia_usuario,
+                cor_banner: results[0].cor_banner
             }
 
             let view;
@@ -215,12 +216,12 @@ const usuarioController = {
                         id: result[0].id_usuario,
                         tipo: result[0].tipo_usuario,
                         img_perfil_banco: result[0].img_perfil_banco != null ? `data:image/jpeg;base64,${result[0].img_perfil_banco.toString('base64')}` : null,
-                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public/uploads', '') : null
+                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public', '') : null
                     };
                     req.session.autenticado = autenticado;
                     var campos = {
                         nome: result[0].nome_usuario, email: result[0].email_usuario,
-                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public/uploads', '') : null, img_perfil_banco: result[0].img_perfil_banco,
+                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public', '') : null, img_perfil_banco: result[0].img_perfil_banco,
                         biografia: result[0].biografia_usuario, telefone: result[0].telefone_usuario, senha: ""
                     }
                     res.render("pages/perfil-usu-i", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos });

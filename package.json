@@ -11,6 +11,7 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
+    "croppie": "^2.6.5",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.9",
     "express": "^5.1.0",

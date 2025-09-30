@@ -11,8 +11,8 @@
 <body>
     <%- include('../partials/navbar'); %>
     <main id="perfil">
-        <section id="banner_perfil">
-            <img src="<%= valores && valores.img_perfil_banco ? valores.img_perfil_banco : (valores && valores.img_perfil_pasta ? '/imagem/' + valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png') %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
+        <section id="banner_perfil" style="background-color:'<%= valores && valores.cor_banner ? valores.cor_banner : '#ffffff' %>'">
+            <img src="<%= valores && valores.img_perfil_banco ? valores.img_perfil_banco : (valores && valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png') %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
         </section>
         <section id="conteudo">
             <section id="ajustar_esquerda">

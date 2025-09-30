@@ -46,7 +46,7 @@ const usuarioModel = {
                     const [resultados] = await pool.query(
                         "SELECT u.id_usuario, u.nome_usuario, " +
                         "u.senha_usuario, u.email_usuario, u.telefone_usuario, u.tipo_usuario, " +
-                        "u.status_usuario, u.img_perfil_id, i.caminho_imagem as img_perfil_pasta, u.biografia_usuario, " +
+                        "u.status_usuario, u.img_perfil_id, i.caminho_imagem as img_perfil_pasta, u.biografia_usuario, u.cor_banner, " +
                         "NULL as img_perfil_banco " +
                         "FROM usuarios u LEFT JOIN imagens i ON u.img_perfil_id = i.id_imagem " +
                         "WHERE u.id_usuario = ? AND u.status_usuario = 1", [id]
@@ -89,16 +89,6 @@ const usuarioModel = {
         }
     },
 
-    update: async (dados, id) => {
-        try {
-            const [linhas] = await pool.query('UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, telefone_usuario = ?, biografia_usuario = ?, img_perfil_id = ?, senha_usuario = ? WHERE id_usuario = ?',
-                [dados.nome, dados.email, dados.telefone, dados.biografia, dados.img_perfil_id, dados.senha_usuario, id])
-            return linhas;
-        } catch (error) {
-            console.log("Erro na atualização do usuário: ", error);
-            throw error;
-        }
-    },
 
     findCampoCustom: async (email) => {
     try {
@@ -113,10 +103,35 @@ const usuarioModel = {
     }
 },
 
+    updateBannerColor: async (cor, id) => {
+        try {
+            const [resultados] = await pool.query(
+                "UPDATE usuarios SET cor_banner = ? WHERE id_usuario = ?",
+                [cor, id]
+            );
+            return resultados;
+        } catch (erro) {
+            console.log(erro);
+            return false;
+        }
+    },
+
+    update: async (dados, id) => {
+        try {
+            const [resultados] = await pool.query(
+                "UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, telefone_usuario = ?, biografia_usuario = ?, senha_usuario = ?, img_perfil_id = ? WHERE id_usuario = ?",
+                [dados.nome, dados.email, dados.telefone, dados.biografia, dados.senha_usuario, dados.img_perfil_id, id]
+            );
+            return resultados;
+        } catch (erro) {
+            console.log(erro);
+            return false;
+        }
+    },
 
 
 
-  
+
 };
     
 

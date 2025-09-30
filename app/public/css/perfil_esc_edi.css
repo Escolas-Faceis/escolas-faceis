@@ -5,117 +5,200 @@
     padding: 0;
 }
 
-/* Estrutura principal */
+.tema-claro {
+  --laranja: #f85321;
+  --fundo: #f5f5f5;
+  --azulbase: #141c44;
+  --azulsec: #77b6ea;
+  --amarelo: #ffbc3e;
+  --letras: #02030a;
+  transition: all 0.2s ease-in;
+}
+
+.tema-escuro {
+  --letras: #f5f5f5;
+  --fundo: #030303;
+  transition: all 0.2s ease-in;
+    --toggle-theme: white;
+}
+
 html, body {
     width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: #f5f6fa;
 }
 
-/* Espaço entre navbar - conteúdo - footer */
+
 body {
     justify-content: flex-start;
 }
 
-/* Caixa principal */
+
 .caixa {
-    border: solid #77b6ea 2px;
-    border-radius: 10px;
-    width: 500px; /* menor */
-    padding: 20px;
-    margin: 40px auto; /* centraliza entre navbar e footer */
+    border: 1.5px solid #77b6ea;
+    border-radius: 18px;
+    width: 900px;
+    max-width: 98vw;
+    padding: 40px 48px;
+    margin: 48px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     background: #fff;
-    box-shadow: 0 2px 10px #00000020;
+    box-shadow: 0 6px 32px #77b6ea33;
+    transition: width 0.3s, padding 0.3s;
 }
 
-/* Título */
+.area {
+    height: 120px;
+    resize: none;
+    border-radius: 10px;
+    border: 1.5px solid #c7d3dd;
+    padding: 10px;
+    font-size: 15px;
+    background: #f8fbff;
+}
+
+
 h2 {
-    color: #f56d44;
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 24px;
+    color: var(--laranja);
+    font-weight: 700;
 }
 
-/* Inputs e textareas */
+
 #caixa_nome, 
 #cep, 
 #num, 
 #caixa_nome_lado, 
 #sobre {
-    border: solid rgb(167, 167, 167) 2px;
+    border: 1.5px solid #c7d3dd;
     font-size: 15px;
     border-radius: 10px;
-    padding: 8px 10px;
+    padding: 10px 12px;
     width: 100%;
-    margin-top: 5px;
+    margin-top: 8px;
+    background: #f8fbff;
+    transition: border 0.2s;
 }
 
-/* Ajustar textarea */
-#sobre {
-    height: 60px;
-    resize: none;
+#caixa_nome:focus, 
+#cep:focus, 
+#num:focus, 
+#caixa_nome_lado:focus, 
+#sobre:focus {
+    border-color: var(--laranja);
+    outline: none;
 }
 
-/* Grupos lado a lado */
+.complemento, .cep{
+    min-height:20px;
+}
+
 .ob {
     display: flex;
-    gap: 15px;
+    gap: 18px;
     width: 100%;
+    margin-bottom: 16px;
 }
 
-/* Títulos dos campos */
-#nome_escola {
-    font-size: 16px;
-    margin-top: 12px;
-}
-
-/* Checkboxes */
-#checkboxes {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-    gap: 10px;
-}
-
-.parts_checks {
+.cep, .complemento {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.parts_checks ul, 
-.part_baixo ul {
+.cep p, .complemento p {
+    font-size: 15px;
+    font-weight: 600;
+    color: #141c44;
+    margin-bottom: 6px;
+    margin-top: 0;
+}
+
+#cep, #num {
+    border: 1.5px solid #c7d3dd;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 10px 12px;
+    width: 100%;
+    margin-top: 8px;
+    background: #f8fbff;
+    transition: border 0.2s;
+}
+
+
+#nome_escola {
+    font-size: 17px;
+    margin-top: 16px;
+    font-weight: 600;
+    color: #141c44;
+}
+
+
+#checkboxes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px 24px;
+    margin: 32px 0 0 0;
+    width: 100%;
+    background: none;
+}
+
+
+.parts_checks ul {
     padding: 0;
+    margin: 0;
     list-style: none;
 }
 
-.parts_checks ul li, 
-.part_baixo ul li {
-    font-size: 14px;
-    margin-bottom: 6px;
+
+.parts_checks ul li {
+    font-size: 15px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
 }
 
-/* Acessibilidade */
-#Acessibilidade {
-    margin-top: 20px;
+
+input[type="checkbox"] {
+    accent-color: #77b6ea;
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    border: 1.5px solid #77b6ea;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
 }
 
-/* Botão salvar */
+
+input[type="checkbox"]:hover {
+    box-shadow: 0 0 0 2px #77b6ea33;
+}
+
+
 #salvar_button {
     transition: all 0.3s;
     background-color: #77b6ea;
-    border: 1px solid #77b6ea;
+    border: none;
     border-radius: 25px;
     color: white;
-    width: 200px; /* menor */
-    height: 50px;
-    font-size: 18px;
+    width: 220px;
+    height: 52px;
+    font-size: 1.15rem;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 32px;
+    box-shadow: 0 2px 10px #77b6ea44;
+    letter-spacing: 1px;
 }
+
 
 #salvar2 {
     width: 100%;
@@ -124,13 +207,118 @@ h2 {
     justify-content: center;
 }
 
+
 #salvar_button:hover {
-    background-color: white;
+    background-color: #fff;
     color: #77b6ea;
+    border: 2px solid #77b6ea;
     cursor: pointer;
 }
 
-.block{
+
+.block {
     display: block;
     margin-top: auto;
+}
+
+/* Agrupamento de campos: cada seção separada */
+.section-campo {
+    width: 100%;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e3eaf2;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.section-campo:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Label e input juntos, alinhados */
+.label-campo {
+    font-size: 15px;
+    font-weight: 600;
+    color: #141c44;
+    margin-bottom: 4px;
+    margin-top: 0;
+    display: block;
+}
+
+.input-campo {
+    border: 1.5px solid #c7d3dd;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 10px 12px;
+    width: 100%;
+    background: #f8fbff;
+    transition: border 0.2s;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.input-campo:focus {
+    border-color: var(--laranja);
+    outline: none;
+}
+
+/* Exemplo para o CNPJ: destaque visual */
+.section-cnpj {
+    background: #f8fbff;
+    border-radius: 10px;
+    padding: 18px 12px;
+    margin-bottom: 32px;
+    border: 1.5px solid #c7d3dd;
+}
+
+/* Responsivo para mobile */
+@media (max-width: 800px) {
+    .caixa {
+        width: 98vw;
+        max-width: 98vw;
+        padding: 24px 8px;
+        margin: 24px auto;
+    }
+    #checkboxes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 10px;
+    }
+    .section-campo, .section-cnpj {
+        padding-bottom: 12px;
+        margin-bottom: 18px;
+    }
+    .section-cnpj {
+        padding: 12px 6px;
+        margin-bottom: 18px;
+    }
+}
+
+@media (max-width: 500px) {
+    .caixa {
+        padding: 12px 2px;
+    }
+    #checkboxes {
+        grid-template-columns: 1fr;
+        gap: 8px 0;
+    }
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+    #salvar_button {
+        width: 98vw;
+        font-size: 1rem;
+        margin-top: 18px;
+    }
+    .section-campo, .section-cnpj {
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+    }
+    .section-cnpj {
+        padding: 8px 2px;
+        margin-bottom: 10px;
+    }
 }

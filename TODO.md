@@ -1,3 +1,0 @@
-- [x] Fix gravarPerfil method in usuarioController.js to properly handle img_perfil_id, password preservation, and image upload/insertion.
-- [x] Test the profile update functionality.
-- [x] Fix profile image display by converting stored file paths to web-accessible URLs.

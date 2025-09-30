@@ -46,12 +46,12 @@
             </section> -->
             <section class="ob">
                 <section class="cep">
-                    <p>CEP</p> <br>
+                    <p> <label for="cep"></label>CEP</p> <br>
                     <input type="text" id="cep" placeholder="00000-000" name="cep">
                     <span class="spanerro"></span>
                 </section>
                 <section class="complemento">
-                    <p id="numero">N°</p><br>
+                    <p id="numero"> <label for="num"></label>N°</p><br>
                     <input type="text" id="num" name="adress_n" >
                     <span class="spanerro"></span>
                 </section>
@@ -64,123 +64,130 @@
         <input type="text" id="caixa_nome" name="cidade">
 
         <p id="nome_escola"><label for="sobre">Sobre a Escola</label></p>
-        <textarea name="Sobre a Escola" id="sobre"></textarea>
+        <textarea name="Sobre a Escola" id="sobre" class="area"></textarea>
         
         <p id="nome_escola"><label for="sobre">Sobre o Ensino</label></p>
-        <textarea name="Sobre o Ensino" id="sobre"></textarea>
+        <textarea name="Sobre o Ensino" id="sobre" class="area"></textarea>
 
         <p id="nome_escola"><label for="sobre">Sobre a Estrutura</label></p>
-        <textarea name="Sobre a Estrutura" id="sobre"></textarea>
+        <textarea name="Sobre a Estrutura" id="sobre" class="area"></textarea>
 
-
+        </section>
         
-        <section id="checkboxes">
-            <section class="parts_checks">
-                <ul>
-                    <p id="nome_escola">Tipo de Ensino</p>
-                    <li>
-                        <input type="checkbox" id="educacao_infantil" name="educacao_infantil" value="Educação Infantil">
-                        <label for="educacao_infantil">Educação Infantil</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="ef1" name="ef1" value="Ensino Fundamental">
-                        <label for="ef1">Ensino Fundamental</label>
-                    </li>
-        <li>
-            <input type="checkbox" id="ef2" name="ef2" value="Ensino Médio">
-            <label for="ef2">Ensino Médio</label>
-        </li>
-        <li>
-            <input type="checkbox" id="ei" name="ei" value="Educação Integrada">
-            <label for="ei">Educação Integrada</label>
-        </li>
-        <li>
-            <input type="checkbox" id="etec" name="etec" value="Cursos Técnicos">
-            <label for="etec">Cursos Técnicos</label>
-        </li>
-        <li>
-            <input type="checkbox" id="cso" name="cso" value="Cursos Extracurriculares">
-            <label for="cso">Cursos Extracurriculares</label>
-        </li>
-        <li>
-            <input type="checkbox" id="idi" name="idi" value="Cursos de Idioma">
-            <label for="idi">Cursos de Idioma</label>
-        </li>
+        <span class="step">
 
-    </ul>
-</section>
+                        <section id="checkboxes">
+                            <section class="parts_checks">
+                                <ul>
+                                    <p>Tipo de Ensino</p>
+                                    <li>
+                                        <input type="checkbox" id="educacao_infantil" name="ensino" value="Educação Infantil">
+                                        <label for="educacao_infantil">Educação Infantil</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="ef1" name="ensino" value="Ensino Fundamental I">
+                                        <label for="ef1">Ensino Fundamental I</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="ef2" name="ensino" value="Ensino Fundamental II">
+                                        <label for="ef2">Ensino Fundamental II</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="em" name="ensino" value="Ensino Médio">
+                                        <label for="em">Ensino Médio</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="ei" name="ensino" value="Educação Integrada">
+                                        <label for="ei">Educação Integrada</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="etec" name="ensino" value="Cursos Técnicos">
+                                        <label for="etec">Cursos Técnicos</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="cso" name="ensino" value="Cursos Extracurriculares">
+                                        <label for="cso">Cursos Extracurriculares</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="idi" name="ensino" value="Cursos de Idioma">
+                                        <label for="idi">Cursos de Idioma</label>
+                                    </li>
 
-<section class="parts_checks">
-    <ul>
-        <p id="nome_escola">Turnos</p>
-        <li>
-            <input type="checkbox" id="m" name="m" value="Manhã">
-            <label for="m">Manhã</label>
-        </li>
-        <li>
-            <input type="checkbox" id="t" name="t" value="Tarde">
-            <label for="t">Tarde</label>
-        </li>
-        <li>
-            <input type="checkbox" id="int" name="int" value="Integral">
-            <label for="int">Integral</label>
-        </li>
-        <li>
-            <input type="checkbox" id="n" name="n" value="Noite">
-            <label for="n">Noite</label>
-        </li>
-        <li>
-            <input type="checkbox" id="sab" name="sab" value="Sábado">
-            <label for="sab"><b style="color:red; font-weight: 300;">*</b>Sábado </label>
-        </li>
-    </ul>
-</section>
+                                </ul>
+                            </section>
 
-<section class="parts_checks">
-    <ul>
-        <p id="nome_escola">Rede</p>
-        <li>
-            <input type="checkbox" id="muni" name="muni" value="Municipal">
-            <label for="muni">Municipal</label>
-        </li>
-        <li>
-            <input type="checkbox" id="est" name="est" value="Estadual">
-            <label for="est">Estadual</label>
-        </li>
-        <li>
-            <input type="checkbox" id="fund" name="fund" value="Fundação">
-            <label for="fund">Fundação</label>
-        </li>
-        <li>
-            <input type="checkbox" id="part" name="part" value="Particular">
-            <label for="part">Particular</label>
-        </li>
-    </ul>
-</section>
-</section>
-</section>
-<section id="Acessibilidade">
-    <section class="part_baixo">
-        <ul>
-            <p id="nome_escola">Acessibilidades</p>
-            <li>
-                <input type="checkbox" id="educacao_infantil" name="educacao_infantil" value="Educação Infantil">
-                <label for="educacao_infantil">Atendimento Educacional Especializado</label>
-            </li>
-            <li>
-                <input type="checkbox" id="ef1" name="ef1" value="Ensino Fundamental">
-                <label for="ef1">Acessibilidade para PcDs</label>
-            </li>
-<li>
-    <input type="checkbox" id="ef2" name="ef2" value="Ensino Médio">
-    <label for="ef2">Acessibilidade para deficientes visuais</label>
-</li>
-<li>
-    <input type="checkbox" id="ei" name="ei" value="Educação Integrada">
-    <label for="ei">Ensino em Libras</label>
-</li>
-</ul>
-    </section>
+                            <section class="parts_checks">
+                                <ul>
+                                    <p>Turnos</p>
+                                    <li>
+                                        <input type="checkbox" id="m" name="turno" value="Manhã">
+                                        <label for="m">Manhã</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="t" name="turno" value="Tarde">
+                                        <label for="t">Tarde</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="int" name="turno" value="Integral">
+                                        <label for="int">Integral</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="n" name="turno" value="Noite">
+                                        <label for="n">Noite</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="sab" name="turno" value="Sábado">
+                                        <label for="sab"><b style="color:red; font-weight: 300;">*</b>Sábado </label>
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="parts_checks">
+                                <ul>
+                                    <p>Rede</p>
+                                    <li>
+                                        <input type="checkbox" id="muni" name="rede" value="Municipal">
+                                        <label for="muni">Municipal</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="est" name="rede" value="Estadual">
+                                        <label for="est">Estadual</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="fund" name="rede" value="Fundação">
+                                        <label for="fund">Fundação</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="part" name="rede" value="Particular">
+                                        <label for="part">Particular</label>
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="parts_checks">
+                                <ul>
+                                    <p>Acessibilidade</p>
+                                    <li>
+                                        <input type="checkbox" id="muni" name="rede" value="Municipal">
+                                        <label for="muni">Atendimento Educacional Especializado</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="est" name="rede" value="Estadual">
+                                        <label for="est">Acessibilidade para deficientes visuais</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="fund" name="rede" value="Fundação">
+                                        <label for="fund">Acessibilidade para PcDs</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" id="part" name="rede" value="Particular">
+                                        <label for="part">Ensino em Libras</label>
+                                    </li>
+                                </ul>
+                            </section>
+
+                        </section>
+
 
 </section>
 <p id="nome_escola"><label for="escola">Instagram</label></p>

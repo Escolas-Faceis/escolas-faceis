@@ -7,6 +7,7 @@ const usuarioController = require("../controllers/usuarioController");
 const escolaController = require("../controllers/escolaController");
 const loginController = require("../controllers/loginController");
 const admController = require("../controllers/admController");
+const usuarioModel = require("../models/usuarioModel");
 const uploadFile = require("../helpers/uploader")('app/public/imagem/uploads');
 dotenv.config();
 
@@ -37,8 +38,11 @@ router.get('/cadastro-usuario', function(req, res) {
 router.get('/perfil-escola', function(req, res) {
     res.render('pages/perfil-escola');
 });
-router.get('/perfil-usuario', function(req, res) {
-    res.render('pages/perfil-usuario',  {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""} });
+router.get('/perfil-usuario', 
+    verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401"),
+    function(req, res) {
+    const usuarioController = require("../controllers/usuarioController");
+    usuarioController.mostrarPerfil(req, res);
 });
 router.get('/edu-infantil', function(req, res) {
     res.render('pages/edu-infantil');
@@ -73,6 +77,10 @@ router.get('/perfil-escola-e', function(req, res) {
 
 router.get('/navbar', function(req, res) {
     res.render('partials/navbar');
+});
+
+router.get('/editar-escola', function(req, res) {
+    res.render('pages/editar-escola');
 });
 
 
@@ -119,6 +127,7 @@ router.get('/perfil1',
     function(req, res) {
     const usuarioController = require("../controllers/usuarioController");
     usuarioController.mostrarPerfil(req, res);
+
 });
 
 router.get('/info',
@@ -134,6 +143,9 @@ router.post(
   usuarioController.regrasValidacaoPerfil,
   verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401"),
   async function (req, res) {
+    if (req.body.cor_banner) {
+      await usuarioModel.updateBannerColor(req.body.cor_banner, req.session.autenticado.id);
+    }
     usuarioController.gravarPerfil(req, res);
   }
 );
