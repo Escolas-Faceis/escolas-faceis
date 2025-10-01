@@ -8,6 +8,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
+    <link rel="stylesheet" href="/css/modal.css">
 </head>
 <body>
   <script src="/js/mascaras.js"></script>
@@ -31,7 +32,15 @@
         }
     </script>
 </head>
-
+        <style>
+            
+        :root {
+            --background_banner: <%= valores.cor_banner || '#C7D3DD' %>;
+        }
+        #banner_perfil {
+            background-color: var(--background_banner);
+        }
+    </style>
 <body>
     <%
     let arquivo = {"imagem":"/imagem/img-perfil.png"}
@@ -90,33 +99,32 @@
 
   <main class="container">
 
-    <div id="croppie-container" style="display:none;"></div>
-    <button id="crop-btn" style="display:none;">Cortar</button>
-    <button id="cancel-btn" style="display:none;">Cancelar</button>
+    <aside class="modal" id="croppie-modal">
+      <aside class="modal-content">
+        <span class="close-modal" id="close-croppie">&times;</span>
+        <aside id="croppie-container"></aside>
+        <section class="btn">
+        <button class="btns"  id="crop-btn">Cortar</button>
+        <button class="btns" id="cancel-btn">Cancelar</button></section>
+      </aside>
+    </aside>
 
     <form action="/info_post" method="POST" enctype="multipart/form-data" class="form-editar-perfil">
         <h1>Editar Perfil</h1>
 
-
+        <section id="banner_perfil" onclick="document.getElementById('cor_banner').click()" title="Clique para alterar a cor do banner">
+            <img class="img-perfil fototo"  id="img-preview" src="<%= arquivo.imagem %>" alt="Foto de Perfil do Usuário">
+            <input type="color" name="cor_banner" id="cor_banner" value="<%= valores && valores.cor_banner ? valores.cor_banner : '#C7D3DD' %>" required style="display:none;">
+            <input type="file" name="imagem_perfil_usu" id="imagem_perfil_usu" style="display:none;">
+        </section>
 
       <section class="form-group">
-        <div class="photo-color-row">
-          <div class="photo-section">
-            <label for="foto">Foto de Perfil</label>
-            <input type="file" name="imagem_perfil_usu" id="imagem_perfil_usu" style="display:none;">
-            <img class="img-perfil fototo"  id="img-preview" src="<%= arquivo.imagem %>">
-          </div>
-          <div class="color-section">
-            <label for="nome">Cor do Banner</label>
-            <div class="color-input-row">
-              <input type="color" name="cor_banner" id="cor_banner" value="<%= valores && valores.cor_banner ? valores.cor_banner : '#C7D3DD' %>" required>
-              <div id="color-preview" style="background-color: <%= valores && valores.cor_banner ? valores.cor_banner : '#C7D3DD' %>;"></div>
-            </div>
-          </div>
-        </div>
+
+          </aside>
+        </aside>
       </section>
 
-      <section class="form-group">
+      <section class="form-group" style="margin-top: 80px;">
         <label for="nome">Nome</label>
         <input type="text" name="nome" id="nome" value="<%= valores && valores.name ? valores.name : '' %>" required>
       </section>
@@ -142,17 +150,19 @@
         <input type="password" name="senha" id="senha" placeholder="Não preencha este campo para manter a senha atual">
       </section>
 
+      <section class="botoes">
       <input type="submit" value="Salvar Alterações" id="submit-btn" />
+      <input type="reset" value="Cancelar" id="cancel" /></section>
+
+      </section>
     </form>
   </main>
 
   <%- include('../partials/footer'); %>
 
-  <script>
+    <script>
     document.getElementById('cor_banner').addEventListener('change', function(e) {
-      document.getElementById('banner-preview').style.backgroundColor = e.target.value;
-      document.getElementById('mini-banner').style.backgroundColor = e.target.value;
-      document.getElementById('color-preview').style.backgroundColor = e.target.value;
+      document.getElementById('banner_perfil').style.backgroundColor = e.target.value;
     });
 
     var croppieInstance;
@@ -167,8 +177,7 @@
         if (file) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                $('#croppie-container').show();
-                $('#crop-btn, #cancel-btn').show();
+                $('#croppie-modal').css('display', 'flex');
                 croppieInstance = new Croppie(document.getElementById('croppie-container'), {
                     viewport: { width: 200, height: 200, type: 'circle' },
                     boundary: { width: 300, height: 300 }
@@ -187,15 +196,19 @@
             var url = URL.createObjectURL(blob);
             $('#img-preview').attr('src', url);
             $('#mini-foto').attr('src', url);
-            $('#croppie-container').hide();
-            $('#crop-btn, #cancel-btn').hide();
+            $('#croppie-modal').hide();
             croppieInstance.destroy();
         });
     });
 
     $('#cancel-btn').on('click', function() {
-        $('#croppie-container').hide();
-        $('#crop-btn, #cancel-btn').hide();
+        $('#croppie-modal').hide();
+        if (croppieInstance) croppieInstance.destroy();
+        croppedBlob = null;
+    });
+
+    $('#close-croppie').on('click', function() {
+        $('#croppie-modal').hide();
         if (croppieInstance) croppieInstance.destroy();
         croppedBlob = null;
     });
