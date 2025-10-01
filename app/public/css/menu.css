@@ -325,7 +325,7 @@
     margin: -100px 0 0 -50px;
     padding: 50px;
     padding-top: 125px;
-    background: #141C44;
+    background: var(--azulbase);
     list-style-type: none;
     transform-origin: 0% 0%;
     transform: translate(-100%, 0);

@@ -1,10 +1,5 @@
-- [x] Modificar perfil-escola.ejs para envolver perfil e slider em um container flex
-- [x] Atualizar perfil.css para layout flex com perfil e slider lado a lado
-- [x] Ajustar responsividade para mobile
-- [x] Melhorar o estilo da seção info se necessário
-- [x] Testar o layout executando o app
-- [x] Align "Sobre" texts to the left
-- [x] Add lateral line between informacao and lado
-- [x] Remove box styling from .info
-- [x] Add carousel auto slide and prev/next buttons
-- [x] Remove white border from profile photo
+# TODO: Implement Persistent Theme Toggle
+
+- [x] Update theme-toggle.js to save theme preference in localStorage and apply on page load
+- [x] Test theme persistence across multiple pages
+- [x] Make navbar style constant (always dark blue)
