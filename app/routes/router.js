@@ -79,9 +79,19 @@ router.get('/navbar', function(req, res) {
     res.render('partials/navbar');
 });
 
-router.get('/editar-escola', function(req, res) {
-    res.render('pages/editar-escola');
-});
+router.get('/editar-escola',
+    verificarUsuAutorizado(["Escola"], "partials/401"),
+    escolaController.mostrarPerfilEscola);
+
+router.post(
+  "/editar_escola_post",
+  uploadFile("imagem_perfil_usu"),
+  escolaController.regrasValidacaoEditarEscola,
+  verificarUsuAutorizado(["Escola"], "partials/401"),
+  async function (req, res) {
+    escolaController.gravarPerfilEscola(req, res);
+  }
+);
 
 
 router.get('/ativacao-de-conta', function(req, res) {
@@ -123,7 +133,7 @@ router.post(
 
 
 router.get('/perfil1', 
-    verificarUsuAutorizado(['Escola','Comum', 'ADM'], "partials/401"),
+    verificarUsuAutorizado(['Comum', 'ADM'], "partials/401"),
     function(req, res) {
     const usuarioController = require("../controllers/usuarioController");
     usuarioController.mostrarPerfil(req, res);
@@ -131,7 +141,7 @@ router.get('/perfil1',
 });
 
 router.get('/info',
-    verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401"),
+    verificarUsuAutorizado(["ADM", "Comum"], "partials/401"),
     function(req, res) {
     const usuarioController = require("../controllers/usuarioController");
     usuarioController.mostrarPerfil(req, res);
@@ -141,7 +151,7 @@ router.post(
   "/info_post",
   uploadFile("imagem_perfil_usu"),
   usuarioController.regrasValidacaoPerfil,
-  verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401"),
+  verificarUsuAutorizado(["ADM", "Comum"], "partials/401"),
   async function (req, res) {
     if (req.body.cor_banner) {
       await usuarioModel.updateBannerColor(req.body.cor_banner, req.session.autenticado.id);

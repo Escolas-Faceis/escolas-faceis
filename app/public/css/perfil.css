@@ -35,6 +35,18 @@ body {
     color: var(--letras);
 }
 
+.perfil-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin: 32px auto;
+    max-width: 1200px;
+    width: 100%;
+    padding: 20px;
+
+}
+
 .perfil {
     display: flex;
     flex-direction: row;
@@ -42,40 +54,49 @@ body {
     justify-content: flex-start;
     align-items: center;
     gap: 32px;
-    margin: 32px auto;
-    max-width: 1200px;
-    width: 100%;
+    flex: 1;
 }
 
-.logo {
+.ft-perfil {
     border-radius: 10%;
-    padding: 6%;
-    width: 120px;
-    height: 120px;
+    padding: 0;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
-    background: #eee;
+    background: none;
 }
 
 .descricao, .descricao2 {
     margin-top: 2%;
-    margin-left: 7%;
+    margin-left: 0;
     font-size: 1.1rem;
 }
 
 .info {
     margin: 5% 0;
+    padding: 15px;
 }
 
 .niveis {
-    border: 1.5px solid black;
-    border-radius: 20px;
-    padding: 3px 12px;
-    width: fit-content;
-    background-color: #f16c83;
-    color: white;
-    font-weight: normal;
-    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 4px;
 }
+
+.escolaridade {
+    border-radius: 18px;
+    display: inline-block;
+    padding: 3px 12px;
+    font-weight: 600;
+    font-size: 14px;
+    background: #f5f7fa;
+    color: #141c44;
+    cursor: default;
+    box-shadow: 0 1px 4px rgba(20,28,68,0.04);
+}
+
+.EI { background-color: #ff7184; color: #fff; }
 
 .ingresso {
     color: var(--laranja);
@@ -104,8 +125,8 @@ body {
 }
 
 .social-media {
-    width: 40px;
-    margin: 10px;
+    width: 30px;
+    margin: 8px;
     transition: all 0.3s;
 }
 .social-media:hover {
@@ -116,24 +137,39 @@ body {
     margin-left: 10%;
 }
 
-.lado {
+.ultimo_tamanho {
     display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-    margin-top: 5%;
-    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
 }
 
 .informacao {
+    flex: 1;
     padding: 6%;
+    text-align: left;
+}
+
+.lado {
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.linha-vertical {
+    border-left: 1px solid #ccc;
+    height: 100%;
+    margin: 0 10px;
 }
 
 .slider {
-    margin: 0 auto 50px auto;
+    position: relative;
     width: 400px;
     height: 200px;
     overflow: hidden;
-    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 }
 
 .slides {
@@ -190,6 +226,30 @@ body {
     background-color: #fff;
 }
 
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
 #radio1:checked ~ .first { margin-left: 0; }
 #radio2:checked ~ .first { margin-left: -25%; }
 #radio3:checked ~ .first { margin-left: -50%; }
@@ -204,6 +264,11 @@ body {
 
 /* Responsividade */
 @media screen and (max-width: 800px) {
+    .perfil-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
     .perfil {
         flex-direction: column;
         align-items: center;
@@ -223,6 +288,9 @@ body {
     .info, .listinha {
         margin: 3% 0;
         font-size: 0.95rem;
+    }
+    .ultimo_tamanho {
+        flex-direction: column;
     }
     .lado {
         flex-direction: column;

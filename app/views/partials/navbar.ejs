@@ -1,4 +1,4 @@
-
+    <link rel="icon" type="image/png" href="../imagem/favicon.png">
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
 
-<span class="navbar">
+<section class="navbar">
     <header>
         <nav role="navigation">
         <section id="menuToggle">
@@ -37,10 +37,12 @@
     <section class="aside">
         <% if(autenticado && autenticado.autenticado){ %>
             <% if( autenticado && autenticado.tipo === "Escola" ) { %>
-                <a href="/perfil-escola"><li>Perfil</li></a> <%} else{%>
-            <a href="/perfil1"><li>            <img src="<%= autenticado.img_perfil_pasta || autenticado.img_perfil_pasta || 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-navbar" alt="Foto de Perfil do Usuário"></li></a>
-            <% }%>
+                <a href="/perfil-escola"><li><img src="<%= autenticado.img_perfil_banco || autenticado.img_perfil_pasta || '../imagem/escola-padrao.png' %>" id="perfil-foto-navbar" alt="Foto de Perfil"></li></a>
+            <% } else if(autenticado && (autenticado.tipo === "Comum" || autenticado.tipo === "ADM")){%>
+                <a href="/perfil1"><li><img src="<%= autenticado.img_perfil_banco || autenticado.img_perfil_pasta || 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-navbar" alt="Foto de Perfil do Usuário"></li></a>
+            <%}%>
             <a href="/sair"><li>Sair</li></a>
+
         <% } else { %>
             <a href="/login"><li>Login</li></a>
             <li><button><a href="/cadastro-escola" id="cadastro">Cadastre sua Escola</a></button></li>
@@ -51,7 +53,7 @@
             </section>
         </nav>
     </header>
-</span>
+</section>
 
 <% if(autenticado && autenticado.tipo === "ADM") { %>
     <%- include('navbar-adm'); %>

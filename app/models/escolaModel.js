@@ -101,7 +101,69 @@ const escolaModel = {
             } catch (error) {
                 console.log(error);
                 return error;
-            }},
+            }
+        },
+
+        findId: async (id) => {
+            try {
+                const [resultados] = await pool.query(
+                    "SELECT e.*, u.nome_usuario, u.email_usuario, u.tipo_usuario, u.img_perfil_id, i.caminho_imagem as img_perfil_pasta, " +
+                    "u.img_perfil_banco as img_perfil_banco " +
+                    "FROM escolas e " +
+                    "JOIN usuarios u ON e.id_usuario = u.id_usuario " +
+                    "LEFT JOIN imagens i ON u.img_perfil_id = i.id_imagem " +
+                    "WHERE e.id_usuario = ? AND u.status_usuario = 1", [id]
+                )
+                return resultados;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        },
+
+
+
+
+    update: async (dados, id_usuario) => {
+        const conn = await pool.getConnection();
+        try {
+            await conn.beginTransaction();
+
+            // Update usuarios table
+            await conn.query(
+                `UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, senha_usuario = ?, img_perfil_id = ? WHERE id_usuario = ?`,
+                [dados.email_usuario, dados.email_usuario, dados.senha_usuario, dados.img_perfil_id, id_usuario]
+            );
+
+            // Update escolas table
+            await conn.query(
+                `UPDATE escolas SET nome_escola = ?, endereco = ?, numero = ?, cep = ?, cidade = ?, sobre_escola = ?, sobre_ensino = ?, sobre_estrutura = ?, tipo_ensino = ?, turnos = ?, rede = ?, instagram = ?, facebook = ?, whatsapp = ?, telefone_contato = ?, email_contato = ? WHERE id_usuario = ?`,
+                [dados.nome_escola, dados.endereco, dados.numero, dados.cep, dados.cidade, dados.sobre_escola, dados.sobre_ensino, dados.sobre_estrutura, dados.tipo_ensino, dados.turnos, dados.rede, dados.instagram, dados.facebook, dados.whatsapp, dados.telefone_contato, dados.email_contato, id_usuario]
+            );
+
+            await conn.commit();
+            return { affectedRows: 1, changedRows: 1 };
+        } catch (error) {
+            await conn.rollback();
+            console.log(error);
+            return { affectedRows: 0, changedRows: 0 };
+        } finally {
+            conn.release();
+        }
+    },
+
+    insertImage: async (nomeImagem, caminho) => {
+        try {
+            const [result] = await pool.query(
+                `INSERT INTO imagens (nome_imagem, caminho_imagem) VALUES (?, ?)`,
+                [nomeImagem, caminho]
+            );
+            return result.insertId;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    }
 }
 
 module.exports = escolaModel;

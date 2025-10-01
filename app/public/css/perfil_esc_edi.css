@@ -36,6 +36,22 @@ body {
 }
 
 
+  .fototo{
+    width: 160px;
+    height: 160px;
+    border-radius: 10%;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+    border: 4px solid var(--fundo);
+    box-shadow: 0 4px 16px rgba(20,28,68,0.08);
+    background: #eee;
+    z-index: 2;
+    
+}
+
+#img_preview:hover{cursor:pointer}
+
 .caixa {
     border: 1.5px solid #77b6ea;
     border-radius: 18px;
@@ -143,13 +159,18 @@ h2 {
 
 #checkboxes {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 40px;
     margin: 32px 0 0 0;
     width: 100%;
     background: none;
-}
+    padding-bottom: 10px;}
 
+.parts_checks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 24px;
+}
 
 .parts_checks ul {
     padding: 0;
@@ -157,14 +178,22 @@ h2 {
     list-style: none;
 }
 
-
 .parts_checks ul li {
-    font-size: 15px;
-    margin-bottom: 8px;
+    font-size: 16px;
+    margin-bottom: 6px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     background: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.parts_checks ul li:hover {
+    background-color: #e6f0ff;
+    cursor: pointer;
 }
 
 

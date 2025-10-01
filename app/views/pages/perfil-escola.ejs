@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Perfil Escola Canarinho </title>
-
+    <link rel="stylesheet" href="css/vizu-perfil-usu.css">
     <link rel="stylesheet" href="css/perfil.css">
     <link rel="stylesheet" href="css/aval.css">
     <link rel="stylesheet" href="css/vizu.css">
@@ -16,21 +16,67 @@
 <body>
     <%- include('../partials/navbar'); %>
 
-    <section class="perfil" id="pepe">
-        <!-- <span class="logo-info"> -->
-        <figure>
-            <img src="imagem/canarinho.jpg" alt="logo da escola" class="logo">
-        </figure>
-        <section class="info">
-            <h1 class="nome-escola">Escola Canarinho</h1>
-            <aside class="niveis">
-                <h5 class="escolaridade EI">Ensino Infantil</h5>
-            </aside>
-               <section class="descricao">
-                <p class="localidade "> Avenida Brasil, Nº 328 Piratininga - Osasco, SP</p>
-                <p class="instituicao ">Ensino Privado</p>
-                <p class="ingresso"> Mensalidade a partir de R$ 215,32</p>
+    <section class="perfil-container">
+        <section class="perfil" id="pepe">
+            <!-- <span class="logo-info"> -->
+            <figure>
+                <img src="<%= '../imagem/escola-padrao.png' %>" alt="logo da escola" class="ft-perfil">
+            </figure>
+            <section class="info">
+                <h1 class="nome-escola">Escola Canarinho</h1>
+                <aside class="niveis">
+                    <h5 class="escolaridade EI">Ensino Infantil</h5>
+                </aside>
+                   <section class="descricao">
+                    <p class="localidade "> Avenida Brasil, Nº 328 Piratininga - Osasco, SP</p>
+                    <p class="instituicao ">Ensino Privado</p>
+                    <p class="ingresso"> Mensalidade a partir de R$ 215,32</p>
+                    </section>
+            </section>
+        </section>
+        <section class="slider">
+
+            <section class="slides">
+                <!--radio butoons-->
+                <input type="radio" name="radio-btn" id="radio1" checked>
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+
+                <!--imagem dos slide-->
+
+                <section class="slide first">
+                    <img src="imagem/primeira-carrossel.jpeg" alt="imagem-1">
                 </section>
+                <section class="slide">
+                    <img src="imagem/segunda-carrossel.jpg" alt="imagem-2">
+                </section>
+                <section class="slide">
+                    <img src="imagem/terceira.jpg" alt="imagem-3">
+                </section>
+                <section class="slide">
+                    <img src="https://crechesonhoencantado.com.br/wp-content/uploads/2019/10/MG_2532.jpg" alt="imagem-4">
+                </section>
+
+                <section class="navegacao-auto">
+                    <section class="auto-btn1"></section>
+                    <section class="auto-btn2"></section>
+                    <section class="auto-btn3"></section>
+                    <section class="auto-btn4"></section>
+                </section>
+
+            </section>
+
+            <!-- Left and right controls -->
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+            <section class="manual-navegacao">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+            </section>
         </section>
     </section>
     <hr>
@@ -60,7 +106,7 @@
             <li>Banheiros seguros;</li>
         </ul>
     </section>
-    <p class="linha-vertical"></class>
+    <p class="linha-vertical"></p>
 <section class="lado">
     <section class="contatos">
         <h1 class="titulo-contato">Contato</h1>
@@ -74,7 +120,7 @@
     </section>
     <section class="contatos">
         <h1 class="titulo-contato">Acessibilidade</h1>
-        <section class="formas-contato">  
+        <section class="formas-contato">
             <figure><a href="#" target="_blank"><img src="imagem/bengala.png" alt="Instagram" class="social-media" id="#"></a></figure>
             <figure><a href="#" target="_blank"><img src="imagem/lingua-de-sinais.png" alt="WhattsApp" class="social-media" id="#"></a></figure>
             <figure><a href="#" target="_blank"><img src="imagem/acessibilidade-cadeira-de-rodas.png" alt="Facebook" class="social-media" id= "#"></a></figure>
@@ -82,7 +128,7 @@
     </section>
     <section class="contatos">
     <h1 class="titulo-contato">Ingresso</h1>
-        <section class="config-ingresso">    
+        <section class="config-ingresso">
     <article class="tipos-de-ingresso"><p><b>Berçario</b> - menores de 2 anos </p>
         <p>A partir de R$ 215,32</p></article>
     <article class="tipos-de-ingresso"><p><b>Maternal I</b> - 2 anos </p>
@@ -95,95 +141,84 @@
     </section>
     </section>
 </section>
-    <section class="slider">
-       
-        <section class="slides">
-            <!--radio butoons-->
-            <input type="radio" name="radio-btn" id="radio1">
-            <input type="radio" name="radio-btn" id="radio2">
-            <input type="radio" name="radio-btn" id="radio3">
-            <input type="radio" name="radio-btn" id="radio4">
- 
-            <!--imagem dos slide-->
- 
-            <section class="slide first">
-                <img src="imagem/primeira-carrossel.jpeg" alt="imagem-1">
-            </section>
-            <section class="slide">
-                <img src="imagem/segunda-carrossel.jpg" alt="imagem-2">
-            </section>
-            <section class="slide">
-                <img src="imagem/terceira.jpg" alt="imagem-3">
-            </section>
-            <section class="slide">
-                <img src="https://crechesonhoencantado.com.br/wp-content/uploads/2019/10/MG_2532.jpg" alt="imagem-4">
-            </section>
- 
-            <section class="navegacao-auto">
-                <section class="auto-btn1"></section>
-                <section class="auto-btn2"></section>
-                <section class="auto-btn3"></section>
-                <section class="auto-btn4"></section>
-            </section>
- 
-        </section>
- 
-        <section class="manual-navegacao">
-            <label for="radio1" class="manual-btn"></label>
-            <label for="radio2" class="manual-btn"></label>
-            <label for="radio3" class="manual-btn"></label>
-            <label for="radio4" class="manual-btn"></label>
-        </section>
-    </section>
-    <br><br><br><br><br><br>
 
     <script src="script.js"></script>
-</body>
-</html>
-        <hr id="div">
-        <section class="aval"><br>
-            <h1>Avaliações</h1>
-            <p class="avalinfo">Compartilhe suas impressões e experiência sobre essa instituição</p>
-            <span class="centro">
-            <section class="rating">
-                <input type="radio" name="rating" id="rating-5">
-                <label for="rating-5"></label>
-                <input type="radio" name="rating" id="rating-4">
-                <label for="rating-4"></label>
-                <input type="radio" name="rating" id="rating-3">
-                <label for="rating-3"></label>
-                <input type="radio" name="rating" id="rating-2">
-                <label for="rating-2"></label>
-                <input type="radio" name="rating" id="rating-1">
-                <label for="rating-1"></label>
-            </section>
-            <section class="ratetext">
-                <textarea name="ratetext" id="ratetext" maxlength="352" placeholder="Escreva aqui sua opinião"></textarea>
-                <span id="caracteres">O número de caracteres foi atingido!</span>
-            </section>
-            <section> <button type="submit" id="enviar">Enviar</button></section></span>
+    <hr id="div">
+    <section class="aval"><br>
+        <h1>Avaliações</h1>
+        <p class="avalinfo">Compartilhe suas impressões e experiência sobre essa instituição</p>
+        <span class="centro">
+        <section class="rating">
+            <input type="radio" name="rating" id="rating-5">
+            <label for="rating-5"></label>
+            <input type="radio" name="rating" id="rating-4">
+            <label for="rating-4"></label>
+            <input type="radio" name="rating" id="rating-3">
+            <label for="rating-3"></label>
+            <input type="radio" name="rating" id="rating-2">
+            <label for="rating-2"></label>
+            <input type="radio" name="rating" id="rating-1">
+            <label for="rating-1"></label>
         </section>
-       
-           
- 
+        <section class="ratetext">
+            <textarea name="ratetext" id="ratetext" maxlength="352" placeholder="Escreva aqui sua opinião"></textarea>
+            <span id="caracteres">O número de caracteres foi atingido!</span>
+        </section>
+        <section> <button type="submit" id="enviar">Enviar</button></section></span>
 
-</body>
+        <section id="avaliacoes">
+            <hr>
+            <section id="caixa_comentarios">
+                <% for(let i=0; i<3; i++){ %>
+                <article id="comentario">
+                    <section id="info_usuario_comentario">
+                        <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
+                        <h3><%=  "Visitante" %></h3>
+                    </section>
+                    <p>• há 3 meses</p>
+                    <section id="texto">
+                        Aqui entra a avaliação do usuário e o que ele achou <img src="imagem/5estrelas.webp" id="estrelas">
+                    </section>
+                </article>
+                <% } %>
+            </section>
+        </section>
+
+    </section>
 <%- include('../partials/footer'); %>
 <script>
     const textarea = document.getElementById('ratetext');
     const warning = document.getElementById('caracteres');
 
     textarea.addEventListener('input', () => {
-        let caracteres = textarea.value.length; 
+        let caracteres = textarea.value.length;
 
-        if (caracteres >= 352) { 
+        if (caracteres >= 352) {
             warning.style.display = 'block';
         } else {
             warning.style.display = 'none';
         }
     });
 
+    let counter = 1;
+    setInterval(function(){
+      document.getElementById('radio' + counter).checked = true;
+      counter++;
+      if(counter > 4){
+        counter = 1;
+      }
+    }, 5000);
+
+    function changeSlide(n) {
+      counter += n;
+      if (counter > 4) counter = 1;
+      if (counter < 1) counter = 4;
+      document.getElementById('radio' + counter).checked = true;
+    }
+
 </script>
+</body>
+</html>
 
 <!-- 
 <img class="foto-escola" src="imagem/canarinho.jpg">

@@ -6,36 +6,52 @@
     <title>Perfil Editavel Escola</title>
     <link rel="stylesheet" href="/css/perfil_esc_edi.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
+    <link rel="stylesheet" href="/css/modal.css">
     <script src="js.js" defer></script>
 
 </head>
 <body>
      <%- include('../partials/navbar'); %>
+
+    <aside class="modal" id="croppie-modal">
+      <aside class="modal-content">
+        <span class="close-modal" id="close-croppie">&times;</span>
+        <aside id="croppie-container"></aside>
+        <section class="btn">
+        <button class="btns"  id="crop-btn">Cortar</button>
+        <button class="btns" id="cancel-btn">Cancelar</button></section>
+      </aside>
+    </aside>
+
     <section class="caixa">
         <section class="dentro">
        
         <h2>Editar Perfil</h2>    
+         <form class="w-100 box" id="form-form" enctype="multipart/form-data">
          <main class="w-100 box">
                 <section class="w-100 box">
-                    <form class="box" id="form-form">
                         <!-- image -->
                         <section class="image-upload box">
-                            <img id="image-preview" src="" class="w-100 h-100">
-                            <i class="bi bi-cloud-arrow-up"></i>
-                            <input id="image-field" type="file">
+                             <img class="img-perfil fototo"  id="img-preview" src="<%= valores.img_perfil_banco || valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" alt="Foto de Perfil do Usuário">
+                             <input type="file" name="imagem_perfil_usu" id="imagem_perfil_usu" style="display:none;">
                         </section>
-                     </form>
                 </section>
             </main>
         <section>
         <p id="nome_escola"><label for="escola">Nome da Escola</label></p>
-        <input type="text" id="caixa_nome" name="nomedaescola">
-        
+        <input type="text" id="caixa_nome" name="nomedaescola" value="<%= valores.nomedaescola || '' %>">
+
         <p id="nome_escola"><label for="escola">E-mail</label></p>
-        <input type="text" id="caixa_nome" name="email">
-        
+        <input type="text" id="caixa_nome" name="email" value="<%= valores.email || '' %>">
+
         <p id="nome_escola"><label for="escola">CNPJ</label></p>
-        <input type="text" id="caixa_nome" name="cnpj" placeholder="00.000.00/00000-00" disabled>
+        <input type="text" id="caixa_nome" name="cnpj" placeholder="00.000.00/00000-00" disabled value="<%= valores.cnpj || '' %>">
+
+        <p id="nome_escola"><label for="escola">Senha (deixe em branco para não alterar)</label></p>
+        <input type="password" id="caixa_nome" name="senha" value="">
             <!-- <section class="lado">
                 <p id="nome_escola">CEP</p> 
                 <input type="text" id="caixa_nome_lado" placeholder="00000-000" name="cep">
@@ -47,30 +63,30 @@
             <section class="ob">
                 <section class="cep">
                     <p> <label for="cep"></label>CEP</p> <br>
-                    <input type="text" id="cep" placeholder="00000-000" name="cep">
+                    <input type="text" id="cep" placeholder="00000-000" name="cep" value="<%= valores.cep || '' %>">
                     <span class="spanerro"></span>
                 </section>
                 <section class="complemento">
                     <p id="numero"> <label for="num"></label>N°</p><br>
-                    <input type="text" id="num" name="adress_n" >
+                    <input type="text" id="num" name="adress_n" value="<%= valores.adress_n || '' %>">
                     <span class="spanerro"></span>
                 </section>
             </section>
 
         <p id="nome_escola"><label for="escola">Endereço</label></p>
-        <input type="text" id="caixa_nome" name="endereco">
-      
+        <input type="text" id="caixa_nome" name="endereco" value="<%= valores.endereco || '' %>">
+
         <p id="nome_escola"><label for="escola">Cidade</label></p>
-        <input type="text" id="caixa_nome" name="cidade">
+        <input type="text" id="caixa_nome" name="cidade" value="<%= valores.cidade || '' %>">
 
         <p id="nome_escola"><label for="sobre">Sobre a Escola</label></p>
-        <textarea name="Sobre a Escola" id="sobre" class="area"></textarea>
-        
+        <textarea name="Sobre a Escola" id="sobre" class="area"><%= valores['Sobre a Escola'] || '' %></textarea>
+
         <p id="nome_escola"><label for="sobre">Sobre o Ensino</label></p>
-        <textarea name="Sobre o Ensino" id="sobre" class="area"></textarea>
+        <textarea name="Sobre o Ensino" id="sobre" class="area"><%= valores['Sobre o Ensino'] || '' %></textarea>
 
         <p id="nome_escola"><label for="sobre">Sobre a Estrutura</label></p>
-        <textarea name="Sobre a Estrutura" id="sobre" class="area"></textarea>
+        <textarea name="Sobre a Estrutura" id="sobre" class="area"><%= valores['Sobre a Estrutura'] || '' %></textarea>
 
         </section>
         
@@ -81,35 +97,35 @@
                                 <ul>
                                     <p>Tipo de Ensino</p>
                                     <li>
-                                        <input type="checkbox" id="educacao_infantil" name="ensino" value="Educação Infantil">
+                                        <input type="checkbox" id="educacao_infantil" name="ensino" value="Educação Infantil" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Educação Infantil') ? 'checked' : '' %>>
                                         <label for="educacao_infantil">Educação Infantil</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="ef1" name="ensino" value="Ensino Fundamental I">
+                                        <input type="checkbox" id="ef1" name="ensino" value="Ensino Fundamental I" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Ensino Fundamental I') ? 'checked' : '' %>>
                                         <label for="ef1">Ensino Fundamental I</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="ef2" name="ensino" value="Ensino Fundamental II">
+                                        <input type="checkbox" id="ef2" name="ensino" value="Ensino Fundamental II" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Ensino Fundamental II') ? 'checked' : '' %>>
                                         <label for="ef2">Ensino Fundamental II</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="em" name="ensino" value="Ensino Médio">
+                                        <input type="checkbox" id="em" name="ensino" value="Ensino Médio" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Ensino Médio') ? 'checked' : '' %>>
                                         <label for="em">Ensino Médio</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="ei" name="ensino" value="Educação Integrada">
+                                        <input type="checkbox" id="ei" name="ensino" value="Educação Integrada" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Educação Integrada') ? 'checked' : '' %>>
                                         <label for="ei">Educação Integrada</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="etec" name="ensino" value="Cursos Técnicos">
+                                        <input type="checkbox" id="etec" name="ensino" value="Cursos Técnicos" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Cursos Técnicos') ? 'checked' : '' %>>
                                         <label for="etec">Cursos Técnicos</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="cso" name="ensino" value="Cursos Extracurriculares">
+                                        <input type="checkbox" id="cso" name="ensino" value="Cursos Extracurriculares" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Cursos Extracurriculares') ? 'checked' : '' %>>
                                         <label for="cso">Cursos Extracurriculares</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="idi" name="ensino" value="Cursos de Idioma">
+                                        <input type="checkbox" id="idi" name="ensino" value="Cursos de Idioma" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Cursos de Idioma') ? 'checked' : '' %>>
                                         <label for="idi">Cursos de Idioma</label>
                                     </li>
 
@@ -120,23 +136,23 @@
                                 <ul>
                                     <p>Turnos</p>
                                     <li>
-                                        <input type="checkbox" id="m" name="turno" value="Manhã">
+                                        <input type="checkbox" id="m" name="turno" value="Manhã" <%= valores.turnos && valores.turnos.includes('Manhã') ? 'checked' : '' %>>
                                         <label for="m">Manhã</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="t" name="turno" value="Tarde">
+                                        <input type="checkbox" id="t" name="turno" value="Tarde" <%= valores.turnos && valores.turnos.includes('Tarde') ? 'checked' : '' %>>
                                         <label for="t">Tarde</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="int" name="turno" value="Integral">
+                                        <input type="checkbox" id="int" name="turno" value="Integral" <%= valores.turnos && valores.turnos.includes('Integral') ? 'checked' : '' %>>
                                         <label for="int">Integral</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="n" name="turno" value="Noite">
+                                        <input type="checkbox" id="n" name="turno" value="Noite" <%= valores.turnos && valores.turnos.includes('Noite') ? 'checked' : '' %>>
                                         <label for="n">Noite</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="sab" name="turno" value="Sábado">
+                                        <input type="checkbox" id="sab" name="turno" value="Sábado" <%= valores.turnos && valores.turnos.includes('Sábado') ? 'checked' : '' %>>
                                         <label for="sab"><b style="color:red; font-weight: 300;">*</b>Sábado </label>
                                     </li>
                                 </ul>
@@ -146,19 +162,19 @@
                                 <ul>
                                     <p>Rede</p>
                                     <li>
-                                        <input type="checkbox" id="muni" name="rede" value="Municipal">
+                                        <input type="checkbox" id="muni" name="rede" value="Municipal" <%= valores.redes && valores.redes.includes('Municipal') ? 'checked' : '' %>>
                                         <label for="muni">Municipal</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="est" name="rede" value="Estadual">
+                                        <input type="checkbox" id="est" name="rede" value="Estadual" <%= valores.redes && valores.redes.includes('Estadual') ? 'checked' : '' %>>
                                         <label for="est">Estadual</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="fund" name="rede" value="Fundação">
+                                        <input type="checkbox" id="fund" name="rede" value="Fundação" <%= valores.redes && valores.redes.includes('Fundação') ? 'checked' : '' %>>
                                         <label for="fund">Fundação</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="part" name="rede" value="Particular">
+                                        <input type="checkbox" id="part" name="rede" value="Particular" <%= valores.redes && valores.redes.includes('Particular') ? 'checked' : '' %>>
                                         <label for="part">Particular</label>
                                     </li>
                                 </ul>
@@ -168,19 +184,19 @@
                                 <ul>
                                     <p>Acessibilidade</p>
                                     <li>
-                                        <input type="checkbox" id="muni" name="rede" value="Municipal">
+                                        <input type="checkbox" id="muni" name="rede" value="Atendimento Educacional Especializado" <%= valores.redes && valores.redes.includes('Atendimento Educacional Especializado') ? 'checked' : '' %>>
                                         <label for="muni">Atendimento Educacional Especializado</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="est" name="rede" value="Estadual">
+                                        <input type="checkbox" id="est" name="rede" value="Acessibilidade para deficientes visuais" <%= valores.redes && valores.redes.includes('Acessibilidade para deficientes visuais') ? 'checked' : '' %>>
                                         <label for="est">Acessibilidade para deficientes visuais</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="fund" name="rede" value="Fundação">
+                                        <input type="checkbox" id="fund" name="rede" value="Acessibilidade para PcDs" <%= valores.redes && valores.redes.includes('Acessibilidade para PcDs') ? 'checked' : '' %>>
                                         <label for="fund">Acessibilidade para PcDs</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" id="part" name="rede" value="Particular">
+                                        <input type="checkbox" id="part" name="rede" value="Ensino em Libras" <%= valores.redes && valores.redes.includes('Ensino em Libras') ? 'checked' : '' %>>
                                         <label for="part">Ensino em Libras</label>
                                     </li>
                                 </ul>
@@ -189,24 +205,140 @@
                         </section>
 
 
-</section>
+</span>
 <p id="nome_escola"><label for="escola">Instagram</label></p>
-<input type="text" id="caixa_nome" name="cnpj" placeholder="https://www.instagram.com">
+<input type="text" id="caixa_nome" name="instagram" placeholder="https://www.instagram.com" value="<%= valores.instagram || '' %>">
 <p id="nome_escola"><label for="escola">Facebook</label></p>
-<input type="text" id="caixa_nome" name="cnpj" placeholder="https://www.facebook.com">
+<input type="text" id="caixa_nome" name="facebook" placeholder="https://www.facebook.com" value="<%= valores.facebook || '' %>">
 <p id="nome_escola"><label for="escola">Whatsapp</label></p>
-<input type="text" id="caixa_nome" name="cnpj" placeholder="00 00000-0000">
+<input type="text" id="caixa_nome" name="whatsapp" placeholder="00 00000-0000" value="<%= valores.whatsapp || '' %>">
 <p id="nome_escola"><label for="escola">Número para Contato</label></p>
-<input type="text" id="caixa_nome" name="cnpj" placeholder="00 00000-0000">
+<input type="text" id="caixa_nome" name="telefone_contato" placeholder="00 00000-0000" value="<%= valores.telefone_contato || '' %>">
 <p id="nome_escola"><label for="escola">E-mail</label></p>
-<input type="text" id="caixa_nome" name="cnpj" placeholder="Usuario@gmail.copm">
+<input type="text" id="caixa_nome" name="email_contato" placeholder="Usuario@gmail.com" value="<%= valores.email_contato || '' %>">
         
 <section id="salvar2">
     <input type="submit" id="salvar_button" value="Salvar">
 </section>
+</form>
 </section>
 <section class="block">
 <%- include('../partials/footer'); %></section>
     
 </body>
+
+    <script>
+    var croppieInstance;
+    var croppedBlob;
+
+    $('#img-preview').on('click', function() {
+        $('#imagem_perfil_usu').click();
+    });
+
+    $('#imagem_perfil_usu').on('change', function() {
+        var file = this.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#croppie-modal').css('display', 'flex');
+                croppieInstance = new Croppie(document.getElementById('croppie-container'), {
+                    viewport: { width: 200, height: 200, type: 'circle' },
+                    boundary: { width: 300, height: 300 }
+                });
+                croppieInstance.bind({
+                    url: e.target.result
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    $('#crop-btn').on('click', function() {
+        croppieInstance.result('blob').then(function(blob) {
+            croppedBlob = blob;
+            var url = URL.createObjectURL(blob);
+            $('#img-preview').attr('src', url);
+            $('#croppie-modal').hide();
+            croppieInstance.destroy();
+        });
+    });
+
+    $('#cancel-btn').on('click', function() {
+        $('#croppie-modal').hide();
+        if (croppieInstance) croppieInstance.destroy();
+        croppedBlob = null;
+    });
+
+    $('#close-croppie').on('click', function() {
+        $('#croppie-modal').hide();
+        if (croppieInstance) croppieInstance.destroy();
+        croppedBlob = null;
+    });
+
+    $('form').on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        $(this).find('input, textarea, select').each(function() {
+            if (this.type === 'file') return;
+            if (this.type === 'checkbox') {
+                if (this.checked) {
+                    formData.append(this.name, this.value);
+                }
+            } else {
+                formData.append(this.name, this.value);
+            }
+        });
+        if (croppedBlob) {
+            formData.append('imagem_perfil_usu', croppedBlob, 'cropped.jpg');
+        } else {
+            var file = $('#imagem_perfil_usu')[0].files[0];
+            if (file) formData.append('imagem_perfil_usu', file);
+        }
+        fetch('/editar_escola_post', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                notify("Erro", "Falha ao salvar", "error", "center");
+            }
+        }).catch(err => {
+            notify("Erro", "Erro de rede", "error", "center");
+        });
+    });
+</script>
+
+<script>
+  // Viacep API integration for auto-filling address fields based on CEP
+  document.getElementById('cep').addEventListener('blur', function() {
+    const cep = this.value.replace(/\D/g, '');
+    if (cep.length === 8) {
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json())
+        .then(data => {
+          if (!data.erro) {
+            // Auto-fill address fields
+            if (data.logradouro) {
+              document.querySelector('input[name="endereco"]').value = data.logradouro;
+            }
+            if (data.localidade) {
+              document.querySelector('input[name="cidade"]').value = data.localidade;
+            }
+            if (data.uf) {
+              // Optionally fill state if you have a state field
+              // document.querySelector('input[name="estado"]').value = data.uf;
+            }
+          } else {
+            // CEP not found
+            alert('CEP não encontrado.');
+          }
+        })
+        .catch(() => {
+          alert('Erro ao buscar CEP.');
+        });
+    }
+  });
+</script>
+
 </html>

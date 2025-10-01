@@ -4,7 +4,7 @@ const loginModel = {
     findUserEmail: async (dados) => {
         try {
             const [linhas] = await pool.query(
-                "SELECT * FROM usuarios WHERE email_usuario = ? AND status_usuario = 1",
+               "SELECT u.*, i.caminho_imagem as img_perfil_pasta, NULL as img_perfil_banco FROM usuarios u LEFT JOIN imagens i ON u.img_perfil_id = i.id_imagem WHERE u.email_usuario = ? AND u.status_usuario = 1",
                 [dados.email_usuario]
             );
             return linhas;
