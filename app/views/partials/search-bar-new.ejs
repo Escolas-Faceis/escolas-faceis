@@ -1,0 +1,62 @@
+<!-- Barra de pesquisa-->
+
+<link rel="stylesheet" href="css/search-bar.css">
+
+<section class="search-bar">
+    <form id="search-form" method="GET" action="/encontre-escolas">
+    <section class="search-fields">
+    <input type="text" id="nome-escola-search" name="nome-escola-search" placeholder="Nome da Escola" class="A" value="<%= typeof searchParams !== 'undefined' && searchParams ? searchParams.nome : '' %>">
+    <select name="regiao-search" id="regiao-search" class="A">
+        <option value="regiao">Região</option>
+        <option value="RNO" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.regiao === 'RNO' ? 'selected' : '' %>>Norte</option>
+        <option value="RND" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.regiao === 'RND' ? 'selected' : '' %>>Nordeste</option>
+        <option value="RCE" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.regiao === 'RCE' ? 'selected' : '' %>>Centro-Oeste</option>
+        <option value="RSD" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.regiao === 'RSD' ? 'selected' : '' %>>Sudeste</option>
+        <option value="RSU" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.regiao === 'RSU' ? 'selected' : '' %>>Sul</option>
+    </select>
+        <input type="text" id="cidade-search" name="cidade-search" placeholder="Cidade" class="A" value="<%= typeof searchParams !== 'undefined' && searchParams ? searchParams.cidade : '' %>">
+    <br></section>
+   <button type="submit" value="" id="search">Pesquisar</button>
+   </form>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.getElementById('search-form');
+    const searchButton = document.getElementById('search');
+
+    // Handle search form submission
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(searchForm);
+        const params = new URLSearchParams();
+
+        // Add search parameters
+        const nomeEscola = formData.get('nome-escola-search');
+        const regiao = formData.get('regiao-search');
+        const cidade = formData.get('cidade-search');
+
+        if (nomeEscola && nomeEscola.trim()) {
+            params.append('nome', nomeEscola.trim());
+        }
+        if (regiao && regiao !== 'regiao') {
+            params.append('regiao', regiao);
+        }
+        if (cidade && cidade.trim()) {
+            params.append('cidade', cidade.trim());
+        }
+
+        // Redirect to the search URL
+        const searchUrl = '/encontre-escolas' + (params.toString() ? '?' + params.toString() : '');
+        window.location.href = searchUrl;
+    });
+
+    // Add visual feedback for search button
+    searchButton.addEventListener('click', function() {
+        this.innerHTML = '🔍 Buscando...';
+        this.disabled = true;
+        searchForm.submit();
+    });
+});
+</script>

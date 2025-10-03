@@ -39,7 +39,7 @@ router.get('/perfil-escola', function(req, res) {
     res.render('pages/perfil-escola');
 });
 router.get('/perfil-usuario', 
-    verificarUsuAutorizado(["ADM", "Comum", "Escola"], "partials/401"),
+    verificarUsuAutorizado(["A", "C", "E"], "partials/401"),
     function(req, res) {
     const usuarioController = require("../controllers/usuarioController");
     usuarioController.mostrarPerfil(req, res);
@@ -80,14 +80,14 @@ router.get('/navbar', function(req, res) {
 });
 
 router.get('/editar-escola',
-    verificarUsuAutorizado(["Escola"], "partials/401"),
+    verificarUsuAutorizado(["E"], "partials/401"),
     escolaController.mostrarPerfilEscola);
 
 router.post(
   "/editar_escola_post",
   uploadFile("imagem_perfil_usu"),
   escolaController.regrasValidacaoEditarEscola,
-  verificarUsuAutorizado(["Escola"], "partials/401"),
+  verificarUsuAutorizado(["E"], "partials/401"),
   async function (req, res) {
     escolaController.gravarPerfilEscola(req, res);
   }
@@ -142,7 +142,7 @@ router.post(
 
 
 router.get('/perfil1', 
-    verificarUsuAutorizado(['Comum', 'ADM'], "partials/401"),
+    verificarUsuAutorizado(['C', 'A'], "partials/401"),
     function(req, res) {
     const usuarioController = require("../controllers/usuarioController");
     usuarioController.mostrarPerfil(req, res);
@@ -150,7 +150,7 @@ router.get('/perfil1',
 });
 
 router.get('/info',
-    verificarUsuAutorizado(["ADM", "Comum"], "partials/401"),
+    verificarUsuAutorizado(["A", "C"], "partials/401"),
     function(req, res) {
     const usuarioController = require("../controllers/usuarioController");
     usuarioController.mostrarPerfil(req, res);
@@ -161,7 +161,7 @@ router.post(
   "/info_post",
   uploadFile("imagem_perfil_usu"),
   usuarioController.regrasValidacaoPerfil,
-  verificarUsuAutorizado(["ADM", "Comum"], "partials/401"),
+  verificarUsuAutorizado(["A", "C"], "partials/401"),
   async function (req, res) {
     if (req.body.cor_banner) {
       await usuarioModel.updateBannerColor(req.body.cor_banner, req.session.autenticado.id);
@@ -173,6 +173,11 @@ router.post(
 
 router.get('/401', function(req, res) {
     res.render('partials/401');
+});
+
+
+router.get('/filtro', function(req, res) {
+    res.render('partials/filtro-atualizado-new');
 });
 
 module.exports = router;

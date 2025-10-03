@@ -153,17 +153,60 @@ const escolaController = {
         res.locals.moment = moment;
         try {
             let pagina = parseInt(req.query.pagina) || 1;
-            let results = null;
             let regPagina = 5;
             let inicio = (pagina - 1) * regPagina;
-            let totalReg = await escolaModel.totalReg();
-            let totPaginas = Math.ceil(totalReg[0].total / regPagina);
-            results = await escolaModel.findPage(inicio, regPagina);
-            let paginador = totalReg[0].total <= regPagina ? null : { "paginaAtual": pagina, "totalReg": totalReg[0].total, "totPaginas": totPaginas };
-            res.render('pages/encontre-escolas', { escolas: results, paginador: paginador });
+
+            // Extract search and filter parameters
+            const searchParams = {
+                nome: req.query.nome || req.query['nome-escola-search'] || '',
+                cidade: req.query.cidade || req.query['cidade-search'] || '',
+                regiao: req.query.regiao || req.query['regiao-search'] || '',
+                niveis: req.query.niveis ? (Array.isArray(req.query.niveis) ? req.query.niveis : [req.query.niveis]) : [],
+                redes: req.query.redes ? (Array.isArray(req.query.redes) ? req.query.redes : [req.query.redes]) : [],
+                turnos: req.query.turnos ? (Array.isArray(req.query.turnos) ? req.query.turnos : [req.query.turnos]) : [],
+                acessibilidade: req.query.acessibilidade,
+                eja: req.query.eja,
+                bilingue: req.query.bilingue
+            };
+
+            // Check if any search/filter parameters are provided
+            const hasFilters = Object.values(searchParams).some(value => {
+                if (Array.isArray(value)) return value.length > 0;
+                return value && value.trim && value.trim() !== '' && value !== 'regiao';
+            });
+
+            let results, totalReg, totPaginas, paginador;
+
+            if (hasFilters) {
+                // Use filtered search
+                results = await escolaModel.searchAndFilterSchools(searchParams, inicio, regPagina);
+                const countResult = await escolaModel.countFilteredSchools(searchParams);
+                totalReg = countResult[0] ? countResult[0].total : 0;
+            } else {
+                // Use regular pagination
+                results = await escolaModel.findPage(inicio, regPagina);
+                const countResult = await escolaModel.totalReg();
+                totalReg = countResult[0] ? countResult[0].total : 0;
+            }
+
+            totPaginas = Math.ceil(totalReg / regPagina);
+            paginador = totalReg <= regPagina ? null : { "paginaAtual": pagina, "totalReg": totalReg, "totPaginas": totPaginas };
+
+            // Pass search parameters back to view for form population
+            res.render('pages/encontre-escolas', {
+                escolas: results,
+                paginador: paginador,
+                searchParams: searchParams,
+                hasFilters: hasFilters
+            });
         } catch (error) {
             console.log(error);
-            res.render('pages/encontre-escolas', { escolas: [], paginador: null });
+            res.render('pages/encontre-escolas', {
+                escolas: [],
+                paginador: null,
+                searchParams: {},
+                hasFilters: false
+            });
         }
     },
 

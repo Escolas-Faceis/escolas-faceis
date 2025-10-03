@@ -7,7 +7,7 @@ const usuarioModel = {
         try {
             const [resultados] = await pool.query(
                 "INSERT INTO usuarios (nome_usuario, email_usuario, telefone_usuario, senha_usuario, tipo_usuario, status_usuario) VALUES (?, ?, ?, ?, ?, ?)",
-                [dados.name, dados.email, dados.cellphone, dados.password, "Comum", 1]
+                [dados.name, dados.email, dados.cellphone, dados.password, "C", 1]
             );
             console.log(resultados);
             return resultados;
@@ -118,16 +118,15 @@ const usuarioModel = {
 
     update: async (dados, id) => {
         try {
-            const [resultados] = await pool.query(
-                "UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, telefone_usuario = ?, biografia_usuario = ?, senha_usuario = ?, img_perfil_id = ? WHERE id_usuario = ?",
-                [dados.nome, dados.email, dados.telefone, dados.biografia, dados.senha_usuario, dados.img_perfil_id, id]
-            );
-            return resultados;
-        } catch (erro) {
-            console.log(erro);
-            return false;
+            const [linhas] = await pool.query('UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, telefone_usuario = ?, biografia_usuario = ?, cor_banner = ?, img_perfil_id = ?, senha_usuario = ? WHERE id_usuario = ?',
+                [dados.nome, dados.email, dados.telefone, dados.biografia, dados.cor_banner, dados.img_perfil_id, dados.senha_usuario, id])
+            return linhas;
+        } catch (error) {
+            console.log("Erro na atualização do usuário: ", error);
+            return error;
         }
     },
+
 
             findInativoId: async (id) => {
             try {

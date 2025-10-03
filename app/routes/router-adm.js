@@ -6,7 +6,7 @@ const { verificarUsuAutenticado, verificarUsuAutorizado } = require("../models/a
 
 router.get("/",
     verificarUsuAutenticado,
-    verificarUsuAutorizado(["ADM"], 'partials/401'),
+    verificarUsuAutorizado(["A"], 'partials/401'),
     admControllerPainel.listarUsuarios,
     admControllerPainel.listarEscolas,
     admController.listarUsuariosPaginados,

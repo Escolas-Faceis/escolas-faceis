@@ -43,9 +43,9 @@
     <a href="/contato"><li>Contato</li></a>
     <section class="aside">
         <% if(autenticado && autenticado.autenticado){ %>
-            <% if( autenticado && autenticado.tipo === "Escola" ) { %>
+            <% if( autenticado && autenticado.tipo === "E" ) { %>
                 <a href="/perfil-escola"><li><img src="<%= autenticado.img_perfil_banco || autenticado.img_perfil_pasta || '../imagem/escola-padrao.png' %>" id="perfil-foto-navbar" alt="Foto de Perfil"></li></a>
-            <% } else if(autenticado && (autenticado.tipo === "Comum" || autenticado.tipo === "ADM")){%>
+            <% } else if(autenticado && (autenticado.tipo === "C" || autenticado.tipo === "A")){%>
                 <a href="/perfil1"><li><img src="<%= autenticado.img_perfil_banco || autenticado.img_perfil_pasta || 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-navbar" alt="Foto de Perfil do Usuário"></li></a>
             <%}%>
             <a href="/sair"><li>Sair</li></a>
@@ -62,7 +62,7 @@
     </header>
 </section>
 
-<% if(autenticado && autenticado.tipo === "ADM") { %>
+<% if(autenticado && autenticado.tipo === "A") { %>
     <%- include('navbar-adm'); %>
 <% } %>
 

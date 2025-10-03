@@ -210,6 +210,7 @@ const usuarioController = {
                 email: req.body.email,
                 telefone: req.body.telefone,
                 biografia: req.body.biografia,
+                cor_banner: req.body.cor_banner,
                 senha_usuario: req.body.senha != "" ? bcrypt.hashSync(req.body.senha, salt) : currentUser[0].senha_usuario,
                 img_perfil_id: currentUser[0].img_perfil_id
             };

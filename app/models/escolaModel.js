@@ -3,7 +3,7 @@ var pool = require("../../config/pool_conexoes");
 const escolaModel = {
     findAll: async () => {
         try {
-            const [linhas] = await pool.query('SELECT * FROM usuarios WHERE status_usuario = 1 AND tipo_usuario = "Escola"');
+            const [linhas] = await pool.query('SELECT * FROM usuarios WHERE status_usuario = 1 AND tipo_usuario = "E"');
             return linhas;
         } catch (error) {
             return error;
@@ -18,7 +18,7 @@ const escolaModel = {
                 FROM escolas e
                 JOIN usuarios u ON e.id_usuario = u.id_usuario
                 LEFT JOIN avaliacoes a ON e.id_escola = a.id_escola
-                WHERE u.status_usuario = 1 AND u.tipo_usuario = "Escola"
+                WHERE u.status_usuario = 1 AND u.tipo_usuario = "E"
                 GROUP BY e.id_escola, u.id_usuario
                 ORDER BY media_avaliacao DESC, e.nome_escola ASC
             `);
@@ -36,7 +36,7 @@ const escolaModel = {
 
 
             const [usuarioResult] = await conn.query(
-                `INSERT INTO usuarios (nome_usuario, email_usuario, senha_usuario, tipo_usuario, status_usuario) VALUES (?, ?, ?, "Escola", 1);`,
+                `INSERT INTO usuarios (nome_usuario, email_usuario, senha_usuario, tipo_usuario, status_usuario) VALUES (?, ?, ?, "E", 1);`,
                 [dados.name_school, dados.email, dados.password]
             );
             const id_usuario = usuarioResult.insertId;
@@ -80,7 +80,7 @@ const escolaModel = {
                     FROM escolas e
                     JOIN usuarios u ON e.id_usuario = u.id_usuario
                     LEFT JOIN avaliacoes a ON e.id_escola = a.id_escola
-                    WHERE u.status_usuario = 1 AND u.tipo_usuario = "Escola"
+                    WHERE u.status_usuario = 1 AND u.tipo_usuario = "E"
                     GROUP BY e.id_escola, u.id_usuario
                     ORDER BY media_avaliacao DESC, e.nome_escola ASC
                     LIMIT ?, ?
@@ -100,6 +100,190 @@ const escolaModel = {
                 return linhas;
             } catch (error) {
                 console.log(error);
+                return error;
+            }
+        },
+
+        searchAndFilterSchools: async (params = {}, pagina = 0, total = 5) => {
+            try {
+                let whereConditions = [];
+                let queryParams = [];
+
+                // Base query with joins
+                let query = `
+                    SELECT e.*, u.nome_usuario, u.email_usuario,
+                           COALESCE(AVG(a.nota), 0) AS media_avaliacao
+                    FROM escolas e
+                    JOIN usuarios u ON e.id_usuario = u.id_usuario
+                    LEFT JOIN avaliacoes a ON e.id_escola = a.id_escola
+                    WHERE u.status_usuario = 1 AND u.tipo_usuario = "E"
+                `;
+
+                // Search by school name
+                if (params.nome && params.nome.trim()) {
+                    whereConditions.push("e.nome_escola LIKE ?");
+                    queryParams.push(`%${params.nome.trim()}%`);
+                }
+
+                // Filter by city
+                if (params.cidade && params.cidade.trim()) {
+                    whereConditions.push("e.cidade LIKE ?");
+                    queryParams.push(`%${params.cidade.trim()}%`);
+                }
+
+                // Filter by region (estado)
+                if (params.regiao && params.regiao !== 'regiao') {
+                    // Map region codes to actual states
+                    const regioes = {
+                        'RNO': ['AM', 'RR', 'AP', 'PA', 'TO', 'RO', 'AC'],
+                        'RND': ['MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE', 'BA'],
+                        'RCE': ['MT', 'MS', 'GO', 'DF'],
+                        'RSD': ['MG', 'ES', 'RJ', 'SP'],
+                        'RSU': ['PR', 'SC', 'RS']
+                    };
+
+                    if (regioes[params.regiao]) {
+                        const placeholders = regioes[params.regiao].map(() => '?').join(',');
+                        whereConditions.push(`e.estado IN (${placeholders})`);
+                        queryParams.push(...regioes[params.regiao]);
+                    }
+                }
+
+                // Filter by education levels (tipo_ensino)
+                if (params.niveis && Array.isArray(params.niveis) && params.niveis.length > 0) {
+                    const nivelConditions = params.niveis.map(nivel => "e.tipo_ensino LIKE ?");
+                    whereConditions.push(`(${nivelConditions.join(' OR ')})`);
+                    params.niveis.forEach(nivel => queryParams.push(`%${nivel}%`));
+                }
+
+                // Filter by network types (rede)
+                if (params.redes && Array.isArray(params.redes) && params.redes.length > 0) {
+                    const redeConditions = params.redes.map(rede => "e.rede LIKE ?");
+                    whereConditions.push(`(${redeConditions.join(' OR ')})`);
+                    params.redes.forEach(rede => queryParams.push(`%${rede}%`));
+                }
+
+                // Filter by shifts (turnos)
+                if (params.turnos && Array.isArray(params.turnos) && params.turnos.length > 0) {
+                    const turnoConditions = params.turnos.map(turno => "e.turnos LIKE ?");
+                    whereConditions.push(`(${turnoConditions.join(' OR ')})`);
+                    params.turnos.forEach(turno => queryParams.push(`%${turno}%`));
+                }
+
+                // Filter by accessibility
+                if (params.acessibilidade && params.acessibilidade === 'true') {
+                    whereConditions.push("e.acessibilidade = 1");
+                }
+
+                // Filter by EJA
+                if (params.eja && params.eja === 'true') {
+                    whereConditions.push("e.eja = 1");
+                }
+
+                // Filter by bilingual
+                if (params.bilingue && params.bilingue === 'true') {
+                    whereConditions.push("e.bilingue = 1");
+                }
+
+                // Add WHERE clause if conditions exist
+                if (whereConditions.length > 0) {
+                    query += " AND " + whereConditions.join(" AND ");
+                }
+
+                // Group by and order
+                query += `
+                    GROUP BY e.id_escola, u.id_usuario
+                    ORDER BY media_avaliacao DESC, e.nome_escola ASC
+                    LIMIT ?, ?
+                `;
+
+                queryParams.push(pagina, total);
+
+                const [linhas] = await pool.query(query, queryParams);
+                return linhas;
+            } catch (error) {
+                console.log("Error in searchAndFilterSchools:", error);
+                return error;
+            }
+        },
+
+        countFilteredSchools: async (params = {}) => {
+            try {
+                let whereConditions = [];
+                let queryParams = [];
+
+                let query = `
+                    SELECT COUNT(DISTINCT e.id_escola) as total
+                    FROM escolas e
+                    JOIN usuarios u ON e.id_usuario = u.id_usuario
+                    WHERE u.status_usuario = 1 AND u.tipo_usuario = "E"
+                `;
+
+                // Apply same filters as searchAndFilterSchools
+                if (params.nome && params.nome.trim()) {
+                    whereConditions.push("e.nome_escola LIKE ?");
+                    queryParams.push(`%${params.nome.trim()}%`);
+                }
+
+                if (params.cidade && params.cidade.trim()) {
+                    whereConditions.push("e.cidade LIKE ?");
+                    queryParams.push(`%${params.cidade.trim()}%`);
+                }
+
+                if (params.regiao && params.regiao !== 'regiao') {
+                    const regioes = {
+                        'RNO': ['AM', 'RR', 'AP', 'PA', 'TO', 'RO', 'AC'],
+                        'RND': ['MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE', 'BA'],
+                        'RCE': ['MT', 'MS', 'GO', 'DF'],
+                        'RSD': ['MG', 'ES', 'RJ', 'SP'],
+                        'RSU': ['PR', 'SC', 'RS']
+                    };
+
+                    if (regioes[params.regiao]) {
+                        const placeholders = regioes[params.regiao].map(() => '?').join(',');
+                        whereConditions.push(`e.estado IN (${placeholders})`);
+                        queryParams.push(...regioes[params.regiao]);
+                    }
+                }
+
+                if (params.niveis && Array.isArray(params.niveis) && params.niveis.length > 0) {
+                    const nivelConditions = params.niveis.map(nivel => "e.tipo_ensino LIKE ?");
+                    whereConditions.push(`(${nivelConditions.join(' OR ')})`);
+                    params.niveis.forEach(nivel => queryParams.push(`%${nivel}%`));
+                }
+
+                if (params.redes && Array.isArray(params.redes) && params.redes.length > 0) {
+                    const redeConditions = params.redes.map(rede => "e.rede LIKE ?");
+                    whereConditions.push(`(${redeConditions.join(' OR ')})`);
+                    params.redes.forEach(rede => queryParams.push(`%${rede}%`));
+                }
+
+                if (params.turnos && Array.isArray(params.turnos) && params.turnos.length > 0) {
+                    const turnoConditions = params.turnos.map(turno => "e.turnos LIKE ?");
+                    whereConditions.push(`(${turnoConditions.join(' OR ')})`);
+                    params.turnos.forEach(turno => queryParams.push(`%${turno}%`));
+                }
+
+                if (params.acessibilidade && params.acessibilidade === 'true') {
+                    whereConditions.push("e.acessibilidade = 1");
+                }
+
+                if (params.eja && params.eja === 'true') {
+                    whereConditions.push("e.eja = 1");
+                }
+
+                if (params.bilingue && params.bilingue === 'true') {
+                    whereConditions.push("e.bilingue = 1");
+                }
+
+                if (whereConditions.length > 0) {
+                    query += " AND " + whereConditions.join(" AND ");
+                }
+
+                const [linhas] = await pool.query(query, queryParams);
+                return linhas;
+            } catch (error) {
+                console.log("Error in countFilteredSchools:", error);
                 return error;
             }
         },
