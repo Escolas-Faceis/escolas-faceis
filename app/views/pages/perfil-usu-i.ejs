@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editar Perfil</title>
   <link rel="stylesheet" href="/css/info.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
     <link rel="stylesheet" href="/css/modal.css">
 </head>
-<body>
+
   <script src="/js/mascaras.js"></script>
     <script>
         function notify(title, text, type, position, timeout = 5000) {
@@ -31,7 +35,7 @@
             });
         }
     </script>
-</head>
+
         <style>
             
         :root {
@@ -41,7 +45,8 @@
             background-color: var(--background_banner);
         }
     </style>
-<body>
+
+    <body>
     <%
     let arquivo = {"imagem":"/imagem/img-perfil.png"}
         if(valores.img_perfil_pasta != null){
@@ -50,13 +55,13 @@
             arquivo.imagem = valores.img_perfil_banco;
         }
     let  msgErro = "";
-    let  erroValidacao =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
-    let  avisoErro =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
+    let  erroValidacao =  {"nome":"","email":"","password":"","reppassword":"","cellphone":""};
+    let  avisoErro =  {"nome":"","email":"","password":"","reppassword":"","cellphone":""};
     if(erros) {
         erros.errors.forEach(function(erro) {
             if (erro.path == "nome") {
-                erroValidacao.name = "erro",
-                avisoErro.name = erro.msg
+                erroValidacao.nome = "erro",
+                avisoErro.nome = erro.msg
                 msgErro += `* ${erro.msg} <br>`;
             }
             if (erro.path == "email") {
@@ -126,7 +131,7 @@
 
       <section class="form-group" style="margin-top: 80px;">
         <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" value="<%= valores && valores.name ? valores.name : '' %>" required>
+        <input type="text" name="nome" id="nome" value="<%= valores && (valores.nome || valores.name) ? (valores.nome || valores.name) : '' %>" required>
       </section>
 
       <section class="form-group">
@@ -152,7 +157,7 @@
 
       <section class="botoes">
       <input type="submit" value="Salvar Alterações" id="submit-btn" />
-      <input type="reset" value="Cancelar" id="cancel" /></section>
+      <button type="button" id="cancel" onclick="window.location='/perfil1'">Cancelar</button></section>
 
       </section>
     </form>
@@ -213,34 +218,6 @@
         croppedBlob = null;
     });
 
-    $('form').on('submit', function(e) {
-        e.preventDefault();
-        var formData = new FormData();
-        formData.append('nome', $('#nome').val());
-        formData.append('email', $('#email').val());
-        formData.append('telefone', $('#telefone').val());
-        formData.append('biografia', $('#biografia').val());
-        formData.append('senha', $('#senha').val());
-        formData.append('cor_banner', $('#cor_banner').val());
-        if (croppedBlob) {
-            formData.append('imagem_perfil_usu', croppedBlob, 'cropped.jpg');
-        } else {
-            var file = $('#imagem_perfil_usu')[0].files[0];
-            if (file) formData.append('imagem_perfil_usu', file);
-        }
-        fetch('/info_post', {
-            method: 'POST',
-            body: formData
-        }).then(response => {
-            if (response.ok) {
-                window.location.reload();
-            } else {
-                notify("Erro", "Falha ao salvar", "error", "center");
-            }
-        }).catch(err => {
-            notify("Erro", "Erro de rede", "error", "center");
-        });
-    });
   </script>
 </body>
 

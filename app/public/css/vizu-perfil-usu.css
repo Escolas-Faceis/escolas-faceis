@@ -141,6 +141,11 @@ body {
     margin:5%
 }
 
+.bio{
+    white-space: pre-line;
+    text-align: center;
+}
+
 #biografia {
     width: 320px;
     min-width: 200px;
@@ -154,6 +159,7 @@ body {
     resize: none;
     background: #fafafa;
     margin: 0;
+    
 }
 
 #ajustar_direita {

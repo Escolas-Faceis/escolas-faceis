@@ -145,6 +145,7 @@ router.get('/info',
     function(req, res) {
     const usuarioController = require("../controllers/usuarioController");
     usuarioController.mostrarPerfil(req, res);
+
 });
 
 router.post(

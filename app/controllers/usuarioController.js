@@ -37,9 +37,7 @@ const usuarioController = {
             .isLength({ max: 255 })
             .withMessage("Biografia muito longa"),
         body("senha")
-            .optional()
-            .isStrongPassword()
-            .withMessage("Senha muito fraca!"),
+            .optional({ checkFalsy: true }),
     ],
 
     regrasValidacaoUsuario: [
@@ -168,8 +166,8 @@ const usuarioController = {
             }
             res.render(view, {
                 erros: null, dadosNotificacao: null, valores: {
-                    img_perfil_banco: "", img_perfil_pasta: "", name: "", email: "",
-                     telefone: "", senha: "", biografia: ""
+                    img_perfil_banco: "", img_perfil_pasta: "", nome: "", email: "",
+                     telefone: "", senha: "", biografia: "", cor_banner: ""
                 }
             })
         }
@@ -183,7 +181,7 @@ const usuarioController = {
             lista =  !erros.isEmpty() ? erros : {formatter:null, errors:[]};
             if(erroMulter != null ){
                 lista.errors.push(erroMulter);
-                delete req.session.erroMulter; // clear after use
+                delete req.session.erroMulter;
             }
             return res.render("pages/perfil-usu-i", { erros: lista, dadosNotificacao: null, valores: req.body })
         }
@@ -216,13 +214,14 @@ const usuarioController = {
                         id: result[0].id_usuario,
                         tipo: result[0].tipo_usuario,
                         img_perfil_banco: result[0].img_perfil_banco != null ? `data:image/jpeg;base64,${result[0].img_perfil_banco.toString('base64')}` : null,
-                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public', '') : null
+                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public', '') : null,
+                        cor_banner: result[0].cor_banner
                     };
                     req.session.autenticado = autenticado;
                     var campos = {
                         nome: result[0].nome_usuario, email: result[0].email_usuario,
                         img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public', '') : null, img_perfil_banco: result[0].img_perfil_banco,
-                        biografia: result[0].biografia_usuario, telefone: result[0].telefone_usuario, senha: ""
+                        biografia: result[0].biografia_usuario, telefone: result[0].telefone_usuario, senha: "", cor_banner: result[0].cor_banner
                     }
                     res.render("pages/perfil-usu-i", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos });
                 }else{
