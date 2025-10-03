@@ -23,71 +23,45 @@
     <%- include('../partials/navbar'); %>
 
 
-    <main>
-        <section class="call2action">
+    <main class="fade-in">
+        <header class="call2action">
             <!-- <h3 class="text1"><% if(autenticado && autenticado.autenticado){ %> <section class="msgBV">Bem vindo, <%=autenticado ? autenticado.autenticado : "Visitante" %></article>! <% }; %></h3> -->
-            <h1 class="title"> A escola certa transforma o futuro <br> Encontre a sua aqui</h1>
-            <h2 class="text1">Compare escolas, veja avaliações e filtre de acordo com o que procura. Encontre a melhor opção para você e sua família!</h2>
-            <button type="button"><a href="/encontre-escolas">Ver escolas</a></button>
-        </section>
-
-
+            <div class="call2action-text">
+                <h1 class="title"> A escola certa transforma o futuro <br> Encontre a sua aqui</h1>
+                <h2 class="text1">Compare escolas, veja avaliações e filtre de acordo com o que procura. Encontre a melhor opção para você e sua família!</h2>
+                <button type="button"><a href="/encontre-escolas">Ver escolas</a></button>
+            </div>
+            <figure class="call2action-image"><img src="/imagem/Thesis-amico.png" alt="Ilustração de estudante" ></figure>
+        </header>
     </main>
-
-
-    <section class="slider">
-        <ul class="slides">
-            <li class="slide"><img src="imagem/banner-cadastro.png" id="imgs" alt="slide1"></li>
-            <li class="slide"><img src="imagem/banner_de_publicidade.png" id="imgs" alt="slide2"></li>
-            <li class="slide"><img src="imagem/banner_de_publicidade1.png" id="imgs" alt="slide3"></li>
-        </ul>
-        <button class="prev b">❮</button>
-        <button class="next b">❯</button>
-        <section class="indicators">
-            <span class="indicator"></span>
-            <span class="indicator"></span>
-            <span class="indicator"></span>
+<hr>
+    <section class="como-funciona fade-in">
+        <h2 class="title azul" id="azul">Como Funciona?</h2>
+        <section class="steps">
+            <section class="step">
+                <section class="icon">🔍</section>
+                <h3>Pesquise escolas</h3>
+                <p>Encontre opções próximas ou pelo tipo de ensino.</p>
+            </section>
+            <section class="step">
+                <section class="icon">⭐</section>
+                <h3>Compare avaliações</h3>
+                <p>Veja opiniões de outros pais e alunos.</p>
+            </section>
+            <section class="step">
+                <section class="icon">🏫</section>
+                <h3>Escolha a ideal</h3>
+                <p>Selecione a escola que melhor atende suas necessidades.</p>
+            </section>
         </section>
     </section>
-
-    <section class="buscaN">
-        <h2 class="title">Encontre a escola ideal para você</h2>
-        <ul class="niveis">
-            <li>Educação Infantil</li>
-            <li>Ensino Fundamental I</li>
-            <li>Ensino Fundamental II</li>
-            <li>Ensino Médio</li>
-            <li>Cursos Técnicos</li>
-            <li>Cursos Extracurriculares</li>
-        </ul>
-    </section>
-
-        <section class="carrossel-escolas">
-        <h2 class="title">Escolas em destaque</h2>
+<aside class="separador"></aside>
+    <section class="carrossel-escolas fade-in">
+        <h2 class="title"> Escolas em destaque</h2>
         <section class="carrossel-container">
             <button class="carrossel-btn prev" onclick="moverCarrossel(-1)">❮</button>
             <section class="carrossel-lista" id="carrosselLista">
                 <section class="escola-card">
-                    <img src="imagem/escola-padrao.png" alt="Escola Alpha">
-                    <h3>Escola Ábaco</h3>
-                    <p>Ensino Fundamental e Médio • 4.8 ★</p>
-                </section>
-                <section class="escola-card">
-                    <img src="imagem/escola-padrao.png" alt="Colégio Beta">
-                    <h3>Colégio Objetivo</h3>
-                    <p>Educação Infantil e Fundamental • 4.7 ★</p>
-                </section>
-                <section class="escola-card">
-                    <img src="imagem/escola-padrao.png" alt="Instituto Gama">
-                    <h3>Instituto Gama</h3>
-                    <p>Técnico e Médio • 4.9 ★</p>
-                </section>
-                <section class="escola-card">
-                    <img src="imagem/escola-padrao.png" alt="Escola Delta">
-                    <h3>Escola Canarinho</h3>
-                    <p>Ensino Fundamental II • 4.6 ★</p>
-                </section>
-                                <section class="escola-card">
                     <img src="imagem/escola-padrao.png" alt="Escola Alpha">
                     <h3>Escola Ábaco</h3>
                     <p>Ensino Fundamental e Médio • 4.8 ★</p>
@@ -112,19 +86,58 @@
             <button class="carrossel-btn next" onclick="moverCarrossel(1)">❯</button>
         </section>
     </section>
+        <aside class="separador"></aside>
+    <section class="categorias fade-in" style="padding: 40px 20px; text-align: center;">
+        <h2 class="title" >Encontre a escola ideal para você:</h2>
+        <article class="categoria-cards">
+            <a href="/edu-infantil">
+                <article class="categoria-card EI">
+                    <h3>Educação Infantil</h3>
+                </article>
+            </a>
+            <a href="/ensino-fund1">
+                <article class="categoria-card EFI">
+                    <h3>Ensino Fundamental I</h3>
+                </article>
+            </a>
+            <a href="/ensino-fund2">
+                <article class="categoria-card EFII">
+                    <h3>Ensino Fundamental II</h3>
+                </article>
+            </a>
+            <a href="/ensino-medio">
+                <article class="categoria-card EM">
+                    <h3>Ensino Médio</h3>
+                </article>
+            </a>
+            <a href="/cursos-tecnicos">
+                <article class="categoria-card TEC">
+                    <h3>Cursos Técnicos</h3>
+                </article>
+            </a>
+            <a href="/cursos">
+                <article class="categoria-card CSO">
+                    <h3>Cursos Extracurriculares</h3>
+                </article>
+            </a>
+        </article>
+    </section>
 
-    <section class="cta-dupla">
-        <section class="cta-coluna">
+    <section class="cta-dupla" style="display: flex; justify-content: center; gap: 40px; padding: 60px 20px; flex-wrap: wrap;">
+        <h2 class="title" style="text-align: center; width: 100%; margin-bottom: 40px;">Faça parte da nossa comunidade! 👨‍👩‍👧‍👦</h2>
+        <section class="cta-coluna" style="max-width: 400px; text-align: center;">
             <h3>É responsável, aluno ou familiar?</h3>
             <p>Cadastre-se gratuitamente para avaliar escolas, deixar comentários e ajudar outras famílias a escolherem melhor!</p>
             <a href="/cadastro-usuario" class="cta-btn usuario">Quero me cadastrar como usuário</a>
         </section>
-        <section class="cta-coluna">
+        <section class="cta-coluna" style="max-width: 400px; text-align: center;">
             <h3>É uma escola?</h3>
-            <p>Cadastre sua escola para aparecer nas buscas, receber avaliações, destacar seus diferenciais e atrair mais alunos!</p>
+            <p>Cadastre sua escola para aparecer nas buscas, receber avaliações, destacar seus diferenciais e atrair mais alunos!</p><br>
             <a href="/cadastro-escola" class="cta-btn escola">Quero cadastrar minha escola</a>
         </section>
     </section>
+
+    <!-- <button id="back-to-top" onclick="scrollToTop()">↑</button> -->
 
 
 
@@ -137,6 +150,8 @@
 const lista = document.getElementById('carrosselLista');
 const cards = lista.querySelectorAll('.escola-card');
 const cardWidth = cards[0].offsetWidth + 24; // 24px gap
+const container = document.querySelector('.carrossel-container');
+const containerWidth = container.offsetWidth;
 let posicao = 0;
 let autoInterval;
 
@@ -148,7 +163,9 @@ function moverCarrossel(direcao = 1) {
     } else if (posicao >= cards.length) {
         posicao = 0;
     }
-    lista.scrollTo({ left: posicao * cardWidth, behavior: 'smooth' });
+    const centerOffset = (containerWidth / 2) - (cardWidth / 2);
+    const leftPosition = posicao * cardWidth - centerOffset;
+    lista.scrollTo({ left: Math.max(0, leftPosition), behavior: 'smooth' });
 }
 
 // Passa automaticamente a cada 3 segundos
@@ -162,7 +179,8 @@ lista.addEventListener('mouseleave', iniciarAutoCarrossel);
 
 // Inicia o carrossel automático ao carregar
 window.addEventListener('DOMContentLoaded', () => {
-    lista.scrollLeft = 0;
+    const centerOffset = (containerWidth / 2) - (cardWidth / 2);
+    lista.scrollLeft = Math.max(0, -centerOffset);
     iniciarAutoCarrossel();
 });
 </script>

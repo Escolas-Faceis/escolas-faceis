@@ -50,10 +50,25 @@ body{
     overflow-x: hidden; 
 }
 .call2action{
-    display: inline-block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 10%;
-    width: fit-content;
-    height: 100%;
+    gap: 40px;
+}
+
+.call2action-text {
+    flex: 1;
+}
+
+.call2action-image {
+    flex-shrink: 0;
+}
+
+.call2action-image img {
+    max-width: 300px;
+    display: flex;
+    height: auto;
 }
 
 .title{
@@ -61,6 +76,10 @@ body{
     font-family: 'Poppins', sans-serif;
     color: var(--laranja) ;
     font-weight: 650;
+}
+
+#azul{
+    color: var(--azulsec);
 }
 
 .text1{
@@ -181,6 +200,7 @@ body{
     text-align: center;
     margin-bottom: 18px;
     color: var(--amarelo);
+    font-weight: 700;
 }
 .carrossel-container {
     display: flex;
@@ -253,6 +273,137 @@ body{
     box-shadow: 0 6px 24px rgba(20,28,68,0.13);
     transform: translateY(-4px) scale(1.03);
 }
+
+.categorias h2{
+    text-align: left;
+    margin-bottom: 18px;
+    color: var(--letras);
+    margin-left: 50px;
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.separador {
+
+    height: 50px;
+    background-color: transparent;
+
+}
+.categorias {
+    padding: 40px 20px;
+    text-align: center;
+    margin:0 10% 0 10%;
+}
+
+.categoria-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-weight: 300;
+        font-size: 15px;
+}
+
+.categoria-cards a {
+    text-decoration: none;
+}
+
+.categoria-card {
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 140px;
+    text-align: center;
+    
+}
+
+.categoria-card he{
+    font-weight: 300;
+    
+}
+
+    .EM { background-color: #00b4b4 !important; color: #fff; }
+    .TEC { background-color: #15c724 !important; color: #fff; }
+    .EI { background-color: #ff7184 !important; color: #fff; }
+    .EFI { background-color: #a765e6 !important; color: #fff; }
+    .EFII { background-color:rgb(78, 69, 218) !important; color: #fff }
+    .CSO { background-color: rgb(243, 182, 70) !important; color: #fff; }
+    .EINT { background-color:darkgoldenrod !important; color: #fff; }
+
+.categoria-card h3 {
+    margin: 0;
+}
+
+.categoria-card:nth-child(1) {
+    background-color: #ff7184; color: #fff;
+}
+
+.categoria-card:nth-child(2) {
+    background-color: #a765e6; color: #fff;
+}
+
+.categoria-card:nth-child(3) {
+    background-color:rgb(78, 69, 218); color: #fff;
+}
+
+.categoria-card:nth-child(4) {
+    background-color: #00b4b4; color: #fff; 
+}
+
+.categoria-card:nth-child(5) {
+  background-color: #15c724; color: #fff; 
+}
+
+.categoria-card:nth-child(6) {
+    background-color:  rgb(243, 182, 70); color: #fff;;
+}
+
+.categoria-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.como-funciona {
+    padding: 60px 20px;
+    background-color: var(--fundo);
+    margin: 0 10% 60px 10%;
+}
+
+.tema-escuro .como-funciona {
+    background: var(--fundo);
+}
+
+.como-funciona .title {
+    margin-bottom: 40px;
+    text-align: left;
+    margin-left: 50px;
+}
+
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.step {
+    max-width: 250px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        background: var(--fundo2);
+}
+
+.tema-escuro .step {    background: var(--fundo2);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
 @media (max-width: 800px) {
     .text1 {
         width: 90%;
@@ -265,7 +416,12 @@ body{
 
     .call2action {
         margin: 5%;
-        text-align: left;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .call2action-image img {
+        max-width: 300px;
     }
 
     .call2action button {
@@ -300,7 +456,12 @@ body{
 
     .call2action {
         margin: 5%;
-        text-align: left;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .call2action-image img {
+        max-width: 250px;
     }
 
     .call2action button {
