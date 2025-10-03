@@ -129,6 +129,23 @@ const usuarioModel = {
         }
     },
 
+            findInativoId: async (id) => {
+            try {
+                const [resultados] = await pool.query(
+                    "SELECT u.id_usuario, u.nome_usuario, " +
+                    "u.senha_usuario, u.email_usuario, u.tipo_usuario, " +
+                    "u.status_usuario, u.telefone_usuario, u.img_perfil_id " +
+                    "FROM usuarios u WHERE u.status_usuario = 0 " +
+                    "AND u.id_usuario = ?;", [id]
+                )
+                console.log(resultados);
+                return resultados;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        },
+
 
 
 

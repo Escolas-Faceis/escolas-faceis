@@ -73,9 +73,9 @@ position:static
     color: #fff;
     padding: 40px 0;
     /* margin-top: 100vh; */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    left: 0;
+    transform: none;
   }
    
   .footer-container {

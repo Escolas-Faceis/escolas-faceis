@@ -38,7 +38,7 @@
         let erroValidacao = { "email": "", "password": "" };
         let avisoErro = { "email": "", "password": "" };
         let msgErro = "";
-        if (erros) {
+        if (typeof erros !== 'undefined' && erros) {
             erros.errors.forEach(function(erro) {
                 if (erro.path == "email") {
                     erroValidacao.email = "erro",
@@ -55,7 +55,7 @@
         %>
         <script>
                 let msgErro ="<%= msgErro %>"
-                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"),
+                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/</g,"<").replace(/>/g,">"),
                  "error", "center", 5000)                        
             </script>
         <%
@@ -79,11 +79,11 @@
                 <form action="/login_post" method="POST">
                     <p id="email"><label for="email">Email</label></p>
                     <input type="email" id="email" name="email" value="<%= valores.email %>" class="<%= erroValidacao.email %>">
-                    <span class="spanerro"><%= msgErro.email %></span>
+                    <span class="spanerro"><%= avisoErro.email %></span>
 
                     <p id="senha"><label for="password">Senha</label></p>
                     <input type="password" id="password" name="password" value="<%= valores.password %>" class="<%= erroValidacao.password %>">
-                    <span class="spanerro"><%= msgErro.password %></span>
+                    <span class="spanerro"><%= avisoErro.password %></span>
 
                     <section>
                         <!-- <span id="conect">

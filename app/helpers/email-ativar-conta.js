@@ -22,7 +22,7 @@ return ` <!DOCTYPE html>
                         max-width: 600px;
                     }
                     .header {
-                        background-color: #4CAF50;
+                        background-color: #141c44;
                         color: white;
                         padding: 10px 20px;
                         text-align: center;
@@ -39,10 +39,12 @@ return ` <!DOCTYPE html>
                         display: inline-block;
                         padding: 10px 20px;
                         margin-top: 20px;
-                        background-color: #4CAF50;
+                        background-color: #f56d44;
                         color: white;
                         text-decoration: none;
                         border-radius: 5px;
+                        text-decoration: none;
+                        font-weight: bold;
                     }
                     .footer {
                         padding: 10px 20px;

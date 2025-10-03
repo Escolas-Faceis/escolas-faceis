@@ -3,8 +3,8 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER, // Seu e-mail
-        pass: process.env.EMAIL_PASS  // Sua senha, ou preferencialmente o senha configurada para App password
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS  
     },
     tls: {
         secure: false,
@@ -29,9 +29,9 @@ function enviarEmail(to, subject, text=null, html = null, callback) {
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            console.log(error);
+            console.error("Erro ao enviar email:", error);
         } else {
-            console.log("email enviado");
+            console.log("email enviado:", info.response);
             if (callback && typeof callback === 'function') {
                 // Chama a função de callback apenas em caso de sucesso no envio do e-mail
                 callback();

@@ -6,44 +6,109 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/contato.css">
-<link rel="icon" type="image/png" href="/imagem/favicon.png">
-    <title> Contato </title>
+    <link rel="icon" type="image/png" href="/imagem/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Contato - Encontre Escolas</title>
 </head>
 
 <body>
     <%- include('../partials/navbar'); %>
-    <section id="centralizar">
-        <main id="form_space">
 
-            <section id="lateral_contato">
-                <span id="pt1">
-                <p >Tem alguma dúvida, encontrou algum erro? Entre em contato conosco pelo e-mail ou mande uma mensagem</p>
-                <section id="email_contato">
-                    <img src="imagem/normal_u3.png" > <a class="email">escolasfaceis@gmail.com</a></span>
+    <header class="contato-header">
+        <h1 class="contato-title">Entre em Contato</h1>
+        <p class="contato-subtitle">Estamos aqui para ajudar! Envie sua mensagem ou entre em contato conosco.</p>
+    </header>
+
+    <main class="contato-main">
+        <section class="contato-container">
+            <section class="contato-info">
+                <h2>Informações de Contato</h2>
+                <p>Tem alguma dúvida, encontrou algum erro? Entre em contato conosco!</p>
+
+                <section class="contato-methods">
+                    <section class="contato-method">
+                        <i class="fas fa-envelope"></i>
+                        <section>
+                            <h3>E-mail</h3>
+                            <a href="mailto:escolasfaceis@gmail.com">escolasfaceis@gmail.com</a>
+                        </section>
+                    </section>
+
+                    <!-- <section class="contato-method">
+                        <i class="fas fa-graduation-cap"></i>
+                        <section>
+                            <h3>TCC - Trabalho de Conclusão de Curso</h3>
+                            <p>Projeto desenvolvido para conclusão do curso técnico</p>
+                        </section>
+                    </section> -->
+
+                    <section class="contato-method">
+                        <i class="fas fa-users"></i>
+                        <section>
+                            <h3>Equipe Desenvolvedora</h3>
+                            <p>Grupo 5 - INI3AM</p>
+                        </section>
+                    </section>
+
+                    <section class="contato-method">
+                        <i class="fas fa-code"></i>
+                        <section>
+                            <h3>Tecnologias Utilizadas</h3>
+                            <p>Node.js, Express, MySQL, EJS, CSS</p>
+                        </section>
+                    </section>
                 </section>
 
-            
-                <img src="imagem/contato.png" id="contactus" >
-            
+                <section class="contato-social">
+                    <h3>Siga-nos</h3>
+                    <section class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </section>
+                </section>
+            </section>
 
-        </main>
-        </section>  
-        <section id="centralizar">
-            <section id="inserir_email_contato">
-            <label for="email_contato_input" id="laranja">Seu melhor e-mail</p>
-            <input type="email" name="email" id="email_contato_input" placeholder="email@email.com"> 
+            <section class="contato-form">
+                <h2>Envie sua Mensagem</h2>
+                <form id="contact-form">
+                    <section class="form-group">
+                        <label for="email_contato_input">Seu melhor e-mail *</label>
+                        <input type="email" name="email" id="email_contato_input" placeholder="seuemail@exemplo.com" required>
+                    </section>
 
-            <section id="inserir_msg">
-                <textarea id="mensagem_contato" placeholder="Escreva sua mensagem aqui..."></textarea>
-                
+                    <section class="form-group">
+                        <label for="assunto">Assunto</label>
+                        <input type="text" name="assunto" id="assunto" placeholder="Assunto da mensagem">
+                    </section>
+
+                    <section class="form-group">
+                        <label for="mensagem_contato">Mensagem *</label>
+                        <textarea id="mensagem_contato" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                    </section>
+
+                    <button type="submit" id="orange_button">
+                         ENVIAR MENSAGEM
+                    </button>
+                </form>
             </section>
-            <section id="alinhar_direita">
-            <button  type="submit"id="orange_button">ENVIAR</button>
-            </section>
-            </section>
-            
         </section>
-    </section>
-        <%- include('../partials/footer'); %>
+    </main>
+
+
+    
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aqui você pode adicionar lógica para enviar o formulário
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
+        });
+    </script>
 </body>
+
+
+    <%- include('../partials/footer'); %>
+
 </html>

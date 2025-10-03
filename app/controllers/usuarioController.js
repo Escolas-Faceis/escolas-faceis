@@ -4,9 +4,13 @@ const { body, validationResult } = require("express-validator");
 const { validarTelefone, telefoneExiste } = require("../helpers/validacoes");
 const bcrypt = require("bcryptjs");
 const https = require("https");
+const jwt = require("jsonwebtoken");
 const { removeImg } = require("../helpers/removeImg");
 const path = require("path");
 var salt = bcrypt.genSaltSync(12);
+const emailAtivarConta = require("../helpers/email-ativar-conta");
+const { enviarEmail } = require("../helpers/email");
+
 
 const usuarioController = {
 
@@ -62,7 +66,7 @@ const usuarioController = {
             .custom(async value => {
                 const exists = await telefoneExiste(value);
                 if (exists) {
-                    throw new Error('CNPJ já cadastrado');
+                    throw new Error('Telefone já cadastrado');
                 }
                 return true;
             }),
@@ -97,12 +101,26 @@ const usuarioController = {
         try {
             
             let create = await usuarioModel.create(dados);
+            const token = jwt.sign(
+                { usuarioI: create.insertId },
+                process.env.SECRET_KEY,
+            )
+            console.log(token)
+
+            // Send activation email
+            const activationUrl = `${req.protocol}://${req.get('host')}`;
+            const htmlContent = emailAtivarConta(activationUrl, token);
+            enviarEmail(dados.email, "Ativação de Conta", null, htmlContent, () => {
+                console.log("Activation email sent successfully.");
+            });
+
             return res.render("pages/cadastro-usuario", {
                 erros: null, 
                 dadosNotificacao: {
-                    titulo: "Cadastro realizado!", 
-                    mensagem: "Novo usuário criado com sucesso!", 
-                    tipo: "success"
+                titulo: "Cadastro realizado!",
+                mensagem: "Novo usuário criado com sucesso!<br>"+
+                        "Enviamos um e-mail para a ativação de sua conta",
+                tipo: "success",
                 }, 
                 valores: req.body
             })
@@ -226,6 +244,7 @@ const usuarioController = {
                     res.render("pages/perfil-usu-i", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos });
                 }else{
                 res.render("pages/perfil-usu-i", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Sem alterações", tipo: "success" }, valores: req.body });
+                
                 }
             } else {
             res.render("pages/perfil-usu-i", { erros: null, dadosNotificacao: { titulo: "Erro ao atualizar", mensagem: "Nenhuma alteração foi feita", tipo: "error" }, valores: req.body });
@@ -235,6 +254,43 @@ const usuarioController = {
             res.render("pages/perfil-usu-i", { erros: { errors: [{ msg: "Erro interno no servidor." }] }, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: req.body })
         }
     },
+
+      ativarConta: async (req, res) => {
+    try {
+      const token = req.query.token;
+      console.log(token);
+      jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+        console.log(decoded);
+        if (err) {
+          console.log({ message: "Token inválido ou expirado" });
+        } else {
+          const user = usuarioModel.findInativoId(decoded.userId);
+          if (!user) {
+            console.log({ message: "Usuário não encontrado" });
+          } else {
+            let resultUpdate = usuarioModel.update({ status_usuario: 1 }, decoded.userId);
+            console.log({ message: "Conta ativada" });
+            res.render("pages/login", {
+              listaErros: null,
+              autenticado: req.session.autenticado,
+              dadosNotificacao: {
+                titulo: "Sucesso",
+                mensagem: "Conta ativada, use seu e-mail e senha para acessar o seu perfil!",
+                tipo: "success",
+              },
+              valores: {
+                email: "",
+                password: ""
+              }
+            });
+          }
+          // Ativa a conta do usuário
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  },
     
 
 }

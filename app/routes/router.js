@@ -94,7 +94,16 @@ router.post(
 );
 
 
-router.get('/ativacao-de-conta', function(req, res) {
+router.get(
+  "/ativar-conta",
+  verificarUsuAutenticado,
+  async function (req, res) {
+    usuarioController.ativarConta(req, res);
+  }
+);
+
+
+router.get('/ativar-conta', function(req, res) {
     res.render('pages/ativacao');
 });
  
