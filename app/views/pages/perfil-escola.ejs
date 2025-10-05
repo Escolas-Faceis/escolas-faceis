@@ -20,15 +20,17 @@
         <section class="perfil" id="pepe">
             <!-- <span class="logo-info"> -->
             <figure>
-                <img src="<%= '../imagem/escola-padrao.png' %>" alt="logo da escola" class="ft-perfil">
+                <img src="<%= valores.img_perfil_banco || valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" alt="logo da escola" class="ft-perfil">
             </figure>
             <section class="info">
-                <h1 class="nome-escola">Escola Canarinho</h1>
+                <h1 class="nome-escola"><%= valores.name_school %></h1>
                 <aside class="niveis">
-                    <h5 class="escolaridade EI">Ensino Infantil</h5>
+                    <% valores.tipos_ensino.forEach(tipo => { %>
+                        <h5 class="escolaridade EI"><%= tipo %></h5>
+                    <% }) %>
                 </aside>
                    <section class="descricao">
-                    <p class="localidade "> Avenida Brasil, Nº 328 Piratininga - Osasco, SP</p>
+                    <p class="localidade "> <%= valores.adress %>, Nº <%= valores.adress_n %> <%= valores.city %> - <%= valores.state %></p>
                     <p class="instituicao ">Ensino Privado</p>
                     <p class="ingresso"> Mensalidade a partir de R$ 215,32</p>
                     <% if(autenticado && autenticado.autenticado){ %> <button class="edit" type="button"><a class="edit" href="/editar-escola" target="">Editar perfil</a></button> <% } %>

@@ -288,14 +288,14 @@ const escolaModel = {
             }
         },
 
-        findId: async (id) => {
+        findByUsuarioId: async (id) => {
             try {
                 const [resultados] = await pool.query(
                     "SELECT e.*, u.nome_usuario, u.email_usuario, u.tipo_usuario, u.img_perfil_id, i.caminho_imagem as img_perfil_pasta, " +
                     "u.img_perfil_banco as img_perfil_banco " +
                     "FROM escolas e " +
                     "JOIN usuarios u ON e.id_usuario = u.id_usuario " +
-                    "LEFT JOIN imagens i ON u.img_perfil_id = i.id_imagem " +
+                    "LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem " +
                     "WHERE e.id_usuario = ? AND u.status_usuario = 1", [id]
                 )
                 return resultados;
@@ -313,13 +313,11 @@ const escolaModel = {
         try {
             await conn.beginTransaction();
 
-            // Update usuarios table
             await conn.query(
                 `UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, senha_usuario = ?, img_perfil_id = ? WHERE id_usuario = ?`,
                 [dados.email_usuario, dados.email_usuario, dados.senha_usuario, dados.img_perfil_id, id_usuario]
             );
 
-            // Update escolas table
             await conn.query(
                 `UPDATE escolas SET nome_escola = ?, endereco = ?, numero = ?, cep = ?, cidade = ?, sobre_escola = ?, sobre_ensino = ?, sobre_estrutura = ?, tipo_ensino = ?, turnos = ?, rede = ?, instagram = ?, facebook = ?, whatsapp = ?, telefone_contato = ?, email_contato = ? WHERE id_usuario = ?`,
                 [dados.nome_escola, dados.endereco, dados.numero, dados.cep, dados.cidade, dados.sobre_escola, dados.sobre_ensino, dados.sobre_estrutura, dados.tipo_ensino, dados.turnos, dados.rede, dados.instagram, dados.facebook, dados.whatsapp, dados.telefone_contato, dados.email_contato, id_usuario]
@@ -347,7 +345,37 @@ const escolaModel = {
             console.log(error);
             return null;
         }
-    }
+    },
+
+    findId: async (id) => {
+        try {
+            const [resultados] = await pool.query(
+                "SELECT e.id_escola, " +
+                "e.nome_escola, e.email_escola, e.cep, e.endereco, e.numero, " +
+                "e.cnpj, e.tipo_ensino, e.turnos, e.rede, e.whatsapp, e.telefone, " +
+                "e.instagram, e.facebook, e.email, e.sobre_escola, e.sobre_ensino, " +
+                "e.sobre_estrutura, e.ingresso, e.img_perfil_id, " +
+                "i.caminho_imagem AS img_perfil_pasta, " +
+                "GROUP_CONCAT(DISTINCT ie.id_imagem) AS imagens_ids, " +
+                "GROUP_CONCAT(DISTINCT im.caminho_imagem) AS imagens_caminhos " +
+                "FROM escolas e " +
+                "LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem " +
+                "LEFT JOIN imagens_escola ie ON e.id_escola = ie.id_escola " +
+                "LEFT JOIN imagens im ON ie.id_imagem = im.id_imagem " +
+                "WHERE e.id_escola = ? " +
+                "GROUP BY e.id_escola",
+                [id]
+            );
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao buscar escola:", error);
+            return error;
+        }
+    },
+    
+
 }
+
+    
 
 module.exports = escolaModel;
