@@ -40,7 +40,6 @@ gravarUsuAutenticado = async (req, res, next) => {
                     img_perfil_banco: results[0].img_perfil_banco != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
                     img_perfil_pasta: results[0].img_perfil_pasta ? results[0].img_perfil_pasta.replace('app/public', '') : null
                 };
-                console.log("Usuário autenticado:", autenticado);
             } else {
                 console.log("Senha incorreta");
             }

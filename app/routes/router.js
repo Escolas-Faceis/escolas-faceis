@@ -35,12 +35,7 @@ router.get('/contato', function(req, res) {
 router.get('/cadastro-usuario', function(req, res) {
     res.render('pages/cadastro-usuario', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""} });
 });
-router.get('/perfil-escola', verificarUsuAutorizado(["E"],"partials/401"),
-    function(req, res) {
-    escolaController.mostrarPerfil(req, res);
-}
-
-);
+router.get('/perfil-escola', escolaController.mostrarPerfil);
 
 
 router.get('/perfil-usuario', 
@@ -86,16 +81,21 @@ router.get('/navbar', function(req, res) {
 
 router.get('/editar-escola',
     verificarUsuAutorizado(["E"], "partials/401"),
-    );
+        function(req, res) {
+  res.render('pages/editar-escola', { erros : null, dadosNotificacao: null, valores : {"name_school":"","adress":"","adress_n":"", "city":"","state":"", "email":"","password":"","reppassword":""} });
+}
+);
 
 router.post(
   "/editar_escola_post",
   uploadFile("imagem_perfil_usu"),
   escolaController.regrasValidacaoEditarEscola,
   verificarUsuAutorizado(["E"], "partials/401"),
-  async function (req, res) {
-    escolaController.gravarPerfilEscola(req, res);
-  }
+//   async function (req, res) {
+//     escolaController.gravarPerfilEscola(req, res);
+//   }
+
+
 );
 
 

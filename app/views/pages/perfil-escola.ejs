@@ -13,6 +13,21 @@
     <!-- <link rel="stylesheet" href="css/carrossel-perfil.css"> -->
 </head>
 
+    <%
+        const tiposclassseCss = {
+            'Educação Infantil': 'EI',
+            'Ensino Fundamental I': 'EFI',
+            'Ensino Fundamental II': 'EFII',
+            'Ensino Fundamental': 'EFI',
+            'Ensino Médio': 'EM',
+            'Educação Integrada': 'EINT',
+            'Cursos Técnicos': 'TEC',
+            'Cursos Extracurriculares': 'CSO'
+        }
+        
+    %>
+
+
 <body>
     <%- include('../partials/navbar'); %>
 
@@ -23,16 +38,23 @@
                 <img src="<%= valores.img_perfil_banco || valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" alt="logo da escola" class="ft-perfil">
             </figure>
             <section class="info">
-                <h1 class="nome-escola"><%= valores.nome_school %></h1>
+                <h1 class="nome-escola"><%= valores.name %></h1>
                 <aside class="niveis">
                     <% (valores.tipos_ensino || []).forEach(tipo => { %>
-                        <h5 class="escolaridade EI"><%= tipo %></h5>
+                        <h5 class="escolaridade <%= tipo.trim().toUpperCase().substring(0, 3) %> <%= tiposclassseCss[tipo.trim()] || '' %>"><%= tipo %></h5>
                     <% }) %>
                 </aside>
                    <section class="descricao">
-                    <p class="localidade "> <%= valores.adress %>, Nº <%= valores.adress_n %> <%= valores.city %> - <%= valores.state %></p>
-                    <p class="instituicao ">Ensino Privado</p>
-                    <p class="ingresso"> Mensalidade a partir de R$ 215,32</p>
+                    <p class="localidade">
+  <%= valores.logradouro %>, <%= valores.numero %>
+  <% if (valores.bairro) { %> - <%= valores.bairro %> <% } %>
+  <br>
+  <%= valores.cidade %> - <%= valores.estado %>
+  <br> <br>
+  <!-- CEP: <%= cep %> -->
+</p>
+                    <p class="instituicao "><%= valores.redes %></p>
+                    <p class="ingresso"><%= valores.ingresso || '' %></p>
                     <% if(autenticado && autenticado.autenticado){ %> <button class="edit" type="button"><a class="edit" href="/editar-escola" target="">Editar perfil</a></button> <% } %>
                     </section>
             </section>
@@ -87,26 +109,16 @@
     <section class="informacao">
         <h1 class="titulo-contato">Sobre a Escola</h1>
     <article class="descricao2">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Escola Canarinho - a escola primária que se preocupa tanto com o futuro
-        dos nossos filhos quanto com o futuro do nosso planeta! <br>Acreditamos que
-        uma educação positiva pode fazer toda a diferença na formação de seres
-        humanos conscientes e responsáveis,<br> prontos para lidar com os desafios
-        do mundo moderno.<br> Venha nos conhecer e descobrir por que somos a escola
-        que mais cresce em nossa cidade!
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= valores.sobre || 'Este perfil ainda não escreveu nada sobre sua instituição.' %>
     </article>
         <h1 class="titulo-contato">Sobre o Ensino</h1>
         <ul class="listinha">
-            <li>Valorizamos a diversidade e o respeito ;</li>
-            <li>Ambiente de ensino acolhedor e inclusivo ;</li>
-            <li>Atividades extracurriculares que estimulam o desenvolvimento físico, mental e emocional;</li>
-            <li>Educação de Qualidade;</li>
-            <li>Profissionais Qualificados;</li>
+            <%= valores.sobre_ensino || 'Este perfil ainda não escreveu nada sobre seu ensino.' %>
         </ul>
         <h1 class="titulo-contato">Sobre a Estrutura</h1>
         <ul class="listinha">
-            <li>Salas de aulas climatizadas;</li>
-            <li>Pátio com playground;</li>
-            <li>Banheiros seguros;</li>
+            <%= valores.sobre_estrutura || 'Este perfil ainda não escreveu nada sobre sua estrutura.' %>
+
         </ul>
     </section>
     <p class="linha-vertical"></p>
@@ -132,14 +144,8 @@
     <section class="contatos">
     <h1 class="titulo-contato">Ingresso</h1>
         <section class="config-ingresso">
-    <article class="tipos-de-ingresso"><p><b>Berçario</b> - menores de 2 anos </p>
-        <p>A partir de R$ 215,32</p></article>
-    <article class="tipos-de-ingresso"><p><b>Maternal I</b> - 2 anos </p>
-            <p>A partir de R$ 237,10</p></article>
-    <article class="tipos-de-ingresso"><p><b>Maternal II</b> - 3 anos </p>
-                <p>A partir de R$ 268,24</p></article>
-    <article class="tipos-de-ingresso"><p><b>Jardim I</b> - 4 anos </p>
-                    <p>A partir de R$ 285,03</p></article>
+    <article class="tipos-de-ingresso">
+        <p><%= valores.ingresso || 'Este perfil ainda não escreveu nada sobre seu ingresso.' %></p>
         </section>
     </section>
     </section>

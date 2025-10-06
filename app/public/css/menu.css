@@ -278,7 +278,7 @@
     left: -5px;
     cursor: pointer;
     opacity: 0;
-    z-index: 2;
+    z-index: 3;
   }
 
   #menuToggle span {
@@ -459,8 +459,8 @@
   }
 
   #menuToggle input{
-    top:40px;
-    left:20px;
+    top:0px;
+    left:0px;
   }
 
   #menu {

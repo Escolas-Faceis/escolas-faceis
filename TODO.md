@@ -1,6 +1,8 @@
-- [x] Add mostrarPerfil method to app/controllers/escolaController.js
-- [x] Implement data fetching using escolaModel.findId(req.session.autenticado.id)
-- [x] Add CEP processing via ViaCEP API if CEP is present
-- [x] Format campos object with school data, images, and other fields
-- [x] Determine and render appropriate view (e.g., 'pages/perfil-escola') based on req.path
-- [x] Handle errors by rendering view with default/empty values
+
+- [x] Add media query for max-width 768px (tablet) to login-us.css
+- [x] Add media query for max-width 480px (mobile) to login-us.css
+- [x] Adjust #form_space to column layout on small screens
+- [x] Reposition #picture and #texto_lateral for mobile
+- [x] Optimize existing 500px and 300px media queries
+- [x] Test responsiveness
+- [x] Apply CSS variables for toggle theme

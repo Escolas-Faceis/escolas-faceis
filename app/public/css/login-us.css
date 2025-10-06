@@ -1,10 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 :root {
     --laranja: #f56d44;
-    --azul: rgba(20, 28, 68, 0.99);
+    --azul: #141c44;
     --azul_claro: #77b6ea;
+    --fundo: #ffffff;
+    --letras: #141C44;    --fundo-secundario: #f8f9fa;
+    --borda: #e9ecef;
+    --sombra: rgba(0, 0, 0, 0.1);
+    --amarelo: #ffbc3e;
+}
+
+.tema-escuro {
+    --letras: #f5f5f5;
+    --fundo: #030303;
+    --borda: #333333;    --fundo-secundario: #0f0f0f;
+    --sombra: rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--fundo);
+    color: var(--letras);
 }
 .spanerro{
-    color: #f56d44;
+    color: var(--laranja);
 }
 #capelo{
     transform:rotate(10deg) scale(1.3);
@@ -27,30 +51,49 @@ nav {
 }
 
 #form {
-    border: 1px solid;
+    border: 2px solid var(--azul_claro);
     border-radius: 20px;
-    border-color: var(--azul_claro);
-    padding: 15px;
-    margin-bottom: 0%;
+    background: var(--fundo-secundario);
+    padding: 30px;
+    margin-bottom: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
+    min-width: 300px;
+    box-shadow: 0 10px 30px var(--sombra);
+}
+
+input[type="email"]{
+    margin-bottom: 8px;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    width: 380px;
-    height: 44px;
+    width: 100%;
+    height: 48px;
     border-radius: 10px;
-    margin: 6px;
-    font-size: 17px;
-    padding: 0 8px;
-    border: solid rgb(167, 167, 167) 2px;
+    margin: 5px 0;
+    font-size: 16px;
+    padding: 12px;
+    border: 1.5px solid var(--borda);
+    background: var(--fundo);
+    color: var(--letras);
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: var(--laranja);
+    box-shadow: 0 0 5px rgba(245, 109, 68, 0.3);
 }
 
 #email, #senha{
-    margin-top: 0;
+    margin-top: 5px;
 }
 
 .marker {
@@ -63,7 +106,7 @@ p {
     padding-left: 8px;
     padding-top: 3px;
     margin-bottom: -2px;
-    color: var(--azul);
+    color: var(--letras);
 }
 
 h3 {
@@ -72,12 +115,12 @@ h3 {
 
 #no-account {
     font-size: 19px;
-    color: #141c44;
-    text-align: center; 
-    margin-top: 10px; 
+    color: var(--letras);
+    text-align: center;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 #login2 {
@@ -90,25 +133,29 @@ h3 {
 #login_button {
     transition: all 0.3s;
     background-color: var(--azul_claro);
-    border: 1px solid var(--azul_claro);
+    border: 2px solid var(--azul_claro);
     border-radius: 30px;
     color: white;
-    width: 250px;
-    height: 70px;
-    font-size: 25px;
-    font-weight: bold;
+    width: 100%;
+    max-width: 250px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 600;
     margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(119, 182, 234, 0.3);
+    cursor: pointer;
 }
 
 #login_button:hover {
     background-color: white;
     color: var(--azul_claro);
-    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(119, 182, 234, 0.4);
 }
 
 #texto_lateral {
     width: 300px;
-    color: var(--azul);
+    color: var(--letras);
     margin-left: 5%;
 }
 
@@ -140,7 +187,7 @@ h3 {
 } */
 
 label {
-    color: var(--azul);
+    color: var(--letras);
     padding-right: 8px;
     font-size: 18px;
 }
@@ -148,7 +195,7 @@ label {
 #f-password {
     font-size: 17px;
     text-decoration: none;
-    color: #ffbc3e;
+    color: var(--amarelo);
     margin-left: 3%;
     transition: all 1s;
 }
@@ -158,14 +205,14 @@ label {
 }
 
 #amarelinho{
-    color: #ffbc3e;
+    color: var(--amarelo);
     text-decoration: none;
 }   #amarelinho:hover{text-decoration: underline; cursor: pointer;}
 
 
 #laranjinha{
-    text-decoration: #f56d44;
-    color: #f56d44;
+    text-decoration: var(--laranja);
+    color: var(--laranja);
     transition: all 0.3s;
 }       #laranjinha:hover{ text-decoration: underline;}
 
@@ -173,4 +220,145 @@ h2 {
     color: var(--laranja);
     font-size: 40px;
     padding-top: 10x;
+}
+
+/* Estilos para telas até 768px */
+@media (max-width: 768px) {
+    #form_space {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #form {
+        width: 80%;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+
+    #texto_lateral {
+        width: 80%;
+        max-width: 400px;
+        margin-left: 0;
+        text-align: left;
+        margin-top: 20px;
+    }
+
+    #picture {
+        position: static;
+        width: 50%;
+        margin: 20px auto;
+        display: block;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    p, label, #no-account {
+        font-size: 18px;
+    }
+
+    #login_button {
+        width: 200px;
+        height: 50px;
+        font-size: 18px;
+    }
+}
+
+/* Estilos para telas até 480px */
+@media (max-width: 480px) {
+    #form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    #texto_lateral {
+        width: 90%;
+    }
+
+    #picture {
+        width: 60%;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    p, label, #no-account {
+        font-size: 16px;
+    }
+
+    #login_button {
+        width: 180px;
+        height: 48px;
+        font-size: 16px;
+    }
+
+    span #no-account {
+        font-size: 12px !important;
+    }
+}
+
+/* Estilos para telas até 500px */
+@media (max-width: 500px) {
+    #form {
+        max-width: 95vw;
+        min-width: 0;
+        padding: 18px;
+    }
+    #picture {
+        width: 60vw;
+        left: 0;
+        top: 0;
+        margin: 0 auto;
+        position: static;
+        display: block;
+    }
+    #texto_lateral {
+        width: 100%;
+        margin-left: 0;
+        padding: 0 10px;
+        text-align: justify;
+    }
+    h2 {
+        font-size: 28px;
+    }
+    p, label, #no-account, #f-password {
+        font-size: 14px;
+    }
+    #login_button {
+        max-width: 180px;
+        height: 48px;
+        font-size: 16px;
+    }
+}
+
+/* Estilos para telas até 300px */
+@media (max-width: 300px) {
+    #form {
+        padding: 8px;
+        border-radius: 10px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    #login_button {
+        max-width: 120px;
+        height: 36px;
+        font-size: 12px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        font-size: 12px;
+        padding: 6px;
+        height: 32px;
+    }
+    #texto_lateral h3,
+    #texto_lateral p,
+    label,
+    p,
+    #no-account {
+        font-size: 12px;
+    }
 }

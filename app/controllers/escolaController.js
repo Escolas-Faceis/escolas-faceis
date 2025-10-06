@@ -238,8 +238,10 @@ const escolaController = {
             if(results[0].cep != null){
                 const httpsAgent = new https.Agent({
                     rejectUnauthorized: false});
-                    const response = await fetch(`https://viacep.com.br/ws/${results[0].cep}/json/`,
-                    { method: 'GET', headers: null, body: null, agent: httpsAgent, });
+                    const response = await fetch(`https://viacep.com.br/ws/${results[0].cep}/json/`, {
+                        method: 'GET',
+                        agent: httpsAgent
+                    });
                 var viaCep = await response.json();
                 var cep = results[0].cep.slice(0,5)+ "-"+results[0].cep.slice(5)
             }else{
@@ -261,13 +263,93 @@ const escolaController = {
                 cidade: viaCep.localidade, estado: viaCep.uf, bairro: viaCep.bairro, logradouro: viaCep.logradouro
 
             }
-
             res.render("pages/perfil-escola", { erros: null, dadosNotificacao: null, valores: campos, cep: cep });
 
         } catch (e) {
+            console.log('ERRO NO PERFIL:', e);
             res.render("pages/perfil-escola", { erros: { errors: [{ msg: "Erro ao carregar perfil." }] }, dadosNotificacao: null, valores: {}, cep: null });
         }
-    }
+    },
+
+    gravarPerfilEscola: async (req, res) => {
+        const erros = validationResult(req);
+        const erroMulter = req.session.erroMulter;
+        if (!erros.isEmpty() || erroMulter != null) {
+            lista = !erros.isEmpty() ? erros : { formatter: null, errors: [] };
+            if (erroMulter != null) {
+                lista.errors.push(erroMulter);
+                delete req.session.erroMulter;
+            }
+            return res.render("pages/editar-escola", { erros: lista, dadosNotificacao: null, valores: req.body });
+        }
+        try {
+            let currentSchool = await escolaModel.findId(req.session.autenticado.id);
+            const tiposEnsinoValues = Array.isArray(req.body.ensino) ? req.body.ensino : [req.body.ensino].filter(Boolean);
+            const turnosValues = Array.isArray(req.body.turno) ? req.body.turno : [req.body.turno].filter(Boolean);
+            const redesValues = Array.isArray(req.body.rede) ? req.body.rede : [req.body.rede].filter(Boolean);
+
+            var dados = {
+                nome_escola: req.body.name_school,
+                endereco: req.body.adress,
+                numero: req.body.adress_n,
+                cidade: req.body.city,
+                estado: req.body.state,
+                cep: req.body.cep,
+                tipos_ensino: tiposEnsinoValues,
+                turnos: turnosValues,
+                redes: redesValues,
+                tipo_ensino_str: tiposEnsinoValues.join(','),
+                turnos_str: turnosValues.join(','),
+                redes_str: redesValues.join(','),
+                img_perfil_id: currentSchool[0].img_perfil_id
+            };
+            if (req.file) {
+                let nomeImagem = req.file.originalname;
+                let caminho = "app/public/imagem/uploads/" + req.file.filename;
+                let newId = await escolaModel.insertImage(nomeImagem, caminho);
+                dados.img_perfil_id = newId;
+                // remove old if exists
+                if (currentSchool[0].img_perfil_id != null) {
+                    require("../helpers/removeImg")(currentSchool[0].img_perfil_pasta);
+                }
+            }
+            let resultUpdate = await escolaModel.update(dados, req.session.autenticado.id);
+            if (resultUpdate.affectedRows > 0) {
+                if (resultUpdate.changedRows >= 1) {
+                    var result = await escolaModel.findId(req.session.autenticado.id);
+                    var autenticado = {
+                        autenticado: result[0].nome_escola,
+                        id: result[0].id_escola,
+                        tipo: result[0].tipo_usuario,
+                        img_perfil_banco: result[0].img_perfil_banco != null ? `data:image/jpeg;base64,${result[0].img_perfil_banco.toString('base64')}` : null,
+                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public', '') : null
+                    };
+                    req.session.autenticado = autenticado;
+                    var campos = {
+                        name_school: result[0].nome_escola,
+                        adress: result[0].endereco,
+                        adress_n: result[0].numero,
+                        city: result[0].cidade,
+                        state: result[0].estado,
+                        cep: result[0].cep,
+                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public', '') : null,
+                        img_perfil_banco: result[0].img_perfil_banco,
+                        tipos_ensino: result[0].tipos_ensino ? result[0].tipos_ensino.split(',') : [],
+                        turnos: result[0].turnos ? result[0].turnos.split(',') : [],
+                        redes: result[0].redes ? result[0].redes.split(',') : []
+                    };
+                    res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos });
+                } else {
+                    res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Sem alterações", tipo: "success" }, valores: req.body });
+                }
+            } else {
+                res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Erro ao atualizar", mensagem: "Nenhuma alteração foi feita", tipo: "error" }, valores: req.body });
+            }
+        } catch (e) {
+            console.log(e);
+            res.render("pages/editar-escola", { erros: { errors: [{ msg: "Erro interno no servidor." }] }, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: req.body });
+        }
+    },
 
 
 }
