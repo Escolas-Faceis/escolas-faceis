@@ -23,9 +23,9 @@
                 <img src="<%= valores.img_perfil_banco || valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" alt="logo da escola" class="ft-perfil">
             </figure>
             <section class="info">
-                <h1 class="nome-escola"><%= valores.name_school %></h1>
+                <h1 class="nome-escola"><%= valores.nome_school %></h1>
                 <aside class="niveis">
-                    <% valores.tipos_ensino.forEach(tipo => { %>
+                    <% (valores.tipos_ensino || []).forEach(tipo => { %>
                         <h5 class="escolaridade EI"><%= tipo %></h5>
                     <% }) %>
                 </aside>

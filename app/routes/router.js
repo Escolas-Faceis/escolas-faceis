@@ -35,9 +35,14 @@ router.get('/contato', function(req, res) {
 router.get('/cadastro-usuario', function(req, res) {
     res.render('pages/cadastro-usuario', {  erros : null, dadosNotificacao: null, valores : {"name":"","email":"","password":"", "reppassword":"","cellphone":""} });
 });
-router.get('/perfil-escola', function(req, res) {
-    res.render('pages/perfil-escola');
-});
+router.get('/perfil-escola', verificarUsuAutorizado(["E"],"partials/401"),
+    function(req, res) {
+    escolaController.mostrarPerfil(req, res);
+}
+
+);
+
+
 router.get('/perfil-usuario', 
     verificarUsuAutorizado(["A", "C", "E"], "partials/401"),
     function(req, res) {
@@ -81,7 +86,7 @@ router.get('/navbar', function(req, res) {
 
 router.get('/editar-escola',
     verificarUsuAutorizado(["E"], "partials/401"),
-    escolaController.mostrarPerfilEscola);
+    );
 
 router.post(
   "/editar_escola_post",

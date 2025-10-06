@@ -288,25 +288,6 @@ const escolaModel = {
             }
         },
 
-        findByUsuarioId: async (id) => {
-            try {
-                const [resultados] = await pool.query(
-                    "SELECT e.*, u.nome_usuario, u.email_usuario, u.tipo_usuario, u.img_perfil_id, i.caminho_imagem as img_perfil_pasta, " +
-                    "u.img_perfil_banco as img_perfil_banco " +
-                    "FROM escolas e " +
-                    "JOIN usuarios u ON e.id_usuario = u.id_usuario " +
-                    "LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem " +
-                    "WHERE e.id_usuario = ? AND u.status_usuario = 1", [id]
-                )
-                return resultados;
-            } catch (error) {
-                console.log(error);
-                return error;
-            }
-        },
-
-
-
 
     update: async (dados, id_usuario) => {
         const conn = await pool.getConnection();
@@ -351,7 +332,7 @@ const escolaModel = {
         try {
             const [resultados] = await pool.query(
                 "SELECT e.id_escola, " +
-                "e.nome_escola, e.email_escola, e.cep, e.endereco, e.numero, " +
+                "e.nome_escola, e.email_escola, e.cep, e.endereco, e.numero," +
                 "e.cnpj, e.tipo_ensino, e.turnos, e.rede, e.whatsapp, e.telefone, " +
                 "e.instagram, e.facebook, e.email, e.sobre_escola, e.sobre_ensino, " +
                 "e.sobre_estrutura, e.ingresso, e.img_perfil_id, " +
@@ -362,7 +343,7 @@ const escolaModel = {
                 "LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem " +
                 "LEFT JOIN imagens_escola ie ON e.id_escola = ie.id_escola " +
                 "LEFT JOIN imagens im ON ie.id_imagem = im.id_imagem " +
-                "WHERE e.id_escola = ? " +
+                "WHERE e.id_usuario = ? " +
                 "GROUP BY e.id_escola",
                 [id]
             );
