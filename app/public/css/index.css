@@ -408,6 +408,7 @@ body{
     .text1 {
         width: 90%;
         font-size: 18px;
+        text-align: justify;
     }
 
     .title {

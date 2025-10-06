@@ -7,7 +7,7 @@
   --azulbase: #141c44;
   --azulsec: #77b6ea;
   --amarelo: #ffbc3e;
-  --toggle-theme: #ffbc3e;
+  --toggle-theme: url("data:image/svg+xml,%3Csvg data-v-56bd7dfc='' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-sun-medium-icon lucide-sun-medium'%3E%3Ccircle cx='12' cy='12' r='4'%3E%3C/circle%3E%3Cpath d='M12 3v1'%3E%3C/path%3E%3Cpath d='M12 20v1'%3E%3C/path%3E%3Cpath d='M3 12h1'%3E%3C/path%3E%3Cpath d='M20 12h1'%3E%3C/path%3E%3Cpath d='m18.364 5.636-.707.707'%3E%3C/path%3E%3Cpath d='m6.343 17.657-.707.707'%3E%3C/path%3E%3Cpath d='m5.636 5.636.707.707'%3E%3C/path%3E%3Cpath d='m17.657 17.657.707.707'%3E%3C/path%3E%3C/svg%3E") ;
 }
 
 .tema-claro {
@@ -24,7 +24,8 @@
   --letras: #f5f5f5;
   --fundo: #030303;
   transition: all 0.2s ease-in;
-    --toggle-theme: white;
+    --toggle-theme:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-moon-star-icon lucide-moon-star'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9'/%3E%3Cpath d='M20 3v4'/%3E%3Cpath d='M22 5h-4'/%3E%3C/svg%3E");
+;
 }
 
 #menu #tema {
@@ -333,7 +334,7 @@
     overflow-x: hidden;
     z-index: 1;
     display: flex;
-    align-items: center;
+    flex-direction: column;
   }
 
   #menu li {
@@ -359,6 +360,14 @@
 
   .master:hover {
     color: var(--laranja);
+  }
+
+    #perfil-foto-navbar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0px solid #ffffff;
   }
 
   #submenu {
@@ -420,24 +429,13 @@
     position: relative;
     top: 0;
     right: 0;
-    background: var(--toggle-theme);
+  background-repeat: no-repeat;
+  background-image: var(--toggle-theme);
+  transition: all 0.2s ease-in;
     width: 30px;
     height: 30px;
   }
 
-  .sun {
-  background-repeat: no-repeat;
-  background-size: 45%;
-  background-position: center;
-  /* ...existing code... */
-}
-
-.moon {
-  background-repeat: no-repeat;
-  background-size: 45%;
-  background-position: center;
-  /* ...existing code... */
-}
 }
 
 @media screen and (max-width: 500px) {
@@ -450,7 +448,9 @@
     left: 0;
     position: relative;
   }
-
+  .navbar nav{
+    height:100px;
+  }
   #menu li,
   .master,
   .navbar button,
@@ -458,8 +458,16 @@
     font-size: 12px;
   }
 
+  #menuToggle input{
+    top:40px;
+    left:20px;
+  }
+
   #menu {
     font-size: 12px;
     padding: 60px 6px 10px 6px;
+  }
+  .submenu{
+    padding-left: 10px;
   }
 }
