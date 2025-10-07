@@ -48,10 +48,10 @@
 
     <body>
     <%
-    let arquivo = {"imagem":"/imagem/img-perfil.png"}
+    let arquivo = {"imagem":"../imagem/perfil-foto.png"}
         if(valores.img_perfil_pasta != null){
             arquivo.imagem = valores.img_perfil_pasta
-        }else if(valores.img_perfil_banco != null){ 
+        }else if(valores.img_perfil_banco != null){
             arquivo.imagem = valores.img_perfil_banco;
         }
     let  msgErro = "";
@@ -118,7 +118,7 @@
         <h1>Editar Perfil</h1>
 
         <section id="banner_perfil" onclick="document.getElementById('cor_banner').click()" title="Clique para alterar a cor do banner">
-            <img class="img-perfil fototo"  id="img-preview" src="<%= arquivo.imagem %>" alt="Foto de Perfil do Usuário">
+            <img class="img-perfil fototo"  id="img-preview" src="<%= arquivo.imagem || 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" alt="Foto de Perfil do Usuário">
             <input type="color" name="cor_banner" id="cor_banner" value="<%= valores && valores.cor_banner ? valores.cor_banner : '#C7D3DD' %>" required style="display:none;">
             <input type="file" name="imagem_perfil_usu" id="imagem_perfil_usu" style="display:none;">
         </section>
@@ -157,13 +157,36 @@
 
       <section class="botoes">
       <input type="submit" value="Salvar Alterações" id="submit-btn" />
-      <button type="button" id="cancel" onclick="window.location='/perfil1'">Cancelar</button></section>
+      <button type="button" id="cancel" onclick="window.location='/perfil1'">Cancelar</button></form>
+    
+  
+    </section>
+
+    <section class="outras-acoes">
+     <h1 class="out">Outras Ações</h1>
+    <form action="/excluir-perfil" method="POST" onsubmit="return confirmarExclusao()" class="form-excluir-perfil">
+       <button type="submit" id="excluir-btn">
+      Excluir Perfil
+      </button>
+     </form>
+      </section>
 
       </section>
-    </form>
+      
+
+
+
   </main>
 
   <%- include('../partials/footer'); %>
+
+
+  <script>
+  function confirmarExclusao() {
+    return confirm('Tem certeza que deseja excluir seu perfil? Esta ação não pode ser desfeita!');
+  }
+</script>
+
 
     <script>
     document.getElementById('cor_banner').addEventListener('change', function(e) {
@@ -173,9 +196,15 @@
     var croppieInstance;
     var croppedBlob;
 
+    const defaultImage = '../imagem/perfil-foto.png';
+
     $('#img-preview').on('click', function() {
         $('#imagem_perfil_usu').click();
     });
+
+    if (!$('#img-preview').attr('src') || $('#img-preview').attr('src').trim() === '') {
+        $('#img-preview').attr('src', defaultImage);
+    }
 
     $('#imagem_perfil_usu').on('change', function() {
         var file = this.files[0];

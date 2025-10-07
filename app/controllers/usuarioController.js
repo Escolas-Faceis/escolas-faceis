@@ -292,7 +292,77 @@ const usuarioController = {
       console.log(e);
     }
   },
+
+  excluirPerfil: async (req, res) => {
+    try {
+        const id = req.session.autenticado.id;
+        const resultado = await usuarioModel.delete(id);
+         console.log("Resultado da exclusão:", );
+        console.log(resultado);
+        if (resultado.affectedRows > 0) {
+            req.session.destroy();
+            return res.render("pages/login",                 
+               {
+                listaErros: null,
+                dadosNotificacao: {
+                    titulo: "Perfil excluído",
+                    mensagem: "Seu perfil foi excluído com sucesso.",
+                    tipo: "success"
+                },
+                valores: { email: "", password: "" }
+            });
+        } else {
+            return res.render("pages/perfil-usu-i", {
+                erros: { errors: [{ msg: "Não foi possível excluir o perfil." }] },
+                dadosNotificacao: {
+                    titulo: "Erro",
+                    mensagem: "Tente novamente mais tarde.",
+                    tipo: "error"
+                },
+                valores: {}
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.render("pages/perfil-usu-i", {
+            erros: { errors: [{ msg: "Erro interno ao excluir perfil." }] },
+            dadosNotificacao: {
+                titulo: "Erro",
+                mensagem: "Tente novamente mais tarde.",
+                tipo: "error"
+            },
+            valores: {}
+        });
+    }
+},
+
+carregarPerfil: async (req, res) => {
+  try {
+    const user = req.session.usuario;
+    var userinfos = await usuarioModel.findByEmail(user.email);
+    userinfos.tipo = userinfos.tipo[0].toUpperCase() + userinfos.tipo.substring(1);
+
+    let ingressos = await UsuarioModel.findIngressosInscritos(userinfos.usu_id);
     
+    
+    res.render("pages/perfil", {
+                 campos: {
+                name: results[0].nome_usuario, email: results[0].email_usuario,
+                img_perfil_pasta: results[0].img_perfil_pasta ? results[0].img_perfil_pasta.replace('app/public', '') : null,
+                img_perfil_banco: results[0].img_perfil_banco != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
+                telefone: results[0].telefone_usuario, senha: "", biografia: results[0].biografia_usuario,
+                cor_banner: results[0].cor_banner
+            },
+        ingressos: ingressos,
+        dadosNotificacao:""
+    });
+
+  } catch (err) {
+    console.error(err);
+    return res.redirect("/login");
+  }
+},
+
 
 }
 

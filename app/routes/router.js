@@ -175,6 +175,8 @@ router.post(
   }
 );
 
+router.post('/excluir-perfil', usuarioController.excluirPerfil);
+
 
 router.get('/401', function(req, res) {
     res.render('partials/401');

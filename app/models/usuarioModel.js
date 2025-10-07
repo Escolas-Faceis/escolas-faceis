@@ -1,5 +1,5 @@
 var pool = require("../../config/pool_conexoes");
-
+const moment = require("moment");
 
 const usuarioModel = {
 
@@ -57,6 +57,17 @@ const usuarioModel = {
                     return error;
                 }
             },
+
+      findByEmail: async (email) => {
+    try {
+      const query = "SELECT * FROM usuario WHERE email_usuario = ? AND status_usuario = 1";
+      const [rows] = await pool.query(query, [email]);
+      return rows.length > 0 ? rows[0] : null;
+    } catch (error) {
+      console.error("Erro ao verificar email:", error);
+      throw error;
+    }
+    },
 
     findPage: async (pagina, total) => {
         try {
@@ -145,6 +156,17 @@ const usuarioModel = {
             }
         },
 
+        delete: async (id) => {
+            try {
+                const [resultados] = await pool.query(
+                    "UPDATE usuarios SET status_usuario = 0 WHERE id_usuario = ? ", [id]
+                )
+                return resultados;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        },
 
 
 
