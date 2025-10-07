@@ -6,6 +6,7 @@
   --amarelo: #ffbc3e;
   --letras: #02030a;
   --cinza-claro: #c7d3dd;
+    --fundo2: #f8fbff;
   --fundo-input: #f8fbff;
   --letras2: #141c44;
 }
@@ -26,9 +27,10 @@
 .tema-escuro {
   --letras: #f5f5f5;
   --fundo: #030303;
-  --cinza-claro: #0f0f0f;
+  --cinza-claro: #6a7075;
   --fundo-input: #202020;
     --letras2: #fff;
+        --fundo2: #0f0f0f;
   transition: all 0.2s ease-in;
 }
 
@@ -135,7 +137,7 @@ nav {
   flex-direction: column;
   width: 700px;
   max-width: 98vw;
-  background: var(--cinza-claro);
+  background: var(--fundo2);
   box-shadow: 0 6px 32px rgba(119, 182, 234, 0.2);
   transition: width 0.3s, padding 0.3s;
 }
