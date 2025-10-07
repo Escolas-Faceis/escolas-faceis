@@ -220,17 +220,31 @@
 <section id="salvar2">
     <input type="submit" id="salvar_button" value="Salvar">
 </section>
-</form>
+</form> </section>
+
 </section>
 <section class="block">
 </section>
+<section class="outras-acoes">
+     <h1 class="out">Outras Ações</h1>
+    <form action="/excluir-perfil" method="POST" onsubmit="return confirmarExclusao()" class="form-excluir-perfil">
+       <button type="submit" id="excluir-btn">
+      Excluir Perfil
+      </button>
+     </form>
+      </section>
+
+
 
 <section class="fo">
-    
 </section>
 
 </body>
-
+  <script>
+  function confirmarExclusao() {
+    return confirm('Tem certeza que deseja excluir seu perfil? Esta ação não pode ser desfeita!');
+  }
+</script>
 
     <script>
     var croppieInstance;

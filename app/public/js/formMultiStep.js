@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   const steps = document.querySelectorAll(".step");
   let currentStep = 0;
@@ -7,6 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
     steps.forEach((step, index) => {
       step.classList.toggle("active", index === stepIndex);
     });
+    updateProgress(stepIndex);
+  }
+
+  function updateProgress(stepIndex) {
+    const progressFill = document.querySelector('.progress-fill');
+    const totalSteps = steps.length;
+    const progressWidth = ((stepIndex + 1) / totalSteps) * 100;
+
+    if (progressFill) {
+      progressFill.style.width = `${progressWidth}%`;
+    }
   }
 
   document.querySelectorAll(".next").forEach((button) => {

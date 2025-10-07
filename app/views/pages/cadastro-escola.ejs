@@ -112,7 +112,7 @@
         %>
         <script>
                 let msgErro ="<%= msgErro %>"
-                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"),
+                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/</g,"<").replace(/>/g,">"),
                  "error", "center", 5000)                        
             </script>
         <%
@@ -135,7 +135,7 @@
                 Inscreva sua instituição para alcançar seus
                 <p>futuros alunos!</p>
             </a>
-            <img src="imagem/asasa.png">
+            <img src="imagem/1.png">
         </section>
         <section id="top_button">
             <button onclick="rolar_pra_baixo()">VAMOS LÁ!</button>
@@ -147,6 +147,10 @@
             <section id="form">
                 <!-- Formulário  -->
                 <form action="/cadastro_escola_post" method="POST" id="multiSteps">
+
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
 
                     <span class="step active">
                         <h2 id="form_title">Informações Básicas</h2>
@@ -327,7 +331,21 @@
     <script src="js/mascaras.js"></script>
     <script src="js/formMultiStep.js"></script>
     <script src="js/checkbox-handler.js"></script>
-    <!-- <script src="js/validationButton.js"></script> -->
+    <script>
+        function updateThemeImage() {
+            const img = document.querySelector('#top_part img');
+            const isDark = document.documentElement.classList.contains('tema-escuro') || document.body.classList.contains('tema-escuro');
+            img.src = isDark ? 'imagem/2.svg' : 'imagem/1.svg';
+        }
+
+        // Update on load
+        updateThemeImage();
+
+        // If theme changes, update image (assuming theme toggle adds/removes class)
+        const observer = new MutationObserver(updateThemeImage);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    </script>
 </body>
 
 </html>

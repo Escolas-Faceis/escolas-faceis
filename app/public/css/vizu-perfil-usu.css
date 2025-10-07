@@ -60,6 +60,32 @@ body {
     scale: 1.05;
 }
 
+    .banner-premium {
+        font-size:20px;
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(to right, #338cd4 0%, var(--azulsec) 100%);
+    color: white;
+
+}
+
+.btn-premium {
+  display: inline-block;
+  background-color: #ff7b00;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-top: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-premium:hover {
+  background-color: #e36f00;
+  transform: scale(1.05);
+}
+
 
 
 

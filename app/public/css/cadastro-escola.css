@@ -1,38 +1,66 @@
 :root {
-  --laranja: #f56d44;
-  --fundo: #ffffff;
-  --letras: #000000;
-  --azulbase: #141c44;
-  --azulsec: #77b6ea;
-  --amarelo: #ffbc3e;
-}
-
-.tema-claro {
-  --laranja: #ff5c2a;
+  --laranja: #f85321;
   --fundo: #f5f5f5;
   --azulbase: #141c44;
   --azulsec: #77b6ea;
   --amarelo: #ffbc3e;
   --letras: #02030a;
+  --cinza-claro: #c7d3dd;
+  --fundo-input: #f8fbff;
+  --letras2: #141c44;
+}
+
+.tema-claro {
+  --laranja: #f85321;
+  --fundo: #f5f5f5;
+  --azulbase: #141c44;
+  --azulsec: #77b6ea;
+  --amarelo: #ffbc3e;
+  --letras: #02030a;
+  --cinza-claro: #c7d3dd;
+  --fundo-input: #f8fbff;
+  --letras2: #141c44;
   transition: all 0.2s ease-in;
-  font-family: 'Poppins', sans-serif;
 }
 
 .tema-escuro {
   --letras: #f5f5f5;
   --fundo: #030303;
+  --cinza-claro: #0f0f0f;
+  --fundo-input: #202020;
+    --letras2: #fff;
   transition: all 0.2s ease-in;
-  --azul-base: #ffffff;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--fundo);
+  color: var(--letras);
+}
+
+body {
+  justify-content: flex-start;
 }
 
 /* TEXTO DE CIMA, IMAGEM E BOTÃO */
 #top_part_space {
   #top_part {
-    color: var(--azul);
+    color: var(--azulbase);
     width: 100%;
     height: 400px;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   #top_part a {
@@ -41,6 +69,7 @@
     font-size: 38px;
     line-height: 1.4em;
     padding-right: 30px;
+    color: var(--letras2);
   }
 
   #top_part a p {
@@ -52,8 +81,7 @@
   }
 
   #top_part img {
-    width: 675px;
-    height: 193px;
+    width: 50%;
     padding-top: 110px;
     padding-left: 30px;
   }
@@ -100,29 +128,58 @@ nav {
 
 #form {
   margin-bottom: 15%;
-  border: solid #77b6ea 2px;
-  border-radius: 15px;
-  padding: 3% 2%;
+  border: 1.5px solid var(--azulsec);
+  border-radius: 18px;
+  padding: 40px 48px;
   display: flex;
   flex-direction: column;
-  width: 40%;
-  max-width: 800px;
+  width: 700px;
+  max-width: 98vw;
+  background: var(--cinza-claro);
+  box-shadow: 0 6px 32px rgba(119, 182, 234, 0.2);
+  transition: width 0.3s, padding 0.3s;
 }
 
-#form input[type="text"] {
-  width: 97%;
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--cinza-claro);
+  border-radius: 4px;
+  margin-bottom: 32px;
+  overflow: hidden;
 }
 
-#form input[type="email"] {
-  width: 97%;
+.progress-fill {
+  height: 100%;
+  background: var(--laranja);
+  width: 33.33%;
+  transition: width 0.3s ease;
 }
 
+#form input[type="text"],
+#form input[type="email"],
 #form input[type="password"] {
-  width: 97%;
+  width: 100%;
+  border: 1.5px solid var(--cinza-claro);
+  font-size: 15px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: var(--fundo-input);
+  transition: border 0.2s;
+  color: var(--letras);
+}
+#form p{
+  color: var(--letras2);
+}
+
+#form input:focus {
+  border-color: var(--laranja);
+  outline: none;
 }
 
 #form #criar_conta {
-  background-color: #77b6ea;
+  background: linear-gradient(135deg, var(--azulsec), #5a9bd4);
   transition: all 0.3s;
   border: none;
   cursor: pointer;
@@ -131,18 +188,22 @@ nav {
   align-items: center;
   font-family: 'Poppins', sans-serif;
   margin-top: 5%;
-  width: 40%;
-  padding: 2% 4%;
-  font-size: 22px;
-  font-weight: 400;
+  width: 220px;
+  padding: 14px 0;
+  font-size: 1.15rem;
+  font-weight: bold;
   color: var(--fundo);
-  transition: all 0.3s ease-in-out;
-  transform: translateY(10px);
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(119, 182, 234, 0.3);
+  letter-spacing: 1px;
 }
 
 #form #criar_conta:hover {
-  background-color: #5298d1;
-  transform: scale(1.01);
+  background: linear-gradient(135deg, #5a9bd4, #4a8bc1);
+  color: var(--fundo);
+  border: none;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(119, 182, 234, 0.4);
 }
 
 .submit {
@@ -154,46 +215,17 @@ nav {
 
 #form_title {
   font-size: 28px;
-  color: #f56d44;
-  margin: 0;
+  color: var(--laranja);
+  margin: 0 0 24px 0;
+  text-align: center;
+  font-weight: 700;
 }
 
 #form p {
-  font-size: 18px;
-  color: var(--azulbase);
-  font-weight: 400;
-  margin-bottom: 0;
-}
-
-#form input,
-select {
-  border: solid rgb(167, 167, 167) 2px;
   font-size: 17px;
-  border-radius: 10px;
-  padding: 1.5% 2%;
-}
-
-#name_school {
-  width: 95%;
-}
-
-select option {
-  color: var(--azulbase);
-}
-
-.parts_checks {
-  display: flex;
-  margin: 0;
-}
-
-input{
-  background-color: var(--fundo);
-  color: var(--letras);
-}
-
-#end p {
-  margin-top: 5%;
-  margin-bottom: -23px;
+  color: var(--letras2);
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
 .spanerro {
@@ -202,43 +234,62 @@ input{
   margin-top: 3px;
 }
 
-.parts_checks ul li {
-  list-style-type: none;
-  font-size: 3px;
-}
-
-#num::-webkit-inner-spin-button {
-  appearance: none;
-}
-
-#num::-webkit-outer-spin-button {
-  appearance: none;
+.parts_checks {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 8px 24px;
 }
 
 #checkboxes {
-  display: flex;
-  justify-content: space-around;
-  font-size: 3px;
-}
-
-.parts_checks {
-  flex: 1;
-  margin: 0 10px;
-  font-size: 3px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 40px;
+  margin: 32px 0 0 0;
+  width: 100%;
+  background: none;
+  padding-bottom: 10px;
 }
 
 .parts_checks ul {
   padding: 0;
-  font-size: 3px;
+  margin: 0;
+  list-style: none;
 }
 
 .parts_checks ul li {
   font-size: 16px;
-  list-style-type: none;
-  margin-bottom: 5px;
-  font-size: 15px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
   white-space: nowrap;
-  padding: 2px 0px;
+  color: var(--letras);
+}
+
+.parts_checks ul li:hover {
+  background-color: rgba(230, 240, 255, 0.5);
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--azulsec);
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1.5px solid var(--azulsec);
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+input{
+  background-color: var(--fundo-input);
+}
+
+input[type="checkbox"]:hover {
+  box-shadow: 0 0 0 2px rgba(119, 182, 234, 0.2);
 }
 
 .step {
@@ -266,24 +317,28 @@ button {
 
 button.next,
 button.prev {
-  background-color: var(--amarelo);
+  background: linear-gradient(135deg, var(--amarelo), #ffad2e);
   color: white;
   border: none;
-  border-radius: 7px;
-  font-size: 14px;
-  font-weight: 400;
-  transition: 0.3s all ease-in-out;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
   font-family: 'Poppins', sans-serif;
+  padding: 12px 24px;
+  box-shadow: 0 2px 8px rgba(255, 188, 62, 0.3);
 }
 
 button.next:hover {
-  background-color: #ffbd38;
-  transform: scale(1.01);
+  background: linear-gradient(135deg, #ffad2e, #ff9f1a);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 188, 62, 0.5);
 }
 
 button.prev:hover {
-  background-color: #ffbd38;
-  transform: scale(1.01);
+  background: linear-gradient(135deg, #ffad2e, #ff9f1a);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 188, 62, 0.5);
 }
 
 .dupla {
@@ -301,48 +356,71 @@ button.prev:hover {
 }
 
 #form input[type="text"]#cep {
-  width: 60%;
+  width: 100%;
 }
 
 .ob {
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  align-items: center;
-  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 .cep {
-  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .cep p {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--azulbase);
+  margin-bottom: 6px;
   margin-top: 0;
 }
 
-.num {
-  width: 30%;
-  height: auto;
-  margin-bottom: 0;
+.complemento {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.complemento p {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--azulbase);
+  margin-bottom: 6px;
+  margin-top: 0;
 }
 
 #num {
   width: 100%;
+  border: 1.5px solid var(--cinza-claro);
+  font-size: 15px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: var(--fundo-input);
+  transition: border 0.2s;
+  color: var(--letras);
 }
 
-/* Estilos para telas pequenas (até 600px de largura) */
+#num:focus {
+  border-color: var(--laranja);
+  outline: none;
+}
+
+#num::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+#num::-webkit-outer-spin-button {
+  appearance: none;
+}
+
 @media (max-width: 800px) {
-  input[type="text"],
-  input[type="number"] {
-    height: 36px;
-  }
-
-  #num {
-    max-height: 36px;
-    max-width: 60px;
-  }
-
-  /* Ajusta altura e layout da parte de cima */
   #top_part_space #top_part {
     flex-direction: column;
     height: auto;
@@ -377,20 +455,15 @@ button.prev:hover {
   }
 
   #form input[type="text"]#cep {
-    width: 70%;
+    width: 100%;
   }
 
   .complemento {
-    width: 90%;
+    width: 100%;
   }
 
   #num {
-    width: 40px;
-  }
-
-  #num,
-  #cep {
-    margin-top: 10px;
+    width: 100%;
   }
 
   #top_button button {
@@ -401,27 +474,22 @@ button.prev:hover {
     margin-bottom: 20px;
   }
 
-  /* Formulário fica 90% da tela, centralizado */
   #centralizar {
     margin: 0 10px 0 10px;
   }
 
   #form {
-    width: 400px;
-    padding: 4%;
+    width: 90vw;
+    margin: 0 5% 0 5%;
+    padding: 24px 8px;
     margin-bottom: 40px;
+    background-color: var(--cinza-claro);
   }
 
-  /* Inputs ocupam 100% largura disponível */
-  #form input[type="text"],
-  #form input[type="email"],
-  #form input[type="password"],
-  #form select {
-    width: 100%;
-    box-sizing: border-box;
+  input{
+    background-color: var(--fundo-input);
   }
 
-  /* Títulos e textos menores */
   #form_title {
     font-size: 22px;
   }
@@ -430,55 +498,33 @@ button.prev:hover {
     font-size: 16px;
   }
 
-  #numero {
-    height: 30px;
-  }
-
-  /* Flexboxes de checkbox ficam em coluna */
-  #checkboxes {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .parts_checks {
-    margin: 0;
-  }
-
-  /* Botões menor espaço entre eles */
   .gonbackButtons {
     flex-direction: column;
     gap: 10px;
   }
 
-  /* Botões maior largura para toque */
   button.next,
   button.prev,
   #criar_conta {
-    width: 100%;
+    width: 50%;
     font-size: 18px;
     padding: 12px 0;
   }
 
-  /* Esconder ou ajustar elementos pequenos */
-  #pequeno {
-    width: 100%;
-    height: auto;
-  }
-
-  /* Ajusta margem para o input do CNPJ */
-  #cnpj_input {
-    width: 100%;
+  #checkboxes {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 10px;
   }
 }
 
-/* Responsividade extra para telas até 500px */
 @media (max-width: 500px) {
   #form {
-    width: 98vw;
+    width: 90vw;
     min-width: unset;
     max-width: 99vw;
-    padding: 6vw 2vw;
+    padding: 12px 10px;
     margin-bottom: 24px;
+
   }
 
   #form_title {
@@ -518,69 +564,13 @@ button.prev:hover {
     max-width: 180px;
     padding: 10px 0 0 0;
   }
-}
 
-/* Responsividade máxima para telas até 300px */
-@media (max-width: 300px) {
-  body {
-    padding: 0;
-    margin: 0;
-    background: #fff;
+  #checkboxes {
+    grid-template-columns: 1fr;
+    gap: 8px 0;
   }
 
-  #form {
-    width: 94vw;
-    padding: 10px 2vw 16px 2vw;
-    margin: 12px auto 18px auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(20,28,68,0.07);
-    border: none;
-  }
-
-  #form_title {
-    font-size: 13px;
-    margin-bottom: 8px;
-  }
-
-  #form p {
-    font-size: 10px;
-    margin-bottom: 6px;
-  }
-
-  #form input,
-  #form select {
-    font-size: 11px;
-    padding: 6px 4px;
-    margin-bottom: 7px;
-  }
-
-  .gonbackButtons {
-    gap: 4px;
-    margin-top: 8px;
-  }
-
-  button.next,
-  button.prev,
-  #criar_conta {
-    font-size: 11px;
-    padding: 7px 0;
-    width: 100%;
-    border-radius: 7px;
-    margin-top: 4px;
-    margin-bottom: 2px;
-  }
-
-  #top_part_space #top_part a {
-    font-size: 12px;
-    padding: 0;
-  }
-
-  #top_part_space #top_part a p {
-    font-size: 11px;
-  }
-
-  #top_part_space #top_part img {
-    max-width: 70px;
-    padding: 4px 0 0 0;
+  .progress-bar {
+    margin-bottom: 16px;
   }
 }

@@ -89,9 +89,15 @@ router.get(
         password: "",
         reppassword: "",
       },
+    
     });
   }
 );
+
+router.get("/planos", (req, res) => {
+  res.render("pages/assinatura");
+});
+
 
 router.post(
   "/editar_escola_post",
