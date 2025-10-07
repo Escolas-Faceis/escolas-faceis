@@ -73,7 +73,7 @@
                     </section>
                     <p class="ingresso">Avaliação: <%= parseFloat(escola.media_avaliacao).toFixed(1) %>/5</p>
 
-                    <button type="submit" class="buttao"> <a href="/perfil-escola">VER PERFIL</a></button>
+                    <button type="submit" class="buttao"> <a href="/perfil-escola?id=<%= escola.id_usuario %>">VER PERFIL</a></button>
                 </section>
             </section>
         <% }); %>

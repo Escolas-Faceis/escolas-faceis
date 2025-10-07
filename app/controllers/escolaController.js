@@ -231,10 +231,16 @@ const escolaController = {
 
     mostrarPerfil: async (req, res) => {
         try {
-            let results = await escolaModel.findId(req.session.autenticado.id);
-            if (!results || results.length === 0) {
-                throw new Error("Escola não encontrada");
+
+             let id = req.query.id || req.session.autenticado.id;
+            console.log("ID da escola solicitado:", id);
+            let results = await escolaModel.findId(id);
+            console.log("Resultado da busca:", results.length > 0 ? "Escola encontrada" : "Escola não encontrada");
+            if (results.length === 0) {
+                return res.render("pages/index", { erros: null, dadosNotificacao: { titulo: "Erro", mensagem: "Escola não encontrada", tipo: "error" } });
+
             }
+
             if(results[0].cep != null){
                 const httpsAgent = new https.Agent({
                     rejectUnauthorized: false});
@@ -263,7 +269,15 @@ const escolaController = {
                 cidade: viaCep.localidade, estado: viaCep.uf, bairro: viaCep.bairro, logradouro: viaCep.logradouro
 
             }
-            res.render("pages/perfil-escola", { erros: null, dadosNotificacao: null, valores: campos, cep: cep });
+
+            let view = "pages/perfil-escola";
+            if (req.session.autenticado && req.session.autenticado.tipo === "E" && id == req.session.autenticado.id) {
+                view = "pages/perfil-escola";
+            } else {
+                view = "pages/perfil-escola-e";
+            }
+
+            res.render(view, { erros: null, dadosNotificacao: null, valores: campos, cep: cep });
 
         } catch (e) {
             console.log('ERRO NO PERFIL:', e);
@@ -301,7 +315,10 @@ const escolaController = {
                 tipo_ensino_str: tiposEnsinoValues.join(','),
                 turnos_str: turnosValues.join(','),
                 redes_str: redesValues.join(','),
-                img_perfil_id: currentSchool[0].img_perfil_id
+                img_perfil_id: currentSchool[0].img_perfil_id,
+                sobre_escola: req.body['Sobre a Escola'],
+                sobre_ensino: req.body['Sobre o Ensino'],
+                sobre_estrutura: req.body['Sobre a Estrutura']
             };
             if (req.file) {
                 let nomeImagem = req.file.originalname;

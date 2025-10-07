@@ -141,22 +141,16 @@ const usuarioController = {
 
     mostrarPerfil: async (req, res) => {
         try {
-            let results = await usuarioModel.findId(req.session.autenticado.id);
-            if (results[0].cep_usuario != null) {
-                const httpsAgent = new https.Agent({
-                    rejectUnauthorized: false,
-                });
-                const response = await fetch(`https://viacep.com.br/ws/${results[0].cep_usuario}/json/`,
-                    { method: 'GET', headers: null, body: null, agent: httpsAgent, });
-                var viaCep = await response.json();
-                var cep = results[0].cep_usuario.slice(0,5)+ "-"+results[0].cep_usuario.slice(5)
-            }else{
-                var viaCep = {logradouro:"", bairro:"", localidade:"", uf:""}
-                var cep = null;
+            let id = req.query.id || req.session.autenticado.id;
+            console.log("ID do usuário solicitado:", id);
+            let results = await usuarioModel.findId(id);
+            console.log("Resultado da busca:", results.length > 0 ? "Usuário encontrado" : "Usuário não encontrado");
+            if (results.length === 0) {
+                return res.render("pages/index", { erros: null, dadosNotificacao: { titulo: "Erro", mensagem: "Usuário não encontrado", tipo: "error" } });
             }
 
             let campos = {
-                name: results[0].nome_usuario, email: results[0].email_usuario,
+                nome: results[0].nome_usuario, email: results[0].email_usuario,
                 img_perfil_pasta: results[0].img_perfil_pasta ? results[0].img_perfil_pasta.replace('app/public', '') : null,
                 img_perfil_banco: results[0].img_perfil_banco != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
                 telefone: results[0].telefone_usuario, senha: "", biografia: results[0].biografia_usuario,
@@ -164,16 +158,21 @@ const usuarioController = {
             }
 
             let view;
-            if (req.path === '/perfil') {
-                view = "pages/perfil";
-            } else if (req.path === '/info') {
-                view = "pages/perfil-usu-i";
+            if (id === req.session.autenticado.id) {
+                if (req.path === '/perfil') {
+                    view = "pages/perfil";
+                } else if (req.path === '/info') {
+                    view = "pages/perfil-usu-i";
+                } else {
+                    view = "pages/perfil copy";
+                }
             } else {
-                view = "pages/perfil copy";
+                view = "pages/perfil-outro-usuario";
             }
+            console.log("View a ser renderizada:", view);
             res.render(view, { erros: null, dadosNotificacao: null, valores: campos })
         } catch (e) {
-            console.log(e);
+            console.log("Erro no mostrarPerfil:", e);
             let view;
             if (req.path === '/perfil') {
                 view = "pages/perfil";
@@ -184,7 +183,7 @@ const usuarioController = {
             }
             res.render(view, {
                 erros: null, dadosNotificacao: null, valores: {
-                    img_perfil_banco: "", img_perfil_pasta: "", nome: "", email: "",
+                    img_perfil_banco: "", img_perfil_pasta: "", name: "", email: "",
                      telefone: "", senha: "", biografia: "", cor_banner: ""
                 }
             })
@@ -343,8 +342,8 @@ carregarPerfil: async (req, res) => {
     userinfos.tipo = userinfos.tipo[0].toUpperCase() + userinfos.tipo.substring(1);
 
     let ingressos = await UsuarioModel.findIngressosInscritos(userinfos.usu_id);
-    
-    
+
+
     res.render("pages/perfil", {
                  campos: {
                 name: results[0].nome_usuario, email: results[0].email_usuario,
@@ -362,6 +361,8 @@ carregarPerfil: async (req, res) => {
     return res.redirect("/login");
   }
 },
+
+
 
 
 }

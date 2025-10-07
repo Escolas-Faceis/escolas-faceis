@@ -12,7 +12,7 @@
     <%- include('../partials/navbar'); %>
     <style>
         :root {
-            --background_banner: <%= valores.cor_banner || '#C7D3DD' %>;
+            --background_banner: <%= valores.cor_banner || "#C7D3DD" %>;
         }
         #banner_perfil {
             background-color: var(--background_banner);
@@ -26,7 +26,7 @@
             <section id="ajustar_esquerda">
                 <article id="conteudo_perfil" class="alinhar" style="align-items:center;">
                     <h2 style="margin-top:20px;">
-                        <%= valores.name ? valores.name : "Visitante" %>
+                        <%= valores.nome ? valores.nome : "Visitante" %>
                     </h2>
                 </article>
                 <section class="alinhar" >
