@@ -243,6 +243,10 @@
     $('#imagem_perfil_usu').on('change', function() {
         var file = this.files[0];
         if (file) {
+            if (!file.type.startsWith('image/')) {
+                alert("Apenas arquivos de imagem são permitidos!");
+                return;
+            }
             var reader = new FileReader();
             reader.onload = function(e) {
                 $('#croppie-modal').css('display', 'flex');
@@ -304,7 +308,7 @@
             body: formData
         }).then(response => {
             if (response.ok) {
-                window.location.reload();
+                window.location.href = '/editar-escola';
             } else {
                 notify("Erro", "Falha ao salvar", "error", "center");
             }

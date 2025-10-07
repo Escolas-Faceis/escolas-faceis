@@ -24,7 +24,7 @@ router.get("/",
 
 router.get("/list",
     verificarUsuAutenticado,
-    verificarUsuAutorizado(["ADM"], 'partials/401'),
+    verificarUsuAutorizado(["A"], 'partials/401'),
     admController.listarUsuarios,
     admController.listarEscolas,
     function(req, res) {
@@ -38,7 +38,7 @@ router.get("/list",
 
 router.get("/list-escolas",
     verificarUsuAutenticado,
-    verificarUsuAutorizado(["ADM"], 'partials/401'),
+    verificarUsuAutorizado(["A"], 'partials/401'),
     admControllerPainel.listarEscolas,
     function(req, res) {
         res.render('pages/adm/adm-list-escolas', {

@@ -2,7 +2,7 @@ const multer = require("multer");
 const path = require("path");
 
 const fileFilter = (req, file, callBack) => {
-    const allowedExtensions = /jpeg|jpg|png|gif/;
+    const allowedExtensions = /jpeg|jpg|png|gif|webp/;
     const extname = allowedExtensions.test(
         path.extname(file.originalname).toLowerCase()
     );
