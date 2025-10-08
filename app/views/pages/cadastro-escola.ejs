@@ -337,11 +337,7 @@
             const isDark = document.documentElement.classList.contains('tema-escuro') || document.body.classList.contains('tema-escuro');
             img.src = isDark ? 'imagem/2.svg' : 'imagem/1.svg';
         }
-
-        // Update on load
         updateThemeImage();
-
-        // If theme changes, update image (assuming theme toggle adds/removes class)
         const observer = new MutationObserver(updateThemeImage);
         observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
         observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });

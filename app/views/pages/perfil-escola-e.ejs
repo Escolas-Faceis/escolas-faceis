@@ -184,11 +184,11 @@
     <section class="contatos">
         <h1 class="titulo-contato">Contato</h1>
         <section class="formas-contato">
-            <figure><a href="https://www.instagram.com/" target="_blank"><img src="imagem/instagram.png" alt="Instagram" class="social-media" id="insta"></a></figure>
-            <figure><a href="https://www.whatsapp.com" target="_blank"><img src="imagem/whatsapp.png" alt="WhattsApp" class="social-media" id="what"></a></figure>
-            <figure><a href="https://www.facebook.com" target="_blank"><img src="imagem/facebook.png" alt="Facebook" class="social-media" id="face"></a></figure>
-            <figure><a href="#" target="_blank"><img src="imagem/telephone.png"class="social-media" alt="Telefone" id="telefone"></a></figure>
-            <figure><a href="#" target="_blank"><img src="imagem/mail.png"class="social-media" alt="Email" id="email"></a></figure>
+            <figure><a href="<%=valores.instagram%> || https://www.instagram.com/" target="_blank"><img src="imagem/i1.svg" alt="Instagram" class="social-media" id="insta"></a></figure>
+            <figure><a href="<%=valores.whatsapp%> || https://www.whatsapp.com" target="_blank"><img src="imagem/w1.svg" alt="WhattsApp" class="social-media" id="what"></a></figure>
+            <figure><a href="<%=valores.whatsapp%> ||https://www.facebook.com" target="_blank"><img src="imagem/f1.svg" alt="Facebook" class="social-media" id="face"></a></figure>
+            <figure><a href="tel:<%=valores.telefone%> || '' " target="_blank"><img src="imagem/t1.svg"class="social-media" alt="Telefone" id="telefone"></a></figure>
+            <figure><a href="mailto:<%=valores.email%> || '' " target="_blank"><img src="imagem/e1.svg"class="social-media" alt="Email" id="email"></a></figure>
         </section>
     </section>
     <section class="contatos">
@@ -286,6 +286,22 @@
       if (counter < 1) counter = 4;
       document.getElementById('radio' + counter).checked = true;
     }
+
+    function updateSocialMediaImages() {
+        const isDark = document.body.classList.contains('tema-escuro');
+        const socialImages = document.querySelectorAll('.social-media');
+        socialImages.forEach(img => {
+            let src = img.src;
+            if (isDark) {
+                img.src = src.replace('1.svg', '2.svg');
+            } else {
+                img.src = src.replace('2.svg', '1.svg');
+            }
+        });
+    }
+    updateSocialMediaImages();
+    const observer = new MutationObserver(updateSocialMediaImages);
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
 </script>
 </body>

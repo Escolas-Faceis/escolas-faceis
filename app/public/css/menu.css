@@ -74,6 +74,21 @@
     display: none;
   }
 
+    #menu li {
+    margin: 0 20px;
+    position: relative;
+    flex-grow: 1;
+    text-align: center;
+  }
+    .submenu li{
+      text-align: left!important;
+    }
+
+  #inicio{
+    margin-right: 55px!important;
+
+  }
+
   .navbar #menu {
     display: flex;
     align-items: center;
@@ -108,7 +123,8 @@
   li a {
     font-size: 14px;
   }
-  .navbar summary {
+  .master summary,
+  .notificacao-master summary {
     margin-bottom: 3px;
     cursor: pointer;
     width: fit-content;
@@ -397,21 +413,21 @@
     transform: none;
   }
 
-  .master {
-    font-size: 15px; /* was 22px */
-    text-decoration: none;
-    color: #ffffff;
-    transition: all 0.3s ease-in-out;
+  .master summary {
+    list-style: none;
   }
 
-  summary { 
-    list-style-type: none;
+  .master summary::-webkit-details-marker {
+    display: none;
   }
 
   .master:hover {
     color: var(--laranja);
   }
 
+  summary::marker{
+    display: none;
+  }
     #perfil-foto-navbar {
     width: 40px;
     height: 40px;
@@ -420,16 +436,18 @@
     border: 0px solid #ffffff;
   }
 
-  #submenu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--primary-color);
-    padding: 10px 0;
-    list-style-type: none;
-    z-index: 1;
+  .submenu li {
+    list-style-type: circle !important;
+  
+    padding-left:0;
+    margin-left: 30px;
   }
+  .submenu li::marker{
+    color: var(--laranja);
+    padding: 0;
+    margin: 0;
+  }
+
 
   #menu summary:hover ul.submenu {
     display: block;
@@ -531,6 +549,10 @@
   position: relative;
   list-style: none;
 }
+
+  summary::marker{
+    display: none;
+  }
 
 /* Ícone do sino + badge */
 .notificacao-botao {

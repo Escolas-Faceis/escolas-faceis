@@ -8,11 +8,15 @@
 :root{
     --letra:#141c44;
     --fundo: white;
+    --fundo2: #f8f9fa;
+    --borda:#e0e4ef
 }
 
 .tema-escuro{
     --letra: #ffffff;
     --fundo: #030303;
+    --fundo2: #1a1a1a;
+    --borda: #222222;
 }
 
     .short-prof{
@@ -21,9 +25,9 @@
         padding: 1.5% 4%;
         position: relative;
         display: flex;
-        border: 1.5px solid #e0e4ef;
+        border: 1.5px solid var(--borda);
         border-radius: 18px;
-        background-color: var(--fundo);
+        background-color: var(--fundo2);
         box-shadow: 0 4px 18px rgba(20,28,68,0.09);
         z-index: 0;
         transition: box-shadow 0.2s, border 0.2s;

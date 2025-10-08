@@ -368,7 +368,7 @@ body{
 .como-funciona {
     padding: 60px 20px;
     background-color: var(--fundo);
-    margin: 0 10% 60px 10%;
+    margin: 0 5% 60px 5%;
 }
 
 .tema-escuro .como-funciona {
