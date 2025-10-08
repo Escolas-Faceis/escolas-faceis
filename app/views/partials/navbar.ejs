@@ -47,6 +47,22 @@
             <% } else if(autenticado && (autenticado.tipo === "C" || autenticado.tipo === "A")){%>
                 <a href="/perfil1"><li><img src="<%= autenticado.img_perfil_banco || autenticado.img_perfil_pasta || 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-navbar" alt="Foto de Perfil do Usuário"></li></a>
             <%}%>
+            <% if( autenticado && autenticado.tipo === "E" ) { %>
+<details class="notificacao-master">
+  <summary id="notificacao-summary">
+    <li class="notificacao-botao">
+      <img src="../imagem/bell.svg" alt="Notificações" id="bell-icon">
+      <span id="notificacao-count">0</span>
+    </li>
+  </summary>
+
+  <ul id="notificacao-list" class="notificacao-submenu">
+    <!-- Notificações serão inseridas dinamicamente -->
+    <li class="notificacao-vazia">Sem notificações novas</li>
+  </ul>
+</details>
+<% } %>
+
             <a href="/sair"><li>Sair</li></a>
 
         <% } else { %>
@@ -66,3 +82,78 @@
 <% } %>
 
 <script src="/js/theme-toggle.js"></script>
+<script>
+    async function loadNotificacoes() {
+        try {
+            const response = await fetch('/notificacoes');
+            const notificacoes = await response.json();
+            const list = document.getElementById('notificacao-list');
+            list.innerHTML = '';
+            if (notificacoes.length === 0) {
+                list.innerHTML = '<li>Nenhuma notificação</li>';
+            } else {
+                notificacoes.forEach(notif => {
+                    const li = document.createElement('li');
+                    li.textContent = notif.mensagem;
+                    li.classList.add(notif.lida ? 'lida' : 'nao-lida');
+                    list.appendChild(li);
+                });
+            }
+            updateCount(notificacoes.filter(n => !n.lida).length);
+        } catch (error) {
+            console.error('Erro ao carregar notificações:', error);
+        }
+    }
+
+    async function markAllAsRead() {
+        try {
+            const response = await fetch('/notificacoes/marcar-todas-lidas', {
+                method: 'POST'
+            });
+            if (response.ok) {
+                updateCount(0);
+                const list = document.getElementById('notificacao-list');
+                if (list.children.length === 0) {
+                    list.innerHTML = '<li>Sem novas notificações</li>';
+                }
+                // Mark all list items as read
+                Array.from(list.children).forEach(li => {
+                    li.classList.remove('nao-lida');
+                    li.classList.add('lida');
+                });
+            }
+        } catch (error) {
+            console.error('Erro ao marcar todas as notificações como lidas:', error);
+        }
+    }
+
+    function updateCount(count) {
+        const countSpan = document.getElementById('notificacao-count');
+        if (count > 0) {
+            countSpan.textContent = count;
+            countSpan.style.display = 'inline';
+        } else {
+            countSpan.style.display = 'none';
+        }
+    }
+
+    // Load count on page load
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('/notificacoes');
+            const notificacoes = await response.json();
+            updateCount(notificacoes.filter(n => !n.lida).length);
+        } catch (error) {
+            console.error('Erro ao carregar contagem de notificações:', error);
+        }
+
+        // Load notifications when details is opened
+        const details = document.querySelector('#notificacao-summary').parentElement;
+        details.addEventListener('toggle', () => {
+            if (details.open) {
+                loadNotificacoes();
+                markAllAsRead();
+            }
+        });
+    });
+</script>

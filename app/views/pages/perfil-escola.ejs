@@ -10,8 +10,29 @@
     <link rel="stylesheet" href="css/perfil.css">
     <link rel="stylesheet" href="css/aval.css">
     <link rel="stylesheet" href="css/vizu.css">
-    <!-- <link rel="stylesheet" href="css/carrossel-perfil.css"> -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+
 </head>
+<script>
+        function notify(title, text, type, position, timeout = 5000) {
+            new Notify({
+                status: type,
+                title: title,
+                text: text,
+                effect: 'fade',
+                speed: 500,
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: timeout,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: position
+            });
+        }
+    </script>
 
     <%
         const tiposclassseCss = {
@@ -161,6 +182,7 @@
         <form action="/avaliar" method="post">
         <input type="hidden" name="id_usuario" value="<%= autenticado && autenticado.id || '' %>">
         <input type="hidden" name="id_escola" value="<%= valores.id_escola %>">
+        <input type="hidden" name="id_usuario_escola" value="<%= valores.id_usuario %>">
         <span class="centro">
         <section class="rating">
             <input type="radio" value="5" name="rating" id="rating-5">

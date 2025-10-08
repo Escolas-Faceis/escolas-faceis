@@ -35,7 +35,9 @@
   transition: all 0.2s ease-in;
   margin-right: -25px;
   margin-left: -10px;
+
 }
+
 
 .sun {
   background-repeat: no-repeat;
@@ -49,6 +51,7 @@
 }
 
 @media screen and (min-width:851px) {
+
 
   body {
     margin: 0;
@@ -98,15 +101,6 @@
   #menu a:hover {
     color: #fff6d8;
   }
-
-  #menu li:nth-child(-n+3) {
-    margin-right: 30px;
-  }
-
-  #menu #inicio {
-    margin-left: 50px;
-  }
-
   .dropdown-arrow:after {
     content: "\23F7";
     margin-left: 0 5px;
@@ -116,7 +110,8 @@
   }
   .navbar summary {
     margin-bottom: 3px;
-    margin-left: 20px;
+    cursor: pointer;
+    width: fit-content;
     outline: none;
     list-style: none;
   }
@@ -182,6 +177,61 @@
     gap: 10px;
     align-items: center;
     justify-content: flex-end;
+    position: relative;
+    right: 0;
+  }
+
+  /* Align bell and profile picture to the right */
+  .aside > details.master {
+    margin-left: 10px;
+  }
+
+  #notificacao-summary {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  #bell-icon {
+    margin-right: 8px;
+  }
+
+  /* Fix submenu display for notifications */
+  #notificacao-summary[open] #notificacao-list,
+  details[open] > #notificacao-list {
+    display: block !important;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--fundo);
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    width: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  #notificacao-list {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #notificacao-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+
+  #notificacao-list li.nao-lida {
+    font-weight: 700;
+  }
+
+  #notificacao-list li.lida {
+    font-weight: 400;
+    color: #666;
   }
 
   #perfil-foto-navbar {
@@ -463,6 +513,10 @@
     left:0px;
   }
 
+    #notificacao-list li.lida {
+    font-weight: 400;
+    color: #666;
+  }
   #menu {
     font-size: 12px;
     padding: 60px 6px 10px 6px;
@@ -471,3 +525,132 @@
     padding-left: 10px;
   }
 }
+
+/* Container principal */
+.notificacao-master {
+  position: relative;
+  list-style: none;
+}
+
+/* Ícone do sino + badge */
+.notificacao-botao {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  gap: 6px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  position: relative;
+}
+
+.notificacao-botao:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+#bell-icon {
+  width: 24px;
+  height: 24px;
+}
+
+#notificacao-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--laranja);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 999px;
+  padding: 2px 6px;
+  min-width: 18px;
+  text-align: center;
+  display: none; 
+  z-index: 10;
+}
+
+.notificacao-submenu {
+
+  right: 0;
+  top: calc(100% + 8px);
+  width: 280px;
+  max-height: 60vh;
+  background: var(--fundo);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  padding: 8px 0;
+  margin: 0;
+  list-style: none;
+  font-weight: 500;
+  text-align: justify;
+  overflow-y: auto;
+  border: 1px solid rgba(0,0,0,0.05);
+  z-index: 1000;
+}
+
+.notificacao-submenu li {
+
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--letras);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+
+/* bolinha vermelha para não lida */
+.notificacao-submenu .dot {
+  width: 8px;
+  height: 8px;
+  background: #ff4d4d;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+/* estado "vazia" */
+.notificacao-vazia {
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+  cursor: default;
+}
+
+/* Remove marcador padrão do summary */
+#notificacao-summary {
+  list-style: none;
+}
+
+#notificacao-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* animação ao abrir */
+.notificacao-master[open] .notificacao-submenu {
+  animation: abrirDropdown 0.2s ease;
+}
+
+@keyframes abrirDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .notificacao-submenu {
+    left: 10px;
+    right: 10px;
+    width: auto;
+  }
+}
+

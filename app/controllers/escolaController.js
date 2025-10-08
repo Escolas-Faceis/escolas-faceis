@@ -269,7 +269,8 @@ const escolaController = {
                 sobre_estrutura: results[0].sobre_estrutura, ingresso: results[0].ingresso,
                 img_perfil_id: results[0].img_perfil_id,
                 cidade: viaCep.localidade, estado: viaCep.uf, bairro: viaCep.bairro, logradouro: viaCep.logradouro,
-                id_escola: results[0].id_escola
+                id_escola: results[0].id_escola,
+                id_usuario: id
             }
             let avaliacoes = [];
             try {
@@ -285,7 +286,10 @@ const escolaController = {
             }
 
             let dadosNotificacao = null;
-            if (req.query.success) {
+            if (req.session.dadosNotificacao) {
+                dadosNotificacao = req.session.dadosNotificacao;
+                delete req.session.dadosNotificacao;
+            } else if (req.query.success) {
                 dadosNotificacao = {
                     titulo: "Avaliação realizada!",
                     mensagem: "Nova avaliação criada com sucesso, obrigada por apoiar nossa comunidade! &#128513",
@@ -312,7 +316,7 @@ const escolaController = {
 
         } catch (e) {
             console.log('ERRO NO PERFIL:', e);
-            res.render("pages/perfil-escola", { erros: { errors: [{ msg: "Erro ao carregar perfil." }] }, dadosNotificacao: null, valores: {}, cep: null });
+            res.render("pages/perfil-escola", { erros: { errors: [{ msg: "Erro ao carregar perfil." }] }, dadosNotificacao: null, valores: {}, cep: null, avaliacoes: [] });
         }
     },
 

@@ -161,8 +161,19 @@ CREATE TABLE denuncias (
     FOREIGN KEY (id_escola_denunciante) REFERENCES escolas(id_escola),
     FOREIGN KEY (id_usuario_denunciado) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_escola_denunciado) REFERENCES escolas(id_escola),
-    
+
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS notificacoes;
+CREATE TABLE notificacoes (
+    id_notificacao INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario_destinatario INT NOT NULL,
+    tipo_notificacao VARCHAR(50) NOT NULL,
+    mensagem TEXT NOT NULL,
+    data_notificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    lida BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (id_usuario_destinatario) REFERENCES usuarios(id_usuario)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 

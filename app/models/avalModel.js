@@ -24,6 +24,16 @@ const avalModel = {
         }
     },
 
+    findBySchool: async (id_escola) => {
+        try {
+            const [results] = await pool.query("SELECT * FROM avaliacoes WHERE id_escola = ? ORDER BY data_avaliacao DESC", [id_escola]);
+            return results;
+        } catch (error) {
+            console.error("Erro ao buscar avaliações da escola:", error);
+            return [];
+        }
+    },
+
 
 }
 

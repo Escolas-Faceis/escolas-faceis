@@ -156,6 +156,8 @@ router.post(
 
 router.post("/excluir-perfil", usuarioController.excluirPerfil);
 router.post("/avaliar", verificarUsuAutorizado(["A", "C", "E"], "partials/login-required"), avalController.criarAvaliacao);
+router.get("/notificacoes", verificarUsuAutenticado, avalController.getNotificacoes);
+router.post("/notificacoes/marcar-todas-lidas", verificarUsuAutenticado, avalController.marcarTodasLidas);
 
 router.get("/login", (req, res) => {
   res.render("pages/login", {
