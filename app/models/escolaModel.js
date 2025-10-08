@@ -295,13 +295,8 @@ const escolaModel = {
             await conn.beginTransaction();
 
             await conn.query(
-                `UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, senha_usuario = ?, img_perfil_id = ? WHERE id_usuario = ?`,
-                [dados.email_usuario, dados.email_usuario, dados.senha_usuario, dados.img_perfil_id, id_usuario]
-            );
-
-            await conn.query(
-                `UPDATE escolas SET nome_escola = ?, endereco = ?, numero = ?, cep = ?, cidade = ?, sobre_escola = ?, sobre_ensino = ?, sobre_estrutura = ?, tipo_ensino = ?, turnos = ?, rede = ?, instagram = ?, facebook = ?, whatsapp = ?, telefone_contato = ?, email_contato = ? WHERE id_usuario = ?`,
-                [dados.nome_escola, dados.endereco, dados.numero, dados.cep, dados.cidade, dados.sobre_escola, dados.sobre_ensino, dados.sobre_estrutura, dados.tipo_ensino, dados.turnos, dados.rede, dados.instagram, dados.facebook, dados.whatsapp, dados.telefone_contato, dados.email_contato, id_usuario]
+                `UPDATE escolas SET nome_escola = ?, endereco = ?, numero = ?, cep = ?, cidade = ?, estado = ?, sobre_escola = ?, sobre_ensino = ?, sobre_estrutura = ?, tipo_ensino = ?, turnos = ?, rede = ?, img_perfil_id = ? WHERE id_usuario = ?`,
+                [dados.nome_escola, dados.endereco, dados.numero, dados.cep, dados.cidade, dados.estado, dados.sobre_escola, dados.sobre_ensino, dados.sobre_estrutura, dados.tipo_ensino_str, dados.turnos_str, dados.redes_str, dados.img_perfil_id, id_usuario]
             );
 
             await conn.commit();
@@ -336,7 +331,7 @@ const escolaModel = {
                 "e.cnpj, e.tipo_ensino, e.turnos, e.rede, e.whatsapp, e.telefone, " +
                 "e.instagram, e.facebook, e.email, e.sobre_escola, e.sobre_ensino, " +
                 "e.sobre_estrutura, e.ingresso, e.img_perfil_id, " +
-                "i.caminho_imagem AS img_perfil_pasta, " +
+                "i.caminho_imagem AS img_perfil_pasta," +
                 "GROUP_CONCAT(DISTINCT ie.id_imagem) AS imagens_ids, " +
                 "GROUP_CONCAT(DISTINCT im.caminho_imagem) AS imagens_caminhos " +
                 "FROM escolas e " +

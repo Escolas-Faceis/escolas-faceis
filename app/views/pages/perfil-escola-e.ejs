@@ -156,40 +156,43 @@
     <section class="aval"><br>
         <h1>Avaliações</h1>
         <p class="avalinfo">Compartilhe suas impressões e experiência sobre essa instituição</p>
+        <form action="/avaliar" method="post">
+        <input type="hidden" name="id_usuario" value="<%= autenticado && autenticado.id_usuario || '' %>">
+        <input type="hidden" name="id_escola" value="<%= valores.id_escola %>">
         <span class="centro">
-        <section class="rating">
-            <input type="radio" name="rating" id="rating-5">
+        <section class="rating"> 
+            <input type="radio" value="5" name="rating" id="rating-5">
             <label for="rating-5"></label>
-            <input type="radio" name="rating" id="rating-4">
+            <input type="radio" value="4" name="rating" id="rating-4">
             <label for="rating-4"></label>
-            <input type="radio" name="rating" id="rating-3">
+            <input type="radio" value="3" name="rating" id="rating-3">
             <label for="rating-3"></label>
-            <input type="radio" name="rating" id="rating-2">
+            <input type="radio"value="2" name="rating" id="rating-2">
             <label for="rating-2"></label>
-            <input type="radio" name="rating" id="rating-1">
+            <input type="radio" value="1" name="rating" id="rating-1">
             <label for="rating-1"></label>
         </section>
         <section class="ratetext">
             <textarea name="ratetext" id="ratetext" maxlength="352" placeholder="Escreva aqui sua opinião"></textarea>
             <span id="caracteres">O número de caracteres foi atingido!</span>
         </section>
-        <section> <button type="submit" id="enviar">Enviar</button></section></span>
+        <section> <button type="submit" h id="enviar">Enviar</button></section></span></form>
 
         <section id="avaliacoes">
             <hr>
             <section id="caixa_comentarios">
-                <% for(let i=0; i<3; i++){ %>
+                <% avaliacoes.forEach(aval => { %>
                 <article id="comentario">
                     <section id="info_usuario_comentario">
                         <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
-                        <h3><%=  "Visitante" %></h3>
+                        <h3><%= aval.nome_usuario || "Visitante" %></h3>
                     </section>
-                    <p>• há 3 meses</p>
+                    <p>• <%= aval.data_formatada %></p>
                     <section id="texto">
-                        Aqui entra a avaliação do usuário e o que ele achou <img src="imagem/5estrelas.webp" id="estrelas">
+                        <%= aval.comentario %> <img src="imagem/<%= aval.nota %>estrelas.webp" id="estrelas">
                     </section>
                 </article>
-                <% } %>
+                <% }) %>
             </section>
         </section>
 

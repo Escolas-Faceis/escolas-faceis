@@ -485,7 +485,7 @@ button.prev:hover {
     margin: 0 5% 0 5%;
     padding: 24px 8px;
     margin-bottom: 40px;
-    background-color: var(--cinza-claro);
+    background-color: var(--fundo2);
   }
 
   input{

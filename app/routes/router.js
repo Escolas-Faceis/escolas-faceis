@@ -9,6 +9,7 @@ const escolaController = require("../controllers/escolaController");
 const loginController = require("../controllers/loginController");
 const admController = require("../controllers/admController");
 const usuarioModel = require("../models/usuarioModel");
+const avalController = require("../controllers/avalController");
 
 const uploadFile = require("../helpers/uploader")("app/public/imagem/uploads");
 
@@ -70,7 +71,7 @@ router.get("/navbar", (req, res) => res.render("partials/navbar"));
 router.get("/401", (req, res) => res.render("partials/401"));
 
 router.get("/encontre-escolas", escolaController.paginarEscolas);
-router.get("/perfil-escola", escolaController.mostrarPerfil);
+router.get("/perfil-escola", escolaController.mostrarPerfil, verificarUsuAutorizado(["A", "C", "E"], "partials/login-required"));
 
 router.get(
   "/editar-escola",
@@ -154,6 +155,7 @@ router.post(
 );
 
 router.post("/excluir-perfil", usuarioController.excluirPerfil);
+router.post("/avaliar", verificarUsuAutorizado(["A", "C", "E"], "partials/login-required"), avalController.criarAvaliacao);
 
 router.get("/login", (req, res) => {
   res.render("pages/login", {

@@ -1,10 +1,12 @@
 const escolaModel = require("../models/escolaModel");
+const avalModel = require("../models/avalModel");
 const moment = require("moment");
 const { body, validationResult } = require("express-validator");
 const { validarCNPJ, cnpjExiste, emailExiste } = require("../helpers/validacoes");
 const bcrypt = require("bcryptjs");
 var salt = bcrypt.genSaltSync(12);
 const https = require("https");
+const { verificarUsuAutorizado } = require("../models/autenticador_middleware");
 
 const escolaController = {
     regrasValidacaoEscola: [
@@ -265,19 +267,48 @@ const escolaController = {
                 instagram: results[0].instagram, facebook: results[0].facebook, email_contato: results[0].email,
                 sobre_escola: results[0].sobre_escola, sobre_ensino: results[0].sobre_ensino,
                 sobre_estrutura: results[0].sobre_estrutura, ingresso: results[0].ingresso,
-                img_perfil_id: results[0].img_perfil_id, 
-                cidade: viaCep.localidade, estado: viaCep.uf, bairro: viaCep.bairro, logradouro: viaCep.logradouro
+                img_perfil_id: results[0].img_perfil_id,
+                cidade: viaCep.localidade, estado: viaCep.uf, bairro: viaCep.bairro, logradouro: viaCep.logradouro,
+                id_escola: results[0].id_escola
+            }
+            let avaliacoes = [];
+            try {
+                const result = await avalModel.findBySchool(id);
+                if (result) {
+                    avaliacoes = result;
+                    avaliacoes.forEach(aval => {
+                        aval.data_formatada = moment(aval.data_avaliacao).fromNow();
+                    });
+                }
+            } catch (e) {
+                console.log('Erro ao buscar avaliações:', e);
+            }
 
+            let dadosNotificacao = null;
+            if (req.query.success) {
+                dadosNotificacao = {
+                    titulo: "Avaliação realizada!",
+                    mensagem: "Nova avaliação criada com sucesso, obrigada por apoiar nossa comunidade! &#128513",
+                    tipo: "success"
+                };
+            } else if (req.query.error) {
+                dadosNotificacao = {
+                    titulo: "Erro",
+                    mensagem: req.query.error,
+                    tipo: "error"
+                };
             }
 
             let view = "pages/perfil-escola";
             if (req.session.autenticado && req.session.autenticado.tipo === "E" && id == req.session.autenticado.id) {
+                verificarUsuAutorizado(["E"], "partials/401");
                 view = "pages/perfil-escola";
             } else {
+                verificarUsuAutorizado(["A", "C", "E"], "partials/login-required")
                 view = "pages/perfil-escola-e";
             }
 
-            res.render(view, { erros: null, dadosNotificacao: null, valores: campos, cep: cep });
+            res.render(view, { erros: null, dadosNotificacao: dadosNotificacao, valores: campos, cep: cep, avaliacoes: avaliacoes });
 
         } catch (e) {
             console.log('ERRO NO PERFIL:', e);

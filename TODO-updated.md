@@ -1,12 +1,5 @@
-# TODO for Cadastro Escola Update
-
-- [x] Rewrite cadastro-escola.css to match perfil_esc_edi.css standard
-- [x] Add progress bar HTML to cadastro-escola.ejs
-- [x] Update formMultiStep.js to handle progress bar highlighting
-- [x] Test responsiveness and form functionality
-- [x] Make form narrower
-- [x] Change progress bar to simple filling line
-- [x] Enhance buttons
-- [x] Make checkboxes in three columns
-- [x] Improve responsiveness for smaller screens
-- [x] Apply theme variables throughout
+- [x] Fix the `criarAvaliacao` method in `avalController.js` to properly render the school profile page with correct data after evaluation creation or errors, without modifying the `mostrarPerfil` method.
+  - Added helper function to fetch and process school data.
+  - Updated render calls to use school data instead of form data.
+  - Ensured correct view selection: always render "pages/perfil-escola-e" (external view) for evaluations.
+  - Added error handling for data fetching failures.
