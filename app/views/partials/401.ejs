@@ -65,6 +65,14 @@
             }
         }
     </style>
+
+    <script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.remove('tema-claro');
+        document.body.classList.add('tema-escuro');
+    }
+</script>
+
 </head>
 <body>
     <section class="dev-container">

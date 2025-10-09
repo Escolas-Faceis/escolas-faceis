@@ -66,6 +66,14 @@
         }
     </style>
 </head>
+
+    <script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.remove('tema-claro');
+        document.body.classList.add('tema-escuro');
+    }
+</script>
+
 <body>
     <section class="dev-container">
         <h2 class="msgDev">Ops! Página não encontrada.</h2>
