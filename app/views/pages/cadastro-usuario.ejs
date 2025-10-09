@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login.css">
+
     <link rel="stylesheet" href="css/cadastro-usuario.css">
     <link rel="icon" type="image/png" href="/imagem/favicon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
@@ -90,7 +90,7 @@
 
         <section id="form">
             <form action="/registro_post" method="POST">
-
+                <h2 style="font-size: 25px; color:#ff5c2a">Cadastro</h2>
                 <p>Nome</p>
                 <input type="text" name="name" id="name" value="<%= valores.name %>" class="<%= erroValidacao.name%>">
                 <span class="spanerro"><%=msgErro.name%></span>

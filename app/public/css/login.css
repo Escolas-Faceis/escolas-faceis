@@ -1,8 +1,8 @@
 
 :root {
-  --laranja: #f56d44;
-  --fundo: #ffffff;
-  --letras: #000000;
+  --laranja: #ff5c2a;
+  --fundo: #f5f5f5;
+  --letras: #02030a;
   --azulbase: #141c44;
   --azulsec: #77b6ea;
   --amarelo: #ffbc3e;
@@ -21,7 +21,7 @@
 
 .tema-escuro {
   --letras: #f5f5f5;
-  --fundo: #030303;
+  --fundo: #010207;
   transition: all 0.2s ease-in;
     --toggle-theme: white;
 }

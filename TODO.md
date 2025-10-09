@@ -1,3 +1,3 @@
-# TODO for Creating Login Required Page
-
-- [x] Create app/views/partials/login-required.ejs with message "Para fazer isso, você precisa fazer login" and two buttons: Login (/login) and Cadastro de Usuário (/cadastro-usuario), styled similarly to existing error partials.
+- [x] Atualizar variáveis CSS para corresponder a paletas.css
+- [x] Descomentar e ajustar estilos do formulário, inputs, botão e seção lateral
+- [x] Adicionar media queries para responsividade
