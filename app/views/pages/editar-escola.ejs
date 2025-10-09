@@ -6,6 +6,8 @@
     <title>Perfil Editavel Escola</title>
     <link rel="stylesheet" href="/css/perfil_esc_edi.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
@@ -13,6 +15,25 @@
 
 
 </head>
+<script>
+    function notify(title, text, type, position, timeout = 5000) {
+        new Notify({
+            status: type,
+            title: title,
+            text: text,
+            effect: 'fade',
+            speed: 500,
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: timeout,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: position
+        });
+    }
+</script>
 <body>
      <%- include('../partials/navbar'); %>
 
@@ -332,5 +353,11 @@
     }
   });
 </script>
+
+<% if (dadosNotificacao) { %>
+<script>
+    notify("<%= dadosNotificacao.titulo %>", "<%= dadosNotificacao.mensagem %>", "<%= dadosNotificacao.tipo %>", "center");
+</script>
+<% } %>
 
 </html>

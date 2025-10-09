@@ -294,6 +294,7 @@ const escolaModel = {
         const [result] = await pool.query(
             `UPDATE escolas
             SET nome_escola = ?,
+                endereco = ?,
                 numero = ?,
                 cep = ?,
                 sobre_escola = ?,
@@ -316,8 +317,6 @@ const escolaModel = {
                 dados.endereco,
                 dados.numero,
                 dados.cep,
-                dados.cidade,
-                dados.estado,
                 dados.sobre_escola,
                 dados.sobre_ensino,
                 dados.sobre_estrutura,
@@ -331,7 +330,7 @@ const escolaModel = {
                 dados.telefone,
                 dados.email,
                 dados.email_escola,
-                dados.senha_escola,   // ✅ senha incluída aqui
+                dados.senha_escola,
                 idUsuario
             ]
         );

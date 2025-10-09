@@ -41,6 +41,19 @@ const admModel = {
         }
     },
 
+        delete: async (dados) => {
+            try {
+                const [resultados] = await pool.query(
+                    "UPDATE usuarios SET status_usuario = 0 WHERE id_usuario = ? ", [dados]
+                )
+                return resultados;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        },
+
+
     findAllSchoolsData: async () => {
         try {
             const [escolas] = await pool.query(

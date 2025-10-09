@@ -71,7 +71,7 @@ router.get("/navbar", (req, res) => res.render("partials/navbar"));
 router.get("/401", (req, res) => res.render("partials/401"));
 
 router.get("/encontre-escolas", escolaController.paginarEscolas);
-router.get("/perfil-escola", escolaController.mostrarPerfil, verificarUsuAutorizado(["A", "C", "E"], "partials/login-required"));
+router.get("/perfil-escola", verificarUsuAutorizado(["A", "C", "E"], "partials/login-required"), escolaController.mostrarPerfil);
 
 router.get(
   "/editar-escola",
@@ -89,7 +89,11 @@ router.post(
   uploadFile("imagem_perfil_usu"),
   escolaController.regrasValidacaoEditarEscola,
   verificarUsuAutorizado(["E"], "partials/401"),
-  escolaController.gravarPerfil
+    async (req, res) => {
+    console.log("Route /editar_escola_post hit");
+    escolaController.gravarPerfil(req, res);
+  }
+
 );
 
 router.post(

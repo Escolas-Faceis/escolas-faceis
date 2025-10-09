@@ -8,7 +8,6 @@ var salt = bcrypt.genSaltSync(12);
 const https = require("https");
 const { verificarUsuAutorizado } = require("../models/autenticador_middleware");
 const { removeImg } = require("../helpers/removeImg");
-const { gravarPerfil } = require("./usuarioController");
 
 const escolaController = {
     regrasValidacaoEscola: [
@@ -238,6 +237,7 @@ const escolaController = {
             let results = await escolaModel.findId(id);
             console.log("Resultado da busca:", results.length > 0 ? "Escola encontrada" : "Escola não encontrada");
             if (results.length === 0) {
+                console.log("Escola não encontrada para o ID:", id);
                 return res.render("pages/index", { erros: null, dadosNotificacao: { titulo: "Erro", mensagem: "Escola não encontrada", tipo: "error" } });
 
             }
@@ -350,9 +350,24 @@ const escolaController = {
                 redes: results[0].rede ? results[0].rede.split(',') : []
             };
 
+            let dadosNotificacao = null;
+            if (req.query.success) {
+                dadosNotificacao = {
+                    titulo: "Perfil atualizado com sucesso",
+                    mensagem: req.query.success,
+                    tipo: "success"
+                };
+            } else if (req.query.error) {
+                dadosNotificacao = {
+                    titulo: "Erro",
+                    mensagem: req.query.error,
+                    tipo: "error"
+                };
+            }
+
             res.render("pages/editar-escola", {
                 erros: null,
-                dadosNotificacao: null,
+                dadosNotificacao: dadosNotificacao,
                 valores: valores
             });
         } catch (e) {
@@ -361,122 +376,16 @@ const escolaController = {
         }
     },
 
-//    gravarPerfilEscola: async (req, res) => {
-//     const erros = validationResult(req);
-//     const erroMulter = req.session.erroMulter;
-
-//     // Tratamento de erros de validação ou imagem
-//     if (!erros.isEmpty() || erroMulter != null) {
-//         let lista = !erros.isEmpty() ? erros : { formatter: null, errors: [] };
-//         if (erroMulter != null) {
-//             lista.errors.push(erroMulter);
-//             delete req.session.erroMulter;
-//         }
-//         return res.render("pages/editar-escola", { erros: lista, dadosNotificacao: null, valores: req.body });
-//     }
-
-//     try {
-//         // Buscar dados atuais da escola
-//         const currentSchool = await escolaModel.findId(req.session.autenticado.id);
-//         console.log("🔍 ID da sessão:", req.session.autenticado.id);
-
-//         // Montar novos dados com fallback
-//         const tiposEnsinoValues = Array.isArray(req.body.ensino) ? req.body.ensino : [req.body.ensino].filter(Boolean);
-//         const turnosValues = Array.isArray(req.body.turno) ? req.body.turno : [req.body.turno].filter(Boolean);
-//         const redesValues = Array.isArray(req.body.rede) ? req.body.rede : [req.body.rede].filter(Boolean);
-
-//         let dados = {
-//             nome_escola: req.body.nomedaescola,
-//             endereco: req.body.endereco,
-//             numero: req.body.adress_n,
-//             cep: req.body.cep,
-//             sobre_escola: req.body["Sobre a Escola"],
-//             sobre_ensino: req.body["Sobre o Ensino"],
-//             sobre_estrutura: req.body["Sobre a Estrutura"],
-//             tipo_ensino: tiposEnsinoValues.join(","),   // ✅ nomes certos agora
-//             turnos: turnosValues.join(","),             // ✅
-//             rede: redesValues.join(","),                // ✅
-//             instagram: req.body.instagram,
-//             facebook: req.body.facebook,
-//             whatsapp: req.body.whatsapp,
-//             telefone: req.body.telefone_contato,
-//             email: req.body.email_contato,
-//             email_escola: req.body.email,
-//             senha_escola: req.body.senha
-//                 ? bcrypt.hashSync(req.body.senha, salt)
-//                 : currentSchool[0].senha_escola,
-//             img_perfil_id: currentSchool[0].img_perfil_id,
-//         };
-
-//         // Se tiver upload de imagem, cria nova entrada e remove a antiga
-//         if (req.file) {
-//             const nomeImagem = req.file.originalname;
-//             const caminho = "app/public/imagem/uploads/" + req.file.filename;
-//             const newId = await escolaModel.insertImage(nomeImagem, caminho);
-//             dados.img_perfil_id = newId;
-//             if (currentSchool[0].img_perfil_id) {
-//                 removeImg(currentSchool[0].img_perfil_pasta);
-//             }
-//         }
-
-//         // Atualiza no banco
-//         const resultUpdate = await escolaModel.update(dados, req.session.autenticado.id);
-
-//         if (resultUpdate.affectedRows > 0) {
-//             // Atualiza sessão se imagem mudou
-//             if (req.file) {
-//                 const result = await escolaModel.findId(req.session.autenticado.id);
-//                 req.session.autenticado = {
-//                     autenticado: result[0].nome_escola,
-//                     id: result[0].id_usuario,
-//                     tipo: "E",
-//                     img_perfil_pasta: result[0].img_perfil_pasta
-//                         ? result[0].img_perfil_pasta.replace("app/public", "")
-//                         : null,
-//                 };
-//             }
-
-//             // Sucesso
-//             const msg = resultUpdate.changedRows >= 1 ? "Alterações Gravadas" : "Sem alterações";
-//             return res.render("pages/editar-escola", {
-//                 erros: null,
-//                 dadosNotificacao: {
-//                     titulo: "Perfil atualizado com sucesso",
-//                     mensagem: msg,
-//                     tipo: "success",
-//                 },
-//                 valores: req.body,
-//             });
-//         } else {
-//             return res.render("pages/editar-escola", {
-//                 erros: null,
-//                 dadosNotificacao: {
-//                     titulo: "Erro ao atualizar",
-//                     mensagem: "Nenhuma alteração foi feita.",
-//                     tipo: "error",
-//                 },
-//                 valores: req.body,
-//             });
-//         }
-//     } catch (e) {
-//         console.log("ERRO em gravarPerfilEscola:", e);
-//         return res.render("pages/editar-escola", {
-//             erros: { errors: [{ msg: "Erro interno no servidor." }] },
-//             dadosNotificacao: {
-//                 titulo: "Erro ao atualizar!",
-//                 mensagem: "Verifique os valores digitados.",
-//                 tipo: "error",
-//             },
-//             valores: req.body,
-//         });
-//     }
-// },
 
     gravarPerfil: async (req,res) => {
         console.log("gravarPerfil method called with req.body:", req.body);
+        console.log("Session autenticado:", req.session.autenticado);
          const erros = validationResult(req);
         const erroMulter = req.session.erroMulter;
+        console.log("Validation errors:", erros.array());
+        console.log("Multer error:", erroMulter);
         if (!erros.isEmpty() || erroMulter != null ) {
+            console.log("Validation failed, rendering with errors");
             lista =  !erros.isEmpty() ? erros : {formatter:null, errors:[]};
             if(erroMulter != null ){
                 lista.errors.push(erroMulter);
@@ -484,11 +393,15 @@ const escolaController = {
             }
             return res.render("pages/editar-escola", { erros: lista, dadosNotificacao: null, valores: req.body })
         }
+        console.log("Validation passed, proceeding to update");
         try {
+            console.log("Finding current school for ID:", req.session.autenticado.id);
             let currentSchool = await escolaModel.findId(req.session.autenticado.id);
+            console.log("Current school found:", currentSchool.length > 0 ? "Yes" : "No");
         const tiposEnsinoValues = Array.isArray(req.body.ensino) ? req.body.ensino : [req.body.ensino].filter(Boolean);
         const turnosValues = Array.isArray(req.body.turno) ? req.body.turno : [req.body.turno].filter(Boolean);
         const redesValues = Array.isArray(req.body.rede) ? req.body.rede : [req.body.rede].filter(Boolean);
+        console.log("Processed arrays - ensino:", tiposEnsinoValues, "turno:", turnosValues, "rede:", redesValues);
 
             var dados = {
             nome_escola: req.body.nomedaescola,
@@ -499,38 +412,40 @@ const escolaController = {
             sobre_escola: req.body["Sobre a Escola"],
             sobre_ensino: req.body["Sobre o Ensino"],
             sobre_estrutura: req.body["Sobre a Estrutura"],
-            tipo_ensino: tiposEnsinoValues.join(","),  
-            turnos: turnosValues.join(","),             
-            rede: redesValues.join(","),                
+            tipo_ensino: tiposEnsinoValues.join(","),
+            turnos: turnosValues.join(","),
+            rede: redesValues.join(","),
             instagram: req.body.instagram,
             facebook: req.body.facebook,
             whatsapp: req.body.whatsapp,
             telefone: req.body.telefone_contato,
             email: req.body.email_contato,
-            email_escola: req.body.email,
-            senha_escola: req.body.senha
-                ? bcrypt.hashSync(req.body.senha, salt)
-                : currentSchool[0].senha_escola,
             img_perfil_id: currentSchool[0].img_perfil_id,
-            }; console.log("Dados:"+dados)
+            };
+            if (req.body.senha) {
+                dados.senha_escola = bcrypt.hashSync(req.body.senha, salt);
+            }
+            console.log("Dados prepared:", dados)
             if (req.file) {
                 let nomeImagem = req.file.originalname;
                 let caminho = "app/public/imagem/uploads/" + req.file.filename;
                 let newId = await escolaModel.insertImage(nomeImagem, caminho);
                 dados.img_perfil_id = newId;
 
-                if (currentSchool[0].img_perfil_id != null) {
+                if (currentSchool[0].img_perfil_pasta) {
                     removeImg(currentSchool[0].img_perfil_pasta);
                 }
             }
+            console.log("About to update with dados:", dados, "id:", req.session.autenticado.id);
             let resultUpdate = await escolaModel.update(dados, req.session.autenticado.id);
+            console.log("Update result:", resultUpdate);
             if (resultUpdate.affectedRows > 0) {
                 if (resultUpdate.changedRows >= 1) {
                     var result = await escolaModel.findId(req.session.autenticado.id);
                     var autenticado = {
                         autenticado: result[0].nome_escola,
-                        id: result[0].id_usuario,
-                        tipo: result[0].tipo_usuario,
+                        id: result[0].id_escola,
+                        tipo: "E",
                         img_perfil_banco: result[0].img_perfil_banco != null ? `data:image/jpeg;base64,${result[0].img_perfil_banco.toString('base64')}` : null,
                         img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace('app/public', '') : null,
                         cor_banner: result[0].cor_banner
@@ -556,17 +471,17 @@ const escolaController = {
                         sobre_ensino: result[0].sobre_ensino,
                         sobre_estrutura: result[0].sobre_estrutura,
                         ingresso: result[0].ingresso,
-                        img_perfil_pasta: result[0].img_perfil_pasta.replace("app/public", ""),
+                        img_perfil_pasta: result[0].img_perfil_pasta ? result[0].img_perfil_pasta.replace("app/public", "") : null,
                         img_perfil_banco: result[0].img_perfil_banco,
-                        senha: "", 
-                    };console.log("Campos: "+ campos)
+                        senha: "",
+                    };console.log("Campos:", campos)
                     res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos });
                 }else{
-                res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Sem alterações", tipo: "success" }, valores: req.body });
-                
+                res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Sem alterações", tipo: "success" }, valores: campos });
                 }
             } else {
-            res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Erro ao atualizar", mensagem: "Nenhuma alteração foi feita", tipo: "error" }, valores: req.body });
+            // Redirect to editar-escola page with notification query params
+            return res.redirect('pages/editar-escola', );
             }
 
     } catch (e) {
