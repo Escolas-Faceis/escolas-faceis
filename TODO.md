@@ -1,3 +1,7 @@
-- [x] Atualizar variáveis CSS para corresponder a paletas.css
-- [x] Descomentar e ajustar estilos do formulário, inputs, botão e seção lateral
-- [x] Adicionar media queries para responsividade
+- [ ] Add console.log at the start of gravarPerfil method to log method entry and req.body
+- [ ] Add console.log after validation checks to confirm validation passed
+- [ ] Add console.log after finding currentSchool to log if school was found
+- [ ] Add console.log before calling escolaModel.update to log data being updated
+- [ ] Add console.log after update to log the result
+- [ ] Add console.log in success branches to confirm success
+- [ ] Enhance console.log in catch block for better error logging

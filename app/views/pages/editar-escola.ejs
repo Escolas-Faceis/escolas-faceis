@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
     <link rel="stylesheet" href="/css/modal.css">
-    <script src="js.js" defer></script>
+
 
 </head>
 <body>
@@ -30,7 +30,7 @@
         <section class="dentro">
        
         <h2>Editar Perfil</h2>    
-         <form class="w-100 box" id="form-form" enctype="multipart/form-data">
+         <form class="w-100 box" id="form-form" action="/editar_escola_post" method="POST" enctype="multipart/form-data">
          <main class="w-100 box">
                 <section class="w-100 box">
                         <!-- image -->
@@ -41,17 +41,17 @@
                 </section>
             </main>
         <section>
-        <p id="nome_escola"><label for="escola">Nome da Escola</label></p>
+        <p id="nome_escola"><label for="nomedaescola">Nome da Escola</label></p>
         <input type="text" id="caixa_nome" name="nomedaescola" value="<%= valores.nomedaescola || '' %>">
 
-        <p id="nome_escola"><label for="escola">E-mail</label></p>
+        <p id="nome_escola"><label for="email">E-mail</label></p>
         <input type="text" id="caixa_nome" name="email" value="<%= valores.email || '' %>">
 
-        <p id="nome_escola"><label for="escola">CNPJ</label></p>
+        <p id="nome_escola"><label for="cnpj">CNPJ</label></p>
         <input type="text" id="caixa_nome" name="cnpj" placeholder="00.000.00/00000-00" disabled value="<%= valores.cnpj || '' %>">
 
-        <p id="nome_escola"><label for="escola">Senha (deixe em branco para não alterar)</label></p>
-        <input type="password" id="caixa_nome" name="senha" value="">
+        <p id="nome_escola"><label for="senha">Senha</label></p>
+        <input type="password" name="senha" id="senha" placeholder="Não preencha este campo para manter a senha atual">
             <!-- <section class="lado">
                 <p id="nome_escola">CEP</p> 
                 <input type="text" id="caixa_nome_lado" placeholder="00000-000" name="cep">
@@ -218,7 +218,7 @@
 <input type="text" id="caixa_nome" name="email_contato" placeholder="Usuario@gmail.com" value="<%= valores.email_contato || '' %>">
         
 <section id="salvar2">
-    <input type="submit" id="salvar_button" value="Salvar">
+    <button type="submit" id="salvar_button">Salvar</button>
 </section>
 </form> </section>
 
@@ -265,7 +265,7 @@
             reader.onload = function(e) {
                 $('#croppie-modal').css('display', 'flex');
                 croppieInstance = new Croppie(document.getElementById('croppie-container'), {
-                    viewport: { width: 200, height: 200, type: 'circle' },
+                    viewport: { width: 200, height: 200 },
                     boundary: { width: 300, height: 300 }
                 });
                 croppieInstance.bind({
@@ -298,38 +298,7 @@
         croppedBlob = null;
     });
 
-    $('form').on('submit', function(e) {
-        e.preventDefault();
-        var formData = new FormData();
-        $(this).find('input, textarea, select').each(function() {
-            if (this.type === 'file') return;
-            if (this.type === 'checkbox') {
-                if (this.checked) {
-                    formData.append(this.name, this.value);
-                }
-            } else {
-                formData.append(this.name, this.value);
-            }
-        });
-        if (croppedBlob) {
-            formData.append('imagem_perfil_usu', croppedBlob, 'cropped.jpg');
-        } else {
-            var file = $('#imagem_perfil_usu')[0].files[0];
-            if (file) formData.append('imagem_perfil_usu', file);
-        }
-        fetch('/editar_escola_post', {
-            method: 'POST',
-            body: formData
-        }).then(response => {
-            if (response.ok) {
-                window.location.href = '/editar-escola';
-            } else {
-                notify("Erro", "Falha ao salvar", "error", "center");
-            }
-        }).catch(err => {
-            notify("Erro", "Erro de rede", "error", "center");
-        });
-    });
+
 </script>
 
 <script>

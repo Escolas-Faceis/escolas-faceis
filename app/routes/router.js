@@ -76,23 +76,7 @@ router.get("/perfil-escola", escolaController.mostrarPerfil, verificarUsuAutoriz
 router.get(
   "/editar-escola",
   verificarUsuAutorizado(["E"], "partials/401"),
-  (req, res) => {
-    res.render("pages/editar-escola", {
-      erros: null,
-      dadosNotificacao: null,
-      valores: {
-        name_school: "",
-        adress: "",
-        adress_n: "",
-        city: "",
-        state: "",
-        email: "",
-        password: "",
-        reppassword: "",
-      },
-    
-    });
-  }
+  escolaController.mostrarEditarEscola
 );
 
 router.get("/planos", (req, res) => {
@@ -104,7 +88,8 @@ router.post(
   "/editar_escola_post",
   uploadFile("imagem_perfil_usu"),
   escolaController.regrasValidacaoEditarEscola,
-  verificarUsuAutorizado(["E"], "partials/401")
+  verificarUsuAutorizado(["E"], "partials/401"),
+  escolaController.gravarPerfil
 );
 
 router.post(

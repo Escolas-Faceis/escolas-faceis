@@ -289,26 +289,59 @@ const escolaModel = {
         },
 
 
-    update: async (dados, id_usuario) => {
-        const conn = await pool.getConnection();
-        try {
-            await conn.beginTransaction();
+    update: async (dados, idUsuario) => {
+    try {
+        const [result] = await pool.query(
+            `UPDATE escolas
+            SET nome_escola = ?,
+                numero = ?,
+                cep = ?,
+                sobre_escola = ?,
+                sobre_ensino = ?,
+                sobre_estrutura = ?,
+                tipo_ensino = ?,
+                turnos = ?,
+                rede = ?,
+                img_perfil_id = ?,
+                instagram = ?,
+                facebook = ?,
+                whatsapp = ?,
+                telefone = ?,
+                email = ?,
+                email_escola = ?,
+                senha_escola = ?
+            WHERE id_usuario = ?`,
+            [
+                dados.nome_escola,
+                dados.endereco,
+                dados.numero,
+                dados.cep,
+                dados.cidade,
+                dados.estado,
+                dados.sobre_escola,
+                dados.sobre_ensino,
+                dados.sobre_estrutura,
+                dados.tipo_ensino,
+                dados.turnos,
+                dados.rede,
+                dados.img_perfil_id,
+                dados.instagram,
+                dados.facebook,
+                dados.whatsapp,
+                dados.telefone,
+                dados.email,
+                dados.email_escola,
+                dados.senha_escola,   // ✅ senha incluída aqui
+                idUsuario
+            ]
+        );
+        return result;
+    } catch (error) {
+        console.error("Erro ao atualizar escola:", error);
+        return error;
+    }
+},
 
-            await conn.query(
-                `UPDATE escolas SET nome_escola = ?, endereco = ?, numero = ?, cep = ?, cidade = ?, estado = ?, sobre_escola = ?, sobre_ensino = ?, sobre_estrutura = ?, tipo_ensino = ?, turnos = ?, rede = ?, img_perfil_id = ? WHERE id_usuario = ?`,
-                [dados.nome_escola, dados.endereco, dados.numero, dados.cep, dados.cidade, dados.estado, dados.sobre_escola, dados.sobre_ensino, dados.sobre_estrutura, dados.tipo_ensino_str, dados.turnos_str, dados.redes_str, dados.img_perfil_id, id_usuario]
-            );
-
-            await conn.commit();
-            return { affectedRows: 1, changedRows: 1 };
-        } catch (error) {
-            await conn.rollback();
-            console.log(error);
-            return { affectedRows: 0, changedRows: 0 };
-        } finally {
-            conn.release();
-        }
-    },
 
     insertImage: async (nomeImagem, caminho) => {
         try {
@@ -322,6 +355,19 @@ const escolaModel = {
             return null;
         }
     },
+
+        insertImage: async (nome, caminho) => {
+            try {
+                const [resultados] = await pool.query(
+                    "INSERT INTO imagens (nome_imagem, caminho_imagem) VALUES (?, ?)",
+                    [nome, caminho]
+                );
+                return resultados.insertId;
+            } catch (erro) {
+                console.log(erro);
+                return false;
+            }
+        },
 
     findId: async (id) => {
         try {
