@@ -346,6 +346,34 @@ const escolaModel = {
             }
         },
 
+    insertCarouselImages: async (idEscola, files) => {
+        try {
+            // First, delete existing carousel images for the school
+            await pool.query("DELETE FROM imagens_escola WHERE id_escola = ?", [idEscola]);
+
+            // Insert new images
+            for (let file of files) {
+                let nomeImagem = file.originalname;
+                let caminho = "app/public/imagem/uploads/" + file.filename;
+                const [imageResult] = await pool.query(
+                    "INSERT INTO imagens (nome_imagem, caminho_imagem) VALUES (?, ?)",
+                    [nomeImagem, caminho]
+                );
+                let imageId = imageResult.insertId;
+
+                // Link image to school
+                await pool.query(
+                    "INSERT INTO imagens_escola (id_escola, id_imagem) VALUES (?, ?)",
+                    [idEscola, imageId]
+                );
+            }
+            return true;
+        } catch (error) {
+            console.error("Erro ao inserir imagens do carrossel:", error);
+            return false;
+        }
+    },
+
     findId: async (id) => {
         try {
             const [resultados] = await pool.query(
@@ -356,7 +384,7 @@ const escolaModel = {
                 "e.sobre_estrutura, e.ingresso, e.img_perfil_id, " +
                 "REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta," +
                 "GROUP_CONCAT(DISTINCT ie.id_imagem) AS imagens_ids, " +
-                "GROUP_CONCAT(DISTINCT im.caminho_imagem) AS imagens_caminhos " +
+                "GROUP_CONCAT(DISTINCT REPLACE(im.caminho_imagem, 'app/public', '')) AS imagens_caminhos " +
                 "FROM escolas e " +
                 "LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem " +
                 "LEFT JOIN imagens_escola ie ON e.id_escola = ie.id_escola " +

@@ -451,6 +451,15 @@ const escolaController = {
                     removeImg(currentSchool[0].img_perfil_pasta);
                 }
             }
+
+            // Handle carousel images
+            if (req.files && req.files.imagens_carrossel && req.files.imagens_carrossel.length > 0) {
+                let success = await escolaModel.insertCarouselImages(currentSchool[0].id_escola, req.files.imagens_carrossel);
+                if (!success) {
+                    console.log("Erro ao salvar imagens do carrossel");
+                    // Optionally handle error, but continue with update
+                }
+            }
             let resultUpdate = await escolaModel.update(dados, req.session.autenticado.id);
             if (resultUpdate.affectedRows > 0) {
                 var result = await escolaModel.findId(req.session.autenticado.id);

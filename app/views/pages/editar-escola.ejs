@@ -47,6 +47,37 @@
       </aside>
     </aside>
 
+    <!-- Croppie modals for carousel images -->
+    <aside class="modal" id="croppie-modal-carousel-1">
+      <aside class="modal-content">
+        <span class="close-modal" id="close-croppie-carousel-1">&times;</span>
+        <aside id="croppie-container-carousel-1"></aside>
+        <section class="btn">
+        <button class="btns" id="crop-btn-carousel-1">Cortar</button>
+        <button class="btns" id="cancel-btn-carousel-1">Cancelar</button></section>
+      </aside>
+    </aside>
+
+    <aside class="modal" id="croppie-modal-carousel-2">
+      <aside class="modal-content">
+        <span class="close-modal" id="close-croppie-carousel-2">&times;</span>
+        <aside id="croppie-container-carousel-2"></aside>
+        <section class="btn">
+        <button class="btns" id="crop-btn-carousel-2">Cortar</button>
+        <button class="btns" id="cancel-btn-carousel-2">Cancelar</button></section>
+      </aside>
+    </aside>
+
+    <aside class="modal" id="croppie-modal-carousel-3">
+      <aside class="modal-content">
+        <span class="close-modal" id="close-croppie-carousel-3">&times;</span>
+        <aside id="croppie-container-carousel-3"></aside>
+        <section class="btn">
+        <button class="btns" id="crop-btn-carousel-3">Cortar</button>
+        <button class="btns" id="cancel-btn-carousel-3">Cancelar</button></section>
+      </aside>
+    </aside>
+
     <section class="caixa">
         <section class="dentro">
        
@@ -55,11 +86,14 @@
          <main class="w-100 box">
                 <section class="w-100 box">
                         <!-- image -->
-                        <section class="image-upload box">
+                <section class="image-upload box">
                              <img class="img-perfil fototo"  id="img-preview" src="<%= valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" alt="Foto de Perfil do Usuário">
                              <input type="file" name="imagem_perfil_usu" id="imagem_perfil_usu" style="display:none;">
                         </section>
-                </section>
+
+
+
+                </section>   
             </main>
         <section>
         <p id="nome_escola"><label for="nomedaescola">Nome da Escola</label></p>
@@ -99,6 +133,42 @@
 
         <!-- <p id="nome_escola"><label for="escola">Cidade</label></p>
         <input type="text" id="caixa_nome" name="cidade" value="<%= valores.cidade || '' %>"> -->
+
+                <section class="carrossel">                 
+                        <section class="carousel-preview-section">
+                            <h3>Carrossel</h3>
+                            <div class="carousel-preview">
+                                <div class="slides">
+                                    <div class="slide">
+                                        <img id="preview-slide-1" src="../imagem/placeholder.png" alt="Slide 1">
+                                    </div>
+                                    <div class="slide">
+                                        <img id="preview-slide-2" src="../imagem/placeholder.png" alt="Slide 2">
+                                    </div>
+                                    <div class="slide">
+                                        <img id="preview-slide-3" src="../imagem/placeholder.png" alt="Slide 3">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                                                <section class="carousel-upload box">
+
+                            <div class="carousel-previews">
+                                <div class="preview-item">
+                                    <img id="carousel-preview-1" src="../imagem/placeholder.png" alt="Preview 1">
+                                    <input type="file" name="imagens_carrossel" id="carousel-input-1" accept="image/*">
+                                </div>
+                                <div class="preview-item">
+                                    <img id="carousel-preview-2" src="../imagem/placeholder.png" alt="Preview 2">
+                                    <input type="file" name="imagens_carrossel" id="carousel-input-2" accept="image/*">
+                                </div>
+                                <div class="preview-item">
+                                    <img id="carousel-preview-3" src="../imagem/placeholder.png" alt="Preview 3">
+                                    <input type="file" name="imagens_carrossel" id="carousel-input-3" accept="image/*">
+                                </div>
+                            </div>
+                        </section>
+                </section>
             
         <p id="nome_escola"><label for="sobre">Sobre a Escola</label></p>
         <textarea name="Sobre a Escola" id="sobre" class="area"><%= valores['Sobre a Escola'] || '' %></textarea>
@@ -318,6 +388,108 @@
         if (croppieInstance) croppieInstance.destroy();
         croppedBlob = null;
     });
+
+    // Carousel image cropping
+    var croppieInstances = {};
+    var croppedBlobs = {};
+
+    for (let i = 1; i <= 3; i++) {
+        $('#carousel-input-' + i).on('change', function() {
+            var index = this.id.split('-')[2];
+            var file = this.files[0];
+            if (file) {
+                if (!file.type.startsWith('image/')) {
+                    alert("Apenas arquivos de imagem são permitidos!");
+                    return;
+                }
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#croppie-modal-carousel-' + index).css('display', 'flex');
+                    croppieInstances[index] = new Croppie(document.getElementById('croppie-container-carousel-' + index), {
+                        viewport: { width: 300, height: 200 },
+                        boundary: { width: 400, height: 300 }
+                    });
+                    croppieInstances[index].bind({
+                        url: e.target.result
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        $('#crop-btn-carousel-' + i).on('click', function() {
+            var index = this.id.split('-')[3];
+            croppieInstances[index].result('blob').then(function(blob) {
+                croppedBlobs[index] = blob;
+                var url = URL.createObjectURL(blob);
+                $('#carousel-preview-' + index).attr('src', url);
+                $('#preview-slide-' + index).attr('src', url);
+                // Create new File from blob and set to input
+                var newFile = new File([blob], 'cropped-carousel-' + index + '.png', { type: 'image/png' });
+                var dt = new DataTransfer();
+                dt.items.add(newFile);
+                $('#carousel-input-' + index)[0].files = dt.files;
+                $('#croppie-modal-carousel-' + index).hide();
+                croppieInstances[index].destroy();
+            });
+        });
+
+        $('#cancel-btn-carousel-' + i).on('click', function() {
+            var index = this.id.split('-')[3];
+            $('#croppie-modal-carousel-' + index).hide();
+            if (croppieInstances[index]) croppieInstances[index].destroy();
+            croppedBlobs[index] = null;
+        });
+
+        $('#close-croppie-carousel-' + i).on('click', function() {
+            var index = this.id.split('-')[3];
+            $('#croppie-modal-carousel-' + index).hide();
+            if (croppieInstances[index]) croppieInstances[index].destroy();
+            croppedBlobs[index] = null;
+        });
+    }
+
+    // Carousel preview auto-slide
+    let currentSlide = 0;
+    const slideElements = $('.carousel-preview .slide');
+    const slides = $('.carousel-preview .slides');
+
+    function showSlide(index) {
+        slides.css('transform', `translateX(-${index * 100}%)`);
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide < slideElements.length - 1) ? currentSlide + 1 : 0;
+        showSlide(currentSlide);
+    }
+
+    // Auto-slide every 3 seconds
+    setInterval(nextSlide, 3000);
+
+    // Set default images based on theme
+    function setDefaultImages() {
+        const isDark = document.body.classList.contains('tema-escuro');
+        const defaults = isDark ? ['image2.svg', 'image4.svg', 'image6.svg'] : ['image1.svg', 'image3.svg', 'image5.svg'];
+        for (let i = 1; i <= 3; i++) {
+            const slideImg = $('#preview-slide-' + i);
+            const previewImg = $('#carousel-preview-' + i);
+            if (slideImg.attr('src') === '../imagem/placeholder.png') {
+                slideImg.attr('src', '../imagem/' + defaults[i-1]);
+            }
+            if (previewImg.attr('src') === '../imagem/placeholder.png') {
+                previewImg.attr('src', '../imagem/' + defaults[i-1]);
+            }
+        }
+    }
+
+    // Set on load
+    setDefaultImages();
+
+    // Listen for theme change (assuming theme toggle adds/removes class)
+    // If there's a theme toggle button, it should trigger this
+    // For now, assume it's manual, but to make it dynamic, perhaps poll or use mutation observer
+    // Simple way: call setDefaultImages when needed, but since no toggle in this file, set on load
 
 
 </script>
