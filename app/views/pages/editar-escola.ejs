@@ -56,7 +56,7 @@
                 <section class="w-100 box">
                         <!-- image -->
                         <section class="image-upload box">
-                             <img class="img-perfil fototo"  id="img-preview" src="<%= valores.img_perfil_banco || valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" alt="Foto de Perfil do Usuário">
+                             <img class="img-perfil fototo"  id="img-preview" src="<%= valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" alt="Foto de Perfil do Usuário">
                              <input type="file" name="imagem_perfil_usu" id="imagem_perfil_usu" style="display:none;">
                         </section>
                 </section>
@@ -97,9 +97,9 @@
         <p id="nome_escola"><label for="escola">Endereço</label></p>
         <input type="text" id="caixa_nome" name="endereco" value="<%= valores.endereco || '' %>">
 
-        <p id="nome_escola"><label for="escola">Cidade</label></p>
-        <input type="text" id="caixa_nome" name="cidade" value="<%= valores.cidade || '' %>">
-
+        <!-- <p id="nome_escola"><label for="escola">Cidade</label></p>
+        <input type="text" id="caixa_nome" name="cidade" value="<%= valores.cidade || '' %>"> -->
+            
         <p id="nome_escola"><label for="sobre">Sobre a Escola</label></p>
         <textarea name="Sobre a Escola" id="sobre" class="area"><%= valores['Sobre a Escola'] || '' %></textarea>
 

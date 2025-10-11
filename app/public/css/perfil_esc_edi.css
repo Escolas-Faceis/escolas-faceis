@@ -119,7 +119,8 @@ label{
 }
 
 #caixa_nome, 
-#cep, 
+#cep,
+#senha, 
 #num, 
 #caixa_nome_lado, 
 #sobre {
@@ -135,7 +136,8 @@ label{
 
 #caixa_nome:focus, 
 #cep:focus, 
-#num:focus, 
+#num:focus,
+#senha:focus, 
 #caixa_nome_lado:focus, 
 #sobre:focus {
     border-color: var(--laranja);

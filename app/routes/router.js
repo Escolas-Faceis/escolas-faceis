@@ -119,6 +119,10 @@ router.get(
   }
 );
 
+router.get("/perfil-usuario", (req, res) => {
+  usuarioController.mostrarPerfil(req, res);
+});
+
 router.get(
   "/info",
   verificarUsuAutorizado(["A", "C"], "partials/401"),
@@ -145,6 +149,7 @@ router.post(
 
 router.post("/excluir-perfil", usuarioController.excluirPerfil);
 router.post("/avaliar", verificarUsuAutorizado(["A", "C", "E"], "partials/login-required"), avalController.criarAvaliacao);
+router.get('/avaliacoes/:id_escola', avalController.listarAvaliacoesPorEscola);
 router.get("/notificacoes", verificarUsuAutenticado, avalController.getNotificacoes);
 router.post("/notificacoes/marcar-todas-lidas", verificarUsuAutenticado, avalController.marcarTodasLidas);
 

@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="css/perfil.css">
     <link rel="stylesheet" href="css/aval.css">
     <link rel="stylesheet" href="css/vizu.css">
-    <!-- <link rel="stylesheet" href="css/carrossel-perfil.css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+
 </head>
 <script>
         function notify(title, text, type, position, timeout = 5000) {
@@ -48,45 +48,7 @@
         
     %>
 
-
-
-
 <body>
-     <%
-    let  msgErro = "";
-    let  erroValidacao =  {"nota":"","comentario":""};
-    let  avisoErro =  {"nota":"","comentario":""};
-    if(erros) {
-        erros.errors.forEach(function(erro) {
-            if (erro.path == "nota") {
-                erroValidacao.nota = "erro",
-                avisoErro.nota = erro.msg
-                msgErro += `* ${erro.msg} <br>`;
-            }
-            if (erro.path == "comentario") {
-                erroValidacao.comentario = "erro",
-                avisoErro.comentario = erro.msg
-                msgErro += `* ${erro.msg} <br>`;
-            }
-        })
-       if(msgErro != ""){
-        %>
-        <script>
-                let msgErro ="<%= msgErro %>"
-                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"),
-                 "error", "center", 5000)                        
-            </script>
-        <%
-        }
-    }
-    if (dadosNotificacao) { %>
-        <script>
-                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
-                if("<%= dadosNotificacao.tipo %>" == "success"){
-                    setTimeout(function(){window.location="/sair"}, 3000)
-                }                        
-        </script>
-    <% } %>
     <%- include('../partials/navbar'); %>
 
     <section class="perfil-container">
@@ -109,10 +71,10 @@
   <br>
   <%= valores.cidade %> - <%= valores.estado %>
   <br> <br>
-  <!-- CEP: <%= cep %> -->
 </p>
                     <p class="instituicao "><%= valores.redes %></p>
-                    <p class="ingresso"><%= valores.ingresso || '' %></p>                    </section>
+                    <p class="ingresso"><%= valores.ingresso || '' %></p>
+                    </section>
             </section>
         </section>
         <section class="slider">
@@ -163,15 +125,15 @@
     <hr>
     <section class="ultimo_tamanho">
     <section class="informacao">
-        <h1 class="titulo-contato">Sobre a Escola</h1>
+        <h1 class="titulo-contato left" >Sobre a Escola</h1>
     <article class="descricao2">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= valores.sobre || 'Este perfil ainda não escreveu nada sobre sua instituição.' %>
+        <%= valores.sobre_escola || 'Este perfil ainda não escreveu nada sobre sua instituição.' %>
     </article>
-        <h1 class="titulo-contato">Sobre o Ensino</h1>
+        <h1 class="titulo-contato left">Sobre o Ensino</h1>
         <ul class="listinha">
             <%= valores.sobre_ensino || 'Este perfil ainda não escreveu nada sobre seu ensino.' %>
         </ul>
-        <h1 class="titulo-contato">Sobre a Estrutura</h1>
+        <h1 class="titulo-contato left">Sobre a Estrutura</h1>
         <ul class="listinha">
             <%= valores.sobre_estrutura || 'Este perfil ainda não escreveu nada sobre sua estrutura.' %>
 
@@ -181,20 +143,20 @@
 <section class="lado">
     <section class="contatos">
         <h1 class="titulo-contato">Contato</h1>
-        <section class="formas-contato">
-            <figure><a href="<%=valores.instagram%> || https://www.instagram.com/" target="_blank"><img src="imagem/i1.svg" alt="Instagram" class="social-media" id="insta"></a></figure>
-            <figure><a href="<%=valores.whatsapp%> || https://www.whatsapp.com" target="_blank"><img src="imagem/w1.svg" alt="WhattsApp" class="social-media" id="what"></a></figure>
-            <figure><a href="<%=valores.whatsapp%> ||https://www.facebook.com" target="_blank"><img src="imagem/f1.svg" alt="Facebook" class="social-media" id="face"></a></figure>
-            <figure><a href="tel:<%=valores.telefone%> || '' " target="_blank"><img src="imagem/t1.svg"class="social-media" alt="Telefone" id="telefone"></a></figure>
-            <figure><a href="mailto:<%=valores.email%> || '' " target="_blank"><img src="imagem/e1.svg"class="social-media" alt="Email" id="email"></a></figure>
-        </section>
+            <section class="formas-contato">
+                <figure><a href="<%=valores.instagram%> || https://www.instagram.com/" target="_blank"><img src="imagem/i1.svg" alt="Instagram" class="social-media" id="insta"></a></figure>
+                <figure><a href="<%=valores.whatsapp%> || https://www.whatsapp.com" target="_blank"><img src="imagem/w1.svg" alt="WhattsApp" class="social-media" id="what"></a></figure>
+                <figure><a href="<%=valores.whatsapp%> ||https://www.facebook.com" target="_blank"><img src="imagem/f1.svg" alt="Facebook" class="social-media" id="face"></a></figure>
+                <figure><a href="tel:<%=valores.telefone%> || '' " target="_blank"><img src="imagem/t1.svg"class="social-media" alt="Telefone" id="telefone"></a></figure>
+                <figure><a href="mailto:<%=valores.email%> || '' " target="_blank"><img src="imagem/e1.svg"class="social-media" alt="Email" id="email"></a></figure>
+            </section>
     </section>
     <section class="contatos">
         <h1 class="titulo-contato">Acessibilidade</h1>
         <section class="formas-contato">
-            <figure><a href="#" target="_blank"><img src="imagem/bengala.png" alt="Instagram" class="social-media" id="#"></a></figure>
-            <figure><a href="#" target="_blank"><img src="imagem/lingua-de-sinais.png" alt="WhattsApp" class="social-media" id="#"></a></figure>
-            <figure><a href="#" target="_blank"><img src="imagem/acessibilidade-cadeira-de-rodas.png" alt="Facebook" class="social-media" id= "#"></a></figure>
+            <section class="tooltip"><figure><a href="#" target="_blank"><img src="imagem/bengala.png" alt="Apoio para deficientes visuais" class="social-media" id="#"></a></figure><span class="tooltip-text">Apoio para deficientes visuais</span></section>
+            <section class="tooltip"><figure><a href="#" target="_blank"><img src="imagem/lingua-de-sinais.png" alt="Libras" class="social-media" id="#"></a></figure><span class="tooltip-text">Libras - Língua Brasileira de Sinais</span></section>
+            <section class="tooltip"><figure><a href="#" target="_blank"><img src="imagem/acessibilidade-cadeira-de-rodas.png" alt="Acesso para cadeirantes" class="social-media" id= "#"></a></figure><span class="tooltip-text">Acesso para cadeirantes</span></section>
         </section>
     </section>
     <section class="contatos">
@@ -208,24 +170,34 @@
 </section>
 
     <script src="script.js"></script>
-    <hr id="div">
+    <hr id="section">
+
+    <section class="media-avaliacoes">
+        <h2>Média das Avaliações</h2>
+        <section class="estrelas-media">
+            <% for(let i=1; i<=5; i++) { %>
+                <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %>
+            <% } %>
+        </section>
+        <p><%= Math.round(mediaAvaliacao.media) %> / 5 (baseado em <%= mediaAvaliacao.totalAvaliacoes %> avaliações)</p>
+    </section>
+
     <section class="aval"><br>
-        <section class="form-container">
         <h1>Avaliações</h1>
         <p class="avalinfo">Compartilhe suas impressões e experiência sobre essa instituição</p>
         <form action="/avaliar" method="post">
-        <input type="hidden" name="id_usuario" value="<%= autenticado && autenticado.id_usuario || '' %>">
+        <input type="hidden" name="id_usuario" value="<%= autenticado && autenticado.id || '' %>">
         <input type="hidden" name="id_escola" value="<%= valores.id_escola %>">
         <input type="hidden" name="id_usuario_escola" value="<%= valores.id_usuario %>">
         <span class="centro">
-        <section class="rating"> 
+        <section class="rating">
             <input type="radio" value="5" name="rating" id="rating-5">
             <label for="rating-5"></label>
             <input type="radio" value="4" name="rating" id="rating-4">
             <label for="rating-4"></label>
             <input type="radio" value="3" name="rating" id="rating-3">
             <label for="rating-3"></label>
-            <input type="radio"value="2" name="rating" id="rating-2">
+            <input type="radio" value="2" name="rating" id="rating-2">
             <label for="rating-2"></label>
             <input type="radio" value="1" name="rating" id="rating-1">
             <label for="rating-1"></label>
@@ -234,7 +206,7 @@
             <textarea name="ratetext" id="ratetext" maxlength="352" placeholder="Escreva aqui sua opinião"></textarea>
             <span id="caracteres">O número de caracteres foi atingido!</span>
         </section>
-        <section> <button type="submit" h id="enviar">Enviar</button></section></span></form>
+        <section> <button type="submit" id="enviar">Enviar</button></section></span></form>
 
         <section id="avaliacoes">
             <hr>
@@ -242,17 +214,23 @@
                 <% avaliacoes.forEach(aval => { %>
                 <article id="comentario">
                     <section id="info_usuario_comentario">
-                        <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
-                        <h3><%= aval.nome_usuario || "Visitante" %></h3>
+                        <a href="/perfil-usuario?id=<%= aval.id_usuario %>">
+                            <img src="<%= aval.img_perfil_banco && aval.img_perfil_banco.length > 0 ? `data:image/jpeg;base64,${aval.img_perfil_banco.toString('base64')}` : aval.img_perfil_pasta ? aval.img_perfil_pasta.replace('app/public', '') : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="foto_comentario">
+                        </a>
+                        <h3><a href="/perfil-usuario?id=<%= aval.id_usuario %>"><%= aval.nome_usuario || "Visitante" %></a></h3>
                     </section>
                     <p>• <%= aval.data_formatada %></p>
                     <section id="texto">
-                        <%= aval.comentario %> <img src="imagem/<%= aval.nota %>estrelas.webp" id="estrelas">
+                        <%= aval.comentario %>
+                        <section id="estrelas_bottom">
+                            <% for (let i = 1; i <= 5; i++) { %>
+                                <% if (i <= aval.nota) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %>
+                            <% } %>
+                        </section>
                     </section>
                 </article>
                 <% }) %>
             </section>
-        </section>
         </section>
 
     </section>
@@ -303,6 +281,105 @@
     const observer = new MutationObserver(updateSocialMediaImages);
     observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
+    // AJAX form submission for reviews
+    const form = document.querySelector('form[action="/avaliar"]');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            try {
+                const response = await fetch('/avaliar', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: formData
+                });
+                const data = await response.json();
+                if (data.success) {
+                    // Update average
+                    const mediaSection = document.querySelector('.estrelas-media');
+                    if (mediaSection) {
+                        const stars = mediaSection.querySelectorAll('span');
+                        const rounded = Math.round(data.mediaAvaliacao.media);
+                        stars.forEach((star, i) => {
+                            if (i < rounded) {
+                                star.className = 'star-filled';
+                                star.textContent = '★';
+                            } else {
+                                star.className = 'star-empty';
+                                star.textContent = '☆';
+                            }
+                        });
+                        const p = mediaSection.nextElementSibling;
+                        if (p) {
+                            p.textContent = `${Math.round(data.mediaAvaliacao.media)} / 5 (baseado em ${data.mediaAvaliacao.total} avaliações)`;
+                        }
+                    }
+                    // Add new review
+                    const caixa = document.getElementById('caixa_comentarios');
+                    if (caixa) {
+                        const article = document.createElement('article');
+                        article.id = 'comentario';
+                        article.innerHTML = `
+                            <section id="info_usuario_comentario">
+                                <a href="/perfil-usuario?id=${data.newAval.id_usuario}">
+                                    <img src="${data.newAval.img_perfil_banco ? `data:image/jpeg;base64,${data.newAval.img_perfil_banco.toString('base64')}` : data.newAval.img_perfil_pasta ? data.newAval.img_perfil_pasta.replace('app/public', '') : 'https://cdn-icons-png.flaticon.com/512/219/219969.png'}" id="foto_comentario">
+                                </a>
+                                <h3><a href="/perfil-usuario?id=${data.newAval.id_usuario}">${data.newAval.nome_usuario || "Visitante"}</a></h3>
+                            </section>
+                            <p>• ${data.newAval.data_formatada}</p>
+                            <section id="texto">
+                                ${data.newAval.comentario}
+                                <section id="estrelas_bottom">
+                                    ${Array.from({length:5}, (_,i) => i < data.newAval.nota ? '<span class="star-filled">★</span>' : '<span class="star-empty">☆</span>').join('')}
+                                </section>
+                            </section>
+                        `;
+                        caixa.insertBefore(article, caixa.firstChild);
+                    }
+                    // Reset form
+                    form.reset();
+                    // Show success notification
+                    notify('Avaliação realizada!', 'Sua avaliação foi criada com sucesso!', 'success', 'top-right');
+                } else {
+                    notify('Erro ao avaliar!', data.message, 'error', 'top-right');
+                }
+            } catch (error) {
+                console.error('Error submitting review:', error);
+                notify('Erro ao avaliar!', 'Erro interno. Tente novamente.', 'error', 'top-right');
+            }
+        });
+    }
+
 </script>
 </body>
 </html>
+
+
+       <script>
+
+    temp = 2
+    let tempo_para_trocar;
+    var delay = 3 * 1000
+      
+    function ChangeSlide() {
+        var desaparecer = document.getElementById('slide'+temp);
+        temp += 1;
+        desaparecer.checked = false;
+        if(document.getElementById('slide'+temp) == null){temp = 1}
+        var aparecer = document.getElementById('slide'+temp)
+        aparecer.checked = true;
+        
+    }
+     
+    function AutoRun(){
+        if (!tempo_para_trocar) {
+            tempo_para_trocar = setInterval(ChangeSlide, delay);
+          }
+    }
+
+       </script>
+
+
+

@@ -115,3 +115,110 @@ font-weight: 300;
   justify-content: center;
 }
 
+/* Stars for display */
+.star-filled {
+  color: #fcd93a;
+  font-size: 24px;
+}
+
+.star-empty {
+  color: #e3e3e3;
+  font-size: 24px;
+}
+
+/* Reviews section styling */
+#avaliacoes {
+  margin-top: 20px;
+}
+
+#caixa_comentarios {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#comentario {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#info_usuario_comentario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#foto_comentario {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#info_usuario_comentario h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #141c44;
+}
+
+#info_usuario_comentario h3 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#info_usuario_comentario h3 a:hover {
+  text-decoration: underline;
+}
+
+#comentario p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+#texto {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+#estrelas_bottom {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+/* Media avaliações */
+.media-avaliacoes {
+  text-align: center;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.media-avaliacoes h2 {
+  color: #f56d44;
+  margin-bottom: 10px;
+}
+
+.estrelas-media {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.media-avaliacoes p {
+  color: #141c44;
+  font-weight: 300;
+}
+

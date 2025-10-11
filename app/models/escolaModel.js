@@ -14,10 +14,12 @@ const escolaModel = {
         try {
             const [linhas] = await pool.query(`
                 SELECT e.*, u.nome_usuario, u.email_usuario,
-                       COALESCE(AVG(a.nota), 0) AS media_avaliacao
+                       COALESCE(AVG(a.nota), 0) AS media_avaliacao,
+                       REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta
                 FROM escolas e
                 JOIN usuarios u ON e.id_usuario = u.id_usuario
                 LEFT JOIN avaliacoes a ON e.id_escola = a.id_escola
+                LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem
                 WHERE u.status_usuario = 1 AND u.tipo_usuario = "E"
                 GROUP BY e.id_escola, u.id_usuario
                 ORDER BY media_avaliacao DESC, e.nome_escola ASC
@@ -76,10 +78,12 @@ const escolaModel = {
             try {
                 const [linhas] = await pool.query(`
                     SELECT e.*, u.nome_usuario, u.email_usuario,
-                           COALESCE(AVG(a.nota), 0) AS media_avaliacao
+                           COALESCE(AVG(a.nota), 0) AS media_avaliacao,
+                           REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta
                     FROM escolas e
                     JOIN usuarios u ON e.id_usuario = u.id_usuario
                     LEFT JOIN avaliacoes a ON e.id_escola = a.id_escola
+                    LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem
                     WHERE u.status_usuario = 1 AND u.tipo_usuario = "E"
                     GROUP BY e.id_escola, u.id_usuario
                     ORDER BY media_avaliacao DESC, e.nome_escola ASC
@@ -112,10 +116,12 @@ const escolaModel = {
                 // Base query with joins
                 let query = `
                     SELECT e.*, u.nome_usuario, u.email_usuario,
-                           COALESCE(AVG(a.nota), 0) AS media_avaliacao
+                           COALESCE(AVG(a.nota), 0) AS media_avaliacao,
+                           REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta
                     FROM escolas e
                     JOIN usuarios u ON e.id_usuario = u.id_usuario
                     LEFT JOIN avaliacoes a ON e.id_escola = a.id_escola
+                    LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem
                     WHERE u.status_usuario = 1 AND u.tipo_usuario = "E"
                 `;
 
@@ -290,56 +296,28 @@ const escolaModel = {
 
 
     update: async (dados, idUsuario) => {
-    try {
-        const [result] = await pool.query(
-            `UPDATE escolas
-            SET nome_escola = ?,
-                endereco = ?,
-                numero = ?,
-                cep = ?,
-                sobre_escola = ?,
-                sobre_ensino = ?,
-                sobre_estrutura = ?,
-                tipo_ensino = ?,
-                turnos = ?,
-                rede = ?,
-                img_perfil_id = ?,
-                instagram = ?,
-                facebook = ?,
-                whatsapp = ?,
-                telefone = ?,
-                email = ?,
-                email_escola = ?,
-                senha_escola = ?
-            WHERE id_usuario = ?`,
-            [
-                dados.nome_escola,
-                dados.endereco,
-                dados.numero,
-                dados.cep,
-                dados.sobre_escola,
-                dados.sobre_ensino,
-                dados.sobre_estrutura,
-                dados.tipo_ensino,
-                dados.turnos,
-                dados.rede,
-                dados.img_perfil_id,
-                dados.instagram,
-                dados.facebook,
-                dados.whatsapp,
-                dados.telefone,
-                dados.email,
-                dados.email_escola,
-                dados.senha_escola,
-                idUsuario
-            ]
-        );
-        return result;
-    } catch (error) {
-        console.error("Erro ao atualizar escola:", error);
-        return error;
-    }
-},
+        try {
+            let setParts = [];
+            let values = [];
+            for (let key in dados) {
+                if (dados[key] !== undefined) {
+                    setParts.push(`${key} = ?`);
+                    values.push(dados[key]);
+                }
+            }
+            if (setParts.length === 0) {
+                // No fields to update
+                return { affectedRows: 0, changedRows: 0 };
+            }
+            const query = `UPDATE escolas SET ${setParts.join(', ')} WHERE id_usuario = ?`;
+            values.push(idUsuario);
+            const [result] = await pool.query(query, values);
+            return result;
+        } catch (error) {
+            console.error("Erro ao atualizar escola:", error);
+            return error;
+        }
+    },
 
 
     insertImage: async (nomeImagem, caminho) => {
@@ -376,7 +354,7 @@ const escolaModel = {
                 "e.cnpj, e.tipo_ensino, e.turnos, e.rede, e.whatsapp, e.telefone, " +
                 "e.instagram, e.facebook, e.email, e.sobre_escola, e.sobre_ensino, " +
                 "e.sobre_estrutura, e.ingresso, e.img_perfil_id, " +
-                "i.caminho_imagem AS img_perfil_pasta," +
+                "REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta," +
                 "GROUP_CONCAT(DISTINCT ie.id_imagem) AS imagens_ids, " +
                 "GROUP_CONCAT(DISTINCT im.caminho_imagem) AS imagens_caminhos " +
                 "FROM escolas e " +

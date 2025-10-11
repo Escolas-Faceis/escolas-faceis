@@ -41,13 +41,7 @@
     </details>
     <a href="/contato"><li>Contato</li></a>
     <section class="aside">
-        <% if(autenticado && autenticado.autenticado){ %>
-            <% if( autenticado && autenticado.tipo === "E" ) { %>
-                <a href="/perfil-escola"><li><img src="<%= autenticado.img_perfil_banco || autenticado.img_perfil_pasta || '../imagem/escola-padrao.png' %>" id="perfil-foto-navbar" alt="Foto de Perfil"></li></a>
-            <% } else if(autenticado && (autenticado.tipo === "C" || autenticado.tipo === "A")){%>
-                <a href="/perfil1"><li><img src="<%= autenticado.img_perfil_banco || autenticado.img_perfil_pasta || 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-navbar" alt="Foto de Perfil do Usuário"></li></a>
-            <%}%>
-            <% if( autenticado && autenticado.tipo === "E" ) { %>
+        <% if( autenticado && autenticado.tipo === "E" ) { %>
 <details class="notificacao-master">
   <summary id="notificacao-summary">
     <li class="notificacao-botao">
@@ -62,6 +56,13 @@
   </ul>
 </details>
 <% } %>
+        <% if(autenticado && autenticado.autenticado){ %>
+            <% if( autenticado && autenticado.tipo === "E" ) { %>
+                <a href="/perfil-escola"><li><img style="border-radius: 5px" src="<%= autenticado.img_perfil_banco || autenticado.img_perfil_pasta || '../imagem/escola-padrao.png' %>" id="perfil-foto-navbar" alt="Foto de Perfil"></li></a>
+            <% } else if(autenticado && (autenticado.tipo === "C" || autenticado.tipo === "A")){%>
+                <a href="/perfil1"><li><img src="<%= autenticado.img_perfil_banco || autenticado.img_perfil_pasta || 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-navbar" alt="Foto de Perfil do Usuário"></li></a>
+            <%}%>
+            
 
             <a href="/sair"><li>Sair</li></a>
 

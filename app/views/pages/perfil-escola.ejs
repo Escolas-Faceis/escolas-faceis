@@ -123,22 +123,22 @@
             </section>
         </section>
     </section>
-    <div class="banner-premium">
+    <section class="banner-premium">
   <p>🌟 Torne sua escola <strong>Premium</strong> e alcance muito mais alunos!</p>
   <a href="/planos" class="btn-premium">Saiba mais</a>
-</div>
+</section>
     <hr>
     <section class="ultimo_tamanho">
     <section class="informacao">
-        <h1 class="titulo-contato">Sobre a Escola</h1>
+        <h1 class="titulo-contato left" >Sobre a Escola</h1>
     <article class="descricao2">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= valores.sobre_escola || 'Este perfil ainda não escreveu nada sobre sua instituição.' %>
+        <%= valores.sobre_escola || 'Este perfil ainda não escreveu nada sobre sua instituição.' %>
     </article>
-        <h1 class="titulo-contato">Sobre o Ensino</h1>
+        <h1 class="titulo-contato left">Sobre o Ensino</h1>
         <ul class="listinha">
             <%= valores.sobre_ensino || 'Este perfil ainda não escreveu nada sobre seu ensino.' %>
         </ul>
-        <h1 class="titulo-contato">Sobre a Estrutura</h1>
+        <h1 class="titulo-contato left">Sobre a Estrutura</h1>
         <ul class="listinha">
             <%= valores.sobre_estrutura || 'Este perfil ainda não escreveu nada sobre sua estrutura.' %>
 
@@ -159,9 +159,9 @@
     <section class="contatos">
         <h1 class="titulo-contato">Acessibilidade</h1>
         <section class="formas-contato">
-            <figure><a href="#" target="_blank"><img src="imagem/bengala.png" alt="Instagram" class="social-media" id="#"></a></figure>
-            <figure><a href="#" target="_blank"><img src="imagem/lingua-de-sinais.png" alt="WhattsApp" class="social-media" id="#"></a></figure>
-            <figure><a href="#" target="_blank"><img src="imagem/acessibilidade-cadeira-de-rodas.png" alt="Facebook" class="social-media" id= "#"></a></figure>
+            <section class="tooltip"><figure><a href="#" target="_blank"><img src="imagem/bengala.png" alt="Apoio para deficientes visuais" class="social-media" id="#"></a></figure><span class="tooltip-text">Apoio para deficientes visuais</span></section>
+            <section class="tooltip"><figure><a href="#" target="_blank"><img src="imagem/lingua-de-sinais.png" alt="Libras" class="social-media" id="#"></a></figure><span class="tooltip-text">Libras - Língua Brasileira de Sinais</span></section>
+            <section class="tooltip"><figure><a href="#" target="_blank"><img src="imagem/acessibilidade-cadeira-de-rodas.png" alt="Acesso para cadeirantes" class="social-media" id= "#"></a></figure><span class="tooltip-text">Acesso para cadeirantes</span></section>
         </section>
     </section>
     <section class="contatos">
@@ -175,7 +175,18 @@
 </section>
 
     <script src="script.js"></script>
-    <hr id="div">
+    <hr id="section">
+
+    <section class="media-avaliacoes">
+        <h2>Média das Avaliações</h2>
+        <section class="estrelas-media">
+            <% for(let i=1; i<=5; i++) { %>
+                <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %>
+            <% } %>
+        </section>
+        <p><%= Math.round(mediaAvaliacao.media) %> / 5 (baseado em <%= mediaAvaliacao.totalAvaliacoes %> avaliações)</p>
+    </section>
+
     <section class="aval"><br>
         <h1>Avaliações</h1>
         <p class="avalinfo">Compartilhe suas impressões e experiência sobre essa instituição</p>
@@ -208,12 +219,19 @@
                 <% avaliacoes.forEach(aval => { %>
                 <article id="comentario">
                     <section id="info_usuario_comentario">
-                        <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
-                        <h3><%= aval.nome_usuario || "Visitante" %></h3>
+                        <a href="/perfil-usuario?id=<%= aval.id_usuario %>">
+                            <img src="<%= aval.img_perfil_banco && aval.img_perfil_banco.length > 0 ? `data:image/jpeg;base64,${aval.img_perfil_banco.toString('base64')}` : aval.img_perfil_pasta ? aval.img_perfil_pasta.replace('app/public', '') : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="foto_comentario">
+                        </a>
+                        <h3><a href="/perfil-usuario?id=<%= aval.id_usuario %>"><%= aval.nome_usuario || "Visitante" %></a></h3>
                     </section>
                     <p>• <%= aval.data_formatada %></p>
                     <section id="texto">
-                        <%= aval.comentario %> <img src="imagem/<%= aval.nota %>estrelas.webp" id="estrelas">
+                        <%= aval.comentario %>
+                        <section id="estrelas_bottom">
+                            <% for (let i = 1; i <= 5; i++) { %>
+                                <% if (i <= aval.nota) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %>
+                            <% } %>
+                        </section>
                     </section>
                 </article>
                 <% }) %>
@@ -268,72 +286,81 @@
     const observer = new MutationObserver(updateSocialMediaImages);
     observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
+    // AJAX form submission for reviews
+    const form = document.querySelector('form[action="/avaliar"]');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            try {
+                const response = await fetch('/avaliar', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: formData
+                });
+                const data = await response.json();
+                if (data.success) {
+                    // Update average
+                    const mediaSection = document.querySelector('.estrelas-media');
+                    if (mediaSection) {
+                        const stars = mediaSection.querySelectorAll('span');
+                        const rounded = Math.round(data.mediaAvaliacao.media);
+                        stars.forEach((star, i) => {
+                            if (i < rounded) {
+                                star.className = 'star-filled';
+                                star.textContent = '★';
+                            } else {
+                                star.className = 'star-empty';
+                                star.textContent = '☆';
+                            }
+                        });
+                        const p = mediaSection.nextElementSibling;
+                        if (p) {
+                            p.textContent = `${Math.round(data.mediaAvaliacao.media)} / 5 (baseado em ${data.mediaAvaliacao.total} avaliações)`;
+                        }
+                    }
+                    // Add new review
+                    const caixa = document.getElementById('caixa_comentarios');
+                    if (caixa) {
+                        const article = document.createElement('article');
+                        article.id = 'comentario';
+                        article.innerHTML = `
+                            <section id="info_usuario_comentario">
+                                <a href="/perfil-usuario?id=${data.newAval.id_usuario}">
+                                    <img src="${data.newAval.img_perfil_banco ? `data:image/jpeg;base64,${data.newAval.img_perfil_banco.toString('base64')}` : data.newAval.img_perfil_pasta ? data.newAval.img_perfil_pasta.replace('app/public', '') : 'https://cdn-icons-png.flaticon.com/512/219/219969.png'}" id="foto_comentario">
+                                </a>
+                                <h3><a href="/perfil-usuario?id=${data.newAval.id_usuario}">${data.newAval.nome_usuario || "Visitante"}</a></h3>
+                            </section>
+                            <p>• ${data.newAval.data_formatada}</p>
+                            <section id="texto">
+                                ${data.newAval.comentario}
+                                <section id="estrelas_bottom">
+                                    ${Array.from({length:5}, (_,i) => i < data.newAval.nota ? '<span class="star-filled">★</span>' : '<span class="star-empty">☆</span>').join('')}
+                                </section>
+                            </section>
+                        `;
+                        caixa.insertBefore(article, caixa.firstChild);
+                    }
+                    // Reset form
+                    form.reset();
+                    // Show success notification
+                    notify('Avaliação realizada!', 'Sua avaliação foi criada com sucesso!', 'success', 'top-right');
+                } else {
+                    notify('Erro ao avaliar!', data.message, 'error', 'top-right');
+                }
+            } catch (error) {
+                console.error('Error submitting review:', error);
+                notify('Erro ao avaliar!', 'Erro interno. Tente novamente.', 'error', 'top-right');
+            }
+        });
+    }
+
 </script>
 </body>
 </html>
 
-
-<img class="foto-escola" src="imagem/canarinho.jpg">
-<section class="nome-escola">Escola Canarinho</section>
-<section class="classificacao">Ensino Infantil</section>
-<img class="imagem-localizacao" src="imagem/lupinha.svg">
-<section class="local">Avenida Brasil, Nº 328 <br>
-    Piratininga - Osasco, SP</section>
-<section class="privado">Ensino Privado</section>
-<section class="mensalidade">Mensalidades a partir de R$215,32</section>
-
-
-    <header>
-        <section>
-            <ul class="slider">
-                <li>
-                    <input class="imagem" type="radio" id="slide1" name="slide" checked>
-                    <label for="slide1"></label> 
-                    <img src="imagem/primeira-carossel.jpeg">
-                </li>
-                <li>
-                    <input class="imagem" type="radio" id="slide2" name="slide" checked>
-                    <label for="slide2"></label> 
-                    <img src="imagem/terceira-carrossel.jpg">
-                </li>
-                <li>
-                    <input class="imagem" type="radio" id="slide3" name="slide" checked>
-                    <label for="slide3"></label> 
-                    <img src="imagem/segunda-carossel.jpg">
-                </li>
-                </ul>
-        </section>
-
-   <img class="foto-escola" src="imagem/canarinho.jpg">
-    <section class="nome-escola">Escola Canarinho</section>
-    <section class="classificacao">Ensino Infantil</section>
-    <img class="imagem-localizacao" src="imagem/lupinha.svg">
-    <section class="local">Avenida Brasil, Nº 328 <br>
-        Piratininga - Osasco, SP</section>
-    <section class="privado">Ensino Privado</section>
-    <section class="mensalidade">Mensalidades a partir de R$215,32</section>
-    
-    
-        <header>
-            <section>
-                <ul class="slider">
-                    <li>
-                        <input class="imagem" type="radio" id="slide1" name="slide" checked>
-                        <label for="slide1"></label> 
-                        <img src="imagem/primeira-carossel.jpeg">
-                    </li>
-                    <li>
-                        <input class="imagem" type="radio" id="slide2" name="slide" checked>
-                        <label for="slide2"></label> 
-                        <img src="imagem/terceira-carrossel.jpg">
-                    </li>
-                    <li>
-                        <input class="imagem" type="radio" id="slide3" name="slide" checked>
-                        <label for="slide3"></label> 
-                        <img src="imagem/segunda-carossel.jpg">
-                    </li>
-                    </ul>
-            </section>
 
        <script>
 
@@ -361,6 +388,3 @@
 
 
 
-    </header>
-<br><br><br><br><br><br><br><br><br><br><BR><BR>
-    <hr class="linha-quebra"> -->

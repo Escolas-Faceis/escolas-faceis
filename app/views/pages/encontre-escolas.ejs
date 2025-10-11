@@ -54,7 +54,7 @@
     <% if (escolas && escolas.length > 0) { %>
         <% escolas.forEach(escola => { %>
             <section class="short-prof" id="eded">
-                <figure><img src="imagem/escola-padrao.png" alt="logo da escola" class="logo"></figure>
+                <figure><img src="<%= escola.img_perfil_pasta || '../imagem/escola-padrao.png' %>" alt="logo da escola" class="logo"></figure>
                 <section class="info">
                     <h1 class="nome-escola"> <%= escola.nome_escola %> </h1>
 

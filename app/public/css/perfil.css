@@ -109,10 +109,16 @@ body {
     justify-content: center;
     margin: 20px 0;
     font-size: x-large;
+
+}
+.left{
+    justify-content: left;
+    text-align: left!important;
+    margin-top: 5%;
 }
 
-.listinha {
-    margin-left: 7%;
+.listinha, .descricao2 {
+    margin-left: 3%;
     font-size: 1rem;
 }
 
@@ -165,7 +171,8 @@ body {
 
 .slider {
     position: relative;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     height: 200px;
     overflow: hidden;
     border-radius: 10px;
@@ -189,14 +196,15 @@ body {
 }
 
 .slide img {
-    width: 400px;
+    width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
 .manual-navegacao, .navegacao-auto {
     position: absolute;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     display: flex;
     justify-content: center;
 }
@@ -263,6 +271,43 @@ body {
 }
 
 /* Responsividade */
+@media screen and (max-width: 1024px) {
+    .perfil-container {
+        max-width: 1000px;
+        padding: 15px;
+    }
+    .perfil {
+        gap: 24px;
+    }
+    .ft-perfil {
+        width: 180px;
+        height: 180px;
+    }
+    .slider {
+        width: 100%;
+        max-width: 350px;
+        height: 180px;
+    }
+    .slides {
+        height: 180px;
+    }
+    .slide img {
+        height: 180px;
+    }
+    .manual-navegacao, .navegacao-auto {
+        width: 350px;
+    }
+    .navegacao-auto {
+        margin-top: 160px;
+    }
+    .ultimo_tamanho {
+        gap: 15px;
+    }
+    .lado {
+        flex: 0 0 250px;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .perfil-container {
         flex-direction: column;
@@ -284,6 +329,9 @@ body {
         margin-left: 0;
         text-align: center;
         font-size: 1rem;
+    }
+    .escolaridade{
+        border: 0px;
     }
     .info, .listinha {
         margin: 3% 0;
@@ -347,4 +395,40 @@ body {
         width: 32px;
         margin: 6px;
     }
+    .tooltip .tooltip-text {
+        max-width: 120px;
+        font-size: 11px;
+    }
+}
+
+/*TOOLTIPS*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    max-width: 150px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    transform: translateX(-50%);
+    background-color: white;
+    color: #333;
+    padding: 5px;
+    border: solid #77b6ea 2px;
+    border-radius: 4px;
+    white-space: normal;
+    transition: opacity 0.3s, visibility 0.3s;
+    font-size: 12px;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
 }

@@ -446,6 +446,18 @@ justify-content: space-between;
         width: 40px;
     }
 }
+
+#comentario {
+    position: relative;
+}
+
+#estrelas_bottom {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: gold;
+}
 @media(min-width: 721px) and (max-width: 1100px){
      
     .logo{

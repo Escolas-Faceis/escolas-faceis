@@ -561,10 +561,11 @@
   justify-content: left;
   gap: 6px;
   cursor: pointer;
-  padding: 6px;
+
   border-radius: 8px;
   transition: background 0.2s ease;
   position: relative;
+  margin: 0!important;
 }
 
 .notificacao-botao:hover {

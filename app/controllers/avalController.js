@@ -22,6 +22,10 @@ criarAvaliacao: async (req, res) => {
 
         const erros = validationResult(req);
         if (!erros.isEmpty()) {
+            const isAjax = req.headers['x-requested-with'] === 'XMLHttpRequest';
+            if (isAjax) {
+                return res.json({ success: false, message: "Verifique os valores digitados!" });
+            }
             req.session.dadosNotificacao = {
                 titulo: "Erro ao avaliar!",
                 mensagem: "Verifique os valores digitados!",
@@ -30,6 +34,10 @@ criarAvaliacao: async (req, res) => {
             return res.redirect('/perfil-escola?id=' + req.body.id_usuario_escola);
         }
         if (!req.session.autenticado || !req.session.autenticado.id) {
+            const isAjax = req.headers['x-requested-with'] === 'XMLHttpRequest';
+            if (isAjax) {
+                return res.json({ success: false, message: "Usuário não autenticado." });
+            }
             req.session.dadosNotificacao = {
                 titulo: "Erro ao avaliar!",
                 mensagem: "Usuário não autenticado.",
@@ -38,6 +46,10 @@ criarAvaliacao: async (req, res) => {
             return res.redirect('/perfil-escola?id=' + req.body.id_usuario_escola);
         }
         if (req.session.autenticado.tipo === 'E' && req.session.autenticado.id == req.body.id_usuario) {
+            const isAjax = req.headers['x-requested-with'] === 'XMLHttpRequest';
+            if (isAjax) {
+                return res.json({ success: false, message: "Você não pode avaliar sua própria escola." });
+            }
             req.session.dadosNotificacao = {
                 titulo: "Erro ao avaliar!",
                 mensagem: "Você não pode avaliar sua própria escola.",
@@ -58,7 +70,6 @@ criarAvaliacao: async (req, res) => {
             const result = await avalModel.create(dadosAvaliacao);
             console.log("Nova avaliação criada com sucesso: ", result);
 
-            
             try {
                 await notificacaoModel.create({
                     id_usuario_destinatario: req.body.id_usuario_escola,
@@ -68,6 +79,15 @@ criarAvaliacao: async (req, res) => {
                 console.log("Notificação criada com sucesso.");
             } catch (notifError) {
                 console.error("Erro ao criar notificação:", notifError);
+            }
+
+            const isAjax = req.headers['x-requested-with'] === 'XMLHttpRequest';
+            if (isAjax) {
+                const newAverage = await avalModel.getAverage(req.body.id_escola);
+                newAverage.media = parseFloat(newAverage.media.toFixed(1));
+                const newAval = await avalModel.findById(result.id);
+                newAval.data_formatada = moment(newAval.data_avaliacao).fromNow();
+                return res.json({ success: true, mediaAvaliacao: newAverage, newAval: newAval });
             }
 
             req.session.dadosNotificacao = {
@@ -85,6 +105,11 @@ criarAvaliacao: async (req, res) => {
                 errorMessage = "Dados muito longos para um dos campos. Verifique o tamanho dos dados inseridos.";
             } else if (error.code === 'ER_DUP_ENTRY') {
                 errorMessage = "Você já avaliou esta escola.";
+            }
+
+            const isAjax = req.headers['x-requested-with'] === 'XMLHttpRequest';
+            if (isAjax) {
+                return res.json({ success: false, message: errorMessage });
             }
 
             req.session.dadosNotificacao = {
@@ -129,6 +154,17 @@ criarAvaliacao: async (req, res) => {
         } catch (error) {
             console.error("Erro ao marcar todas as notificações como lidas:", error);
             res.status(500).json({ success: false });
+        }
+    },
+
+    listarAvaliacoesPorEscola: async (req, res) => {
+        try {
+            const id_escola = req.params.id_escola;
+            const avaliacoes = await avalModel.findBySchool(id_escola);
+            res.json(avaliacoes);
+        } catch (error) {
+            console.error("Erro ao listar avaliações por escola:", error);
+            res.status(500).json({ error: "Erro ao listar avaliações" });
         }
     }
 };
