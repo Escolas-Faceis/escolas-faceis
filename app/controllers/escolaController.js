@@ -449,9 +449,10 @@ const escolaController = {
             if (req.body.senha) {
                 dados.senha_escola = bcrypt.hashSync(req.body.senha, salt);
             }
-            if (req.file) {
-                let nomeImagem = req.file.originalname;
-                let caminho = "app/public/imagem/uploads/" + req.file.filename;
+            if (req.files && req.files['imagem_perfil_usu'] && req.files['imagem_perfil_usu'][0]) {
+                let file = req.files['imagem_perfil_usu'][0];
+                let nomeImagem = file.originalname;
+                let caminho = "app/public/imagem/uploads/" + file.filename;
                 let newId = await escolaModel.insertImage(nomeImagem, caminho);
                 dados.img_perfil_id = newId;
 
