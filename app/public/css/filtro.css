@@ -51,6 +51,7 @@
 
 label{
 padding: 2%;
+font-size: 14px;
 }
 #filtros{
     color: var(--azul-claro);
@@ -109,10 +110,10 @@ input{
     border: 2px solid #77b6ea;
     padding:1%;
     border-top-left-radius: 0;
-    width: 19%;
+    width: 26%;
     z-index: 10;
     gap: 10px;
-    margin-top: 1.5%;
+    margin-top: 4%;
     margin-left: 21%;
     }
 
@@ -139,14 +140,55 @@ input{
     }
 
     .range-price label{
-        font-size: 15px;
+        font-size: 13px;
         margin-left: 5%;
     }
-    
 
-  
-    
-    
+    /* Collapsible accessibility section */
+    .collapsible-toggle {
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+        color: var(--amarelo);
+        width: fit-content;
+    }
+
+    .collapsible-toggle::after {
+        content: '▶';
+        position: absolute;
+        right: -20px;
+        transition: transform 0.3s;
+    }
+
+    .collapsible-toggle.open::after {
+        transform: rotate(90deg);
+    }
+
+    .collapsible-toggle:hover {
+        text-decoration: underline;
+    }
+
+    .collapsible-content {
+        display: none;
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .collapsible-content li {
+        margin: 5px 0;
+    }
+
+    .collapsible-content p {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 20px 0 5px 0;
+        color: var(--azul-claro);
+    }
+
+    /* Yellow titles for sections */
+    .sec h4 {
+        color: var(--amarelo);
+    }
 
 h1{
     position: relative;

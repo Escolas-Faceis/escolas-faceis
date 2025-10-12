@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="css/search-bar.css">
 <link rel="stylesheet" href="css/filtro.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="slide.js"></script>
  
 <section class="search-bar">
     <form id="search-form" method="GET" action="/encontre-escolas">
@@ -24,7 +23,6 @@
    </form>
  
    <script src="js/double-slider.js"></script>
-   <script src="js/slide.js"></script>
  
  
    <section id="filtro">
@@ -51,9 +49,8 @@
        <ul>
        <li><input type="checkbox" name="redes" id="municipal" value="Municipal" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.redes && searchParams.redes.includes('Municipal') ? 'checked' : '' %>><label for="municipal">Municipal</label></li>
        <li><input type="checkbox" name="redes" id="estadual" value="Estadual" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.redes && searchParams.redes.includes('Estadual') ? 'checked' : '' %>><label for="estadual">Estadual</label></li>
-       <li><input type="checkbox" name="redes" id="fundacao" value="Fundação/Instituto" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.redes && searchParams.redes.includes('Fundação/Instituto') ? 'checked' : '' %>><label for="fundacao">Fundação/Instituto</label></li>
        <li><input type="checkbox" name="redes" id="privada" value="Privada" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.redes && searchParams.redes.includes('Privada') ? 'checked' : '' %>><label for="privada">Privada</label></li>
-           <ul>
+           <!-- <ul>
  
  
                <section class="range-slider"><h4 id="mens">Mensalidade</h6>
@@ -71,25 +68,42 @@
                </section>
  
            </ul>
-       </ul>
+       </ul> -->
    </section>
  
    <section id="periodo" class="sec">
        <h4 id="turno"> Turno</h4>
        <ul>
-       <li><input type="checkbox" name="turnos" id="manha" value="Manhã" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.turnos && searchParams.turnos.includes('Manhã') ? 'checked' : '' %>><label for="manha">Manhã</label></li>
-       <li><input type="checkbox" name="turnos" id="tarde" value="Tarde" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.turnos && searchParams.turnos.includes('Tarde') ? 'checked' : '' %>><label for="tarde">Tarde</label></li>
+       <li><input type="checkbox" name="turnos" id="manha" value="Manhã" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.turnos && searchParams.turnos.includes('Manhã') ? 'checked' : '' %>><label for="manha">Matutino</label></li>
+       <li><input type="checkbox" name="turnos" id="tarde" value="Tarde" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.turnos && searchParams.turnos.includes('Tarde') ? 'checked' : '' %>><label for="tarde">Vespertino</label></li>
        <li><input type="checkbox" name="turnos" id="integral" value="Integral" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.turnos && searchParams.turnos.includes('Integral') ? 'checked' : '' %>><label for="integral">Integral</label></li>
        <li><input type="checkbox" name="turnos" id="noite" value="Noturno" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.turnos && searchParams.turnos.includes('Noturno') ? 'checked' : '' %>><label for="noite">Noturno</label></li>
        </ul>
    </section>
  
-   <section id="outro" class="sec">
-       <h4 id="outros">Outros</h4>
-       <ul>
-       <li><input type="checkbox" name="acessibilidade" id="ace" value="true" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade === 'true' ? 'checked' : '' %>><label for="ace">Acessibilidade</label></li>
-       <li><input type="checkbox" name="eja" id="eja" value="true" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.eja === 'true' ? 'checked' : '' %>><label for="eja">EJA</label></li>
-       <li><input type="checkbox" name="bilingue" id="bilingue" value="true" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.bilingue === 'true' ? 'checked' : '' %>><label for="bilingue">Escola Bilingue</label></li>
+   <section id="acessibilidade" class="sec">
+       <h4 id="acessibilidade-toggle" class="collapsible-toggle">Acessibilidade</h4>
+       <ul class="collapsible-content" id="acessibilidade-list">
+           <p class="label-campo" style="margin-top: 5%">Acessibilidade Física</p>
+           <li><input type="checkbox" name="acessibilidade" id="ramp" value="RAMP" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('RAMP') ? 'checked' : '' %>><label for="ramp">Rampa de Acesso</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="corr" value="CORR" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('CORR') ? 'checked' : '' %>><label for="corr">Corrimão em Escadas e Rampas</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="brap" value="BRAP" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('BRAP') ? 'checked' : '' %>><label for="brap">Banheiro Adaptado</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="elev" value="ELEV" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('ELEV') ? 'checked' : '' %>><label for="elev">Elevador ou Plataforma Elevatória</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="pstl" value="PSTL" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('PSTL') ? 'checked' : '' %>><label for="pstl">Piso Tátil</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="vaga" value="VAGA" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('VAGA') ? 'checked' : '' %>><label for="vaga">Vaga Reservada para PcD</label></li>
+
+           <p class="label-campo" style="margin-top: 5%">Acessibilidade Comunicacional</p>
+           <li><input type="checkbox" name="acessibilidade" id="libras" value="Libras" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('Libras') ? 'checked' : '' %>><label for="libras">Intérprete de Libras</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="sibr" value="SIBR" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('SIBR') ? 'checked' : '' %>><label for="sibr">Sinalização em Braille</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="alvs" value="ALVS" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('ALVS') ? 'checked' : '' %>><label for="alvs">Alarmes Visuais e Sonoros</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="vidl" value="VIDL" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('VIDL') ? 'checked' : '' %>><label for="vidl">Vídeos Legendados</label></li>
+
+           <p class="label-campo" style="margin-top: 5%">Acessibilidade Pedagógica</p>
+           <li><input type="checkbox" name="acessibilidade" id="aee" value="AEE" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('AEE') ? 'checked' : '' %>><label for="aee">AEE (Atendimento Educacional Especializado)</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="mada" value="MADA" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('MADA') ? 'checked' : '' %>><label for="mada">Materiais Didáticos Adaptados</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="avad" value="AVAD" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('AVAD') ? 'checked' : '' %>><label for="avad">Avaliações Adaptadas</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="tnas" value="TNAS" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('TNAS') ? 'checked' : '' %>><label for="tnas">Tecnologias Assistivas</label></li>
+           <li><input type="checkbox" name="acessibilidade" id="acat" value="ACAT" <%= typeof searchParams !== 'undefined' && searchParams && searchParams.acessibilidade && searchParams.acessibilidade.includes('ACAT') ? 'checked' : '' %>><label for="acat">Acessibilidade Atitudinal (Conscientização e Inclusão)</label></li>
        </ul>
    </section>
  
@@ -181,10 +195,9 @@ document.addEventListener('DOMContentLoaded', function() {
             redes.forEach(rede => params.append('redes', rede));
             turnos.forEach(turno => params.append('turnos', turno));
    
-            // Add boolean filters
-            if (formData.get('acessibilidade')) params.append('acessibilidade', 'true');
-            if (formData.get('eja')) params.append('eja', 'true');
-            if (formData.get('bilingue')) params.append('bilingue', 'true');
+            // Add accessibility filters as array
+            const acessibilidade = formData.getAll('acessibilidade');
+            acessibilidade.forEach(acel => params.append('acessibilidade', acel));
    
             // Redirect to filtered results
             const filterUrl = '/encontre-escolas' + (params.toString() ? '?' + params.toString() : '');
@@ -196,6 +209,21 @@ document.addEventListener('DOMContentLoaded', function() {
             this.innerHTML = 'Filtrando...';
             this.disabled = true;
             filterForm.submit();
+        });
+
+        // Toggle accessibility section
+        const acessibilidadeToggle = document.getElementById('acessibilidade-toggle');
+        const acessibilidadeList = document.getElementById('acessibilidade-list');
+
+        acessibilidadeToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (acessibilidadeList.style.display === 'none' || acessibilidadeList.style.display === '') {
+                acessibilidadeList.style.display = 'block';
+                acessibilidadeToggle.classList.add('open');
+            } else {
+                acessibilidadeList.style.display = 'none';
+                acessibilidadeToggle.classList.remove('open');
+            }
         });
     });
     </script>
