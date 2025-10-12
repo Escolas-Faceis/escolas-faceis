@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 
 const usuarioController = require("../controllers/usuarioController");
 const escolaController = require("../controllers/escolaController");
+const filtroController = require("../controllers/filtroController");
 const loginController = require("../controllers/loginController");
 const admController = require("../controllers/admController");
 const usuarioModel = require("../models/usuarioModel");
@@ -105,7 +106,7 @@ router.get("/perfil-escola-e", (req, res) => res.render("pages/perfil-escola-e")
 router.get("/navbar", (req, res) => res.render("partials/navbar"));
 router.get("/401", (req, res) => res.render("partials/401"));
 
-router.get("/encontre-escolas", escolaController.paginarEscolas);
+router.get("/encontre-escolas", filtroController.paginarEscolas);
 router.get("/perfil-escola", verificarUsuAutorizado(["A", "C", "E"], "partials/login-required"), escolaController.mostrarPerfil);
 
 router.get(
