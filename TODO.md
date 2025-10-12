@@ -1,4 +1,0 @@
-- [x] Edit app/views/pages/perfil-escola-e.ejs to add imageMap for accessibility icons and include <img> in each li.
-- [x] Edit app/public/css/perfil-escola-e.css to style the accessibility ul/li as a grid with icons, colors, hover effects.
-- [x] Ensure responsiveness in CSS.
-- [ ] Test the changes by running the app.
