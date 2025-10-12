@@ -260,6 +260,11 @@ const escolaController = {
                 var cep = null;
             }
 
+            let carouselImages = [];
+            if (results[0].imagens_caminhos) {
+                carouselImages = results[0].imagens_caminhos.split(',').map(caminho => caminho.trim());
+            }
+
             let campos = {
                 name: results[0].nome_escola, email: results[0].email_escola, cep: results[0].cep,
                 endereco: results[0].endereco, numero: results[0].numero, cnpj: results[0].cnpj,
@@ -274,6 +279,7 @@ const escolaController = {
                 img_perfil_id: results[0].img_perfil_id,
                 img_perfil_banco: results[0].img_perfil_banco != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
                 img_perfil_pasta: results[0].img_perfil_pasta || null,
+                carouselImages: carouselImages,
                 cidade: viaCep.localidade, estado: viaCep.uf, bairro: viaCep.bairro, logradouro: viaCep.logradouro,
                 id_escola: results[0].id_escola,
                 id_usuario: id
@@ -341,6 +347,11 @@ const escolaController = {
                 return res.render("pages/index", { erros: null, dadosNotificacao: { titulo: "Erro", mensagem: "Escola não encontrada", tipo: "error" } });
             }
 
+            let carouselImages = [];
+            if (results[0].imagens_caminhos) {
+                carouselImages = results[0].imagens_caminhos.split(',').map(caminho => caminho.trim());
+            }
+
             let valores = {
                 nomedaescola: results[0].nome_escola,
                 email: results[0].email_escola,
@@ -361,6 +372,7 @@ const escolaController = {
                 email_contato: results[0].email,
                 img_perfil_banco: results[0].img_perfil_banco != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
                 img_perfil_pasta: results[0].img_perfil_pasta || null,
+                carouselImages: carouselImages,
                 tipo_ensino: results[0].tipo_ensino ? results[0].tipo_ensino.split(',') : [],
                 turnos: results[0].turnos ? results[0].turnos.split(',') : [],
                 redes: results[0].rede ? results[0].rede.split(',') : []
@@ -459,6 +471,34 @@ const escolaController = {
                 if (currentSchool[0].img_perfil_pasta) {
                     removeImg(currentSchool[0].img_perfil_pasta);
                 }
+            }
+
+            // Handle carousel images
+            console.log("DEBUG: req.files:", req.files);
+            console.log("DEBUG: imagens_carrossel in req.files:", req.files && req.files['imagens_carrossel']);
+            if (req.files && req.files['imagens_carrossel']) {
+                const carouselFiles = req.files['imagens_carrossel'];
+                console.log("DEBUG: carouselFiles:", carouselFiles);
+                const carouselImageIds = [];
+                for (let file of carouselFiles) {
+                    console.log("DEBUG: Processing file:", file.originalname, file.filename);
+                    let nomeImagem = file.originalname;
+                    let caminho = "app/public/imagem/uploads/" + file.filename;
+                    let imageId = await escolaModel.insertImage(nomeImagem, caminho);
+                    console.log("DEBUG: Inserted image ID:", imageId);
+                    if (imageId) {
+                        carouselImageIds.push(imageId);
+                    }
+                }
+                console.log("DEBUG: carouselImageIds:", carouselImageIds);
+                // Insert carousel images for the school
+                if (carouselImageIds.length > 0) {
+                    console.log("DEBUG: Inserting carousel images for school ID:", currentSchool[0].id_escola);
+                    await escolaModel.insertCarouselImages(currentSchool[0].id_escola, carouselImageIds);
+                    console.log("DEBUG: Carousel images inserted successfully");
+                }
+            } else {
+                console.log("DEBUG: No carousel images found in req.files");
             }
             let resultUpdate = await escolaModel.update(dados, req.session.autenticado.id);
             if (resultUpdate.affectedRows > 0) {

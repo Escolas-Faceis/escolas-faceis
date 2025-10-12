@@ -141,13 +141,13 @@
                             <section class="carousel-preview">
                                 <section class="slides">
                                     <section class="slide">
-                                        <img id="preview-slide-1" src="../imagem/placeholder.png" alt="Slide 1">
+                                        <img id="preview-slide-1" src="<%= valores.carouselImages && valores.carouselImages[0] ? valores.carouselImages[0] : '../imagem/placeholder.png' %>" alt="Slide 1">
                                     </section>
                                     <section class="slide">
-                                        <img id="preview-slide-2" src="../imagem/placeholder.png" alt="Slide 2">
+                                        <img id="preview-slide-2" src="<%= valores.carouselImages && valores.carouselImages[1] ? valores.carouselImages[1] : '../imagem/placeholder.png' %>" alt="Slide 2">
                                     </section>
                                     <section class="slide">
-                                        <img id="preview-slide-3" src="../imagem/placeholder.png" alt="Slide 3">
+                                        <img id="preview-slide-3" src="<%= valores.carouselImages && valores.carouselImages[2] ? valores.carouselImages[2] : '../imagem/placeholder.png' %>" alt="Slide 3">
                                     </section>
                                 </section>
                             </section>
@@ -156,15 +156,15 @@
 
                             <section class="carousel-previews">
                                 <section class="preview-item">
-                                    <img id="carousel-preview-1" src="../imagem/placeholder.png" alt="Preview 1">
+                                    <img id="carousel-preview-1" src="<%= valores.carouselImages && valores.carouselImages[0] ? valores.carouselImages[0] : '../imagem/placeholder.png' %>" alt="Preview 1">
                                     <input type="file" name="imagens_carrossel" id="carousel-input-1" accept="image/*">
                                 </section>
                                 <section class="preview-item">
-                                    <img id="carousel-preview-2" src="../imagem/placeholder.png" alt="Preview 2">
+                                    <img id="carousel-preview-2" src="<%= valores.carouselImages && valores.carouselImages[1] ? valores.carouselImages[1] : '../imagem/placeholder.png' %>" alt="Preview 2">
                                     <input type="file" name="imagens_carrossel" id="carousel-input-2" accept="image/*">
                                 </section>
                                 <section class="preview-item">
-                                    <img id="carousel-preview-3" src="../imagem/placeholder.png" alt="Preview 3">
+                                    <img id="carousel-preview-3" src="<%= valores.carouselImages && valores.carouselImages[2] ? valores.carouselImages[2] : '../imagem/placeholder.png' %>" alt="Preview 3">
                                     <input type="file" name="imagens_carrossel" id="carousel-input-3" accept="image/*">
                                 </section>
                             </section>

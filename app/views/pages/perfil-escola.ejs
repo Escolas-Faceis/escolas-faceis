@@ -103,7 +103,6 @@
                 <input type="radio" name="radio-btn" id="radio1" checked>
                 <input type="radio" name="radio-btn" id="radio2">
                 <input type="radio" name="radio-btn" id="radio3">
-                <input type="radio" name="radio-btn" id="radio4">
 
                 <!--imagem dos slide-->
 
@@ -116,15 +115,11 @@
                 <section class="slide">
                     <img src="<%= (valores.carouselImages && valores.carouselImages[2]) || '/imagem/image5.svg' %>" alt="imagem-3">
                 </section>
-                <section class="slide">
-                    <img src="<%= (valores.carouselImages && valores.carouselImages[3]) || 'https://crechesonhoencantado.com.br/wp-content/uploads/2019/10/MG_2532.jpg' %>" alt="imagem-4">
-                </section>
 
                 <section class="navegacao-auto">
                     <section class="auto-btn1"></section>
                     <section class="auto-btn2"></section>
                     <section class="auto-btn3"></section>
-                    <section class="auto-btn4"></section>
                 </section>
 
             </section>
@@ -137,7 +132,6 @@
                 <label for="radio1" class="manual-btn"></label>
                 <label for="radio2" class="manual-btn"></label>
                 <label for="radio3" class="manual-btn"></label>
-                <label for="radio4" class="manual-btn"></label>
             </section>
         </section>
     </section>
@@ -291,15 +285,15 @@
     setInterval(function(){
       document.getElementById('radio' + counter).checked = true;
       counter++;
-      if(counter > 4){
+      if(counter > 3){
         counter = 1;
       }
     }, 5000);
 
     function changeSlide(n) {
       counter += n;
-      if (counter > 4) counter = 1;
-      if (counter < 1) counter = 4;
+      if (counter > 3) counter = 1;
+      if (counter < 1) counter = 3;
       document.getElementById('radio' + counter).checked = true;
     }
 

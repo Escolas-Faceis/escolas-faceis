@@ -64,24 +64,6 @@
             'ACAT': 'Acessibilidade Atitudinal (Conscientização e Inclusão)'
         };
 
-        const imageMap = {
-            'RAMP': 'cadeira-de-rodas.png',
-            'CORR': 'bengala.png',
-            'BRAP': 'cadeira-de-rodas.png',
-            'ELEV': 'cadeira-de-rodas.png',
-            'PSTL': 'bengala.png',
-            'VAGA': 'cadeira-de-rodas.png',
-            'Libras': 'lingua-de-sinais.png',
-            'SIBR': 'bengala.png',
-            'ALVS': 'bell.svg',
-            'VIDL': 'image1.svg',
-            'AEE': 'e1.svg',
-            'MADA': 't1.svg',
-            'AVAD': 't1.svg',
-            'TNAS': 'w1.svg',
-            'ACAT': 'f1.svg'
-        };
-
     %>
 
 <body>
@@ -109,7 +91,7 @@
   <br> <br>
 </p>
                     <p class="instituicao "><%= valores.redes %></p>
-                    <p class="ingresso"><%= valores.ingresso || '' %></p>
+                    <p class="ingresso"><%= valores.ingresso[0] || '' %></p>
                     </section>
             </section>
         </section>
@@ -120,28 +102,23 @@
                 <input type="radio" name="radio-btn" id="radio1" checked>
                 <input type="radio" name="radio-btn" id="radio2">
                 <input type="radio" name="radio-btn" id="radio3">
-                <input type="radio" name="radio-btn" id="radio4">
 
                 <!--imagem dos slide-->
 
                 <section class="slide first">
-                    <img src="<%= (valores.carouselImages && valores.carouselImages[0]) || '/imagem/primeira-carrossel.jpeg' %>" alt="imagem-1">
+                    <img src="<%= (valores.carouselImages && valores.carouselImages[0]) || '/imagem/image1.svg' %>" alt="imagem-1">
                 </section>
                 <section class="slide">
-                    <img src="<%= (valores.carouselImages && valores.carouselImages[1]) || '/imagem/segunda-carrossel.jpg' %>" alt="imagem-2">
+                    <img src="<%= (valores.carouselImages && valores.carouselImages[1]) || '/imagem/image3.svg' %>" alt="imagem-2">
                 </section>
                 <section class="slide">
-                    <img src="<%= (valores.carouselImages && valores.carouselImages[2]) || '/imagem/terceira.jpg' %>" alt="imagem-3">
-                </section>
-                <section class="slide">
-                    <img src="<%= (valores.carouselImages && valores.carouselImages[3]) || 'https://crechesonhoencantado.com.br/wp-content/uploads/2019/10/MG_2532.jpg' %>" alt="imagem-4">
+                    <img src="<%= (valores.carouselImages && valores.carouselImages[2]) || '/imagem/image5.svg' %>" alt="imagem-3">
                 </section>
 
                 <section class="navegacao-auto">
                     <section class="auto-btn1"></section>
                     <section class="auto-btn2"></section>
                     <section class="auto-btn3"></section>
-                    <section class="auto-btn4"></section>
                 </section>
 
             </section>
@@ -154,7 +131,6 @@
                 <label for="radio1" class="manual-btn"></label>
                 <label for="radio2" class="manual-btn"></label>
                 <label for="radio3" class="manual-btn"></label>
-                <label for="radio4" class="manual-btn"></label>
             </section>
         </section>
     </section>
@@ -188,21 +164,16 @@
             </section>
     </section>
     <section class="contatos">
+
         <h1 class="titulo-contato">Acessibilidade</h1>
         <section class="formas-contato">
-            <ul class="acessibilidade-list">
+            <ul>
                 <% if (valores.acessibilidade && valores.acessibilidade.length > 0) { %>
                     <% valores.acessibilidade.forEach(acel => { %>
-                        <li class="acess-item">
-                            <img src="imagem/<%= imageMap[acel.trim()] || 'cadeira-de-rodas.png' %>" alt="<%= acessibilidadeMap[acel.trim()] %>" class="acess-icon">
-                            <span><%= acessibilidadeMap[acel.trim()] || acel %></span>
-                        </li>
+                        <li class="ingresso <%= acel.trim().toUpperCase().substring(0, 3) %>"><%= acessibilidadeMap[acel.trim()] || acel %></li>
                     <% }) %>
                 <% } else { %>
-                    <li class="acess-item">
-                        <img src="imagem/cadeira-de-rodas.png" alt="Nenhum" class="acess-icon">
-                        <span>Nenhum item de acessibilidade selecionado</span>
-                    </li>
+                    <li class="ingresso">Nenhum item de acessibilidade selecionado</li>
                 <% } %>
             </ul>
         </section>
@@ -211,11 +182,20 @@
     <h1 class="titulo-contato">Ingresso</h1>
         <section class="config-ingresso">
     <article class="tipos-de-ingresso">
-        <p class="ingresso"><%= valores.ingresso || 'Este perfil ainda não escreveu nada sobre seu ingresso.' %></p>
+        <ul>
+            <% if (valores.ingresso && valores.ingresso.length > 0) { %>
+                <% valores.ingresso.forEach(item => { %>
+                    <li class="ingresso"><%= item %></li>
+                <% }) %>
+            <% } else { %>
+                <li class="ingresso">Este perfil ainda não escreveu nada sobre seu ingresso.</li>
+            <% } %>
+        </ul>
         </section>
     </section>
     </section>
 </section>
+
     <script src="script.js"></script>
     <hr id="section">
 
@@ -223,7 +203,7 @@
         <h2>Média das Avaliações</h2>
         <section class="estrelas-media">
             <% for(let i=1; i<=5; i++) { %>
-                <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %>
+                <!-- <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %> -->
             <% } %>
         </section>
         <p><%= Math.round(mediaAvaliacao.media) %> / 5 (baseado em <%= mediaAvaliacao.totalAvaliacoes %> avaliações)</p>
@@ -300,15 +280,15 @@
     setInterval(function(){
       document.getElementById('radio' + counter).checked = true;
       counter++;
-      if(counter > 4){
+      if(counter > 3){
         counter = 1;
       }
     }, 5000);
 
     function changeSlide(n) {
       counter += n;
-      if (counter > 4) counter = 1;
-      if (counter < 1) counter = 4;
+      if (counter > 3) counter = 1;
+      if (counter < 1) counter = 3;
       document.getElementById('radio' + counter).checked = true;
     }
 

@@ -333,35 +333,13 @@ const escolaModel = {
         }
     },
 
-        insertImage: async (nome, caminho) => {
-            try {
-                const [resultados] = await pool.query(
-                    "INSERT INTO imagens (nome_imagem, caminho_imagem) VALUES (?, ?)",
-                    [nome, caminho]
-                );
-                return resultados.insertId;
-            } catch (erro) {
-                console.log(erro);
-                return false;
-            }
-        },
-
-    insertCarouselImages: async (idEscola, files) => {
+    insertCarouselImages: async (idEscola, imageIds) => {
         try {
             // First, delete existing carousel images for the school
             await pool.query("DELETE FROM imagens_escola WHERE id_escola = ?", [idEscola]);
 
-            // Insert new images
-            for (let file of files) {
-                let nomeImagem = file.originalname;
-                let caminho = "app/public/imagem/uploads/" + file.filename;
-                const [imageResult] = await pool.query(
-                    "INSERT INTO imagens (nome_imagem, caminho_imagem) VALUES (?, ?)",
-                    [nomeImagem, caminho]
-                );
-                let imageId = imageResult.insertId;
-
-                // Link image to school
+            // Insert new links
+            for (let imageId of imageIds) {
                 await pool.query(
                     "INSERT INTO imagens_escola (id_escola, id_imagem) VALUES (?, ?)",
                     [idEscola, imageId]
