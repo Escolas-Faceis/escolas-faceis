@@ -38,19 +38,22 @@
 
 .acess{
     color: var(--letras);
-    margin-left: 20%;
     width: max-content;
+    margin-left: 20px;
+    list-style-type: disc;
 }
 .acess::marker{
     color: var(--azulsec);
+    
 }
 
 .acess1{
     color: var(--letras);
         width: max-content;
+    margin-left: -10px;
 }
 .acess1::marker{
-    color: var(--azulsec);
+    color: var(--amarelo);
 }
 
 body {
