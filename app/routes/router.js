@@ -13,62 +13,40 @@ const avalController = require("../controllers/avalController");
 
 const uploadFile = require("../helpers/uploader")("app/public/imagem/uploads");
 
-const uploadCarousel = (campoArquivo, maxCount) => {
-    const multer = require("multer");
-    const path = require("path");
+const multer = require("multer");
+const path = require("path");
 
-    const fileFilter = (req, file, callBack) => {
-        const allowedExtensions = /jpeg|jpg|png|gif|webp/;
-        const extname = allowedExtensions.test(
-            path.extname(file.originalname).toLowerCase()
-        );
-        const mimetype = allowedExtensions.test(file.mimetype);
+const fileFilter = (req, file, callBack) => {
+    const allowedExtensions = /jpeg|jpg|png|gif|webp/;
+    const extname = allowedExtensions.test(
+        path.extname(file.originalname).toLowerCase()
+    );
+    const mimetype = allowedExtensions.test(file.mimetype);
 
-        if (extname && mimetype) {
-            return callBack(null, true);
-        } else {
-            callBack(new Error("Apenas arquivos de imagem são permitidos!"));
-        }
-    };
-
-    const storagePasta = multer.diskStorage({
-        destination: (req, file, callBack) => {
-            callBack(null, "app/public/imagem/uploads");
-        },
-        filename: (req, file, callBack) => {
-            callBack(
-                null,
-                file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-            );
-        },
-    });
-
-    const upload = multer({
-        storage: storagePasta,
-        limits: { fileSize: 3 * 1024 * 1024 },
-        fileFilter: fileFilter,
-    });
-
-    return (req, res, next) => {
-        req.session.erroMulterCarousel = null;
-        upload.array(campoArquivo, maxCount)(req, res, function (err) {
-            if (err instanceof multer.MulterError) {
-                req.session.erroMulterCarousel = {
-                    value: '',
-                    msg: err.message,
-                    path: campoArquivo
-                };
-            } else if (err) {
-                req.session.erroMulterCarousel = {
-                    value: '',
-                    msg: err.message,
-                    path: campoArquivo
-                };
-            }
-            next();
-        });
-    };
+    if (extname && mimetype) {
+        return callBack(null, true);
+    } else {
+        callBack(new Error("Apenas arquivos de imagem são permitidos!"));
+    }
 };
+
+const storagePasta = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, "app/public/imagem/uploads");
+    },
+    filename: (req, file, callBack) => {
+        callBack(
+            null,
+            file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+        );
+    },
+});
+
+const upload = multer({
+    storage: storagePasta,
+    limits: { fileSize: 3 * 1024 * 1024 },
+    fileFilter: fileFilter,
+});
 
 const {
   verificarUsuAutenticado,
@@ -143,8 +121,7 @@ router.get("/planos", (req, res) => {
 
 router.post(
   "/editar_escola_post",
-  uploadFile("imagem_perfil_usu"),
-  uploadCarousel("imagens_carrossel", 3),
+  upload.fields([{ name: 'imagem_perfil_usu', maxCount: 1 }, { name: 'imagens_carrossel', maxCount: 3 }]),
   escolaController.regrasValidacaoEditarEscola,
   verificarUsuAutorizado(["E"], "partials/401"),
     async (req, res) => {

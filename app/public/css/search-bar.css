@@ -1,24 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    --amarelo: #ffbc3e;
+    --laranja: #f56d44;
+    --azul-claro: #77b6ea;
+    --azul-escuro: #141c44;
+}
+ 
+label{
+padding: 2%;
+}
+#filtros{
+    color: var(--azul-claro);
+    font-weight: normal;
+    cursor: pointer;
+    margin-top: 30px;
+ 
+}#filtros:hover{
+    text-decoration: underline;
+}
+ 
+#filtro{
+    display: flex;
+    justify-content: center;
+    margin-left: 32%;
+    margin-top: -1.9%;
+    margin-bottom: 4%;
+    width: fit-content;
+ 
+}
+ 
+#filtrar{
+    z-index: 1;
+    display: block;
+    margin: 0 auto;
+    border: 2.5px var(--amarelo) solid;
+    border-radius: 10px;
+    padding: 4%;
+    font-size: large;
+    color: var(--amarelo);
+    background: none;
+    text-align: center;
+    margin-top: 5%;
+    width: 70%;
+    font-size: 19px;
+    cursor: pointer;
+    transition:all 0.3s;
+}
+ 
+#filtrar:hover{
+    background-color: #ffbc3e;
+    color:white
+}
+ 
+input{
+    cursor: pointer;
+}
+#mens{
+    font-size: 14px;
+    color: gray;
+    margin-top: 7%;
+}
+ 
+.filter-schools{
+    background-color: white;
+    display: none;
+    position: absolute;
+    border-radius: 15px;
+    border: 2px solid #77b6ea;
+    padding:1%;
+    border-top-left-radius: 0;
+    width: 19%;
+    z-index: 10;
+    gap: 10px;
+    margin-top: 1.5%;
+    margin-left: 21%;
+    }
+ 
+    .sec{
+        margin: 3%;
+    }
+    .sec:nth-child(1){
+        margin-top: 0;
+    }
+ 
+    /* slider*/
+   
+    .range-slider{
+        display: none;
+    }
+ 
+    input[type="number"] {
+        width: 40%;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid gray;
+        border-radius: 5px;
+   
+    }
+ 
+    .range-price label{
+        font-size: 15px;
+        margin-left: 5%;
+    }
+   
+ 
+ 
+   
+   
+ 
+h1{
+    position: relative;
+    z-index:0;
+}
+ 
+@media screen and (max-width:800px){
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    --amarelo: #ffbc3e;
+    --laranja: #f56d44;
+    --azul-claro: #77b6ea;
+    --azul-escuro: #141c44;
+}
+ 
+/*
+ 
+    .search-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.1%;
+        padding: 20px;
+        font-size: 14px;
+       
+    }
+ 
+ 
+    #nome-escola-search{
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border: 1px solid gray;
+        padding: 0.3%;
+       
+    }
+ 
+    #cidade-search{
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border: 1px solid gray;
+        padding: 0.3%;
+    }
+ 
+    #regiao-search{
+        padding: 0.3%;
+        border: 1px solid gray;
+        width: 5%;
+    }
+ */
+ 
+ 
+ 
+label{
+padding: 2%;
+}
+#filtros{
+    color: var(--azul-claro);
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 18px;
+}#filtros:hover{
+    text-decoration: underline;
+}
+ 
+#filtro{
+    display: flex;
+    justify-content: center;
+    margin-right: -40%;
+    margin-top: -4%;
+    margin-bottom: 6%;
+    font-size: 14px;
+}
+ 
+#filtrar{
+    z-index: 1;
+    display: block;
+    margin: 0 auto;
+    border: 2.5px var(--amarelo) solid;
+    border-radius: 10px;
+    padding: 4%;
+    font-size: large;
+    color: var(--amarelo);
+    background: none;
+    text-align: center;
+    margin-top: 5%;
+    width: 70%;
+    font-size: 19px;
+    cursor: pointer;
+    transition:all 0.3s;
+}
+ 
+#filtro, h4{
+    font-size: 18px;
+}
+#filtro label{
+    font-size: 14px;
+}
+ 
+#filtrar:hover{
+    background-color: #ffbc3e;
+    color:white
+}
+ 
+input{
+    cursor: pointer;
+}
+#mens{
+    font-size: 16px;
+    color: gray;
+    margin-top: 7%;
+}
+ 
+.filter-schools{
+    background-color: white;
+    display: none;
+    position: absolute;
+    border-radius: 15px;
+    border: 2px solid #77b6ea;
+    padding:1%;
+    border-top-right-radius: 0;
+    width: 37%;
+    z-index: 10;
+    gap: 10px;
+    margin-top: 4.8%;
+    margin-left: -10%;
+ 
+    }
+ 
+    .sec{
+        margin: 3%;
+    }
+    .sec:nth-child(1){
+        margin-top: 0;
+    }
+ 
+    /* slider*/
+   
+    .range-slider{
+        display: none;
+    }
+ 
+    input[type="number"] {
+        width: 40%;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid gray;
+        border-radius: 5px;
+   
+    }
+ 
+    .range-price label{
+        font-size: 15px;
+        margin-left: 5%;
+    }
+   
+ 
+ 
+   
+   
+ 
+h1{
+    position: relative;
+    z-index:0;
+}
+ 
+ 
+}
+ 
+@media screen and (max-width:481px){
+ 
+    .filter-schools{
+        width: 100%;
+        margin-left: -5%;
+       
+    }
+    #filtros{
+         transform: translate(0, -30px);
+    }
+ 
+}
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
+ 
 :root{
     --letra:#141c44;
     --fundo: white;
     --fundo2: #f8f9fa;
     --borda:#e0e4ef
 }
-
+ 
 .tema-escuro{
     --letra: #ffffff;
     --fundo: #030303;
     --fundo2: #1a1a1a;
     --borda: #222222;
 }
-
+ 
+.search-bar{
+  margin: 0 30%;
+}
+ 
 .search-fields {
   display: flex;
   justify-content: center;
@@ -30,9 +335,10 @@
   margin-bottom: 0;
   padding-bottom: 0.1%;
   gap: 2px;
-
+  width: fit-content;
+ 
 }
-
+ 
 .A {
   font-size: 14px;
   padding: 0.5%;
@@ -40,15 +346,15 @@
   justify-content: center;
   align-items: center;
 }
-
+ 
 #nome-escola-search,
 #cidade-search, #regiao-search {
   font-size: 14px;
   color: var(--letra);
   background-color: var(--fundo2);
 }
-
-
+ 
+ 
 #nome-escola-search {
   border: 1px solid var(--borda);
   border-top-left-radius: 15px;
@@ -56,7 +362,13 @@
   padding: 6px 10px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-
+ 
+#search-form{
+  width: fit-content;
+  height: fit-content;
+}
+ 
+ 
 #cidade-search {
   border: 1px solid var(--borda);
   border-top-right-radius: 15px;
@@ -64,7 +376,7 @@
   padding: 6px 10px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-
+ 
 #regiao-search {
   width: 90px;
   color: var(--letra);
@@ -73,8 +385,8 @@
   border: 1px solid var(--borda);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-
-
+ 
+ 
 #nome-escola-search:focus,
 #cidade-search:focus,
 #regiao-search:focus {
@@ -82,8 +394,8 @@
   border-color: #77b6ea;
   box-shadow: 0 0 0 2px rgba(119, 182, 234, 0.25);
 }
-
-
+ 
+ 
 #search {
   border: none;
   background-color: inherit;
@@ -91,21 +403,25 @@
   font-size: 15px;
   display: flex;
   align-items: center;
-  margin-left: 2%;
   cursor: pointer;
   transition: color 0.2s ease;
 }
-
+ 
 #search::after {
   content: "\1F50D";
   margin-left: 4px;
 }
-
+ 
 #search:hover {
   text-decoration: underline;
   color: #5ca3da;
 }
-
+ 
+.justify{
+  display: flex;
+  justify-content: space-between;
+}
+ 
 @media screen and (max-width: 1290px) {
   #regiao-search {
     width: 10%;
@@ -115,30 +431,30 @@
     margin-left: 1.5%;
   }
 }
-
-
+ 
+ 
 @media screen and (max-width: 800px) {
   .search-fields {
     font-size: 17px;
     padding: 15px 20px;
     gap: 0.5%;
   }
-
+ 
   .A {
     font-size: 19px;
   }
-
+ 
   #regiao-search {
     width: 15%;
     text-align: center;
   }
-
+ 
   #search {
     font-size: 18px;
     margin-left: 3%;
   }
 }
-
+ 
 @media screen and (max-width: 730px) {
   .search-fields {
     flex-wrap: wrap;
@@ -147,31 +463,31 @@
     padding: 15px;
     font-size: 15px;
   }
-
+ 
   .A {
     font-size: 15px;
     padding: 4px;
   }
-
+ 
   #nome-escola-search,
   #cidade-search {
     font-size: 14px;
     padding: 6px;
     width: 170px;
   }
-
+ 
   #regiao-search {
     width: 80px;
     font-size: 14px;
     text-align: center;
   }
-
+ 
   #search {
     font-size: 16px;
     margin-left: 0;
   }
 }
-
+ 
 @media screen and (max-width: 481px) {
   .search-fields {
     flex-direction: column;
@@ -180,31 +496,31 @@
     font-size: 17px;
     padding: 10px;
   }
-
+ 
   .A {
     font-size: 18px;
   }
-
+ 
   #nome-escola-search,
   #cidade-search,
   #regiao-search {
     width: 100%;
     border-radius: 10px;
   }
-
+ 
   #search {
     justify-content: center;
     margin: 0;
     font-size: 18px;
   }
 }
-
+ 
 /* 🧸 Extra tiny */
 @media screen and (max-width: 330px) {
   .A {
     font-size: 16px;
   }
-
+ 
   #search {
     font-size: 16px;
     margin-top: 5px;

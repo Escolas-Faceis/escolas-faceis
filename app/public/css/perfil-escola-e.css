@@ -594,7 +594,64 @@ justify-content: space-between;
     .divisao-direita{
         flex-direction: row;
     }
-    
+
+}
+
+/* Accessibility Section Styles */
+.acessibilidade-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.acess-item {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #ddd;
+}
+
+.acess-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #bbdefb, #ce93d8);
+}
+
+.acess-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.acess-item span {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Responsiveness for Accessibility */
+@media (max-width: 768px) {
+    .acessibilidade-list {
+        grid-template-columns: 1fr;
+    }
+    .acess-item {
+        padding: 10px;
+    }
+    .acess-icon {
+        width: 30px;
+        height: 30px;
+    }
 }
 @media(min-width: 1101px) and (max-width: 1920px){
     .nome-escola{

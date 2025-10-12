@@ -269,7 +269,8 @@ const escolaController = {
                 whatsapp: results[0].whatsapp, telefone: results[0].telefone,
                 instagram: results[0].instagram, facebook: results[0].facebook, email_contato: results[0].email,
                 sobre_escola: results[0].sobre_escola, sobre_ensino: results[0].sobre_ensino,
-                sobre_estrutura: results[0].sobre_estrutura, ingresso: results[0].ingresso,
+                sobre_estrutura: results[0].sobre_estrutura, ingresso: results[0].ingresso ? results[0].ingresso.split(',') : [],
+                acessibilidade: results[0].acessibilidade ? results[0].acessibilidade.split(',') : [],
                 img_perfil_id: results[0].img_perfil_id,
                 img_perfil_banco: results[0].img_perfil_banco != null ? `data:image/jpeg;base64,${results[0].img_perfil_banco.toString('base64')}` : null,
                 img_perfil_pasta: results[0].img_perfil_pasta || null,
@@ -348,9 +349,11 @@ const escolaController = {
                 adress_n: results[0].numero,
                 endereco: results[0].endereco,
                 cidade: results[0].cidade,
-                'Sobre a Escola': results[0].sobre_escola,
-                'Sobre o Ensino': results[0].sobre_ensino,
-                'Sobre a Estrutura': results[0].sobre_estrutura,
+                sobre_escola: results[0].sobre_escola,
+                sobre_ensino: results[0].sobre_ensino,
+                sobre_estrutura: results[0].sobre_estrutura,
+                ingresso: results[0].ingresso ? results[0].ingresso.split(',') : [],
+                acessibilidade: results[0].acessibilidade ? results[0].acessibilidade.split(',') : [],
                 instagram: results[0].instagram,
                 facebook: results[0].facebook,
                 whatsapp: results[0].whatsapp,
@@ -408,7 +411,9 @@ const escolaController = {
                 img_perfil_pasta: currentSchool[0].img_perfil_pasta || null,
                 tipo_ensino: req.body && req.body.ensino ? req.body.ensino : (currentSchool[0].tipo_ensino ? currentSchool[0].tipo_ensino.split(',') : []),
                 turnos: req.body && req.body.turno ? req.body.turno : (currentSchool[0].turnos ? currentSchool[0].turnos.split(',') : []),
-                redes: req.body && req.body.rede ? req.body.rede : (currentSchool[0].rede ? currentSchool[0].rede.split(',') : [])
+                redes: req.body && req.body.rede ? req.body.rede : (currentSchool[0].rede ? currentSchool[0].rede.split(',') : []),
+                ingresso: req.body && req.body.ingresso ? req.body.ingresso : (currentSchool[0].ingresso ? currentSchool[0].ingresso.split(',') : []),
+                acessibilidade: req.body && req.body.acessibilidade ? req.body.acessibilidade : (currentSchool[0].acessibilidade ? currentSchool[0].acessibilidade.split(',') : [])
             };
             return res.render("pages/editar-escola", { erros: lista, dadosNotificacao: null, valores: valoresErro })
         }
@@ -417,6 +422,8 @@ const escolaController = {
         const tiposEnsinoValues = Array.isArray(req.body.ensino) ? req.body.ensino : [req.body.ensino].filter(Boolean);
         const turnosValues = Array.isArray(req.body.turno) ? req.body.turno : [req.body.turno].filter(Boolean);
         const redesValues = Array.isArray(req.body.rede) ? req.body.rede : [req.body.rede].filter(Boolean);
+        const acessibilidadeValues = Array.isArray(req.body.acessibilidade) ? req.body.acessibilidade : [req.body.acessibilidade].filter(Boolean);
+        const ingressoValues = Array.isArray(req.body.ingresso) ? req.body.ingresso : [req.body.ingresso].filter(Boolean);
 
             var dados = {
             nome_escola: req.body.nomedaescola,
@@ -424,12 +431,14 @@ const escolaController = {
             endereco: req.body.endereco,
             numero: req.body.adress_n,
             cep: req.body.cep,
-            sobre_escola: req.body["Sobre a Escola"],
-            sobre_ensino: req.body["Sobre o Ensino"],
-            sobre_estrutura: req.body["Sobre a Estrutura"],
+            sobre_escola: req.body.sobre_escola,
+            sobre_ensino: req.body.sobre_ensino,
+            sobre_estrutura: req.body.sobre_estrutura,
+            ingresso: ingressoValues.join(","),
             tipo_ensino: tiposEnsinoValues.join(","),
             turnos: turnosValues.join(","),
             rede: redesValues.join(","),
+            acessibilidade: acessibilidadeValues.join(","),
             instagram: req.body.instagram,
             facebook: req.body.facebook,
             whatsapp: req.body.whatsapp,
@@ -440,7 +449,6 @@ const escolaController = {
             if (req.body.senha) {
                 dados.senha_escola = bcrypt.hashSync(req.body.senha, salt);
             }
-            // If no password provided, don't update it (leave out of dados)
             if (req.file) {
                 let nomeImagem = req.file.originalname;
                 let caminho = "app/public/imagem/uploads/" + req.file.filename;
@@ -449,15 +457,6 @@ const escolaController = {
 
                 if (currentSchool[0].img_perfil_pasta) {
                     removeImg(currentSchool[0].img_perfil_pasta);
-                }
-            }
-
-            // Handle carousel images
-            if (req.files && req.files.imagens_carrossel && req.files.imagens_carrossel.length > 0) {
-                let success = await escolaModel.insertCarouselImages(currentSchool[0].id_escola, req.files.imagens_carrossel);
-                if (!success) {
-                    console.log("Erro ao salvar imagens do carrossel");
-                    // Optionally handle error, but continue with update
                 }
             }
             let resultUpdate = await escolaModel.update(dados, req.session.autenticado.id);
@@ -483,6 +482,7 @@ const escolaController = {
                     'Sobre a Escola': result[0].sobre_escola,
                     'Sobre o Ensino': result[0].sobre_ensino,
                     'Sobre a Estrutura': result[0].sobre_estrutura,
+                    ingresso: result[0].ingresso ? result[0].ingresso.split(',') : [],
                     instagram: result[0].instagram,
                     facebook: result[0].facebook,
                     whatsapp: result[0].whatsapp,
@@ -492,7 +492,8 @@ const escolaController = {
                     img_perfil_pasta: result[0].img_perfil_pasta || null,
                     tipo_ensino: result[0].tipo_ensino ? result[0].tipo_ensino.split(',') : [],
                     turnos: result[0].turnos ? result[0].turnos.split(',') : [],
-                    redes: result[0].rede ? result[0].rede.split(',') : []
+                    redes: result[0].rede ? result[0].rede.split(',') : [],
+                    acessibilidade: result[0].acessibilidade ? result[0].acessibilidade.split(',') : []
                 };
                 if (resultUpdate.changedRows >= 1) {
                     res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos });
@@ -511,6 +512,7 @@ const escolaController = {
                     'Sobre a Escola': currentSchool[0].sobre_escola,
                     'Sobre o Ensino': currentSchool[0].sobre_ensino,
                     'Sobre a Estrutura': currentSchool[0].sobre_estrutura,
+                    ingresso: currentSchool[0].ingresso ? currentSchool[0].ingresso.split(',') : [],
                     instagram: currentSchool[0].instagram,
                     facebook: currentSchool[0].facebook,
                     whatsapp: currentSchool[0].whatsapp,
@@ -520,7 +522,9 @@ const escolaController = {
                     img_perfil_pasta: currentSchool[0].img_perfil_pasta || null,
                     tipo_ensino: currentSchool[0].tipo_ensino ? currentSchool[0].tipo_ensino.split(',') : [],
                     turnos: currentSchool[0].turnos ? currentSchool[0].turnos.split(',') : [],
-                    redes: currentSchool[0].rede ? currentSchool[0].rede.split(',') : []
+                    redes: currentSchool[0].rede ? currentSchool[0].rede.split(',') : [],
+                    acessibilidade: currentSchool[0].acessibilidade ? currentSchool[0].acessibilidade.split(',') : []
+
                 };
                 res.render("pages/editar-escola", { erros: { errors: [{ msg: "Erro ao atualizar o perfil." }] }, dadosNotificacao: null, valores: valoresCurrent });
             }
@@ -532,7 +536,9 @@ const escolaController = {
                 img_perfil_pasta: currentSchool[0].img_perfil_pasta || null,
                 tipo_ensino: req.body && req.body.ensino ? req.body.ensino : (currentSchool[0].tipo_ensino ? currentSchool[0].tipo_ensino.split(',') : []),
                 turnos: req.body && req.body.turno ? req.body.turno : (currentSchool[0].turnos ? currentSchool[0].turnos.split(',') : []),
-                redes: req.body && req.body.rede ? req.body.rede : (currentSchool[0].rede ? currentSchool[0].rede.split(',') : [])
+                redes: req.body && req.body.rede ? req.body.rede : (currentSchool[0].rede ? currentSchool[0].rede.split(',') : []),
+                acessibilidade: req.body && req.body.acessibilidade ? req.body.acessibilidade : (currentSchool[0].acessibilidade ? currentSchool[0].acessibilidade.split(',') : []),
+                ingresso: req.body && req.body.ingresso ? req.body.ingresso : (currentSchool[0].ingresso ? currentSchool[0].ingresso.split(',') : [])
             };
             res.render("pages/editar-escola", { erros: { errors: [{ msg: "Erro interno no servidor." }] }, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: valoresCatch })
         }

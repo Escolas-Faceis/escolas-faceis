@@ -379,7 +379,7 @@ const escolaModel = {
             const [resultados] = await pool.query(
                 "SELECT e.id_escola, " +
                 "e.nome_escola, e.email_escola, e.cep, e.endereco, e.numero," +
-                "e.cnpj, e.tipo_ensino, e.turnos, e.rede, e.whatsapp, e.telefone, " +
+                "e.cnpj, e.tipo_ensino, e.turnos, e.rede, e.acessibilidade, e.whatsapp, e.telefone, " +
                 "e.instagram, e.facebook, e.email, e.sobre_escola, e.sobre_ensino, " +
                 "e.sobre_estrutura, e.ingresso, e.img_perfil_id, " +
                 "REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta," +

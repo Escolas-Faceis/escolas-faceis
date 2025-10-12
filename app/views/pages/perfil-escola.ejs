@@ -45,7 +45,25 @@
             'Cursos Técnicos': 'TEC',
             'Cursos Extracurriculares': 'CSO'
         }
-        
+
+        const acessibilidadeMap = {
+            'RAMP': 'Rampa de Acesso',
+            'CORR': 'Corrimão em Escadas e Rampas',
+            'BRAP': 'Banheiro Adaptado',
+            'ELEV': 'Elevador ou Plataforma Elevatória',
+            'PSTL': 'Piso Tátil',
+            'VAGA': 'Vaga Reservada para PcD',
+            'Libras': 'Intérprete de Libras',
+            'SIBR': 'Sinalização em Braille',
+            'ALVS': 'Alarmes Visuais e Sonoros',
+            'VIDL': 'Vídeos Legendados',
+            'AEE': 'AEE (Atendimento Educacional Especializado)',
+            'MADA': 'Materiais Didáticos Adaptados',
+            'AVAD': 'Avaliações Adaptadas',
+            'TNAS': 'Tecnologias Assistivas',
+            'ACAT': 'Acessibilidade Atitudinal (Conscientização e Inclusão)'
+        };
+
     %>
 
 <body>
@@ -73,7 +91,7 @@
   <br> <br>
 </p>
                     <p class="instituicao "><%= valores.redes %></p>
-                    <p class="ingresso"><%= valores.ingresso || '' %></p>
+                    <p class="ingresso"><%= valores.ingresso[0] || '' %></p>
                     <% if(autenticado && autenticado.autenticado){ %> <button class="edit" type="button"><a class="edit" href="/editar-escola" target="">Editar perfil</a></button> <% } %>
                     </section>
             </section>
@@ -90,16 +108,16 @@
                 <!--imagem dos slide-->
 
                 <section class="slide first">
-                    <img src="imagem/primeira-carrossel.jpeg" alt="imagem-1">
+                    <img src="<%= (valores.carouselImages && valores.carouselImages[0]) || '/imagem/image1.svg' %>" alt="imagem-1">
                 </section>
                 <section class="slide">
-                    <img src="imagem/segunda-carrossel.jpg" alt="imagem-2">
+                    <img src="<%= (valores.carouselImages && valores.carouselImages[1]) || '/imagem/image3.svg' %>" alt="imagem-2">
                 </section>
                 <section class="slide">
-                    <img src="imagem/terceira.jpg" alt="imagem-3">
+                    <img src="<%= (valores.carouselImages && valores.carouselImages[2]) || '/imagem/image5.svg' %>" alt="imagem-3">
                 </section>
                 <section class="slide">
-                    <img src="https://crechesonhoencantado.com.br/wp-content/uploads/2019/10/MG_2532.jpg" alt="imagem-4">
+                    <img src="<%= (valores.carouselImages && valores.carouselImages[3]) || 'https://crechesonhoencantado.com.br/wp-content/uploads/2019/10/MG_2532.jpg' %>" alt="imagem-4">
                 </section>
 
                 <section class="navegacao-auto">
@@ -157,18 +175,33 @@
             </section>
     </section>
     <section class="contatos">
+
         <h1 class="titulo-contato">Acessibilidade</h1>
         <section class="formas-contato">
-            <section class="tooltip"><figure><a href="#" target="_blank"><img src="imagem/bengala.png" alt="Apoio para deficientes visuais" class="social-media" id="#"></a></figure><span class="tooltip-text">Apoio para deficientes visuais</span></section>
-            <section class="tooltip"><figure><a href="#" target="_blank"><img src="imagem/lingua-de-sinais.png" alt="Libras" class="social-media" id="#"></a></figure><span class="tooltip-text">Libras - Língua Brasileira de Sinais</span></section>
-            <section class="tooltip"><figure><a href="#" target="_blank"><img src="imagem/acessibilidade-cadeira-de-rodas.png" alt="Acesso para cadeirantes" class="social-media" id= "#"></a></figure><span class="tooltip-text">Acesso para cadeirantes</span></section>
+            <ul>
+                <% if (valores.acessibilidade && valores.acessibilidade.length > 0) { %>
+                    <% valores.acessibilidade.forEach(acel => { %>
+                        <li class="ingresso <%= acel.trim().toUpperCase().substring(0, 3) %>"><%= acessibilidadeMap[acel.trim()] || acel %></li>
+                    <% }) %>
+                <% } else { %>
+                    <li class="ingresso">Nenhum item de acessibilidade selecionado</li>
+                <% } %>
+            </ul>
         </section>
     </section>
     <section class="contatos">
     <h1 class="titulo-contato">Ingresso</h1>
         <section class="config-ingresso">
     <article class="tipos-de-ingresso">
-        <p><%= valores.ingresso || 'Este perfil ainda não escreveu nada sobre seu ingresso.' %></p>
+        <ul>
+            <% if (valores.ingresso && valores.ingresso.length > 0) { %>
+                <% valores.ingresso.forEach(item => { %>
+                    <li class="ingresso"><%= item %></li>
+                <% }) %>
+            <% } else { %>
+                <li class="ingresso">Este perfil ainda não escreveu nada sobre seu ingresso.</li>
+            <% } %>
+        </ul>
         </section>
     </section>
     </section>
@@ -181,7 +214,7 @@
         <h2>Média das Avaliações</h2>
         <section class="estrelas-media">
             <% for(let i=1; i<=5; i++) { %>
-                <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %>
+                <!-- <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %> -->
             <% } %>
         </section>
         <p><%= Math.round(mediaAvaliacao.media) %> / 5 (baseado em <%= mediaAvaliacao.totalAvaliacoes %> avaliações)</p>
@@ -318,7 +351,7 @@
                         });
                         const p = mediaSection.nextElementSibling;
                         if (p) {
-                            p.textContent = `${Math.round(data.mediaAvaliacao.media)} / 5 (baseado em ${data.mediaAvaliacao.total} avaliações)`;
+                            p.textContent = `${Math.round(data.mediaAvaliacao.media)} / 5 (baseado em ${data.mediaAvaliacao.totalAvaliacoes} avaliações)`;
                         }
                     }
                     // Add new review

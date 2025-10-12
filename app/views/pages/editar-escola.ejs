@@ -84,8 +84,9 @@
       <li><a href="#info-gerais"> Informações Gerais</a></li>
       <li><a href="#carrossel"> Carrossel</a></li>
       <li><a href="#sobre-escola"> Sobre a Escola</a></li>
-      <li><a href="#ensino-turnos"> Ensino e Turnos</a></li>
-      <li><a href="#rede-acessibilidade"> Rede e Acessibilidade</a></li>
+      <li><a href="#ingresso"> Ingresso</a></li>
+      <li><a href="#ensino-turnos"> Ensino, Turnos e Rede</a></li>
+      <li><a href="#rede-acessibilidade"> Acessibilidade</a></li>
       <li><a href="#contatos"> Contatos</a></li>
       <li><a href="#acoes"> Ações</a></li>
     </ul>
@@ -99,12 +100,12 @@
       <section id="info-gerais" class="caixa-sec">
         <h2> Informações Gerais</h2>
 
-        <div class="image-upload">
+        <section class="image-upload">
           <img class="img-perfil fototo" id="img-preview" 
                src="<%= valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" 
                alt="Foto de Perfil">
           <input type="file" name="imagem_perfil_usu" id="imagem_perfil_usu" style="display:none;">
-        </div>
+        </section>
 
         <label class="label-campo">Nome da Escola</label>
         <input class="input-campo" type="text" name="nomedaescola" value="<%= valores.nomedaescola || '' %>">
@@ -118,16 +119,16 @@
         <label class="label-campo">Senha</label>
         <input class="input-campo" type="password" name="senha" placeholder="Não preencha para manter atual">
 
-        <div class="linha">
-          <div>
+        <section class="linha">
+          <section>
             <label class="label-campo">CEP</label>
             <input class="input-campo" type="text" name="cep" value="<%= valores.cep || '' %>">
-          </div>
-          <div>
+          </section>
+          <section>
             <label class="label-campo">Número</label>
             <input class="input-campo" type="text" name="adress_n" value="<%= valores.adress_n || '' %>">
-          </div>
-        </div>
+          </section>
+        </section>
 
         <label class="label-campo">Endereço</label>
         <input class="input-campo" type="text" name="endereco" value="<%= valores.endereco || '' %>">
@@ -137,36 +138,36 @@
                                               <h2>Carrossel</h2>                
                         <section class="carousel-preview-section">
 
-                            <div class="carousel-preview">
-                                <div class="slides">
-                                    <div class="slide">
+                            <section class="carousel-preview">
+                                <section class="slides">
+                                    <section class="slide">
                                         <img id="preview-slide-1" src="../imagem/placeholder.png" alt="Slide 1">
-                                    </div>
-                                    <div class="slide">
+                                    </section>
+                                    <section class="slide">
                                         <img id="preview-slide-2" src="../imagem/placeholder.png" alt="Slide 2">
-                                    </div>
-                                    <div class="slide">
+                                    </section>
+                                    <section class="slide">
                                         <img id="preview-slide-3" src="../imagem/placeholder.png" alt="Slide 3">
-                                    </div>
-                                </div>
-                            </div>
+                                    </section>
+                                </section>
+                            </section>
                         </section>
                                                 <section class="carousel-upload box">
 
-                            <div class="carousel-previews">
-                                <div class="preview-item">
+                            <section class="carousel-previews">
+                                <section class="preview-item">
                                     <img id="carousel-preview-1" src="../imagem/placeholder.png" alt="Preview 1">
                                     <input type="file" name="imagens_carrossel" id="carousel-input-1" accept="image/*">
-                                </div>
-                                <div class="preview-item">
+                                </section>
+                                <section class="preview-item">
                                     <img id="carousel-preview-2" src="../imagem/placeholder.png" alt="Preview 2">
                                     <input type="file" name="imagens_carrossel" id="carousel-input-2" accept="image/*">
-                                </div>
-                                <div class="preview-item">
+                                </section>
+                                <section class="preview-item">
                                     <img id="carousel-preview-3" src="../imagem/placeholder.png" alt="Preview 3">
                                     <input type="file" name="imagens_carrossel" id="carousel-input-3" accept="image/*">
-                                </div>
-                            </div>
+                                </section>
+                            </section>
                         </section>
                 </section>
 
@@ -184,11 +185,33 @@
         <textarea class="area" name="sobre_estrutura"><%= valores.sobre_estrutura || '' %></textarea>
       </section>
 
+      <!-- INGRESSO -->
+      <section id="ingresso" class="caixa-sec">
+        <h2> Ingresso</h2>
+
+        <label class="label-campo">Tipos de Ingresso</label>
+        <section class="ingresso-input-section">
+          <input type="text" id="ingresso-input" class="input-campo" placeholder="Digite o tipo de ingresso">
+          <button type="button" id="add-ingresso-btn" class="btn-add">Adicionar</button>
+        </section>
+        <ul id="ingresso-list" class="ingresso-list">
+          <% if (valores.ingresso && valores.ingresso.length > 0) { %>
+            <% valores.ingresso.forEach(function(item) { %>
+              <li class="ingresso-item">
+                <%= item %>
+                <button type="button" class="remove-ingresso-btn" data-value="<%= item %>">Remover</button>
+                <input type="hidden" name="ingresso[]" value="<%= item %>">
+              </li>
+            <% }); %>
+          <% } %>
+        </ul>
+      </section>
+
       <!-- ENSINO -->
       <section id="ensino-turnos" class="caixa-sec">
-        <h2> Tipos de Ensino e Turnos</h2>
-        <div id="checkboxes">
-          <div class="parts_checks">
+        <h2> Tipos de Ensino, Turnos e Rede</h2>
+        <section id="checkboxes">
+          <section class="parts_checks">
             <ul>
               <p class="label-campo">Tipo de Ensino</p>
               <li><input type="checkbox" name="ensino" value="Educação Infantil" <%= valores.tipo_ensino?.includes('Educação Infantil') ? 'checked' : '' %>> Educação Infantil</li>
@@ -198,9 +221,9 @@
               <li><input type="checkbox" name="ensino" value="Cursos Técnicos" <%= valores.tipo_ensino?.includes('Cursos Técnicos') ? 'checked' : '' %>> Técnicos</li>
               <li><input type="checkbox" name="ensino" value="Cursos Extracurriculares" <%= valores.tipo_ensino?.includes('Cursos Extracurriculares') ? 'checked' : '' %>> Extracurriculares</li>
             </ul>
-          </div>
+          </section>
 
-          <div class="parts_checks">
+          <section class="parts_checks">
             <ul>
               <p class="label-campo">Turnos</p>
               <li><input type="checkbox" name="turno" value="Manhã" <%= valores.turnos?.includes('Manhã') ? 'checked' : '' %>> Manhã</li>
@@ -209,32 +232,47 @@
               <li><input type="checkbox" name="turno" value="Noite" <%= valores.turnos?.includes('Noite') ? 'checked' : '' %>> Noite</li>
               <li><input type="checkbox" name="turno" value="Sábado" <%= valores.turnos?.includes('Sábado') ? 'checked' : '' %>> Sábado</li>
             </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- REDE -->
-      <section id="rede-acessibilidade" class="caixa-sec">
-        <h2> Rede e Acessibilidade</h2>
-        <div id="checkboxes">
-          <div class="parts_checks">
+          </section>
+        </section>
+                  <section class="parts_checks">
             <ul>
               <p class="label-campo">Rede</p>
               <li><input type="checkbox" name="rede" value="Municipal" <%= valores.redes?.includes('Municipal') ? 'checked' : '' %>> Municipal</li>
               <li><input type="checkbox" name="rede" value="Estadual" <%= valores.redes?.includes('Estadual') ? 'checked' : '' %>> Estadual</li>
               <li><input type="checkbox" name="rede" value="Particular" <%= valores.redes?.includes('Particular') ? 'checked' : '' %>> Particular</li>
             </ul>
-          </div>
+          </section>
+      </section>
 
-          <div class="parts_checks">
+      <!-- REDE -->
+      <section id="rede-acessibilidade" class="caixa-sec">
+        <h2>Acessibilidade</h2>
+
+          <section class="parts_checks">
             <ul>
-              <p class="label-campo">Acessibilidade</p>
-              <li><input type="checkbox" name="rede" value="Atendimento Educacional Especializado" <%= valores.redes?.includes('Atendimento Educacional Especializado') ? 'checked' : '' %>> AEE</li>
-              <li><input type="checkbox" name="rede" value="Acessibilidade para PcDs" <%= valores.redes?.includes('Acessibilidade para PcDs') ? 'checked' : '' %>> PcDs</li>
-              <li><input type="checkbox" name="rede" value="Ensino em Libras" <%= valores.redes?.includes('Ensino em Libras') ? 'checked' : '' %>> Libras</li>
+<p class="label-campo" style="margin-top: 5%">Acessibilidade Física</p>
+<li><input type="checkbox" name="acessibilidade" value="RAMP" <%= valores.acessibilidade?.includes('RAMP') ? 'checked' : '' %>> Rampa de Acesso</li>
+<li><input type="checkbox" name="acessibilidade" value="CORR" <%= valores.acessibilidade?.includes('CORR') ? 'checked' : '' %>> Corrimão em Escadas e Rampas</li>
+<li><input type="checkbox" name="acessibilidade" value="BRAP" <%= valores.acessibilidade?.includes('BRAP') ? 'checked' : '' %>> Banheiro Adaptado</li>
+<li><input type="checkbox" name="acessibilidade" value="ELEV" <%= valores.acessibilidade?.includes('ELEV') ? 'checked' : '' %>> Elevador ou Plataforma Elevatória</li>
+<li><input type="checkbox" name="acessibilidade" value="PSTL" <%= valores.acessibilidade?.includes('PSTL') ? 'checked' : '' %>> Piso Tátil</li>
+<li><input type="checkbox" name="acessibilidade" value="VAGA" <%= valores.acessibilidade?.includes('VAGA') ? 'checked' : '' %>> Vaga Reservada para PcD</li>
+
+<p class="label-campo" style="margin-top: 5%">Acessibilidade Comunicacional</p>
+<li><input type="checkbox" name="acessibilidade" value="Libras" <%= valores.acessibilidade?.includes('Libras') ? 'checked' : '' %>> Intérprete de Libras</li>
+<li><input type="checkbox" name="acessibilidade" value="SIBR" <%= valores.acessibilidade?.includes('SIBR') ? 'checked' : '' %>> Sinalização em Braille</li>
+<li><input type="checkbox" name="acessibilidade" value="ALVS" <%= valores.acessibilidade?.includes('ALVS') ? 'checked' : '' %>> Alarmes Visuais e Sonoros</li>
+<li><input type="checkbox" name="acessibilidade" value="VIDL" <%= valores.acessibilidade?.includes('VIDL') ? 'checked' : '' %>> Vídeos Legendados</li>
+
+<p class="label-campo" style="margin-top: 5%">Acessibilidade Pedagógica</p>
+<li><input type="checkbox" name="acessibilidade" value="AEE" <%= valores.acessibilidade?.includes('AEE') ? 'checked' : '' %>> AEE (Atendimento Educacional Especializado)</li>
+<li><input type="checkbox" name="acessibilidade" value="MADA" <%= valores.acessibilidade?.includes('MADA') ? 'checked' : '' %>> Materiais Didáticos Adaptados</li>
+<li><input type="checkbox" name="acessibilidade" value="AVAD" <%= valores.acessibilidade?.includes('AVAD') ? 'checked' : '' %>> Avaliações Adaptadas</li>
+<li><input type="checkbox" name="acessibilidade" value="TNAS" <%= valores.acessibilidade?.includes('TNAS') ? 'checked' : '' %>> Tecnologias Assistivas</li>
+<li><input type="checkbox" name="acessibilidade" value="ACAT" <%= valores.acessibilidade?.includes('ACAT') ? 'checked' : '' %>> Acessibilidade Atitudinal (Conscientização e Inclusão)</li>
             </ul>
-          </div>
-        </div>
+          </section>
+        </section>
       </section>
 
       <!-- CONTATOS -->
@@ -259,12 +297,12 @@
       <!-- AÇÕES -->
       <section id="acoes" class="caixa-sec">
 
-        <div class="botoes-acoes">
+        <section class="botoes-acoes">
           <button type="submit" id="salvar_button">Salvar</button>
           <form action="/excluir-perfil" method="POST" onsubmit="return confirmarExclusao()" class="form-excluir">
             <button type="submit" id="excluir-btn">Excluir Perfil</button>
           </form>
-        </div>
+        </section>
       </section>
     </form>
   </main>
@@ -485,5 +523,24 @@
     notify("<%= dadosNotificacao.titulo %>", "<%= dadosNotificacao.mensagem %>", "<%= dadosNotificacao.tipo %>", "center");
 </script>
 <% } %>
+
+<script>
+  // Ingresso list management
+  $('#add-ingresso-btn').on('click', function() {
+    const input = $('#ingresso-input');
+    const value = input.val().trim();
+    if (value) {
+      const list = $('#ingresso-list');
+      const li = $('<li class="ingresso-item"></li>');
+      li.html(`${value} <button type="button" class="remove-ingresso-btn" data-value="${value}">Remover</button><input type="hidden" name="ingresso[]" value="${value}">`);
+      list.append(li);
+      input.val('');
+    }
+  });
+
+  $(document).on('click', '.remove-ingresso-btn', function() {
+    $(this).closest('.ingresso-item').remove();
+  });
+</script>
 
 </html>

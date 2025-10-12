@@ -42,6 +42,7 @@ CREATE TABLE escolas (
     tipo_ensino VARCHAR(255),
     turnos VARCHAR(255),
     rede VARCHAR(50),
+    acessibilidade VARCHAR(100),
     img_perfil_id INT DEFAULT NULL,
     FOREIGN KEY (img_perfil_id) REFERENCES imagens(id_imagem),
     whatsapp VARCHAR(20) NULL,

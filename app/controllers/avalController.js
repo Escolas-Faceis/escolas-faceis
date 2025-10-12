@@ -85,6 +85,7 @@ criarAvaliacao: async (req, res) => {
             if (isAjax) {
                 const newAverage = await avalModel.getAverage(req.body.id_escola);
                 newAverage.media = parseFloat(newAverage.media.toFixed(1));
+                newAverage.totalAvaliacoes = newAverage.total;
                 const newAval = await avalModel.findById(result.id);
                 newAval.data_formatada = moment(newAval.data_avaliacao).fromNow();
                 return res.json({ success: true, mediaAvaliacao: newAverage, newAval: newAval });

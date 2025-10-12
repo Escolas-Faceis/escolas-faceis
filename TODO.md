@@ -1,9 +1,4 @@
-# Organize editar-escola.ejs Code
-
-## Steps
-- [ ] Reorganize HTML structure: Move all scripts to end of body, group head elements.
-- [ ] Remove duplicate jQuery script load in head.
-- [ ] Remove duplicate confirmarExclusao function definition.
-- [ ] Apply consistent 2-space indentation throughout the file.
-- [ ] Group related HTML sections logically (modals together, form sections together).
-- [ ] Verify no functionality changes (no attributes, content, or logic altered).
+- [x] Edit app/views/pages/perfil-escola-e.ejs to add imageMap for accessibility icons and include <img> in each li.
+- [x] Edit app/public/css/perfil-escola-e.css to style the accessibility ul/li as a grid with icons, colors, hover effects.
+- [x] Ensure responsiveness in CSS.
+- [ ] Test the changes by running the app.
