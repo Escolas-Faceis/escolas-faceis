@@ -106,7 +106,7 @@ body {
     color: var(--laranja);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     margin: 20px 0;
     font-size: x-large;
 
@@ -126,8 +126,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     gap: 10px;
+    width: max-content;
 }
 
 .social-media {
@@ -203,6 +204,7 @@ body {
 
 .manual-navegacao, .navegacao-auto {
     position: absolute;
+    
     width: 100%;
     max-width: 400px;
     display: flex;
@@ -341,8 +343,11 @@ body {
         flex-direction: column;
     }
     .lado {
+        width: 100vw;
         flex-direction: column;
-        align-items: center;
+        align-items: left !important;
+        justify-content: left !important;
+        margin: 0 5%;
         gap: 10px;
         margin-top: 2%;
     }
@@ -381,11 +386,18 @@ body {
         min-width: 120px;
         max-width: 300px;
     }
+     .manual-navegacao{
+        margin-top: 5px;
+     }
+     .slide{
+        background-color: #f56d44;
+        margin-top: 5px;
+     }
     .slide img {
         width: 98vw;
         min-width: 120px;
         max-width: 300px;
-        height: 110px;
+        height: fit-content;
     }
     .niveis {
         font-size: 0.85rem;

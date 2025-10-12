@@ -170,10 +170,10 @@
             <ul>
                 <% if (valores.acessibilidade && valores.acessibilidade.length > 0) { %>
                     <% valores.acessibilidade.forEach(acel => { %>
-                        <li class="ingresso <%= acel.trim().toUpperCase().substring(0, 3) %>"><%= acessibilidadeMap[acel.trim()] || acel %></li>
+                        <li class="acess <%= acel.trim().toUpperCase().substring(0, 3) %>"><%= acessibilidadeMap[acel.trim()] || acel %></li>
                     <% }) %>
                 <% } else { %>
-                    <li class="ingresso">Nenhum item de acessibilidade selecionado</li>
+                    <li class="acess">Nenhum item de acessibilidade selecionado</li>
                 <% } %>
             </ul>
         </section>
@@ -185,10 +185,10 @@
         <ul>
             <% if (valores.ingresso && valores.ingresso.length > 0) { %>
                 <% valores.ingresso.forEach(item => { %>
-                    <li class="ingresso"><%= item %></li>
+                    <li class="acess1"><%= item %></li>
                 <% }) %>
             <% } else { %>
-                <li class="ingresso">Este perfil ainda não escreveu nada sobre seu ingresso.</li>
+                <li class="acess1">Este perfil ainda não escreveu nada sobre seu ingresso.</li>
             <% } %>
         </ul>
         </section>

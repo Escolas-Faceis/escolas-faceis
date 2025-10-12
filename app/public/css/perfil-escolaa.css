@@ -303,90 +303,112 @@ justify-content: space-between;
     *{
         color: #141c44;
     }
-     
+
     .logo{
         position: relative;
-        width: 200px;
-        margin-left: 30%;
+        width: 180px;
+        margin: 20px auto;
         display: block;
+        text-align: center;
     }
     .nome-escola{
-        font-size: 22px;
+        font-size: 20px;
+        text-align: center;
+        margin: 10px 0;
     }
     .escolaridade{
-         padding: 2px 5px;
+        padding: 3px 6px;
         font-weight: 600;
-        font-size: 12px;
-        margin-left: 2.5%;
-        margin-top: -2%;
+        font-size: 11px;
+        margin: 5px 2px;
+        display: inline-block;
     }
     .localidade{
-        font-size: 15px;
+        font-size: 14px;
+        text-align: center;
     }
     .instituicao{
-        font-size: 15px;
+        font-size: 14px;
     }
     .ingresso{
-        font-size: 17px;
-        margin-left: 1.5%;
+        font-size: 16px;
+        margin: 10px 0;
+        text-align: center;
     }
     .sobre-escola{
-        font-size: 25px;
+        font-size: 22px;
         color: #141c44;
+        text-align: center;
+        margin: 20px 0;
     }
     .informacao{
-        font-size: 15px;
-        margin-top: 3%;
+        font-size: 14px;
+        margin: 10px 5%;
         color: #141c44;
+        text-align: justify;
     }
     .lista{
-        font-size: 15px;
-        margin-top: 3%;
+        font-size: 14px;
+        margin: 10px 5%;
         color: #141c44;
+        padding-left: 20px;
+    }
+    .lista-2{
+        margin: 10px 5%;
+        font-size: 14px;
+        color: #141c44;
+        padding-left: 20px;
     }
     .centro {
         flex-direction: column;
+        align-items: center;
     }
     .esquerdo {
         width: 100%;
+        padding: 0 10px;
     }
     .linha-v {
         display: none;
     }
     .divisao-direita {
         width: 100%;
+        margin-top: 20px;
     }
-    #insta{
-        width: 40px;
-    }
-    #what{
-        width: 40px;
-    }
-    #face{
-        width: 40px;
-    }
-    #telefone{
-        width: 40px;
-    }
-    #email{
-        width: 40px;
-    }
-    .contato-ace{
-        margin-top: 5%;
+    .divisao-direita article,
+    .divisao-direita aside {
         justify-content: center;
-        font-size: 25px;
+        flex-wrap: wrap;
+        gap: 10px;
     }
-    #bengala{
-        width: 40px;
+    #insta,
+    #what,
+    #face,
+    #telefone,
+    #email,
+    #bengala,
+    #lingua-de-sinais,
+    #cadeira-de-rodas {
+        width: 35px;
+        margin: 5px;
     }
-    #lingua-de-sinais{
-        width: 40px;
+    .contato-ace,
+    .ingresso-ace {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 22px;
     }
-    #cadeira-de-rodas{
-        width: 40px;
+    .ingresso-manner {
+        padding: 0;
+        margin: 10px 0;
     }
-    
-} 
+    .ingresso-manner li {
+        margin: 5px 0;
+    }
+    .tooltip .tooltip-text {
+        max-width: 120px;
+        font-size: 11px;
+    }
+}
 @media(min-width: 481px) and (max-width:720px){
      
     .logo{
