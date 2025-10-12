@@ -1,5 +1,0 @@
-- [x] Fix the `criarAvaliacao` method in `avalController.js` to properly render the school profile page with correct data after evaluation creation or errors, without modifying the `mostrarPerfil` method.
-  - Added helper function to fetch and process school data.
-  - Updated render calls to use school data instead of form data.
-  - Ensured correct view selection: always render "pages/perfil-escola-e" (external view) for evaluations.
-  - Added error handling for data fetching failures.
