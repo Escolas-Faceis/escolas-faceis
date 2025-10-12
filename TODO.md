@@ -1,12 +1,9 @@
-# TODO: Add Carousel Images to Edit School Form
+# Organize editar-escola.ejs Code
 
-## Tasks
-- [x] Modify `uploader.js` to support multiple files for carousel
-- [x] Update route in `router.js` to handle multiple carousel images
-- [x] Add carousel image inputs in `editar-escola.ejs` with previews, limit to 3
-- [x] Update `escolaController.js` `gravarPerfil` to save carousel images
-- [x] Update `escolaModel.js` `findId` to include carousel images
-- [ ] Update `perfil-escola.ejs` to display dynamic carousel images
-- [ ] Add CSS for previews in `perfil_esc_edi.css`
-- [ ] Test the upload and display
-- [ ] Handle removal of old images if replaced
+## Steps
+- [ ] Reorganize HTML structure: Move all scripts to end of body, group head elements.
+- [ ] Remove duplicate jQuery script load in head.
+- [ ] Remove duplicate confirmarExclusao function definition.
+- [ ] Apply consistent 2-space indentation throughout the file.
+- [ ] Group related HTML sections logically (modals together, form sections together).
+- [ ] Verify no functionality changes (no attributes, content, or logic altered).

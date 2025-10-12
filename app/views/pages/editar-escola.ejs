@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Editavel Escola</title>
-    <link rel="stylesheet" href="/css/perfil_esc_edi.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
-    <link rel="stylesheet" href="/css/modal.css">
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Perfil da Escola</title>
+  <link rel="stylesheet" href="/css/perfil_esc_edi.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
+  <link rel="stylesheet" href="/css/modal.css">
 </head>
+
 <script>
     function notify(title, text, type, position, timeout = 5000) {
         new Notify({
@@ -34,27 +34,27 @@
         });
     }
 </script>
-<body>
-     <%- include('../partials/navbar'); %>
 
-    <aside class="modal" id="croppie-modal">
+<body>
+  <%- include('../partials/navbar'); %>
+
+      <aside class="modal" id="croppie-modal">
       <aside class="modal-content">
         <span class="close-modal" id="close-croppie">&times;</span>
         <aside id="croppie-container"></aside>
         <section class="btn">
-        <button class="btns"  id="crop-btn">Cortar</button>
-        <button class="btns" id="cancel-btn">Cancelar</button></section>
+        <button class="btns crop-btn"  id="crop-btn">Cortar</button>
+        <button class="btns cancel-btn" id="cancel-btn">Cancelar</button></section>
       </aside>
     </aside>
 
-    <!-- Croppie modals for carousel images -->
     <aside class="modal" id="croppie-modal-carousel-1">
       <aside class="modal-content">
         <span class="close-modal" id="close-croppie-carousel-1">&times;</span>
         <aside id="croppie-container-carousel-1"></aside>
         <section class="btn">
-        <button class="btns" id="crop-btn-carousel-1">Cortar</button>
-        <button class="btns" id="cancel-btn-carousel-1">Cancelar</button></section>
+        <button class="btns crop-btn" id="crop-btn-carousel-1">Cortar</button>
+        <button class="btns cancel-btn" id="cancel-btn-carousel-1">Cancelar</button></section>
       </aside>
     </aside>
 
@@ -63,8 +63,8 @@
         <span class="close-modal" id="close-croppie-carousel-2">&times;</span>
         <aside id="croppie-container-carousel-2"></aside>
         <section class="btn">
-        <button class="btns" id="crop-btn-carousel-2">Cortar</button>
-        <button class="btns" id="cancel-btn-carousel-2">Cancelar</button></section>
+        <button class="btns crop-btn" id="crop-btn-carousel-2">Cortar</button>
+        <button class="btns cancel-btn" id="cancel-btn-carousel-2">Cancelar</button></section>
       </aside>
     </aside>
 
@@ -73,70 +73,70 @@
         <span class="close-modal" id="close-croppie-carousel-3">&times;</span>
         <aside id="croppie-container-carousel-3"></aside>
         <section class="btn">
-        <button class="btns" id="crop-btn-carousel-3">Cortar</button>
-        <button class="btns" id="cancel-btn-carousel-3">Cancelar</button></section>
+        <button class="btns crop-btn" id="crop-btn-carousel-3">Cortar</button>
+        <button class="btns cancel-btn" id="cancel-btn-carousel-3">Cancelar</button></section>
       </aside>
     </aside>
 
-    <section class="caixa">
-        <section class="dentro">
-       
-        <h2>Editar Perfil</h2>    
-         <form class="w-100 box" id="form-form" action="/editar_escola_post" method="POST" enctype="multipart/form-data">
-         <main class="w-100 box">
-                <section class="w-100 box">
-                        <!-- image -->
-                <section class="image-upload box">
-                             <img class="img-perfil fototo"  id="img-preview" src="<%= valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" alt="Foto de Perfil do Usuário">
-                             <input type="file" name="imagem_perfil_usu" id="imagem_perfil_usu" style="display:none;">
-                        </section>
+  <!-- Mini sumário fixo -->
+  <nav id="sumario">
+    <ul>
+      <li><a href="#info-gerais"> Informações Gerais</a></li>
+      <li><a href="#carrossel"> Carrossel</a></li>
+      <li><a href="#sobre-escola"> Sobre a Escola</a></li>
+      <li><a href="#ensino-turnos"> Ensino e Turnos</a></li>
+      <li><a href="#rede-acessibilidade"> Rede e Acessibilidade</a></li>
+      <li><a href="#contatos"> Contatos</a></li>
+      <li><a href="#acoes"> Ações</a></li>
+    </ul>
+  </nav>
 
+  <main class="conteudo">
 
+    <form action="/editar_escola_post" method="POST" enctype="multipart/form-data">
 
-                </section>   
-            </main>
-        <section>
-        <p id="nome_escola"><label for="nomedaescola">Nome da Escola</label></p>
-        <input type="text" id="caixa_nome" name="nomedaescola" value="<%= valores.nomedaescola || '' %>">
+      <!-- INFORMAÇÕES GERAIS -->
+      <section id="info-gerais" class="caixa-sec">
+        <h2> Informações Gerais</h2>
 
-        <p id="nome_escola"><label for="email">E-mail</label></p>
-        <input type="text" id="caixa_nome" name="email" value="<%= valores.email || '' %>">
+        <div class="image-upload">
+          <img class="img-perfil fototo" id="img-preview" 
+               src="<%= valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" 
+               alt="Foto de Perfil">
+          <input type="file" name="imagem_perfil_usu" id="imagem_perfil_usu" style="display:none;">
+        </div>
 
-        <p id="nome_escola"><label for="cnpj">CNPJ</label></p>
-        <input type="text" id="caixa_nome" name="cnpj" placeholder="00.000.00/00000-00" disabled value="<%= valores.cnpj || '' %>">
+        <label class="label-campo">Nome da Escola</label>
+        <input class="input-campo" type="text" name="nomedaescola" value="<%= valores.nomedaescola || '' %>">
 
-        <p id="nome_escola"><label for="senha">Senha</label></p>
-        <input type="password" name="senha" id="senha" placeholder="Não preencha este campo para manter a senha atual">
-            <!-- <section class="lado">
-                <p id="nome_escola">CEP</p> 
-                <input type="text" id="caixa_nome_lado" placeholder="00000-000" name="cep">
-        
-        <p id="nome_escola"><label for="escola">N°</label></p>
-        <input type="text" id="caixa_nome_lado" name="numeroescola">
-        
-            </section> -->
-            <section class="ob">
-                <section class="cep">
-                    <p> <label for="cep"></label>CEP</p> <br>
-                    <input type="text" id="cep" placeholder="00000-000" name="cep" value="<%= valores.cep || '' %>">
-                    <span class="spanerro"></span>
-                </section>
-                <section class="complemento">
-                    <p id="numero"> <label for="num"></label>N°</p><br>
-                    <input type="text" id="num" name="adress_n" value="<%= valores.adress_n || '' %>">
-                    <span class="spanerro"></span>
-                </section>
-            </section>
+        <label class="label-campo">E-mail</label>
+        <input class="input-campo" type="text" name="email" value="<%= valores.email || '' %>">
 
-        <p id="nome_escola"><label for="escola">Endereço</label></p>
-        <input type="text" id="caixa_nome" name="endereco" value="<%= valores.endereco || '' %>">
+        <label class="label-campo">CNPJ</label>
+        <input class="input-campo" type="text" name="cnpj" value="<%= valores.cnpj || '' %>" disabled>
 
-        <!-- <p id="nome_escola"><label for="escola">Cidade</label></p>
-        <input type="text" id="caixa_nome" name="cidade" value="<%= valores.cidade || '' %>"> -->
+        <label class="label-campo">Senha</label>
+        <input class="input-campo" type="password" name="senha" placeholder="Não preencha para manter atual">
 
-                <section class="carrossel">                 
+        <div class="linha">
+          <div>
+            <label class="label-campo">CEP</label>
+            <input class="input-campo" type="text" name="cep" value="<%= valores.cep || '' %>">
+          </div>
+          <div>
+            <label class="label-campo">Número</label>
+            <input class="input-campo" type="text" name="adress_n" value="<%= valores.adress_n || '' %>">
+          </div>
+        </div>
+
+        <label class="label-campo">Endereço</label>
+        <input class="input-campo" type="text" name="endereco" value="<%= valores.endereco || '' %>">
+      </section>
+
+                <section class="carrossel caixa-sec" id="carrossel"> 
+                                              <h2>Carrossel</h2>                
                         <section class="carousel-preview-section">
-                            <h3>Carrossel</h3>
+
                             <div class="carousel-preview">
                                 <div class="slides">
                                     <div class="slide">
@@ -169,168 +169,122 @@
                             </div>
                         </section>
                 </section>
-            
-        <p id="nome_escola"><label for="sobre">Sobre a Escola</label></p>
-        <textarea name="Sobre a Escola" id="sobre" class="area"><%= valores['Sobre a Escola'] || '' %></textarea>
 
-        <p id="nome_escola"><label for="sobre">Sobre o Ensino</label></p>
-        <textarea name="Sobre o Ensino" id="sobre" class="area"><%= valores['Sobre o Ensino'] || '' %></textarea>
+      <!-- SOBRE -->
+      <section id="sobre-escola" class="caixa-sec">
+        <h2> Sobre a Escola</h2>
 
-        <p id="nome_escola"><label for="sobre">Sobre a Estrutura</label></p>
-        <textarea name="Sobre a Estrutura" id="sobre" class="area"><%= valores['Sobre a Estrutura'] || '' %></textarea>
+        <label class="label-campo">Sobre a Escola</label>
+        <textarea class="area" name="sobre_escola"><%= valores.sobre_escola || '' %></textarea>
 
-        </section>
-        
-        <span class="step">
+        <label class="label-campo">Sobre o Ensino</label>
+        <textarea class="area" name="sobre_ensino"><%= valores.sobre_ensino || '' %></textarea>
 
-                        <section id="checkboxes">
-                            <section class="parts_checks">
-                                <ul>
-                                    <p>Tipo de Ensino</p>
-                                    <li>
-                                        <input type="checkbox" id="educacao_infantil" name="ensino" value="Educação Infantil" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Educação Infantil') ? 'checked' : '' %>>
-                                        <label for="educacao_infantil">Educação Infantil</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="ef1" name="ensino" value="Ensino Fundamental I" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Ensino Fundamental I') ? 'checked' : '' %>>
-                                        <label for="ef1">Ensino Fundamental I</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="ef2" name="ensino" value="Ensino Fundamental II" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Ensino Fundamental II') ? 'checked' : '' %>>
-                                        <label for="ef2">Ensino Fundamental II</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="em" name="ensino" value="Ensino Médio" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Ensino Médio') ? 'checked' : '' %>>
-                                        <label for="em">Ensino Médio</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="ei" name="ensino" value="Educação Integrada" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Educação Integrada') ? 'checked' : '' %>>
-                                        <label for="ei">Educação Integrada</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="etec" name="ensino" value="Cursos Técnicos" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Cursos Técnicos') ? 'checked' : '' %>>
-                                        <label for="etec">Cursos Técnicos</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="cso" name="ensino" value="Cursos Extracurriculares" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Cursos Extracurriculares') ? 'checked' : '' %>>
-                                        <label for="cso">Cursos Extracurriculares</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="idi" name="ensino" value="Cursos de Idioma" <%= valores.tipo_ensino && valores.tipo_ensino.includes('Cursos de Idioma') ? 'checked' : '' %>>
-                                        <label for="idi">Cursos de Idioma</label>
-                                    </li>
-
-                                </ul>
-                            </section>
-
-                            <section class="parts_checks">
-                                <ul>
-                                    <p>Turnos</p>
-                                    <li>
-                                        <input type="checkbox" id="m" name="turno" value="Manhã" <%= valores.turnos && valores.turnos.includes('Manhã') ? 'checked' : '' %>>
-                                        <label for="m">Manhã</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="t" name="turno" value="Tarde" <%= valores.turnos && valores.turnos.includes('Tarde') ? 'checked' : '' %>>
-                                        <label for="t">Tarde</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="int" name="turno" value="Integral" <%= valores.turnos && valores.turnos.includes('Integral') ? 'checked' : '' %>>
-                                        <label for="int">Integral</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="n" name="turno" value="Noite" <%= valores.turnos && valores.turnos.includes('Noite') ? 'checked' : '' %>>
-                                        <label for="n">Noite</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="sab" name="turno" value="Sábado" <%= valores.turnos && valores.turnos.includes('Sábado') ? 'checked' : '' %>>
-                                        <label for="sab"><b style="color:red; font-weight: 300;">*</b>Sábado </label>
-                                    </li>
-                                </ul>
-                            </section>
-
-                            <section class="parts_checks">
-                                <ul>
-                                    <p>Rede</p>
-                                    <li>
-                                        <input type="checkbox" id="muni" name="rede" value="Municipal" <%= valores.redes && valores.redes.includes('Municipal') ? 'checked' : '' %>>
-                                        <label for="muni">Municipal</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="est" name="rede" value="Estadual" <%= valores.redes && valores.redes.includes('Estadual') ? 'checked' : '' %>>
-                                        <label for="est">Estadual</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="fund" name="rede" value="Fundação" <%= valores.redes && valores.redes.includes('Fundação') ? 'checked' : '' %>>
-                                        <label for="fund">Fundação</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="part" name="rede" value="Particular" <%= valores.redes && valores.redes.includes('Particular') ? 'checked' : '' %>>
-                                        <label for="part">Particular</label>
-                                    </li>
-                                </ul>
-                            </section>
-
-                            <section class="parts_checks">
-                                <ul>
-                                    <p>Acessibilidade</p>
-                                    <li>
-                                        <input type="checkbox" id="muni" name="rede" value="Atendimento Educacional Especializado" <%= valores.redes && valores.redes.includes('Atendimento Educacional Especializado') ? 'checked' : '' %>>
-                                        <label for="muni">Atendimento Educacional Especializado</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="est" name="rede" value="Acessibilidade para deficientes visuais" <%= valores.redes && valores.redes.includes('Acessibilidade para deficientes visuais') ? 'checked' : '' %>>
-                                        <label for="est">Acessibilidade para deficientes visuais</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="fund" name="rede" value="Acessibilidade para PcDs" <%= valores.redes && valores.redes.includes('Acessibilidade para PcDs') ? 'checked' : '' %>>
-                                        <label for="fund">Acessibilidade para PcDs</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" id="part" name="rede" value="Ensino em Libras" <%= valores.redes && valores.redes.includes('Ensino em Libras') ? 'checked' : '' %>>
-                                        <label for="part">Ensino em Libras</label>
-                                    </li>
-                                </ul>
-                            </section>
-
-                        </section>
-
-
-</span>
-<p id="nome_escola"><label for="escola">Instagram</label></p>
-<input type="text" id="caixa_nome" name="instagram" placeholder="https://www.instagram.com" value="<%= valores.instagram || '' %>">
-<p id="nome_escola"><label for="escola">Facebook</label></p>
-<input type="text" id="caixa_nome" name="facebook" placeholder="https://www.facebook.com" value="<%= valores.facebook || '' %>">
-<p id="nome_escola"><label for="escola">Whatsapp</label></p>
-<input type="text" id="caixa_nome" name="whatsapp" placeholder="00 00000-0000" value="<%= valores.whatsapp || '' %>">
-<p id="nome_escola"><label for="escola">Número para Contato</label></p>
-<input type="text" id="caixa_nome" name="telefone_contato" placeholder="00 00000-0000" value="<%= valores.telefone_contato || '' %>">
-<p id="nome_escola"><label for="escola">E-mail</label></p>
-<input type="text" id="caixa_nome" name="email_contato" placeholder="Usuario@gmail.com" value="<%= valores.email_contato || '' %>">
-        
-<section id="salvar2">
-    <button type="submit" id="salvar_button">Salvar</button>
-</section>
-</form> </section>
-
-</section>
-<section class="block">
-</section>
-<section class="outras-acoes">
-     <h1 class="out">Outras Ações</h1>
-    <form action="/excluir-perfil" method="POST" onsubmit="return confirmarExclusao()" class="form-excluir-perfil">
-       <button type="submit" id="excluir-btn">
-      Excluir Perfil
-      </button>
-     </form>
+        <label class="label-campo">Sobre a Estrutura</label>
+        <textarea class="area" name="sobre_estrutura"><%= valores.sobre_estrutura || '' %></textarea>
       </section>
 
+      <!-- ENSINO -->
+      <section id="ensino-turnos" class="caixa-sec">
+        <h2> Tipos de Ensino e Turnos</h2>
+        <div id="checkboxes">
+          <div class="parts_checks">
+            <ul>
+              <p class="label-campo">Tipo de Ensino</p>
+              <li><input type="checkbox" name="ensino" value="Educação Infantil" <%= valores.tipo_ensino?.includes('Educação Infantil') ? 'checked' : '' %>> Educação Infantil</li>
+              <li><input type="checkbox" name="ensino" value="Ensino Fundamental I" <%= valores.tipo_ensino?.includes('Ensino Fundamental I') ? 'checked' : '' %>> Fundamental I</li>
+              <li><input type="checkbox" name="ensino" value="Ensino Fundamental II" <%= valores.tipo_ensino?.includes('Ensino Fundamental II') ? 'checked' : '' %>> Fundamental II</li>
+              <li><input type="checkbox" name="ensino" value="Ensino Médio" <%= valores.tipo_ensino?.includes('Ensino Médio') ? 'checked' : '' %>> Ensino Médio</li>
+              <li><input type="checkbox" name="ensino" value="Cursos Técnicos" <%= valores.tipo_ensino?.includes('Cursos Técnicos') ? 'checked' : '' %>> Técnicos</li>
+              <li><input type="checkbox" name="ensino" value="Cursos Extracurriculares" <%= valores.tipo_ensino?.includes('Cursos Extracurriculares') ? 'checked' : '' %>> Extracurriculares</li>
+            </ul>
+          </div>
 
+          <div class="parts_checks">
+            <ul>
+              <p class="label-campo">Turnos</p>
+              <li><input type="checkbox" name="turno" value="Manhã" <%= valores.turnos?.includes('Manhã') ? 'checked' : '' %>> Manhã</li>
+              <li><input type="checkbox" name="turno" value="Tarde" <%= valores.turnos?.includes('Tarde') ? 'checked' : '' %>> Tarde</li>
+              <li><input type="checkbox" name="turno" value="Integral" <%= valores.turnos?.includes('Integral') ? 'checked' : '' %>> Integral</li>
+              <li><input type="checkbox" name="turno" value="Noite" <%= valores.turnos?.includes('Noite') ? 'checked' : '' %>> Noite</li>
+              <li><input type="checkbox" name="turno" value="Sábado" <%= valores.turnos?.includes('Sábado') ? 'checked' : '' %>> Sábado</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-<section class="fo">
-</section>
+      <!-- REDE -->
+      <section id="rede-acessibilidade" class="caixa-sec">
+        <h2> Rede e Acessibilidade</h2>
+        <div id="checkboxes">
+          <div class="parts_checks">
+            <ul>
+              <p class="label-campo">Rede</p>
+              <li><input type="checkbox" name="rede" value="Municipal" <%= valores.redes?.includes('Municipal') ? 'checked' : '' %>> Municipal</li>
+              <li><input type="checkbox" name="rede" value="Estadual" <%= valores.redes?.includes('Estadual') ? 'checked' : '' %>> Estadual</li>
+              <li><input type="checkbox" name="rede" value="Particular" <%= valores.redes?.includes('Particular') ? 'checked' : '' %>> Particular</li>
+            </ul>
+          </div>
 
+          <div class="parts_checks">
+            <ul>
+              <p class="label-campo">Acessibilidade</p>
+              <li><input type="checkbox" name="rede" value="Atendimento Educacional Especializado" <%= valores.redes?.includes('Atendimento Educacional Especializado') ? 'checked' : '' %>> AEE</li>
+              <li><input type="checkbox" name="rede" value="Acessibilidade para PcDs" <%= valores.redes?.includes('Acessibilidade para PcDs') ? 'checked' : '' %>> PcDs</li>
+              <li><input type="checkbox" name="rede" value="Ensino em Libras" <%= valores.redes?.includes('Ensino em Libras') ? 'checked' : '' %>> Libras</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTATOS -->
+      <section id="contatos" class="caixa-sec">
+        <h2> Contatos</h2>
+        <label class="label-campo">Instagram</label>
+        <input class="input-campo" type="text" name="instagram" value="<%= valores.instagram || '' %>">
+
+        <label class="label-campo">Facebook</label>
+        <input class="input-campo" type="text" name="facebook" value="<%= valores.facebook || '' %>">
+
+        <label class="label-campo">Whatsapp</label>
+        <input class="input-campo" type="text" name="whatsapp" value="<%= valores.whatsapp || '' %>">
+
+        <label class="label-campo">Telefone</label>
+        <input class="input-campo" type="text" name="telefone_contato" value="<%= valores.telefone_contato || '' %>">
+
+        <label class="label-campo">E-mail</label>
+        <input class="input-campo" type="text" name="email_contato" value="<%= valores.email_contato || '' %>">
+      </section>
+
+      <!-- AÇÕES -->
+      <section id="acoes" class="caixa-sec">
+
+        <div class="botoes-acoes">
+          <button type="submit" id="salvar_button">Salvar</button>
+          <form action="/excluir-perfil" method="POST" onsubmit="return confirmarExclusao()" class="form-excluir">
+            <button type="submit" id="excluir-btn">Excluir Perfil</button>
+          </form>
+        </div>
+      </section>
+    </form>
+  </main>
+
+  <script>
+    // Scroll suave no sumário
+    document.querySelectorAll('#sumario a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    function confirmarExclusao() {
+      return confirm('Tem certeza que deseja excluir seu perfil? Esta ação não pode ser desfeita!');
+    }
+  </script>
 </body>
+
   <script>
   function confirmarExclusao() {
     return confirm('Tem certeza que deseja excluir seu perfil? Esta ação não pode ser desfeita!');
