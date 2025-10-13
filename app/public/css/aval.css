@@ -292,6 +292,19 @@ font-weight: 300;
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
+  .aval {
+    margin: 1%;
+  }
+
+  .aval h1 {
+    margin-left: 5%;
+    font-size: 24px;
+  }
+
+  .avalinfo {
+    margin-left: 5%;
+  }
+
   .media-avaliacoes {
     padding: 20px;
     max-width: 300px;
@@ -320,9 +333,40 @@ font-weight: 300;
   .media-avaliacoes p {
     font-size: 0.9em;
   }
+
+  #comentario {
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #info_usuario_comentario h3 {
+    font-size: 0.9rem;
+  }
+
+  #comentario p {
+    font-size: 0.85rem;
+  }
+
+  #texto {
+    margin-left: 40px;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .aval {
+    margin: 0.5%;
+  }
+
+  .aval h1 {
+    margin-left: 2%;
+    font-size: 20px;
+  }
+
+  .avalinfo {
+    margin-left: 2%;
+  }
+
   .media-avaliacoes {
     padding: 15px;
     max-width: 250px;
@@ -352,17 +396,64 @@ font-weight: 300;
     font-size: 0.8em;
   }
 
-  #comentario{
-    transform: scale(0.9);
+  #comentario {
+    padding: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
   }
 
-  .avav{
+  #info_usuario_comentario {
+    gap: 8px;
+  }
+
+  #foto_comentario {
+    width: 35px;
+    height: 35px;
+  }
+
+  #info_usuario_comentario h3 {
+    font-size: 0.85rem;
+  }
+
+  #comentario p {
+    font-size: 0.8rem;
+  }
+
+  #texto {
+    margin-left: 35px;
+    font-size: 0.85rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  #estrelas_bottom {
+    margin-top: 5px;
+    gap: 3px;
+  }
+
+  .star-filled, .star-empty {
+    font-size: 20px;
+  }
+
+  .avav {
     margin: 0 5% !important;
   }
 
-  .escolaridade{
+  .escolaridade {
     font-size: 10px !important;
-    border:0 !important
+    border: 0 !important;
+  }
+
+  #ratetext{
+    width: 90vw !important;
+  }
+  .aval #enviar{
+    transform: translateX(100%);
+
+  }
+  .avalinfo{
+    margin-bottom: 3%;
   }
 }
 

@@ -52,7 +52,7 @@ criarAvaliacao: async (req, res) => {
             }
             req.session.dadosNotificacao = {
                 titulo: "Erro ao avaliar!",
-                mensagem: "Você não pode avaliar sua própria escola.",
+                mensagem: "Você não pode avaliar sua própria ou outra escola.",
                 tipo: "error"
             };
             return res.redirect('/perfil-escola?id=' + req.body.id_usuario_escola);
