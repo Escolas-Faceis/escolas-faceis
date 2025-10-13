@@ -12,43 +12,6 @@
     --azul-escuro: #141c44;
 }
 
-/* 
-
-    .search-bar {
-        display: flex;
-        justify-content: center; 
-        align-items: center; 
-        gap: 0.1%; 
-        padding: 20px;
-        font-size: 14px;
-        
-    }
-
-
-    #nome-escola-search{
-        border-top-left-radius: 15px;
-        border-bottom-left-radius: 15px;
-        border: 1px solid gray;
-        padding: 0.3%;
-        
-    }
-
-    #cidade-search{
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
-        border: 1px solid gray;
-        padding: 0.3%;
-    }
-
-    #regiao-search{
-        padding: 0.3%;
-        border: 1px solid gray;
-        width: 5%;
-    }
- */
-
-
-
 label{
 padding: 2%;
 font-size: 14px;
@@ -68,6 +31,24 @@ font-size: 14px;
     margin-left: 32%;
     margin-top: -1.9%;
     margin-bottom: 4%;
+}
+
+@media screen and (max-width: 1290px) {
+  #filtro{
+    margin-left: 25%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #filtro{
+    margin-left: 15%;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  #filtro{
+    margin-left: 5%;
+  }
 }
 
 #filtrar{
@@ -116,6 +97,27 @@ input{
     margin-top: 4%;
     margin-left: 21%;
     }
+
+@media screen and (max-width: 1290px) {
+  .filter-schools{
+    width: 30%;
+    margin-left: 18%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .filter-schools{
+    width: 37%;
+    margin-left: -10%;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .filter-schools{
+    width: 100%;
+    margin-left: -5%;
+  }
+}
 
     .sec{
         margin: 3%;
@@ -255,6 +257,7 @@ padding: 2%;
     font-weight: normal;
     cursor: pointer;
     font-size: 18px;
+    margin-top: 0;
 }#filtros:hover{
     text-decoration: underline;
 }
@@ -267,6 +270,7 @@ padding: 2%;
     margin-bottom: 6%;
     font-size: 14px;
 }
+
 
 #filtrar{
     z-index: 1;
@@ -367,11 +371,12 @@ h1{
 
     .filter-schools{
         width: 100%;
-        margin-left: -5%;
-       
+        margin-left: 0;
+        left: 0;
+        right: 0;
     }
     #filtros{
-         transform: translate(0, -30px);
+         /* Removed transform to keep it visible and clickable */
     }
 
 }

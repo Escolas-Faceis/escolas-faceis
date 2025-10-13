@@ -32,7 +32,24 @@ padding: 2%;
     margin-top: -1.9%;
     margin-bottom: 4%;
     width: fit-content;
- 
+}
+
+@media screen and (max-width: 1290px) {
+  #filtro{
+    margin-left: 25%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #filtro{
+    margin-left: 15%;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  #filtro{
+    margin-left: 5%;
+  }
 }
  
 #filtrar{
@@ -323,6 +340,19 @@ h1{
 .search-bar{
   margin: 0 30%;
 }
+
+@media screen and (max-width: 1290px) {
+  .search-bar{
+    margin: 0 20%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .search-bar{
+    margin: 0 10%;
+  }
+}
+
  
 .search-fields {
   display: flex;
@@ -420,6 +450,12 @@ h1{
 .justify{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+#filtro{
+  margin: 0;
+  padding: 0;
 }
  
 @media screen and (max-width: 1290px) {
@@ -491,10 +527,12 @@ h1{
 @media screen and (max-width: 481px) {
   .search-fields {
     flex-direction: column;
-    align-items: stretch;
+    width: 145%;
+    align-items: center;
     gap: 10px;
     font-size: 17px;
     padding: 10px;
+    justify-content: center;
   }
  
   .A {
@@ -506,13 +544,24 @@ h1{
   #regiao-search {
     width: 100%;
     border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
   }
  
   #search {
+transform: translateY(-40px);
     justify-content: center;
     margin: 0;
     font-size: 18px;
+    padding-left: 10px;
   }
+
+  #nome-escola-search,
+#cidade-search, #regiao-search {
+  width: 100%;
+}
+
 }
  
 /* 🧸 Extra tiny */
@@ -524,5 +573,6 @@ h1{
   #search {
     font-size: 16px;
     margin-top: 5px;
+
   }
 }

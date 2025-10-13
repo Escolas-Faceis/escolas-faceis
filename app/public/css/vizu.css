@@ -138,7 +138,7 @@
         padding: 1% 5%;
         position: relative;
         display: flex; 
-        border: 1px solid gray;
+        border: 1px solid var(--borda);
         border-radius: 15px;
         background-color: white;
         z-index: 1; 
@@ -250,7 +250,7 @@
         position: relative;
         display: flex;
         align-items: center; 
-        border: 1px solid gray;
+        border: 1px solid var(--borda);
         border-radius: 15px;
         background-color: white;
         z-index: 0; 
@@ -356,9 +356,6 @@
       }
 }
 
-
-
-
 @media screen and (max-width: 520px) {
     
 
@@ -373,7 +370,7 @@
         position: relative;
         display: flex;
         align-items: center; 
-        border: 1px solid gray;
+        border: 1px solid var(--borda);
         border-radius: 15px;
         background-color: white;
         z-index: 0; 
@@ -388,6 +385,7 @@
         justify-content: center;
         position: static;
         width: 170px;
+        height: 170px;
         border-radius: 15px;
 
     }
@@ -478,3 +476,33 @@
         background-color: #c13d15;
       }
     }
+
+    @media screen and (max-width: 320px){
+    .logo{
+        width: 100px !important;
+        height: 100px !important;
+    }
+    .nome-escola{
+        font-size:18px !important;
+    }
+    .escolaridade{
+        font-size: 10px !important;
+    }
+    .buttao{
+        font-size: 15px !important;
+        margin-bottom: 3%;
+    }
+    .localidade{
+        font-size: 12px !important;
+    }
+    .instutuicao{
+        font-size: 12px !important;
+        font-weight: bold !important;
+    }
+    .ingresso{
+        font-size: 12px !important;
+    }
+    .escolaridade{
+        border: 0;
+    }
+}
