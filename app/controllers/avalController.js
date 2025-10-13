@@ -197,14 +197,25 @@ criarAvaliacao: async (req, res) => {
                     mensagem: "Sua avaliação foi excluída com sucesso.",
                     tipo: "success"
                 };
-                return res.redirect(req.get('Referer') || '/');
+                // Redirecionar baseado na origem
+                const referer = req.get('Referer');
+                if (referer && referer.includes('/perfil-escola')) {
+                    return res.redirect(referer);
+                } else {
+                    return res.redirect('/perfil1');
+                }
             } else {
                 req.session.dadosNotificacao = {
                     titulo: "Erro ao excluir!",
                     mensagem: "Avaliação não encontrada ou você não tem permissão para excluí-la.",
                     tipo: "error"
                 };
-                return res.redirect(req.get('Referer') || '/');
+                const referer = req.get('Referer');
+                if (referer && referer.includes('/perfil-escola')) {
+                    return res.redirect(referer);
+                } else {
+                    return res.redirect('/perfil1');
+                }
             }
         } catch (error) {
             console.error("Erro ao excluir avaliação:", error);
@@ -213,7 +224,12 @@ criarAvaliacao: async (req, res) => {
                 mensagem: "Erro no servidor.",
                 tipo: "error"
             };
-            res.redirect(req.get('Referer') || '/');
+            const referer = req.get('Referer');
+            if (referer && referer.includes('/perfil-escola')) {
+                return res.redirect(referer);
+            } else {
+                return res.redirect('/perfil1');
+            }
         }
     },
 

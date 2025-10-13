@@ -174,7 +174,11 @@ const usuarioController = {
                 view = "pages/perfil-outro-usuario";
             }
             console.log("View a ser renderizada:", view);
-            res.render(view, { erros: null, dadosNotificacao: null, valores: campos, avaliacoes: avaliacoes })
+            const dadosNotificacao = req.session.dadosNotificacao || null;
+            if (dadosNotificacao) {
+                delete req.session.dadosNotificacao;
+            }
+            res.render(view, { erros: null, dadosNotificacao: dadosNotificacao, valores: campos, avaliacoes: avaliacoes })
         } catch (e) {
             console.log("Erro no mostrarPerfil:", e);
             let view;
