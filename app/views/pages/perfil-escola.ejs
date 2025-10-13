@@ -207,43 +207,22 @@
 
     <section class="media-avaliacoes">
         <h2>Média das Avaliações</h2>
-        <section class="estrelas-media">
+        <section class="rating-display">
             <% for(let i=1; i<=5; i++) { %>
-                <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %>
+                <span class="star <%= i <= Math.round(mediaAvaliacao.media) ? 'filled' : '' %>"></span>
             <% } %>
+            <span class="nota"><%= Math.round(mediaAvaliacao.media) %></span>
         </section>
-        <p><%= Math.round(mediaAvaliacao.media) %> / 5 (baseado em <%= mediaAvaliacao.totalAvaliacoes %> avaliações)</p>
+        <p>Total de avaliações: <%= mediaAvaliacao.totalAvaliacoes %></p>
     </section>
 
     <section class="aval"><br>
-        <h1>Avaliações</h1>
-        <p class="avalinfo">Compartilhe suas impressões e experiência sobre essa instituição</p>
-        <form action="/avaliar" method="post">
-        <input type="hidden" name="id_usuario" value="<%= autenticado && autenticado.id || '' %>">
-        <input type="hidden" name="id_escola" value="<%= valores.id_escola %>">
-        <input type="hidden" name="id_usuario_escola" value="<%= valores.id_usuario %>">
-        <span class="centro">
-        <section class="rating">
-            <input type="radio" value="5" name="rating" id="rating-5">
-            <label for="rating-5"></label>
-            <input type="radio" value="4" name="rating" id="rating-4">
-            <label for="rating-4"></label>
-            <input type="radio" value="3" name="rating" id="rating-3">
-            <label for="rating-3"></label>
-            <input type="radio" value="2" name="rating" id="rating-2">
-            <label for="rating-2"></label>
-            <input type="radio" value="1" name="rating" id="rating-1">
-            <label for="rating-1"></label>
-        </section>
-        <section class="ratetext">
-            <textarea name="ratetext" id="ratetext" maxlength="352" placeholder="Escreva aqui sua opinião"></textarea>
-            <span id="caracteres">O número de caracteres foi atingido!</span>
-        </section>
-        <section> <button type="submit" id="enviar">Enviar</button></section></span></form>
+        
 
         <section id="avaliacoes">
-            <hr>
+ 
             <section id="caixa_comentarios">
+                <h1 class="avav">Suas avaliações</h2>
                 <% avaliacoes.forEach(aval => { %>
                 <article id="comentario">
                     <section id="info_usuario_comentario">
@@ -331,22 +310,24 @@
                 const data = await response.json();
                 if (data.success) {
                     // Update average
-                    const mediaSection = document.querySelector('.estrelas-media');
+                    const mediaSection = document.querySelector('.rating-display');
                     if (mediaSection) {
-                        const stars = mediaSection.querySelectorAll('span');
+                        const stars = mediaSection.querySelectorAll('.star');
                         const rounded = Math.round(data.mediaAvaliacao.media);
                         stars.forEach((star, i) => {
                             if (i < rounded) {
-                                star.className = 'star-filled';
-                                star.textContent = '★';
+                                star.classList.add('filled');
                             } else {
-                                star.className = 'star-empty';
-                                star.textContent = '☆';
+                                star.classList.remove('filled');
                             }
                         });
+                        const nota = mediaSection.querySelector('.nota');
+                        if (nota) {
+                            nota.textContent = rounded;
+                        }
                         const p = mediaSection.nextElementSibling;
                         if (p) {
-                            p.textContent = `${Math.round(data.mediaAvaliacao.media)} / 5 (baseado em ${data.mediaAvaliacao.totalAvaliacoes} avaliações)`;
+                            p.textContent = `Total de avaliações: ${data.mediaAvaliacao.totalAvaliacoes}`;
                         }
                     }
                     // Add new review
