@@ -11,6 +11,7 @@ const loginController = require("../controllers/loginController");
 const admController = require("../controllers/admController");
 const usuarioModel = require("../models/usuarioModel");
 const avalController = require("../controllers/avalController");
+const assinaturaController = require("../controllers/assinaturaController");
 
 const uploadFile = require("../helpers/uploader")("app/public/imagem/uploads");
 
@@ -58,8 +59,14 @@ const {
 
 dotenv.config();
 
-router.get("/", verificarUsuAutenticado, (req, res) => {
-  res.render("pages/index");
+router.get("/", verificarUsuAutenticado, async (req, res) => {
+  try {
+    const escolasPremium = await escolaController.listarEscolasPremium();
+    res.render("pages/index", { escolasPremium });
+  } catch (error) {
+    console.log("Erro ao carregar homepage:", error);
+    res.render("pages/index", { escolasPremium: [] });
+  }
 });
 
 router.get("/cadastro-escola", (req, res) => {
@@ -112,12 +119,11 @@ router.get("/perfil-escola", verificarUsuAutorizado(["A", "C", "E"], "partials/l
 router.get(
   "/editar-escola",
   verificarUsuAutorizado(["E"], "partials/401"),
-  escolaController.mostrarEditarEscola
+  escolaController.mostrarEditarEscola,
+  assinaturaController.verificarPremium
 );
 
-router.get("/planos", (req, res) => {
-  res.render("pages/assinatura");
-});
+router.get("/planos", assinaturaController.mostrarPlanos);
 
 
 router.post(
@@ -234,5 +240,10 @@ router.get("/redefinir-senha", (req, res) => {
 router.get("/redefinir-senha-st2", (req, res) => {
   res.render("pages/redefinir");
 });
+
+// Rotas de assinatura
+router.post("/assinar-plano", verificarUsuAutorizado(["E"], "partials/401"), assinaturaController.assinarPlano);
+router.post("/cancelar-assinatura", verificarUsuAutorizado(["E"], "partials/401"), assinaturaController.cancelarAssinatura);
+router.get("/api/premium-status/:id", assinaturaController.getStatusPremium);
 
 module.exports = router;

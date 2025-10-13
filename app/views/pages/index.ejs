@@ -18,6 +18,20 @@
     <link rel="stylesheet" href="css/slider.css">
 </head>
 
+    <%
+        const tiposclassseCss = {
+            'Educação Infantil': 'EI',
+            'Ensino Fundamental I': 'EFI',
+            'Ensino Fundamental II': 'EFII',
+            'Ensino Fundamental': 'EFI',
+            'Ensino Médio': 'EM',
+            'Educação Integrada': 'EINT',
+            'Cursos Técnicos': 'TEC',
+            'Cursos Extracurriculares': 'CSO'
+        }
+        
+    %>
+
 <body class="tema-claro">
 
     <%- include('../partials/navbar'); %>
@@ -61,27 +75,36 @@
         <section class="carrossel-container">
             <button class="carrossel-btn prev" onclick="moverCarrossel(-1)">❮</button>
             <section class="carrossel-lista" id="carrosselLista">
-                <section class="escola-card">
-                    <img src="imagem/escola-padrao.png" alt="Escola Alpha">
-                    <h3>Escola Ábaco</h3>
-                    <p>Ensino Fundamental e Médio • 4.8 ★</p>
-                </section>
-                <section class="escola-card">
-                    <img src="imagem/escola-padrao.png" alt="Colégio Beta">
-                    <h3>Colégio Objetivo</h3>
-                    <p>Educação Infantil e Fundamental • 4.7 ★</p>
-                </section>
-                <section class="escola-card">
-                    <img src="imagem/escola-padrao.png" alt="Instituto Gama">
-                    <h3>Instituto Gama</h3>
-                    <p>Técnico e Médio • 4.9 ★</p>
-                </section>
-                <section class="escola-card">
-                    <img src="imagem/escola-padrao.png" alt="Escola Delta">
-                    <h3>Escola Canarinho</h3>
-                    <p>Ensino Fundamental II • 4.6 ★</p>
-                </section>
-                <!-- Adicione mais cards conforme desejar -->
+                <% if (escolasPremium && escolasPremium.length > 0) { %>
+                    <% escolasPremium.forEach(escola => { %>
+                        <section class="escola-card">
+                            <a href="/perfil-escola?id=<%= escola.id_usuario %>">
+                                <img src="<%= escola.img_perfil_pasta || 'imagem/escola-padrao.png' %>" alt="<%= escola.nome_escola %>" style="display: block; margin: 0 auto;">
+                                <h3><%= escola.nome_escola %></h3>
+                                <aside class="niveis">
+                                    <% if (escola.tipo_ensino) { %>
+                                        <% const tipos = escola.tipo_ensino.split(','); %>
+                                        <% tipos.forEach(tipo => { %>
+                                            <h5 class="escolaridade <%= tipo.trim().toUpperCase().substring(0, 3) %> <%= tiposclassseCss[tipo.trim()] || '' %>"><%= tipo.trim() %></h5>
+                                        <% }); %>
+                                    <% } %>
+                                </aside>
+                                <p class="avaliacao">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/>
+                                    </svg>
+                                    <%= parseFloat(escola.media_avaliacao || 0).toFixed(1) %>
+                                </p>
+                            </a>
+                        </section>
+                    <% }); %>
+                <% } else { %>
+                    <section class="escola-card">
+                        <img src="imagem/escola-padrao.png" alt="Nenhuma escola premium encontrada" style="display: block; margin: 0 auto;">
+                        <h3>Nenhuma escola premium</h3>
+                        <p>Seja o primeiro a assinar!</p>
+                    </section>
+                <% } %>
             </section>
             <button class="carrossel-btn next" onclick="moverCarrossel(1)">❯</button>
         </section>

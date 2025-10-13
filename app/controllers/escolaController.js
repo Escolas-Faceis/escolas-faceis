@@ -10,6 +10,8 @@ const https = require("https");
 const { verificarUsuAutorizado } = require("../models/autenticador_middleware");
 const { removeImg } = require("../helpers/removeImg");
 
+const assinaturaModel = require("../models/assinaturaModel");
+
 const escolaController = {
     regrasValidacaoEscola: [
         body("name_school")
@@ -150,6 +152,16 @@ const escolaController = {
         } catch (error) {
             console.log(error);
             res.status(500).send('Erro interno do servidor');
+        }
+    },
+
+    listarEscolasPremium: async () => {
+        try {
+            const escolas = await escolaModel.findPremiumSchools(10); // Limitar a 10 escolas
+            return escolas;
+        } catch (error) {
+            console.log("Erro ao listar escolas premium:", error);
+            return [];
         }
     },
 
@@ -326,6 +338,14 @@ const escolaController = {
                 };
             }
 
+            // Verificar status premium
+            let isPremium = false;
+            try {
+                isPremium = await assinaturaModel.isPremium(results[0].id_escola);
+            } catch (e) {
+                console.log('Erro ao verificar status premium:', e);
+            }
+
             let view = "pages/perfil-escola";
             if (req.session.autenticado && req.session.autenticado.tipo === "E" && id == req.session.autenticado.id) {
                 verificarUsuAutorizado(["E"], "partials/401");
@@ -335,7 +355,7 @@ const escolaController = {
                 view = "pages/perfil-escola-e";
             }
 
-            res.render(view, { erros: null, dadosNotificacao: dadosNotificacao, valores: campos, cep: cep, avaliacoes: avaliacoes, mediaAvaliacao: mediaAvaliacao });
+            res.render(view, { erros: null, dadosNotificacao: dadosNotificacao, valores: campos, cep: cep, avaliacoes: avaliacoes, mediaAvaliacao: mediaAvaliacao, isPremium: isPremium });
 
         } catch (e) {
             console.log('ERRO NO PERFIL:', e);
@@ -397,14 +417,33 @@ const escolaController = {
                 };
             }
 
+            // Verificar status premium e buscar assinatura ativa
+            let isPremium = false;
+            let assinatura = null;
+            try {
+                isPremium = await assinaturaModel.isPremium(results[0].id_escola);
+                if (isPremium) {
+                    assinatura = await assinaturaModel.findActiveBySchool(results[0].id_escola);
+                    if (assinatura) {
+                        // Formatar datas para exibição
+                        assinatura.data_inicio = assinatura.data_inicio ? moment(assinatura.data_inicio).format('DD/MM/YYYY') : null;
+                        assinatura.data_fim = assinatura.data_fim ? moment(assinatura.data_fim).format('DD/MM/YYYY') : null;
+                    }
+                }
+            } catch (e) {
+                console.log('Erro ao verificar status premium:', e);
+            }
+
             res.render("pages/editar-escola", {
                 erros: null,
                 dadosNotificacao: dadosNotificacao,
-                valores: valores
+                valores: valores,
+                isPremium: isPremium,
+                assinatura: assinatura
             });
         } catch (e) {
             console.log('ERRO NO MOSTRAR EDITAR ESCOLA:', e);
-            res.render("pages/editar-escola", { erros: { errors: [{ msg: "Erro ao carregar página de edição." }] }, dadosNotificacao: null, valores: {} });
+            res.render("pages/editar-escola", { erros: { errors: [{ msg: "Erro ao carregar página de edição." }] }, dadosNotificacao: null, valores: {}, isPremium: false, assinatura: null });
         }
     },
 

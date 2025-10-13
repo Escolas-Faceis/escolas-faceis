@@ -21,7 +21,7 @@
 
 .tema-claro {
   --laranja: #ff5c2a;
-  --fundo: #f5f5f5;
+  --fundo: #ffffff;
   --azul-base: #141c44;
   --azulbase: #141c44;
   --azulsec: #77b6ea;
@@ -207,6 +207,7 @@ body{
     display: flex;
     align-items: center;
     position: relative;
+    justify-content: center;
 }
 .carrossel-btn {
     background: inherit ;
@@ -324,13 +325,25 @@ body{
     
 }
 
-    .EM { background-color: #00b4b4 !important; color: #fff; }
-    .TEC { background-color: #15c724 !important; color: #fff; }
-    .EI { background-color: #ff7184 !important; color: #fff; }
-    .EFI { background-color: #a765e6 !important; color: #fff; }
-    .EFII { background-color:rgb(78, 69, 218) !important; color: #fff }
-    .CSO { background-color: rgb(243, 182, 70) !important; color: #fff; }
-    .EINT { background-color:darkgoldenrod !important; color: #fff; }
+    .categorias .EM { background-color: #00b4b4 !important; color: #fff; }
+    .categorias .TEC { background-color: #15c724 !important; color: #fff; }
+    .categorias .EI { background-color: #ff7184 !important; color: #fff; }
+    .categorias .EFI { background-color: #a765e6 !important; color: #fff; }
+    .categorias .EFII { background-color:rgb(78, 69, 218) !important; color: #fff }
+    .categorias .CSO { background-color: rgb(243, 182, 70) !important; color: #fff; }
+    .categorias .EINT { background-color:darkgoldenrod !important; color: #fff; }
+
+
+    .niveis .EM { color: #00b4b4 !important; }
+    .niveis .TEC { color: #15c724 !important; }
+    .niveis .EI { color: #ff7184 !important; }
+    .niveis .EFI { color: #a765e6 !important; }
+    .niveis .EFII { color:rgb(78, 69, 218) !important;}
+    .niveis .CSO { color: rgb(243, 182, 70) !important; }
+    .niveis .EINT { color:darkgoldenrod !important; }
+    .niveis .ENS{
+        margin: 0;
+    }
 
 .categoria-card h3 {
     margin: 0;

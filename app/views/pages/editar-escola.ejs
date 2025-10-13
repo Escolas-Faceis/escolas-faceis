@@ -88,6 +88,9 @@
       <li><a href="#ensino-turnos"> Ensino, Turnos e Rede</a></li>
       <li><a href="#rede-acessibilidade"> Acessibilidade</a></li>
       <li><a href="#contatos"> Contatos</a></li>
+      <% if (isPremium) { %>
+      <li><a href="#assinatura"> Assinatura</a></li>
+      <% } %>
       <li><a href="#acoes"> Ações</a></li>
     </ul>
   </nav>
@@ -294,6 +297,19 @@
         <input class="input-campo" type="text" name="email_contato" value="<%= valores.email_contato || '' %>">
       </section>
 
+      <% if (isPremium) { %>
+      <!-- ASSINATURA -->
+      <section id="assinatura" class="caixa-sec">
+        <h2> Assinatura</h2>
+        <p><strong>Status:</strong> Premium Ativo</p>
+        <% if (assinatura) { %>
+          <p><strong>Data de Início:</strong> <%= new Date(assinatura.data_inicio).toLocaleDateString('pt-BR') %></p>
+          <p><strong>Data de Expiração:</strong> <%= new Date(assinatura.data_fim).toLocaleDateString('pt-BR') %></p>
+        <% } %>
+        <p>Para gerenciar sua assinatura, entre em contato conosco.</p>
+      </section>
+      <% } %>
+
       <!-- AÇÕES -->
       <section id="acoes" class="caixa-sec">
 
@@ -306,6 +322,9 @@
       </section>
     </form>
   </main>
+
+
+  <%- include('../partials/footer'); %>
 
   <script>
     // Scroll suave no sumário
