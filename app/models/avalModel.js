@@ -75,7 +75,19 @@ const avalModel = {
             console.error("Erro ao buscar avaliação por id:", error);
             return null;
         }
-    }
+    },
+
+        delete: async (id_avaliacao, id_usuario) => {
+        try {
+            const [result] = await pool.query(
+                "DELETE FROM avaliacoes WHERE id_avaliacao = ? AND id_usuario = ?",
+                [id_avaliacao, id_usuario]
+            );
+            return result.affectedRows > 0;
+        } catch (error) {
+            console.error("Erro ao excluir avaliação:", error);
+            throw error;
+        }}
 
 
 }

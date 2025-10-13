@@ -507,7 +507,7 @@ const escolaController = {
                     autenticado: result[0].nome_escola,
                     id: req.session.autenticado.id,
                     tipo: "E",
-                    img_perfil_banco: result[0].img_perfil_banco != null ? `data:image/jpeg;base64,${result[0].img_perfil_banco.toString('base64')}` : null,
+                    img_perfil_bacrinco: result[0].img_perfil_banco != null ? `data:image/jpeg;base64,${result[0].img_perfil_banco.toString('base64')}` : null,
                     img_perfil_pasta: result[0].img_perfil_pasta || null,
                     cor_banner: result[0].cor_banner
                 };

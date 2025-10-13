@@ -65,6 +65,11 @@
             </section>
     </main>
     <%- include('../partials/footer'); %>
+<% if (dadosNotificacao) { %>
+<script>
+    notify.show("<%= dadosNotificacao.titulo %>", "<%= dadosNotificacao.mensagem %>", "<%= dadosNotificacao.tipo %>");
+</script>
+<% } %>
     <script src="js/usuario-perfil.js"></script>
 </body>
 </html>

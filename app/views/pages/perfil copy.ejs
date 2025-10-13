@@ -6,6 +6,8 @@
     <title>Perfil do Usuário</title>
     <link rel="stylesheet" href="css/vizu-perfil-usu.css">
     <link rel="stylesheet" href="css/alerts.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <link rel="icon" type="image/png" href="/imagem/favicon.png">
 </head>
 <body>
@@ -18,6 +20,33 @@
             background-color: var(--background_banner);
         }
     </style>
+
+    <script>
+    function notify(title, text, type, position, timeout = 5000) {
+        new Notify({
+            status: type,
+            title: title,
+            text: text,
+            effect: 'fade',
+            speed: 500,
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: timeout,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: position
+        });
+    }
+</script>
+
+<% if (dadosNotificacao) { %>
+<script>
+    notify("<%= dadosNotificacao.titulo %>", "<%= dadosNotificacao.mensagem %>", "<%= dadosNotificacao.tipo %>", "top-right");
+</script>
+<% } %>
+
     <main id="perfil">
         <section id="banner_perfil" >
             <img src="<%= valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
@@ -44,8 +73,8 @@
             <section id="caixa_comentarios">
                 <% if (avaliacoes && avaliacoes.length > 0) { %>
                     <% avaliacoes.forEach(aval => { %>
-                        <article id="comentario">
-                            <% if(autenticado && autenticado.autenticado && autenticado.id){ %> <div class="trash-icon">&#128465;</div> <% } %>
+                        <article id="comentario" data-id="<%= aval.id_avaliacao %>">
+                            <% if(autenticado && autenticado.autenticado && autenticado.id == aval.id_usuario){ %> <form action="/excluir-avaliacao" method="post"><input type="hidden" name="id_avaliacao" value="<%= aval.id_avaliacao %>"><button type="submit" class="trash-icon" data-id="<%= aval.id_avaliacao %>" onclick="return confirm('Tem certeza que deseja excluir esta avaliação?')">&#128465;</button></form> <% } %>
                             <section id="info_usuario_comentario">
                                 <a href="/perfil-usuario?id=<%= aval.id_usuario %>">
                                     <img src="<%= valores.img_perfil_banco ? valores.img_perfil_banco : valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="foto_comentario">
@@ -65,8 +94,11 @@
                     <p>Este usuário ainda não fez nenhuma avaliação.</p>
                 <% } %>
             </section>
+        </section>
     </main>
     <%- include('../partials/footer'); %>
+    <script src="js/notify.js"></script>
     <script src="js/usuario-perfil.js"></script>
 </body>
 </html>
+     

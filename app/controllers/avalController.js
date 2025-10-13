@@ -167,7 +167,61 @@ criarAvaliacao: async (req, res) => {
             console.error("Erro ao listar avaliações por escola:", error);
             res.status(500).json({ error: "Erro ao listar avaliações" });
         }
-    }
+    },
+
+        excluirAvaliacao: async (req, res) => {
+        const id_avaliacao = req.body.id_avaliacao || req.query.id_avaliacao;
+        const id_usuario = req.session.autenticado.id;
+
+        if (!id_usuario) {
+            req.session.dadosNotificacao = {
+                titulo: "Erro ao excluir!",
+                mensagem: "Usuário não autenticado.",
+                tipo: "error"
+            };
+            return res.redirect(req.get('Referer') || '/');
+        }
+
+        try {
+            const deleted = await avalModel.delete(id_avaliacao, id_usuario);
+            if (deleted) {
+                // Recalcular média da escola
+                const aval = await avalModel.findById(id_avaliacao);
+                if (aval) {
+                    const newAverage = await avalModel.getAverage(aval.id_escola);
+                    newAverage.media = parseFloat(newAverage.media).toFixed(1);
+                    newAverage.totalAvaliacoes = newAverage.total;
+                }
+                req.session.dadosNotificacao = {
+                    titulo: "Avaliação excluída!",
+                    mensagem: "Sua avaliação foi excluída com sucesso.",
+                    tipo: "success"
+                };
+                return res.redirect(req.get('Referer') || '/');
+            } else {
+                req.session.dadosNotificacao = {
+                    titulo: "Erro ao excluir!",
+                    mensagem: "Avaliação não encontrada ou você não tem permissão para excluí-la.",
+                    tipo: "error"
+                };
+                return res.redirect(req.get('Referer') || '/');
+            }
+        } catch (error) {
+            console.error("Erro ao excluir avaliação:", error);
+            req.session.dadosNotificacao = {
+                titulo: "Erro ao excluir!",
+                mensagem: "Erro no servidor.",
+                tipo: "error"
+            };
+            res.redirect(req.get('Referer') || '/');
+        }
+    },
+
+    
+
+
+
+
 };
 
 module.exports = avalController;
