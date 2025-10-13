@@ -17,8 +17,8 @@ const avalController = {
     ],
     
 criarAvaliacao: async (req, res) => {
-        req.body.comentario = req.body.ratetext;
-        req.body.nota = req.body.rating;
+        req.body.comentario = req.body.ratetext || req.body.comentario || '';
+        req.body.nota = req.body.rating || req.body.nota || 0;
 
         const erros = validationResult(req);
         if (!erros.isEmpty()) {
@@ -84,7 +84,7 @@ criarAvaliacao: async (req, res) => {
             const isAjax = req.headers['x-requested-with'] === 'XMLHttpRequest';
             if (isAjax) {
                 const newAverage = await avalModel.getAverage(req.body.id_escola);
-                newAverage.media = parseFloat(newAverage.media.toFixed(1));
+                newAverage.media = parseFloat(newAverage.media).toFixed(1);
                 newAverage.totalAvaliacoes = newAverage.total;
                 const newAval = await avalModel.findById(result.id);
                 newAval.data_formatada = moment(newAval.data_avaliacao).fromNow();
