@@ -33,7 +33,7 @@
                     <article class="bio"><%= valores.biografia ? valores.biografia : "Este usuário não possui biografia ainda" %></article> 
                 </section>
                 <section class="botoes alinhar">
-                    <% if(autenticado && autenticado.autenticado){ %> <button class="edit" type="button"><a class="edit" href="/info" target="">Editar perfil</a></button> <% } %>
+                    <% if(autenticado && autenticado.autenticado && autenticado.id){ %> <button class="edit" type="button"><a class="edit" href="/info" target="">Editar perfil</a></button> <% } %>
                 </section>
 
                 <section class="separador"></section>
@@ -42,20 +42,29 @@
         <section id="avaliacoes">
             <h1>Avaliações do usuário</h1>
             <section id="caixa_comentarios">
-                <% for(let i=0; i<3; i++){ %>
-                <article id="comentario">
-                    <section id="info_usuario_comentario">
-                        <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
-                        <h3><%= valores.name ? valores.name : "Visitante" %></h3>
-                    </section>
-                    <p>• há 3 meses</p>
-                    <section id="texto">
-                        Aqui entra a avaliação do usuário e o que ele achou <img src="imagem/5estrelas.webp" id="estrelas">
-                    </section>
-                </article>
+                <% if (avaliacoes && avaliacoes.length > 0) { %>
+                    <% avaliacoes.forEach(aval => { %>
+                        <article id="comentario">
+                            <% if(autenticado && autenticado.autenticado && autenticado.id){ %> <div class="trash-icon">&#128465;</div> <% } %>
+                            <section id="info_usuario_comentario">
+                                <a href="/perfil-usuario?id=<%= aval.id_usuario %>">
+                                    <img src="<%= valores.img_perfil_banco ? valores.img_perfil_banco : valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="foto_comentario">
+                                </a>
+                                <div class="user-info">
+                                    <h3 id="avalnome"><a id="avalnome" href="/perfil-usuario?id=<%= aval.id_usuario %>"><%= valores.nome %></a></h3>
+                                    <p class="avaliou">  <a class="avaliou" href="/perfil-escola?id=<%= aval.id_usuario_escola %>"> Avaliou: <%= aval.nome_escola || "Escola" %></a></p>
+                                </div>
+                            </section>
+                            <p>• <%= aval.data_formatada || 'há algum tempo' %></p>
+                            <section id="texto">
+                                <%= aval.comentario %> <span class="estrelas"><%= '★'.repeat(aval.nota) + '☆'.repeat(5 - aval.nota) %></span>
+                             </section>
+                        </article>
+                    <% }); %>
+                <% } else { %>
+                    <p>Este usuário ainda não fez nenhuma avaliação.</p>
                 <% } %>
             </section>
-        </section>
     </main>
     <%- include('../partials/footer'); %>
     <script src="js/usuario-perfil.js"></script>

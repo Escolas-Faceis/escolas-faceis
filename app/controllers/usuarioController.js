@@ -157,6 +157,10 @@ const usuarioController = {
                 cor_banner: results[0].cor_banner
             }
 
+            // Buscar avaliações do usuário
+            const avalModel = require("../models/avalModel");
+            const avaliacoes = await avalModel.findAllAval({ id_usuario: id });
+
             let view;
             if (id === req.session.autenticado.id) {
                 if (req.path === '/perfil') {
@@ -170,7 +174,7 @@ const usuarioController = {
                 view = "pages/perfil-outro-usuario";
             }
             console.log("View a ser renderizada:", view);
-            res.render(view, { erros: null, dadosNotificacao: null, valores: campos })
+            res.render(view, { erros: null, dadosNotificacao: null, valores: campos, avaliacoes: avaliacoes })
         } catch (e) {
             console.log("Erro no mostrarPerfil:", e);
             let view;
@@ -185,7 +189,7 @@ const usuarioController = {
                 erros: null, dadosNotificacao: null, valores: {
                     img_perfil_banco: "", img_perfil_pasta: "", name: "", email: "",
                      telefone: "", senha: "", biografia: "", cor_banner: ""
-                }
+                }, avaliacoes: []
             })
         }
     },

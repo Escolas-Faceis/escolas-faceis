@@ -15,8 +15,15 @@ const avalModel = {
     },
     findAllAval: async (dados) => {
         try {
-            const [results] = await pool.query("SELECT * FROM avaliacoes WHERE id_usuario = ?")
-            [dados.id_usuario];
+            const [results] = await pool.query(`
+                SELECT a.*, e.nome_escola, i.caminho_imagem as img_perfil_pasta_escola, NULL as img_perfil_escola
+                FROM avaliacoes a
+                LEFT JOIN usuarios u ON a.id_usuario = u.id_usuario
+                LEFT JOIN escolas e ON a.id_escola = e.id_usuario
+                LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem
+                WHERE a.id_usuario = ?
+                ORDER BY a.data_avaliacao DESC
+            `, [dados.id_usuario]);
             return results;
         } catch (error) {
             console.log(error);

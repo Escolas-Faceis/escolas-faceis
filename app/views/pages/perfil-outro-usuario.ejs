@@ -1,37 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuário</title>
-    <link rel="stylesheet" href="css/perfil-usuario.css">
-        <link rel="stylesheet" href="css/vizu-perfil-usu.css">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="css/vizu-perfil-usu.css">
     <link rel="stylesheet" href="css/alerts.css">
     <link rel="icon" type="image/png" href="/imagem/favicon.png">
 </head>
-    <script>
-        function notify(title, text, type, position, timeout = 5000) {
-            new Notify({
-                status: type,
-                title: title,
-                text: text,
-                effect: 'fade',
-                speed: 500,
-                showIcon: true,
-                showCloseButton: true,
-                autoclose: true,
-                autotimeout: timeout,
-                gap: 20,
-                distance: 20,
-                type: 1,
-                position: position
-            });
-        }
-    </script>
-</head>
-
+<body>
+    <%- include('../partials/navbar'); %>
     <style>
         :root {
             --background_banner: <%= valores.cor_banner || "#C7D3DD" %>;
@@ -40,61 +18,9 @@
             background-color: var(--background_banner);
         }
     </style>
-
-<body>
-    <%
-    let  msgErro = "";
-    let  erroValidacao =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
-    let  avisoErro =  {"name":"","email":"","password":"","reppassword":"","cellphone":""};
-    if(erros) {
-        erros.errors.forEach(function(erro) {
-            if (erro.path == "name") {
-                erroValidacao.name = "erro",
-                avisoErro.name = erro.msg
-                msgErro += `* ${erro.msg} <br>`;
-            }
-            if (erro.path == "email") {
-                erroValidacao.email = "erro",
-                avisoErro.email = erro.msg
-                msgErro += `* ${erro.msg} <br>`;
-            }
-            if (erro.path == "password") {
-                erroValidacao.password = "erro",
-                avisoErro.password = erro.msg
-                msgErro += `* ${erro.msg} <br>`;
-            }
-            if (erro.path == "reppassword") {
-                erroValidacao.reppassword = "erro",
-                avisoErro.reppassword = erro.msg
-                msgErro += `* ${erro.msg} <br>`;
-            }
-            if (erro.path == "cellphone") {
-                erroValidacao.cellphone = "erro",
-                avisoErro.cellphone = erro.msg
-                msgErro += `* ${erro.msg} <br>`;
-            }
-        })
-       if(msgErro != ""){
-        %>
-        <script>
-                let msgErro ="<%= msgErro %>"
-                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/</g,"<").replace(/>/g,">"),
-                 "error", "center", 5000)
-            </script>
-        <%
-        }
-    }
-    if (dadosNotificacao) { %>
-        <script>
-                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
-                if("<%= dadosNotificacao.tipo %>" == "success"){
-                    setTimeout(function(){window.location="/sair"}, 3000)
-                }
-        </script>
-    <% } %>
-    <%- include('../partials/navbar'); %>
     <main id="perfil">
-    <section id="banner_perfil" value="<%= valores && valores.cor_banner ? valores.cor_banner : '#C7D3DD' %>">            <img src="<%= valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
+        <section id="banner_perfil" >
+            <img src="<%= valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="perfil-foto-publica" alt="Foto de Perfil do Usuário">
         </section>
         <section id="conteudo">
             <section id="ajustar_esquerda">
@@ -107,7 +33,7 @@
                     <article class="bio"><%= valores.biografia ? valores.biografia : "Este usuário não possui biografia ainda" %></article> 
                 </section>
                 <section class="botoes alinhar">
-                    <% if(autenticado && autenticado.autenticado){ %> <button class="edit" type="button"><a class="edit" href="/info" target="">Editar perfil</a></button> <% } %>
+                    <% if(autenticado && autenticado.autenticado && autenticado.id == valores.id){ %> <button class="edit" type="button"><a class="edit" href="/info" target="">Editar perfil</a></button> <% } %>
                 </section>
 
                 <section class="separador"></section>
@@ -116,29 +42,29 @@
         <section id="avaliacoes">
             <h1>Avaliações do usuário</h1>
             <section id="caixa_comentarios">
-                <% for(let i=0; i<3; i++){ %>
-                <article id="comentario">
-                    <section id="info_usuario_comentario">
-                        <img src="https://cdn-icons-png.flaticon.com/512/219/219969.png" id="foto_comentario">
-                        <h3><%= valores.name ? valores.name : "Visitante" %></h3>
-                    </section>
-                    <p>• há 3 meses</p>
-                    <section id="texto">
-                        Aqui entra a avaliação do usuário e o que ele achou <img src="imagem/5estrelas.webp" id="estrelas">
-                    </section>
-                </article>
+                <% if (avaliacoes && avaliacoes.length > 0) { %>
+                    <% avaliacoes.forEach(aval => { %>
+                        <article id="comentario">
+                            <% if(autenticado && autenticado.autenticado && autenticado.id == valores.id){ %> <div class="trash-icon">&#128465;</div> <% } %>
+                            <section id="info_usuario_comentario">
+                                <a href="/perfil-usuario?id=<%= aval.id_usuario %>">
+                                    <img src="<%= valores.img_perfil_banco ? valores.img_perfil_banco : valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="foto_comentario">
+                                </a>
+                                <h3 id="avalnome"><a href="/perfil-usuario?id=<%= aval.id_usuario %>"><%= valores.nome %></a></h3>
+                                <p id="avaliou"> <a href="/perfil-escola?id=<%= aval.id_usuario_escola %>">  Avaliou: <%= aval.nome_escola || "Escola" %></a></p>
+                            </section>
+                            <p>• <%= aval.data_formatada || 'há algum tempo' %></p>
+                            <section id="texto">
+                                <%= aval.comentario %> <span class="estrelas"><%= '★'.repeat(aval.nota) + '☆'.repeat(5 - aval.nota) %></span>
+                             </section>
+                        </article>
+                    <% }); %>
+                <% } else { %>
+                    <p>Este usuário ainda não fez nenhuma avaliação.</p>
                 <% } %>
             </section>
-        </section>
     </main>
     <%- include('../partials/footer'); %>
-
-    <script src="js/usuario-perfil.js">
-
-</script>
-    </script>
-
-
-    </script>
+    <script src="js/usuario-perfil.js"></script>
 </body>
 </html>
