@@ -1,5 +1,6 @@
 const escolaModel = require("../models/escolaModel");
 const avalModel = require("../models/avalModel");
+const avalController = require("../controllers/avalController");
 const moment = require("moment");
 const { body, validationResult } = require("express-validator");
 const { validarCNPJ, cnpjExiste, emailExiste } = require("../helpers/validacoes");
@@ -286,9 +287,8 @@ const escolaController = {
             }
             let avaliacoes = [];
             try {
-                const result = await avalModel.findBySchool(id);
-                if (result) {
-                    avaliacoes = result;
+                avaliacoes = await avalController.getAvaliacoesPorEscola(results[0].id_escola);
+                if (avaliacoes) {
                     avaliacoes.forEach(aval => {
                         aval.data_formatada = moment(aval.data_avaliacao).fromNow();
                     });
@@ -298,10 +298,14 @@ const escolaController = {
             }
 
             let mediaAvaliacao = { media: 0, totalAvaliacoes: 0 };
-            if (avaliacoes.length > 0) {
-                const total = avaliacoes.reduce((sum, aval) => sum + aval.nota, 0);
-                mediaAvaliacao.media = parseFloat((total / avaliacoes.length).toFixed(1));
-                mediaAvaliacao.totalAvaliacoes = avaliacoes.length;
+            try {
+                const avgResult = await avalModel.getAverage(results[0].id_escola);
+                if (avgResult) {
+                    mediaAvaliacao.media = parseFloat(avgResult.media || 0);
+                    mediaAvaliacao.totalAvaliacoes = avgResult.total || 0;
+                }
+            } catch (e) {
+                console.log('Erro ao calcular média:', e);
             }
 
             let dadosNotificacao = null;
@@ -583,11 +587,7 @@ const escolaController = {
             };
             res.render("pages/editar-escola", { erros: { errors: [{ msg: "Erro interno no servidor." }] }, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: valoresCatch })
         }
-}
-
-
-
-
-}
+    }
+};
 
 module.exports = escolaController;

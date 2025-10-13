@@ -91,7 +91,8 @@
   <br> <br>
 </p>
                     <p class="instituicao "><%= valores.redes %></p>
-                    <p class="ingresso"><%= valores.ingresso[0] || '' %></p>
+
+                    <p class="ingresso"><%= (valores.ingresso && valores.ingresso[0]) || '' %></p>
                     <% if(autenticado && autenticado.autenticado){ %> <button class="edit" type="button"><a class="edit" href="/editar-escola" target="">Editar perfil</a></button> <% } %>
                     </section>
             </section>
@@ -208,7 +209,7 @@
         <h2>Média das Avaliações</h2>
         <section class="estrelas-media">
             <% for(let i=1; i<=5; i++) { %>
-                <!-- <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %> -->
+                <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %>
             <% } %>
         </section>
         <p><%= Math.round(mediaAvaliacao.media) %> / 5 (baseado em <%= mediaAvaliacao.totalAvaliacoes %> avaliações)</p>

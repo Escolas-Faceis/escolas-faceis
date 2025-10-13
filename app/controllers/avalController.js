@@ -59,7 +59,7 @@ criarAvaliacao: async (req, res) => {
         }
         const dadosAvaliacao = {
             id_usuario: req.session.autenticado.id,
-            id_escola: req.body.id_escola,
+            id_escola: req.body.id_usuario_escola,
             nota: req.body.nota,
             comentario: req.body.comentario
         };
@@ -83,7 +83,7 @@ criarAvaliacao: async (req, res) => {
 
             const isAjax = req.headers['x-requested-with'] === 'XMLHttpRequest';
             if (isAjax) {
-                const newAverage = await avalModel.getAverage(req.body.id_escola);
+                const newAverage = await avalModel.getAverage(req.body.id_usuario_escola);
                 newAverage.media = parseFloat(newAverage.media).toFixed(1);
                 newAverage.totalAvaliacoes = newAverage.total;
                 const newAval = await avalModel.findById(result.id);
@@ -135,6 +135,16 @@ criarAvaliacao: async (req, res) => {
         }
     },
 
+    getAvaliacoesPorEscola: async (id_escola) => {
+        try {
+            const avaliacoes = await avalModel.findBySchool(id_escola);
+            return avaliacoes;
+        } catch (error) {
+            console.error("Erro ao buscar avaliações da escola:", error);
+            return [];
+        }
+    },
+
     getNotificacoes: async (req, res) => {
         try {
             if (!req.session.autenticado) {
@@ -155,17 +165,6 @@ criarAvaliacao: async (req, res) => {
         } catch (error) {
             console.error("Erro ao marcar todas as notificações como lidas:", error);
             res.status(500).json({ success: false });
-        }
-    },
-
-    listarAvaliacoesPorEscola: async (req, res) => {
-        try {
-            const id_escola = req.params.id_escola;
-            const avaliacoes = await avalModel.findBySchool(id_escola);
-            res.json(avaliacoes);
-        } catch (error) {
-            console.error("Erro ao listar avaliações por escola:", error);
-            res.status(500).json({ error: "Erro ao listar avaliações" });
         }
     },
 

@@ -203,7 +203,7 @@
         <h2>Média das Avaliações</h2>
         <section class="estrelas-media">
             <% for(let i=1; i<=5; i++) { %>
-                <!-- <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %> -->
+                <% if(i <= Math.round(mediaAvaliacao.media)) { %><span class="star-filled">★</span><% } else { %><span class="star-empty">☆</span><% } %>
             <% } %>
         </section>
         <p><%= Math.round(mediaAvaliacao.media) %> / 5 (baseado em <%= mediaAvaliacao.totalAvaliacoes %> avaliações)</p>

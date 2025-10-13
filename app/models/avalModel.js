@@ -34,7 +34,7 @@ const avalModel = {
     findBySchool: async (id_escola) => {
         try {
             const [results] = await pool.query(`
-                SELECT a.*, u.nome_usuario, i.caminho_imagem as img_perfil_pasta, NULL as img_perfil_banco
+                SELECT a.*, u.nome_usuario, i.caminho_imagem as img_perfil_pasta
                 FROM avaliacoes a
                 LEFT JOIN usuarios u ON a.id_usuario = u.id_usuario
                 LEFT JOIN imagens i ON u.img_perfil_id = i.id_imagem
@@ -64,7 +64,7 @@ const avalModel = {
     findById: async (id) => {
         try {
             const [results] = await pool.query(`
-                SELECT a.*, u.nome_usuario, i.caminho_imagem as img_perfil_pasta, NULL as img_perfil_banco
+                SELECT a.*, u.nome_usuario, i.caminho_imagem as img_perfil_pasta
                 FROM avaliacoes a
                 LEFT JOIN usuarios u ON a.id_usuario = u.id_usuario
                 LEFT JOIN imagens i ON u.img_perfil_id = i.id_imagem

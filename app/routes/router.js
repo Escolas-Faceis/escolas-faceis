@@ -187,7 +187,7 @@ router.post("/excluir-perfil", usuarioController.excluirPerfil);
 const uploadAval = multer();
 router.post("/avaliar", uploadAval.none(), verificarUsuAutorizado(["A", "C", "E"], "partials/login-required"), avalController.criarAvaliacao);
 router.post("/excluir-avaliacao", verificarUsuAutenticado, avalController.excluirAvaliacao);
-router.get('/avaliacoes/:id_escola', avalController.listarAvaliacoesPorEscola);
+
 router.get("/notificacoes", verificarUsuAutenticado, avalController.getNotificacoes);
 router.post("/notificacoes/marcar-todas-lidas", verificarUsuAutenticado, avalController.marcarTodasLidas);
 
