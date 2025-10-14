@@ -107,7 +107,7 @@ p {
     padding-left: 8px;
     padding-top: 3px;
     margin-bottom: -2px;
-    color: var(--azul);
+
 }
 
 h3 {
@@ -115,8 +115,7 @@ h3 {
 }
 
 #no-account {
-    font-size: 22px;
-    color: #141c44;
+    font-size: 15px;
     text-align: center; 
     margin-top: 10px; 
     display: flex;
@@ -138,9 +137,9 @@ h3 {
     border: solid var(--azul_claro);
     border-radius: 30px;
     color: white;
-    width: 250px;
-    height: 70px;
-    font-size: 25px;
+    width: 200px;
+    height: 60px;
+    font-size: 20px;
     font-weight: bold;
     margin-top: 20px;
 }
@@ -153,7 +152,6 @@ h3 {
 
 #texto_lateral {
     width: 300px;
-    color: var(--azul);
     margin-left: -30%;
     flex-wrap: nowrap;
     margin-bottom: 20%;
@@ -193,7 +191,7 @@ h3 {
 }
 
 label {
-    color: var(--azul);
+
     padding-right: 8px;
     font-size: 18px;
 }
@@ -201,7 +199,7 @@ p{margin: 1%;}
 
 #f-password {
     margin-top: 0;
-    font-size: 20px;
+    font-size: 15px;
     text-decoration: none;
     color: #ffbc3e;
     margin-left: -3%;
@@ -272,7 +270,7 @@ h2 {
         height: 44px;
         border-radius: 10px;
         margin: 6px;
-        font-size: 19px;
+        font-size: 15px;
         padding: 0 8px;
         border: solid var(--azul);
     }
@@ -287,7 +285,7 @@ h2 {
         padding-left: 8px;
         padding-top: 3px;
         margin-bottom: -2px;
-        color: var(--azul);
+        color: var(--letrasazul);
     }
 
     h3 {
@@ -295,8 +293,8 @@ h2 {
     }
 
     #no-account {
-        font-size: 20px;
-        color: #141c44;
+        font-size: 15px;
+        color:--;
         text-align: center;
         margin-top: 10px;
         display: flex;
@@ -312,18 +310,7 @@ h2 {
         justify-content: center;
     }
 
-    #login_button {
-        transition: all 0.3s;
-        background-color: var(--azul_claro);
-        border: solid var(--azul_claro);
-        border-radius: 26px;
-        color: white;
-        width: 230px;
-        height: 60px;
-        font-size: 23px;
-        font-weight: bold;
-        margin-top: 20px;
-    }
+
 
     #login_button:hover {
         background-color: white;
@@ -333,7 +320,7 @@ h2 {
 
     #texto_lateral {
         width: 300px;
-        color: var(--azul);
+        color: var(--letrasazul);
         margin-left: -7%;
         flex-wrap: nowrap;
         margin-bottom: 20%;
@@ -375,9 +362,9 @@ h2 {
     */
 
     label {
-        color: var(--azul);
+
         padding-right: 8px;
-        font-size: 18px;
+        font-size: 15px;
     }
 
     p {
@@ -386,7 +373,7 @@ h2 {
 
     #f-password {
         margin-top: 0;
-        font-size: 18px;
+        font-size: 15px;
         text-decoration: none;
         color: #ffbc3e;
         margin-left: -3%;

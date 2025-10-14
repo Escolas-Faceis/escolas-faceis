@@ -7,6 +7,7 @@
   --azulsec: #77b6ea;
   --amarelo: #ffbc3e;
   --toggle-theme: #ffbc3e;
+  --letras-azul: #141c44
 }
 
 .tema-claro {
@@ -16,6 +17,7 @@
   --azulsec: #77b6ea;
   --amarelo: #ffbc3e;
   --letras: #02030a;
+    --letras-azul: #ffffff;
   transition: all 0.2s ease-in;
 }
 
@@ -197,7 +199,7 @@ h2 {
 
 #no-account{
     font-size: 19px;
-    color: #141c44;
+    color: var(--letras-azul);
     text-align: center; 
     margin-top: 10px; 
     display: flex;
@@ -216,15 +218,15 @@ h2 {
     top: 63%;
     }
     input[type=checkbox] {
-        width: 20px; /* Aumente o tamanho se necessário */
+        width: 20px;
         height: 20px;
-        appearance: checkbox; /* Reseta a aparência padrão */
-        margin-right: 2px; /* Espaço entre o checkbox e o label */
+        appearance: checkbox; 
+        margin-right: 2px; 
     }
     
 
 label {
-    color: var(--azul);
+    color: var(--letrasazul);
     padding-right: 8px;
     font-size: 18px;
     white-space: nowrap;
