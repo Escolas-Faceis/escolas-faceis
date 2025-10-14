@@ -497,6 +497,7 @@ h1{
     justify-content: center;
     gap: 8px;
     padding: 15px;
+    padding-bottom: 0px !important;
     font-size: 15px;
   }
  

@@ -82,6 +82,8 @@ body {
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 30px var(--sombra);
+    position: relative;
+    z-index: 0;
 }
 
 .contato-info h2 {
@@ -290,6 +292,10 @@ body {
 
 /* Responsive Design */
 @media (max-width: 800px) {
+    .contato-main {
+        z-index: 0;
+    }
+
     .contato-container {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -310,6 +316,14 @@ body {
     .contato-info,
     .contato-form {
         padding: 24px 100px;
+    }
+
+    .contato-info {
+        z-index: -1 !important;
+    }
+
+    .contato-form {
+        z-index: 0 !important;
     }
 
     .contato-form h2 {

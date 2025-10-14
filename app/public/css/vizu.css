@@ -245,14 +245,14 @@
 
     .short-prof{
         margin: 2% auto ;
-        width:  50%;
+        width:  40%;
         padding: 1% 0.2%;
         position: relative;
         display: flex;
         align-items: center; 
         border: 1px solid var(--borda);
         border-radius: 15px;
-        background-color: white;
+        background-color: var(--fundo2);
         z-index: 0; 
         flex-direction: column; 
 
@@ -264,7 +264,8 @@
         align-items: center;
         justify-content: center;
         position: static;
-        width: 180px;
+        width: 150px;
+        height: 150px
         border-radius: 15px;
 
     }

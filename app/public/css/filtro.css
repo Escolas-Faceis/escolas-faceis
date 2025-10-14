@@ -8,7 +8,7 @@
     list-style: none;
     --amarelo: #ffbc3e;
     --laranja: #f56d44;
-    --azul-claro: #a;
+    --azul-claro: #77b6ea;
     --azul-escuro: #141c44;
 }
 :root {
@@ -38,14 +38,16 @@ padding: 2%;
 font-size: 14px;
 }
 #filtros{
-    color: var(--azul-claro);
+    color: var(--azul-claro) !important;
     font-weight: normal;
     cursor: pointer;
 
 }#filtros:hover{
     text-decoration: underline;
 }
-
+h4 #filtros{
+    color: #77b6ea;
+}
 #filtro{
     display: flex;
     justify-content: center;
@@ -287,6 +289,7 @@ padding: 2%;
     cursor: pointer;
     font-size: 18px;
     margin-top: 0;
+
 }#filtros:hover{
     text-decoration: underline;
 }
@@ -294,9 +297,7 @@ padding: 2%;
 #filtro{
     display: flex;
     justify-content: center;
-    margin-right: -40%;
-    margin-top: -4%;
-    margin-bottom: 6%;
+    margin-top: 5px;
     font-size: 14px;
 }
 
@@ -346,6 +347,7 @@ input{
     position: absolute;
     border-radius: 15px;
     border: 2px solid #77b6ea;
+        margin-right: 15%;
     padding:1%;
     border-top-right-radius: 0;
     width: 37%;
