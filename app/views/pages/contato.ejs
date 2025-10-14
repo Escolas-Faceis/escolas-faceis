@@ -8,8 +8,30 @@
     <link rel="stylesheet" href="css/contato.css">
     <link rel="icon" type="image/png" href="/imagem/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Contato - Encontre Escolas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <title>Contato - Envie uma mensagem para nossa equipe!</title>
 </head>
+
+<script>
+        function notify(title, text, type, position, timeout = 5000) {
+            new Notify({
+                status: type,
+                title: title,
+                text: text,
+                effect: 'fade',
+                speed: 500,
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: timeout,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: position
+            });
+        }
+    </script>
 
 <body>
     <%- include('../partials/navbar'); %>
@@ -99,11 +121,42 @@
 
     
     <script>
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            // Aqui você pode adicionar lógica para enviar o formulário
-            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-            this.reset();
+
+            const formData = new FormData(this);
+            const data = {
+                email: formData.get('email'),
+                assunto: formData.get('assunto'),
+                mensagem: formData.get('mensagem')
+            };
+
+            try {
+                const response = await fetch('/enviar-contato', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    notify("Mensagem enviada!", "Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.", "success", "center");
+                    this.reset();
+                } else if (result.redirect) {
+                    notify("Login necessário", result.message, "warning", "center");
+                    setTimeout(() => {
+                        window.location.href = result.redirect;
+                    }, 5000);
+                } else {
+                    notify("Erro ao enviar", result.message, "error", "center");
+                }
+            } catch (error) {
+                console.error('Erro ao enviar mensagem:', error);
+                notify("Erro", "Erro ao enviar mensagem. Tente novamente mais tarde.", "error", "center");
+            }
         });
     </script>
 </body>

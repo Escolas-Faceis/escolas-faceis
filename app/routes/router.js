@@ -12,6 +12,7 @@ const admController = require("../controllers/admController");
 const usuarioModel = require("../models/usuarioModel");
 const avalController = require("../controllers/avalController");
 const assinaturaController = require("../controllers/assinaturaController");
+const contatoController = require("../controllers/contatoController")
 
 const uploadFile = require("../helpers/uploader")("app/public/imagem/uploads");
 
@@ -243,9 +244,9 @@ router.get("/redefinir-senha-st2", (req, res) => {
   res.render("pages/redefinir");
 });
 
-// Rotas de assinatura
 router.post("/assinar-plano", verificarUsuAutorizado(["E"], "partials/401"), assinaturaController.assinarPlano);
 router.post("/cancelar-assinatura", verificarUsuAutorizado(["E"], "partials/401"), assinaturaController.cancelarAssinatura);
 router.get("/api/premium-status/:id", assinaturaController.getStatusPremium);
+router.post("/enviar-contato", contatoController.enviarMensagem);
 
 module.exports = router;
