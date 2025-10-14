@@ -232,6 +232,33 @@ criarAvaliacao: async (req, res) => {
         }
     },
 
+            listarAvaliacoesPorEscola: async (req, res) => {
+        try {
+            const id_escola = req.params.id;
+            console.log("Buscando avaliações para a escola ID:", id_escola);
+            if (!id_escola) {
+                console.log("ID da escola não fornecido");
+                return res.status(400).json({ error: "ID da escola é obrigatório" });
+            }
+            const avaliacoes = await avalModel.findBySchool(id_escola);
+            console.log(`Encontradas ${avaliacoes.length} avaliações para a escola ID ${id_escola}`);
+            if (avaliacoes.length > 0) {
+                console.log("Detalhes das avaliações:", avaliacoes.map(aval => ({
+                    id_avaliacao: aval.id_avaliacao,
+                    id_usuario: aval.id_usuario,
+                    nome_usuario: aval.nome_usuario,
+                    nota: aval.nota,
+                    comentario: aval.comentario,
+                    data_avaliacao: aval.data_avaliacao
+                })));
+            }
+            res.json(avaliacoes);
+        } catch (error) {
+            console.error("Erro ao listar avaliações por escola:", error);
+            res.status(500).json({ error: "Erro ao listar avaliações" });
+        }
+    },
+
     
 
 
