@@ -83,7 +83,10 @@
             </section>
         <% }); %>
     <% } else { %>
-        <p>Nenhuma escola encontrada.</p>
+        <section style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px;" class="noresults">
+            <img style="width: 50%; max-width: 300px; height: auto; margin-bottom: 20px;" src="/imagem/no-schools.svg" alt="Nenhuma escola encontrada">
+            <p style="text-align: center; font-size: 1.2em;">Nenhuma escola encontrada.</p>
+        </section>
     <% } %>
     
     
