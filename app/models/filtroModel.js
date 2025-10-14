@@ -114,7 +114,6 @@ const filtroModel = {
 
             let [linhas] = await pool.query(query, queryParams);
 
-            // Filter by cidade and regiao using viaCEP
             if (params.cidade && params.cidade.trim()) {
                 linhas = await filtroModel.filterByCidade(linhas, params.cidade.trim());
             }
@@ -123,7 +122,6 @@ const filtroModel = {
                 linhas = await filtroModel.filterByRegiao(linhas, params.regiao);
             }
 
-            // Apply pagination after filtering
             linhas = linhas.slice(pagina, pagina + total);
 
             return linhas;
@@ -180,7 +178,6 @@ const filtroModel = {
 
             let [linhas] = await pool.query(query, queryParams);
 
-            // Filter by cidade and regiao using viaCEP
             if (params.cidade && params.cidade.trim()) {
                 linhas = await filtroModel.filterByCidade(linhas, params.cidade.trim());
             }
@@ -196,47 +193,47 @@ const filtroModel = {
         }
     },
 
-    // filterByCidade: async (schools, cidade) => {
-    //     const filteredSchools = [];
-    //     for (const school of schools) {
-    //         try {
-    //             const response = await axios.get(`https://viacep.com.br/ws/${school.cep.replace(/\D/g, '')}/json/`);
-    //             const data = response.data;
-    //             if (!data.erro && data.localidade && data.localidade.toLowerCase().includes(cidade.toLowerCase())) {
-    //                 filteredSchools.push(school);
-    //             }
-    //         } catch (error) {
-    //             console.log(`Erro ao consultar CEP ${school.cep}:`, error.message);
-    //         }
-    //     }
-    //     return filteredSchools;
-    // },
+    filterByCidade: async (schools, cidade) => {
+        const filteredSchools = [];
+        for (const school of schools) {
+            try {
+                const response = await axios.get(`https://viacep.com.br/ws/${school.cep.replace(/\D/g, '')}/json/`);
+                const data = response.data;
+                if (!data.erro && data.localidade && data.localidade.toLowerCase().includes(cidade.toLowerCase())) {
+                    filteredSchools.push(school);
+                }
+            } catch (error) {
+                console.log(`Erro ao consultar CEP ${school.cep}:`, error.message);
+            }
+        }
+        return filteredSchools;
+    },
 
-    // filterByRegiao: async (schools, regiao) => {
-    //     const regioes = {
-    //         'RNO': ['AM', 'RR', 'AP', 'PA', 'TO', 'RO', 'AC'],
-    //         'RND': ['MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE', 'BA'],
-    //         'RCE': ['MT', 'MS', 'GO', 'DF'],
-    //         'RSD': ['MG', 'ES', 'RJ', 'SP'],
-    //         'RSU': ['PR', 'SC', 'RS']
-    //     };
+    filterByRegiao: async (schools, regiao) => {
+        const regioes = {
+            'RNO': ['AM', 'RR', 'AP', 'PA', 'TO', 'RO', 'AC'],
+            'RND': ['MA', 'PI', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE', 'BA'],
+            'RCE': ['MT', 'MS', 'GO', 'DF'],
+            'RSD': ['MG', 'ES', 'RJ', 'SP'],
+            'RSU': ['PR', 'SC', 'RS']
+        };
 
-    //     const estados = regioes[regiao] || [];
-    //     const filteredSchools = [];
+        const estados = regioes[regiao] || [];
+        const filteredSchools = [];
 
-    //     for (const school of schools) {
-    //         try {
-    //             const response = await axios.get(`https://viacep.com.br/ws/${school.cep.replace(/\D/g, '')}/json/`);
-    //             const data = response.data;
-    //             if (!data.erro && data.uf && estados.includes(data.uf)) {
-    //                 filteredSchools.push(school);
-    //             }
-    //         } catch (error) {
-    //             console.log(`Erro ao consultar CEP ${school.cep}:`, error.message);
-    //         }
-    //     }
-    //     return filteredSchools;
-    // }
+        for (const school of schools) {
+            try {
+                const response = await axios.get(`https://viacep.com.br/ws/${school.cep.replace(/\D/g, '')}/json/`);
+                const data = response.data;
+                if (!data.erro && data.uf && estados.includes(data.uf)) {
+                    filteredSchools.push(school);
+                }
+            } catch (error) {
+                console.log(`Erro ao consultar CEP ${school.cep}:`, error.message);
+            }
+        }
+        return filteredSchools;
+    }
 };
 
 module.exports = filtroModel;
