@@ -53,6 +53,19 @@ const admControllerPainel = {
         }
         next();
     },
+
+    // Listar escolas premium
+    listarEscolasPremium: async (req, res, next) => {
+        try {
+            const escolasPremium = await admModel.findAllPremiumSchools();
+            console.log('Escolas Premium encontradas:', escolasPremium);
+            res.locals.escolasPremium = escolasPremium || [];
+        } catch (error) {
+            console.log('ERRO AO LISTAR ESCOLAS PREMIUM:', error);
+            res.locals.escolasPremium = [];
+        }
+        next();
+    },
 }
 
 module.exports = admControllerPainel;

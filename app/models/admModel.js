@@ -100,7 +100,6 @@ const admModel = {
             }
         },
 
-    // Métodos para dados agregados para gráficos
     getTotalUsuarios: async () => {
         try {
             const [resultados] = await pool.query(
@@ -149,19 +148,6 @@ const admModel = {
         }
     },
 
-    getUsuariosOnline: async () => {
-        try {
-            // Simulando usuários online - pode ser implementado com sessões ou timestamps
-            const [resultados] = await pool.query(
-                "SELECT COUNT(*) as online FROM usuarios WHERE status_usuario = 1 LIMIT 10" // Placeholder
-            );
-            return resultados[0].online;
-        } catch (error) {
-            console.log(error);
-            return 0;
-        }
-    },
-
     getDenunciasPendentes: async () => {
         try {
             const [resultados] = await pool.query(
@@ -172,7 +158,47 @@ const admModel = {
             console.log(error);
             return 0;
         }
-    }
+    },
+
+findAllPremiumSchools: async () => {
+  try {
+    const [results] = await pool.query(`
+      SELECT 
+        u.id_usuario, 
+        u.nome_usuario, 
+        u.email_usuario, 
+        u.telefone_usuario, 
+        u.tipo_usuario, 
+        u.status_usuario,
+        e.cnpj, 
+        e.endereco, 
+        e.cep, 
+        e.numero, 
+        e.tipo_ensino, 
+        e.turnos, 
+        e.rede,
+        a.id_assinatura, 
+        a.data_inicio, 
+        a.data_fim, 
+        p.nome_plano, 
+        p.preco_plano
+      FROM usuarios u
+      JOIN assinatura a ON u.id_usuario = a.id_usuario
+      JOIN plano p ON a.id_plano = p.id_plano
+      JOIN escolas e ON u.id_usuario = e.id_usuario
+      WHERE 
+        u.status_usuario = 1 
+        AND u.tipo_usuario = 'E' 
+        AND a.ativo = TRUE 
+        AND (a.data_fim IS NULL OR a.data_fim >= CURDATE())
+      ORDER BY u.nome_usuario ASC
+    `);
+    return results;
+  } catch (error) {
+    console.log("Erro ao buscar escolas premium:", error);
+    return [];
+  }
+}
 
 
 }

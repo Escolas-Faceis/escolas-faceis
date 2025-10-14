@@ -50,4 +50,53 @@ router.get("/list-escolas",
     }
 );
 
+router.get("/list-comum",
+    verificarUsuAutenticado,
+    verificarUsuAutorizado(["A"], 'partials/401'),
+    admControllerPainel.listarEscolas,
+    function(req, res) {
+        res.render('pages/adm/adm-list-comum', {
+            autenticado: req.session.autenticado,
+            escolas: res.locals.escolas
+        });
+    }
+);
+
+router.get("/list-adm",
+    verificarUsuAutenticado,
+    verificarUsuAutorizado(["A"], 'partials/401'),
+    admControllerPainel.listarEscolas,
+    function(req, res) {
+        res.render('pages/adm/adm-list-adm', {
+            autenticado: req.session.autenticado,
+            escolas: res.locals.escolas
+        });
+    }
+);
+
+router.get("/premium",
+    verificarUsuAutenticado,
+    verificarUsuAutorizado(["A"], 'partials/401'),
+    admControllerPainel.listarEscolasPremium,
+    function(req, res) {
+        res.render('pages/adm/premium', {
+            autenticado: req.session.autenticado,
+            escolasPremium: res.locals.escolasPremium
+        });
+    }
+);
+
+router.get("/denuncias",
+    verificarUsuAutenticado,
+    verificarUsuAutorizado(["A"], 'partials/401'),
+    admControllerPainel.listarEscolas,
+    function(req, res) {
+        res.render('pages/adm/denuncias', {
+            autenticado: req.session.autenticado,
+            escolas: res.locals.escolas
+        });
+    }
+);
+
+
 module.exports = router;

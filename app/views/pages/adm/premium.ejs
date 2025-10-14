@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index-adm.css">
+   </head>
+
+<style>
+    .container {
+    display: block;}
+</style>
+
+   <body>
+        <%- include('../../partials/navbar'); %>
+
+ 
+
+<section class="container body-content">
+        <h2 id="title">Escolas Premium</h2>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Endereço</th>
+        <th>Plano</th>
+        <th>Data Início</th>
+        <th>Data Fim</th>
+        <th>Status</th>
+    </tr>
+    <% if (escolasPremium && escolasPremium.length > 0) { %>
+        <% escolasPremium.forEach(escola => { %>
+            <tr>
+                <td><%= escola.id_usuario %></td>
+                <td><%= escola.nome_usuario %></td>
+                <td><%= escola.email_usuario %></td>
+                <td><%= escola.endereco || 'Não informado' %></td>
+                <td><%= escola.nome_plano %></td>
+                <td><%= new Date(escola.data_inicio).toLocaleDateString('pt-BR') %></td>
+                <td><%= escola.data_fim ? new Date(escola.data_fim).toLocaleDateString('pt-BR') : 'Indeterminado' %></td>
+                <td><%= escola.status_usuario === 1 ? 'Ativo ✅' : 'Inativo ❌' %></td>
+            </tr>
+        <% }); %>
+    <% } else { %>
+        <tr>
+            <td colspan="9">Nenhuma escola premium encontrada.</td>
+        </tr>
+    <% } %>
+
+</table>
+
+        <section class="s"></section>
+        <%- include('../../partials/footer'); %>   
+        </body>
+</html>
