@@ -139,15 +139,15 @@
     <section class="informacao">
         <h1 class="titulo-contato left" >Sobre a Escola</h1>
     <article class="descricao2">
-        <%= valores.sobre_escola || 'Este perfil ainda não escreveu nada sobre sua instituição.' %>
+        <%- (valores.sobre_escola || 'Este perfil ainda não escreveu nada sobre sua instituição.').replace(/\n/g, '<br>') %>
     </article>
         <h1 class="titulo-contato left">Sobre o Ensino</h1>
         <ul class="listinha">
-            <%= valores.sobre_ensino || 'Este perfil ainda não escreveu nada sobre seu ensino.' %>
+            <%- (valores.sobre_ensino || 'Este perfil ainda não escreveu nada sobre seu ensino.').replace(/\n/g, '<br>') %>
         </ul>
         <h1 class="titulo-contato left">Sobre a Estrutura</h1>
         <ul class="listinha">
-            <%= valores.sobre_estrutura || 'Este perfil ainda não escreveu nada sobre sua estrutura.' %>
+            <%- (valores.sobre_estrutura || 'Este perfil ainda não escreveu nada sobre sua estrutura.').replace(/\n/g, '<br>') %>
 
         </ul>
     </section>

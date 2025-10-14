@@ -255,7 +255,7 @@ const escolaController = {
             console.log("Resultado da busca:", results.length > 0 ? "Escola encontrada" : "Escola não encontrada");
             if (results.length === 0) {
                 console.log("Escola não encontrada para o ID:", id);
-                return res.render("pages/perfil-escola", { erros: { errors: [{ msg: "Escola não encontrada." }] }, dadosNotificacao: null, valores: {}, cep: null, avaliacoes: [], mediaAvaliacao: { media: 0, totalAvaliacoes: 0 } });
+                return res.render("pages/perfil-escola", { erros: { errors: [{ msg: "Escola não encontrada." }] }, dadosNotificacao: null, valores: {}, cep: null, avaliacoes: [], mediaAvaliacao: { media: 0, totalAvaliacoes: 0 }, isPremium: false });
 
             }
 
@@ -359,7 +359,7 @@ const escolaController = {
 
         } catch (e) {
             console.log('ERRO NO PERFIL:', e);
-            res.render("pages/perfil-escola", { erros: { errors: [{ msg: "Erro ao carregar perfil." }] }, dadosNotificacao: null, valores: {}, cep: null, avaliacoes: [], mediaAvaliacao: { media: 0, totalAvaliacoes: 0 } });
+            res.render("pages/perfil-escola", { erros: { errors: [{ msg: "Erro ao carregar perfil." }] }, dadosNotificacao: null, valores: {}, cep: null, avaliacoes: [], mediaAvaliacao: { media: 0, totalAvaliacoes: 0 }, isPremium: false });
         }
     },
 
@@ -450,6 +450,24 @@ const escolaController = {
 
     gravarPerfil: async (req,res) => {
         let currentSchool = await escolaModel.findId(req.session.autenticado.id);
+
+        // Verificar status premium e buscar assinatura ativa
+        let isPremium = false;
+        let assinatura = null;
+        try {
+            isPremium = await assinaturaModel.isPremium(currentSchool[0].id_escola);
+            if (isPremium) {
+                assinatura = await assinaturaModel.findActiveBySchool(currentSchool[0].id_escola);
+                if (assinatura) {
+                    // Formatar datas para exibição
+                    assinatura.data_inicio = assinatura.data_inicio ? moment(assinatura.data_inicio).format('DD/MM/YYYY') : null;
+                    assinatura.data_fim = assinatura.data_fim ? moment(assinatura.data_fim).format('DD/MM/YYYY') : null;
+                }
+            }
+        } catch (e) {
+            console.log('Erro ao verificar status premium:', e);
+        }
+
          const erros = validationResult(req);
         const erroMulter = req.session.erroMulter;
         console.log("Validation errors:", erros.array());
@@ -470,7 +488,7 @@ const escolaController = {
                 ingresso: req.body && req.body.ingresso ? req.body.ingresso : (currentSchool[0].ingresso ? currentSchool[0].ingresso.split(',') : []),
                 acessibilidade: req.body && req.body.acessibilidade ? req.body.acessibilidade : (currentSchool[0].acessibilidade ? currentSchool[0].acessibilidade.split(',') : [])
             };
-            return res.render("pages/editar-escola", { erros: lista, dadosNotificacao: null, valores: valoresErro })
+            return res.render("pages/editar-escola", { erros: lista, dadosNotificacao: null, valores: valoresErro, isPremium: isPremium, assinatura: assinatura })
         }
         try {
 
@@ -580,9 +598,9 @@ const escolaController = {
                     acessibilidade: result[0].acessibilidade ? result[0].acessibilidade.split(',') : []
                 };
                 if (resultUpdate.changedRows >= 1) {
-                    res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos });
+                    res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Alterações Gravadas", tipo: "success" }, valores: campos, isPremium: isPremium, assinatura: assinatura });
                 } else {
-                    res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Sem alterações", tipo: "success" }, valores: campos });
+                    res.render("pages/editar-escola", { erros: null, dadosNotificacao: { titulo: "Perfil atualizado com sucesso", mensagem: "Sem alterações", tipo: "success" }, valores: campos, isPremium: isPremium, assinatura: assinatura });
                 }
             } else {
                 let valoresCurrent = {
@@ -610,7 +628,7 @@ const escolaController = {
                     acessibilidade: currentSchool[0].acessibilidade ? currentSchool[0].acessibilidade.split(',') : []
 
                 };
-                res.render("pages/editar-escola", { erros: { errors: [{ msg: "Erro ao atualizar o perfil." }] }, dadosNotificacao: null, valores: valoresCurrent });
+                res.render("pages/editar-escola", { erros: { errors: [{ msg: "Erro ao atualizar o perfil." }] }, dadosNotificacao: null, valores: valoresCurrent, isPremium: isPremium, assinatura: assinatura });
             }
 
     } catch (e) {
@@ -624,7 +642,7 @@ const escolaController = {
                 acessibilidade: req.body && req.body.acessibilidade ? req.body.acessibilidade : (currentSchool[0].acessibilidade ? currentSchool[0].acessibilidade.split(',') : []),
                 ingresso: req.body && req.body.ingresso ? req.body.ingresso : (currentSchool[0].ingresso ? currentSchool[0].ingresso.split(',') : [])
             };
-            res.render("pages/editar-escola", { erros: { errors: [{ msg: "Erro interno no servidor." }] }, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: valoresCatch })
+            res.render("pages/editar-escola", { erros: { errors: [{ msg: "Erro interno no servidor." }] }, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: valoresCatch, isPremium: isPremium, assinatura: assinatura })
         }
     }
 };

@@ -88,7 +88,7 @@
 
 .avalinfo{  margin-left: 15%;
   margin-top: 2.5%;
-  color: #141c44;
+  color: var(--azuletra);
 font-weight: 300;
 }
 #caracteres{
@@ -120,7 +120,7 @@ font-weight: 300;
 
 #ratetext{
   margin-top: -10px; 
-  color: #141c44; 
+  color: var(--azuletra); 
   font-weight: 300; 
   border-radius: 5px; 
   padding: 15px;
@@ -194,7 +194,7 @@ font-weight: 300;
 
 #comentario h3 {
   font-weight: bold;
-  color: #141c44;
+  color: var(--azuletra);
   font-size: 1rem;
   margin: 0;
 }
@@ -210,7 +210,7 @@ font-weight: 300;
 
 #comentario p {
   margin: 0 0 0 0;
-  color: #141c44;
+  color: var(--azuletra);
   font-size: 0.9rem;
 }
 
@@ -218,7 +218,7 @@ font-weight: 300;
   margin-left: 50px;
   margin-bottom: 10px;
   width: 90%;
-  color: #141c44;
+  color: var(--azuletra);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -286,7 +286,7 @@ font-weight: 300;
 }
 
 .media-avaliacoes p {
-  color: #141c44;
+  color: var(--azuletra);
   font-weight: 300;
 }
 
