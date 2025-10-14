@@ -8,8 +8,29 @@
     list-style: none;
     --amarelo: #ffbc3e;
     --laranja: #f56d44;
-    --azul-claro: #77b6ea;
+    --azul-claro: #a;
     --azul-escuro: #141c44;
+}
+:root {
+    --laranja: #f56d44;
+    --azul: #141c44;
+        --azulletra: #141c44;
+    --azul-claro: #77b6ea;
+    --letra: #141c44;
+    --fundo: #ffffff;
+    --fundo-secundario: #f8f9fa;
+    --borda: #e9ecef;
+    --sombra: rgba(0, 0, 0, 0.1);
+    --amarelo: #ffbc3e;
+}
+
+.tema-escuro {
+    --letra: #ffffff;
+    --fundo: #030303;
+            --azulletra: #ffffff;
+    --fundo-secundario: #1a1a1a;
+    --borda: #333333;
+    --sombra: rgba(0, 0, 0, 0.3);
 }
 
 label{
@@ -77,6 +98,14 @@ font-size: 14px;
 input{
     cursor: pointer;
 }
+
+input[type="checkbox"] {
+    accent-color: var(--azul-claro);
+}
+
+input[type="checkbox"]:hover {
+    box-shadow: 0 0 0 2px rgba(119, 182, 234, 0.2);
+}
 #mens{
     font-size: 14px;
     color: gray;
@@ -84,7 +113,7 @@ input{
 }
 
 .filter-schools{
-    background-color: white;
+    background-color: var(--fundo-secundario);
     display: none;
     position: absolute;
     border-radius: 15px;
@@ -100,21 +129,21 @@ input{
 
 @media screen and (max-width: 1290px) {
   .filter-schools{
-    width: 30%;
+    width: 25%;
     margin-left: 18%;
   }
 }
 
 @media screen and (max-width: 800px) {
   .filter-schools{
-    width: 37%;
+    width: 30%;
     margin-left: -10%;
   }
 }
 
 @media screen and (max-width: 481px) {
   .filter-schools{
-    width: 100%;
+    width: 80%;
     margin-left: -5%;
   }
 }
@@ -312,8 +341,8 @@ input{
 }
 
 .filter-schools{
-    background-color: white;
-    display: none;
+    background-color: var(--fundo-secundario);
+        display: none;
     position: absolute;
     border-radius: 15px;
     border: 2px solid #77b6ea;
@@ -369,9 +398,11 @@ h1{
 
 @media screen and (max-width:481px){
 
+
+
     .filter-schools{
-        width: 100%;
-        margin-left: 0;
+        width: 80%;
+        margin: 0 7%;
         left: 0;
         right: 0;
     }
