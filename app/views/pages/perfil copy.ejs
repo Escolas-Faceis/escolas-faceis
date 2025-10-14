@@ -81,7 +81,7 @@
                                 </a>
                                 <div class="user-info">
                                     <h3 id="avalnome"><a id="avalnome" href="/perfil-usuario?id=<%= aval.id_usuario %>"><%= valores.nome %></a></h3>
-                                    <p class="avaliou">  <a class="avaliou" href="/perfil-escola?id=<%= aval.id_usuario_escola %>"> Avaliou: <%= aval.nome_escola || "Escola" %></a></p>
+                                <p class="avaliou">  <a class="avaliou" href="/perfil-escola?id=<%= aval.id_escola %>"> Avaliou: <%= aval.nome_escola || "Escola" %></a></p>
                                 </div>
                             </section>
                             <p>• <%= aval.data_formatada || 'há algum tempo' %></p>

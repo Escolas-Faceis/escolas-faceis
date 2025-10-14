@@ -30,12 +30,11 @@
             <a class="dropdown-arrow" id="encontre" href="/encontre-escolas">Encontre Escolas</a>
             <ul class="submenu">
                 <li><a href="/encontre-escolas?niveis=Educação+Infantil">Educação Infantil</a></li>
-                <li><a href="/ensino-fund1">Ensino Fundamental I</a></li>
-                <li><a href="/ensino-fund2">Ensino Fundamental II</a></li>
-                <li><a href="/ensino-medio">Ensino Médio</a></li>
-                <li><a href="/cursos-tecnicos">Cursos Técnicos</a></li>
-                <li><a href="/cursos">Cursos Extracurriculares</a></li>
-                <li><a href="/mais-filtros">Mais Filtros</a></li>
+                <li><a href="/encontre-escolas?niveis=Ensino+Fundamental+I">Ensino Fundamental I</a></li>
+                <li><a href="/encontre-escolas?niveis=Ensino+Fundamental+II">Ensino Fundamental II</a></li>
+                <li><a href="/encontre-escolas?niveis=Ensino+Médio">Ensino Médio</a></li>
+                <li><a href="/encontre-escolas?niveis=Cursos+T%C3%A9cnicos">Cursos Técnicos</a></li>
+                <li><a href="/encontre-escolas?niveis=Cursos+Extracurriculares">Cursos Extracurriculares</a></li>
             </ul>
         </li></summary>
     </details>
@@ -51,7 +50,6 @@
   </summary>
 
   <ul id="notificacao-list" class="notificacao-submenu">
-    <!-- Notificações serão inseridas dinamicamente -->
     <li class="notificacao-vazia">Sem notificações novas</li>
   </ul>
 </details>
@@ -117,7 +115,7 @@
                 if (list.children.length === 0) {
                     list.innerHTML = '<li>Sem novas notificações</li>';
                 }
-                // Mark all list items as read
+
                 Array.from(list.children).forEach(li => {
                     li.classList.remove('nao-lida');
                     li.classList.add('lida');
@@ -138,7 +136,7 @@
         }
     }
 
-    // Load count on page load
+
     document.addEventListener('DOMContentLoaded', async () => {
         try {
             const response = await fetch('/notificacoes');
@@ -148,7 +146,6 @@
             console.error('Erro ao carregar contagem de notificações:', error);
         }
 
-        // Load notifications when details is opened
         const details = document.querySelector('#notificacao-summary').parentElement;
         details.addEventListener('toggle', () => {
             if (details.open) {

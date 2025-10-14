@@ -197,6 +197,8 @@ router.post("/excluir-avaliacao", verificarUsuAutenticado, avalController.exclui
 router.get("/notificacoes", verificarUsuAutenticado, avalController.getNotificacoes);
 router.post("/notificacoes/marcar-todas-lidas", verificarUsuAutenticado, avalController.marcarTodasLidas);
 
+router.get("/api/avaliacoes/escola/:id", avalController.listarAvaliacoesPorEscola);
+
 router.get("/login", (req, res) => {
   res.render("pages/login", {
     erros: null,
