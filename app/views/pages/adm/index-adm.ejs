@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/index-adm.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    </head>
    <body>
         <%- include('../../partials/navbar'); %>
@@ -12,6 +13,55 @@
         <section class="welcome">
             <h1>Bem-vindo à área administrativa, <%= autenticado && autenticado.autenticado ? autenticado.autenticado : "usuário não identificado" %>!</h1>
         </section>
+
+        <!-- Seção de Gráficos -->
+        <section class="container body-content">
+            <h2 id="title">Dashboard de Estatísticas</h2>
+            <section class="dashboard-grid">
+                <!-- Gráfico de Distribuição por Tipo -->
+                <section class="chart-container chart-1">
+                    <h3>Distribuição de Usuários por Tipo</h3>
+                    <canvas id="tipoUsuarioChart"></canvas>
+                </section>
+
+                <!-- Gráfico de Status dos Usuários -->
+                <section class="chart-container chart-2">
+                    <h3>Status dos Usuários</h3>
+                    <canvas id="statusUsuarioChart"></canvas>
+                </section>
+
+                <!-- Gráfico de Escolas por Rede -->
+                <section class="chart-container chart-3">
+                    <h3>Escolas por Rede</h3>
+                    <canvas id="escolasRedeChart"></canvas>
+                </section>
+
+                <!-- Cards de Estatísticas -->
+                <section class="stats-cards stats-cards-positioned">
+                    <section class="stat-card">
+                        <a href="/adm/list">
+                        <h4>Total de Usuários</h4>
+                        <p class="stat-number"><%= dadosGraficos ? dadosGraficos.totalUsuarios : 0 %></p>
+                        </a>
+                    </section>
+                    <section class="stat-card">
+                        <a href="adm/list-escolas">
+                        <h4>Escolas Cadastradas</h4>
+                        <p class="stat-number"><%= dadosGraficos ? dadosGraficos.escolasPorRede.reduce((acc, item) => acc + item.quantidade, 0) : 0 %></p>
+                    </a>
+                    </section>
+                    <section class="stat-card">
+                        <a href="adm/denuncias">
+                        <h4>Denúncias Pendentes</h4>
+                        <p class="stat-number"><%= dadosGraficos ? dadosGraficos.denunciasPendentes : 0 %></p>
+                        </a>
+                </section>
+                </section>
+            </section>
+        </section>
+
+        <section class="separador"></section>
+
  <section class="container body-content">
         <h2 id="title">Usuários Ativos</h2>
 <table class="table">
@@ -70,11 +120,10 @@
         <th>ID</th>
         <th>Nome</th>
         <th>E-mail</th>
-        <th>CNPJ</th>
+
         <th>Endereço</th>
         <th>Número</th>
-        <th>Tipo de Ensino</th>
-        <th>Turnos</th>
+
         <th>Rede</th>
         <th>Status</th>
     </tr>
@@ -84,14 +133,10 @@
                 <td><%= escola.id_usuario %></td>
                 <td><%= escola.nome_usuario %></td>
                 <td><%= escola.email_usuario %></td>
-                <td><%= escola.cnpj || 'Não informado' %></td>
-
                 <td><%= escola.endereco || 'Não informado' %></td>
                 <td><%= escola.numero || 'Não informado' %></td>
-                <td><%= escola.tipo_ensino || 'Não informado' %></td>
-                <td><%= escola.turnos || 'Não informado' %></td>
                 <td><%= escola.rede || 'Não informado' %></td>
-                <td><%= escola.status_usuario === 1 ? 'Ativo ✅' : 'Inativo ❌' %></td>
+                <td><%= escola.status_usuario === 1 ? '✅' : '❌' %></td>
             </tr>
         <% }); %>
     <% } else { %>
@@ -104,5 +149,84 @@
 <section class="s"></section>
 
         <%- include('../../partials/footer'); %>
+
+        <!-- Scripts para os Gráficos -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Dados dos gráficos passados do backend
+                const dadosGraficos = <%- JSON.stringify(dadosGraficos || {}) %>;
+
+                // Gráfico de Distribuição por Tipo
+                const ctxTipo = document.getElementById('tipoUsuarioChart').getContext('2d');
+                const distribuicaoTipos = dadosGraficos.distribuicaoTipos || [];
+                new Chart(ctxTipo, {
+                    type: 'pie',
+                    data: {
+                        labels: distribuicaoTipos.map(item => item.tipo_usuario),
+                        datasets: [{
+                            data: distribuicaoTipos.map(item => item.quantidade),
+                            backgroundColor: ['#f56d44', '#77b6ea', '#ffbc3e'],
+                            hoverBackgroundColor: ['#f56d44', '#77b6ea', '#ffbc3e']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            }
+                        }
+                    }
+                });
+
+                // Gráfico de Status dos Usuários
+                const ctxStatus = document.getElementById('statusUsuarioChart').getContext('2d');
+                const statusUsuarios = dadosGraficos.statusUsuarios || [];
+                new Chart(ctxStatus, {
+                    type: 'doughnut',
+                    data: {
+                        labels: statusUsuarios.map(item => item.status_usuario === 1 ? 'Ativo' : 'Inativo'),
+                        datasets: [{
+                            data: statusUsuarios.map(item => item.quantidade),
+                            backgroundColor: ['#77b6ea', '#f56d44'],
+                            hoverBackgroundColor: ['#77b6ea', '#f56d44']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            }
+                        }
+                    }
+                });
+
+                // Gráfico de Escolas por Rede
+                const ctxRede = document.getElementById('escolasRedeChart').getContext('2d');
+                const escolasPorRede = dadosGraficos.escolasPorRede || [];
+                new Chart(ctxRede, {
+                    type: 'bar',
+                    data: {
+                        labels: escolasPorRede.map(item => item.rede || 'Não informado'),
+                        datasets: [{
+                            label: 'Número de Escolas',
+                            data: escolasPorRede.map(item => item.quantidade),
+                            backgroundColor: '#f56d44',
+                            borderColor: '#f56d44',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
         </body>
 </html>

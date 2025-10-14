@@ -21,6 +21,38 @@ const admControllerPainel = {
         }
         next();
     },
+
+    // Método para buscar dados agregados para gráficos
+    buscarDadosGraficos: async (req, res, next) => {
+        try {
+            const totalUsuarios = await admModel.getTotalUsuarios();
+            const distribuicaoTipos = await admModel.getDistribuicaoTipos();
+            const statusUsuarios = await admModel.getStatusUsuarios();
+            const escolasPorRede = await admModel.getEscolasPorRede();
+            const usuariosOnline = await admModel.getUsuariosOnline();
+            const denunciasPendentes = await admModel.getDenunciasPendentes();
+
+            res.locals.dadosGraficos = {
+                totalUsuarios,
+                distribuicaoTipos,
+                statusUsuarios,
+                escolasPorRede,
+                usuariosOnline,
+                denunciasPendentes
+            };
+        } catch (error) {
+            console.log('ERRO AO BUSCAR DADOS PARA GRÁFICOS:', error);
+            res.locals.dadosGraficos = {
+                totalUsuarios: 0,
+                distribuicaoTipos: [],
+                statusUsuarios: [],
+                escolasPorRede: [],
+                usuariosOnline: 0,
+                denunciasPendentes: 0
+            };
+        }
+        next();
+    },
 }
 
 module.exports = admControllerPainel;

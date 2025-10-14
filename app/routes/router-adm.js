@@ -9,13 +9,15 @@ router.get("/",
     verificarUsuAutorizado(["A"], 'partials/401'),
     admControllerPainel.listarUsuarios,
     admControllerPainel.listarEscolas,
+    admControllerPainel.buscarDadosGraficos,
     admController.listarUsuariosPaginados,
-    
+
     function(req, res) {
         res.render('pages/adm/index-adm', {
             autenticado: req.session.autenticado,
             usuarios: res.locals.usuarios,
-            escolas: res.locals.escolas
+            escolas: res.locals.escolas,
+            dadosGraficos: res.locals.dadosGraficos
         });
     }
 );

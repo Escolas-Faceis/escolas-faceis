@@ -18,7 +18,8 @@ const admModel = {
                        e.cnpj, e.endereco, e.cep, e.numero, e.tipo_ensino, e.turnos, e.rede
                 FROM usuarios u
                 JOIN escolas e ON u.id_usuario = e.id_usuario
-                WHERE u.status_usuario = 1 AND u.tipo_usuario = 'Escola'
+                WHERE u.status_usuario = 1 AND u.tipo_usuario = 'E'
+                ORDER BY u.nome_usuario ASC
             `);
             return results;
         } catch (error) {
@@ -98,6 +99,80 @@ const admModel = {
                 return error;
             }
         },
+
+    // Métodos para dados agregados para gráficos
+    getTotalUsuarios: async () => {
+        try {
+            const [resultados] = await pool.query(
+                "SELECT COUNT(*) as total FROM usuarios WHERE status_usuario = 1"
+            );
+            return resultados[0].total;
+        } catch (error) {
+            console.log(error);
+            return 0;
+        }
+    },
+
+    getDistribuicaoTipos: async () => {
+        try {
+            const [resultados] = await pool.query(
+                "SELECT tipo_usuario, COUNT(*) as quantidade FROM usuarios WHERE status_usuario = 1 GROUP BY tipo_usuario"
+            );
+            return resultados;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+
+    getStatusUsuarios: async () => {
+        try {
+            const [resultados] = await pool.query(
+                "SELECT status_usuario, COUNT(*) as quantidade FROM usuarios GROUP BY status_usuario"
+            );
+            return resultados;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+
+    getEscolasPorRede: async () => {
+        try {
+            const [resultados] = await pool.query(
+                "SELECT rede, COUNT(*) as quantidade FROM escolas e JOIN usuarios u ON e.id_usuario = u.id_usuario WHERE u.status_usuario = 1 GROUP BY rede"
+            );
+            return resultados;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+
+    getUsuariosOnline: async () => {
+        try {
+            // Simulando usuários online - pode ser implementado com sessões ou timestamps
+            const [resultados] = await pool.query(
+                "SELECT COUNT(*) as online FROM usuarios WHERE status_usuario = 1 LIMIT 10" // Placeholder
+            );
+            return resultados[0].online;
+        } catch (error) {
+            console.log(error);
+            return 0;
+        }
+    },
+
+    getDenunciasPendentes: async () => {
+        try {
+            const [resultados] = await pool.query(
+                "SELECT COUNT(*) as total FROM denuncias WHERE status = 'P'"
+            );
+            return resultados[0].total;
+        } catch (error) {
+            console.log(error);
+            return 0;
+        }
+    }
 
 
 }
