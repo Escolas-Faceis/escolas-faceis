@@ -167,9 +167,18 @@
                         <input type="password" id="senha" name="password" value="<%= valores.password %>" class="<%= erroValidacao.password%>" required>
                         <span class="spanerro"><%=msgErro.password%></span>
 
+                        <section id="requisitos-senha">
+                            <span id="req-length" class="requisito">Pelo menos 8 caracteres</span><br>
+                            <span id="req-uppercase" class="requisito">Pelo menos 1 letra maiúscula</span> <br>
+                            <span id="req-lowercase" class="requisito">Pelo menos 1 letra minúscula</span><br>
+                            <span id="req-number" class="requisito">Pelo menos 1 número</span><br>
+                            <span id="req-special" class="requisito">Pelo menos 1 caractere especial</span><br>
+                        </section>
+
                         <p>Confirmação de Senha</p>
                         <input type="password" id="repetir_senha" name="reppassword" value="<%= valores.reppassword %>" class="<%= erroValidacao.reppassword%>" required>
                         <span class="spanerro"><%=msgErro.reppassword%></span>
+                        <span id="req-match" class="requisito">As senhas devem coincidir</span>
 
                         <p id="cnpj">CNPJ</p>
                         <input type="text" maxlength="18" id="cnpj_input" name="cnpj" maxlength="18" placeholder="00.000.00/00000-00" value="<%= valores.cnpj %>" class="<%= erroValidacao.cnpj %>" required>
@@ -332,6 +341,44 @@
     <script src="js/formMultiStep.js"></script>
     <script src="js/checkbox-handler.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const senhaInput = document.getElementById('senha');
+            const csenhaInput = document.getElementById('repetir_senha');
+            const submitBtn = document.getElementById('criar_conta');
+
+            const reqLength = document.getElementById('req-length');
+            const reqUppercase = document.getElementById('req-uppercase');
+            const reqLowercase = document.getElementById('req-lowercase');
+            const reqNumber = document.getElementById('req-number');
+            const reqSpecial = document.getElementById('req-special');
+            const reqMatch = document.getElementById('req-match');
+
+            function validatePassword() {
+                const senha = senhaInput.value;
+                const csenha = csenhaInput.value;
+
+                const hasLength = senha.length >= 8;
+                const hasUppercase = /[A-Z]/.test(senha);
+                const hasLowercase = /[a-z]/.test(senha);
+                const hasNumber = /\d/.test(senha);
+                const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(senha);
+                const passwordsMatch = senha === csenha && senha !== '';
+
+                reqLength.className = hasLength ? 'requisito valid' : 'requisito invalid';
+                reqUppercase.className = hasUppercase ? 'requisito valid' : 'requisito invalid';
+                reqLowercase.className = hasLowercase ? 'requisito valid' : 'requisito invalid';
+                reqNumber.className = hasNumber ? 'requisito valid' : 'requisito invalid';
+                reqSpecial.className = hasSpecial ? 'requisito valid' : 'requisito invalid';
+                reqMatch.className = passwordsMatch ? 'requisito valid' : 'requisito invalid';
+
+                const allValid = hasLength && hasUppercase && hasLowercase && hasNumber && hasSpecial && passwordsMatch;
+                submitBtn.disabled = !allValid;
+            }
+
+            senhaInput.addEventListener('input', validatePassword);
+            csenhaInput.addEventListener('input', validatePassword);
+        });
+
         function updateThemeImage() {
             const img = document.querySelector('#top_part img');
             const isDark = document.documentElement.classList.contains('tema-escuro') || document.body.classList.contains('tema-escuro');

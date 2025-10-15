@@ -213,6 +213,36 @@ nav {
   box-shadow: 0 6px 20px rgba(119, 182, 234, 0.4);
 }
 
+#form #criar_conta:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Estilos para requisitos de senha */
+#requisitos-senha {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-weight: 200 !important;
+}
+
+.requisito {
+  font-size: 14px;
+  margin: 5px 0;
+  transition: color 0.3s !important;
+  color: var(--laranja) !important;
+  
+  font-weight: 300 !important;
+}
+
+.requisito.valid {
+  color: var(--azulsec) !important;
+}
+
+.requisito.invalid {
+  color: var(--laranja) !important;
+}
+
 .submit {
   display: flex;
   justify-content: center;
