@@ -312,7 +312,7 @@ h1{
        
     }
     #filtros{
-         transform: translate(0, -30px);
+         transform: translate(50px, -35px);
     }
  
 }
@@ -523,6 +523,30 @@ h1{
     font-size: 16px;
     margin-left: 0;
   }
+}
+
+@media screen and (max-width:600px){
+  .search-fields {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+    padding: 10px;
+    justify-content: center;
+    align-content: center;
+  }
+
+    #nome-escola-search,
+  #cidade-search,
+  #regiao-search {
+    width: 100%;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+  }
+
 }
  
 @media screen and (max-width: 481px) {

@@ -18,6 +18,9 @@
     --fundo2: #1a1a1a;
     --borda: #222222;
 }
+.localidade, .instituicao{
+    color: var(--letra);
+}
 
     .short-prof{
         margin: 2% auto;

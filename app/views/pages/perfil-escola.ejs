@@ -13,6 +13,7 @@
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <script src="js/changeSM.js"></script>
+    <script src="js/carousel.js"></script>
 
 </head>
 <script>
@@ -264,25 +265,8 @@
         }
     });
 
-    let counter = 1;
-    setInterval(function(){
-      document.getElementById('radio' + counter).checked = true;
-      counter++;
-      if(counter > 3){
-        counter = 1;
-      }
-    }, 5000);
-
-    function changeSlide(n) {
-      counter += n;
-      if (counter > 3) counter = 1;
-      if (counter < 1) counter = 3;
-      document.getElementById('radio' + counter).checked = true;
-    }
 
 
-
-    // AJAX form submission for reviews
     const form = document.querySelector('form[action="/avaliar"]');
     if (form) {
         form.addEventListener('submit', async (e) => {
@@ -298,7 +282,6 @@
                 });
                 const data = await response.json();
                 if (data.success) {
-                    // Update average
                     const mediaSection = document.querySelector('.rating-display');
                     if (mediaSection) {
                         const stars = mediaSection.querySelectorAll('.star');
@@ -319,7 +302,6 @@
                             p.textContent = `Total de avaliações: ${data.mediaAvaliacao.totalAvaliacoes}`;
                         }
                     }
-                    // Add new review
                     const caixa = document.getElementById('caixa_comentarios');
                     if (caixa) {
                         const article = document.createElement('article');
@@ -341,9 +323,7 @@
                         `;
                         caixa.insertBefore(article, caixa.firstChild);
                     }
-                    // Reset form
                     form.reset();
-                    // Show success notification
                     notify('Avaliação realizada!', 'Sua avaliação foi criada com sucesso!', 'success', 'top-right');
                 } else {
                     notify('Erro ao avaliar!', data.message, 'error', 'top-right');
@@ -360,46 +340,7 @@
 </html>
 
 
-       <script>
 
-    temp = 2
-    let tempo_para_trocar;
-    var delay = 3 * 1000
-      
-    function ChangeSlide() {
-        var desaparecer = document.getElementById('slide'+temp);
-        temp += 1;
-        desaparecer.checked = false;
-        if(document.getElementById('slide'+temp) == null){temp = 1}
-        var aparecer = document.getElementById('slide'+temp)
-        aparecer.checked = true;
-        
-    }
-     
-    function AutoRun(){
-        if (!tempo_para_trocar) {
-            tempo_para_trocar = setInterval(ChangeSlide, delay);
-          }
-    }
-
-
-    function updateSocialMediaImages() {
-        const isDark = document.body.classList.contains('tema-escuro');
-        const socialImages = document.querySelectorAll('.social-media');
-        socialImages.forEach(img => {
-            let src = img.src;
-            if (isDark) {
-                img.src = src.replace('1.svg', '2.svg');
-            } else {
-                img.src = src.replace('2.svg', '1.svg');
-            }
-        });
-    }
-    updateSocialMediaImages();
-    const observer = new MutationObserver(updateSocialMediaImages);
-    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
-       </script>
 
 
 

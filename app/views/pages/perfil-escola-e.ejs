@@ -14,8 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <script src="js/changeSM.js"></script>
 
-</head>
-<script>
+    <script>
         function notify(title, text, type, position, timeout = 5000) {
             new Notify({
                 status: type,
@@ -34,6 +33,8 @@
             });
         }
     </script>
+
+</head>
 
     <%
         const tiposclassseCss = {
@@ -72,7 +73,6 @@
 
     <section class="perfil-container">
         <section class="perfil" id="pepe">
-            <!-- <span class="logo-info"> -->
             <figure>
                 <img src="<%= valores.img_perfil_banco || valores.img_perfil_pasta || '../imagem/escola-padrao.png' %>" alt="logo da escola" class="ft-perfil">
             </figure>
@@ -99,12 +99,9 @@
         <section class="slider">
 
             <section class="slides">
-                <!--radio butoons-->
                 <input type="radio" name="radio-btn" id="radio1" checked>
                 <input type="radio" name="radio-btn" id="radio2">
                 <input type="radio" name="radio-btn" id="radio3">
-
-                <!--imagem dos slide-->
 
                 <section class="slide first">
                     <img src="<%= (valores.carouselImages && valores.carouselImages[0]) || '/imagem/image1.svg' %>" alt="imagem-1">
@@ -198,6 +195,7 @@
 </section>
 
     <script src="script.js"></script>
+    <script src="js/carousel.js"></script>
     <hr id="section">
 
     <section class="media-avaliacoes">
@@ -265,10 +263,13 @@
     </section>
 <%- include('../partials/footer'); %>
 <% if (dadosNotificacao) { %>
-<script>
-notify('<%= dadosNotificacao.titulo %>', '<%= dadosNotificacao.mensagem %>', '<%= dadosNotificacao.tipo %>', 'top-right');
-</script>
+    <!-- Script para exibir notificações -->
+    <script>
+        notify('<%= dadosNotificacao.titulo %>', '<%= dadosNotificacao.mensagem %>', '<%= dadosNotificacao.tipo %>', 'top-right');
+    </script>
 <% } %>
+
+<!-- Script para contagem de caracteres no textarea -->
 <script>
     const textarea = document.getElementById('ratetext');
     const warning = document.getElementById('caracteres');
@@ -282,23 +283,10 @@ notify('<%= dadosNotificacao.titulo %>', '<%= dadosNotificacao.mensagem %>', '<%
             warning.style.display = 'none';
         }
     });
+</script>
 
-    let counter = 1;
-    setInterval(function(){
-      document.getElementById('radio' + counter).checked = true;
-      counter++;
-      if(counter > 3){
-        counter = 1;
-      }
-    }, 5000);
-
-    function changeSlide(n) {
-      counter += n;
-      if (counter > 3) counter = 1;
-      if (counter < 1) counter = 3;
-      document.getElementById('radio' + counter).checked = true;
-    }
-
+<!-- Script para atualização de imagens sociais e submissão de formulário de avaliação -->
+<script>
     function updateSocialMediaImages() {
         const isDark = document.body.classList.contains('tema-escuro');
         const socialImages = document.querySelectorAll('.social-media');
@@ -314,7 +302,8 @@ notify('<%= dadosNotificacao.titulo %>', '<%= dadosNotificacao.mensagem %>', '<%
     updateSocialMediaImages();
     const observer = new MutationObserver(updateSocialMediaImages);
     observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
+</script>
+<script>
     const form = document.querySelector('form[action="/avaliar"]');
     if (form) {
         form.addEventListener('submit', async (e) => {
@@ -330,28 +319,24 @@ notify('<%= dadosNotificacao.titulo %>', '<%= dadosNotificacao.mensagem %>', '<%
                 });
                 const data = await response.json();
                 if (data.success) {
-                    // Update average
-                    const ratingDisplay = document.querySelector('.rating-display');
-                    if (ratingDisplay) {
-                        const stars = ratingDisplay.querySelectorAll('span.star');
-                        const notaSpan = ratingDisplay.querySelector('.nota');
+                    const mediaSection = document.querySelector('.estrelas-media');
+                    if (mediaSection) {
+                        const stars = mediaSection.querySelectorAll('span');
                         const rounded = Math.round(data.mediaAvaliacao.media);
                         stars.forEach((star, i) => {
                             if (i < rounded) {
-                                star.classList.add('filled');
+                                star.className = 'star-filled';
+                                star.textContent = '★';
                             } else {
-                                star.classList.remove('filled');
+                                star.className = 'star-empty';
+                                star.textContent = '☆';
                             }
                         });
-                        if (notaSpan) {
-                            notaSpan.textContent = rounded;
+                        const p = mediaSection.nextElementSibling;
+                        if (p) {
+                            p.textContent = `${Math.round(data.mediaAvaliacao.media)} / 5 (baseado em ${data.mediaAvaliacao.totalAvaliacoes} avaliações)`;
                         }
                     }
-                    const totalP = document.querySelector('.media-avaliacoes p');
-                    if (totalP) {
-                        totalP.textContent = `Total de avaliações: ${data.mediaAvaliacao.totalAvaliacoes}`;
-                    }
-                    // Add new review
                     const caixa = document.getElementById('caixa_comentarios');
                     if (caixa) {
                         const article = document.createElement('article');
@@ -384,35 +369,16 @@ notify('<%= dadosNotificacao.titulo %>', '<%= dadosNotificacao.mensagem %>', '<%
             }
         });
     }
-
 </script>
+
+
+
+
 </body>
 </html>
 
 
-       <script>
 
-    temp = 2
-    let tempo_para_trocar;
-    var delay = 3 * 1000
-      
-    function ChangeSlide() {
-        var desaparecer = document.getElementById('slide'+temp);
-        temp += 1;
-        desaparecer.checked = false;
-        if(document.getElementById('slide'+temp) == null){temp = 1}
-        var aparecer = document.getElementById('slide'+temp)
-        aparecer.checked = true;
-        
-    }
-     
-    function AutoRun(){
-        if (!tempo_para_trocar) {
-            tempo_para_trocar = setInterval(ChangeSlide, delay);
-          }
-    }
-
-       </script>
 
 
 
