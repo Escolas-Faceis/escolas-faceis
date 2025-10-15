@@ -76,8 +76,10 @@ router.post("/create-preference", function (req, res) {
           failure: process.env.URL_BASE + "/feedback",
           pending: process.env.URL_BASE + "/feedback",
         },
-        auto_return: "approved",
-        notification_url: process.env.URL_BASE + "/webhook-mercadopago"
+        notification_url: process.env.URL_BASE + "/webhook-mercadopago",
+        payer: {
+          email: "test_user@testuser.com" // Optional, but can help with testing
+        }
       },
     })
     .then((value) => {
