@@ -171,6 +171,11 @@ nav {
   transition: border 0.2s;
   color: var(--letras);
 }
+
+.error {
+  border: 2px solid var(--laranja) !important;
+  background-color: #ffe6e6 !important;
+}
 #form p{
   color: var(--letras2);
 }

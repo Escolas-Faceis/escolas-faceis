@@ -5,22 +5,28 @@
     padding: 0;
 }
 
-.tema-claro {
-  --laranja: #f85321;
-  --fundo: #f5f5f5;
-  --azulbase: #141c44;
-  --azulsec: #77b6ea;
-  --amarelo: #ffbc3e;
-  --letras: #02030a;
-  transition: all 0.2s ease-in;
+:root {
+    --laranja: #f56d44;
+    --azul: #141c44;
+        --azulletra: #141c44;
+    --azul-claro: #77b6ea;
+    --letra: #141c44;
+    --fundo: #ffffff;
+    --fundo-secundario: #f8f9fa;
+    --borda: #e9ecef;
+    --sombra: rgba(0, 0, 0, 0.1);
+    --amarelo: #ffbc3e;
 }
 
 .tema-escuro {
-  --letras: #f5f5f5;
-  --fundo: #030303;
-  transition: all 0.2s ease-in;
-    --toggle-theme: white;
+    --letra: #ffffff;
+    --fundo: #030303;
+            --azulletra: #ffffff;
+    --fundo-secundario: #1a1a1a;
+    --borda: #333333;
+    --sombra: rgba(0, 0, 0, 0.3);
 }
+
 
 html, body {
     width: 100%;
@@ -134,7 +140,7 @@ label{
     padding: 10px 12px;
     width: 100%;
     margin-top: 8px;
-    background: #f8fbff;
+    background: var(--fundo-secundario);
     transition: border 0.2s;
 }
 
@@ -329,7 +335,7 @@ input[type="checkbox"]:hover {
 .label-campo {
     font-size: 15px;
     font-weight: 600;
-    color: #141c44;
+    color: var(--letra);
     margin-bottom: 4px;
     margin-top: 0;
     display: block;
@@ -467,7 +473,7 @@ input[type="checkbox"]:hover {
 #sumario {
   position: sticky;
   top: 0;
-  background: white;
+  background: var(--fundo-secundario);
   border-bottom: 2px solid #77b6ea55;
   padding: 12px 0;
   z-index: 3;
@@ -483,7 +489,7 @@ input[type="checkbox"]:hover {
 }
 #sumario a {
   text-decoration: none;
-  color: #141c44;
+  color: var(--letra);
   font-weight: 600;
   transition: all 0.2s;
 }
@@ -495,7 +501,7 @@ input[type="checkbox"]:hover {
 .caixa-sec {
   border: 1.5px solid #77b6ea;
   border-radius: 18px;
-  background: #fff;
+  background: var(--fundo-secundario);
   box-shadow: 0 6px 32px #77b6ea33;
   padding: 32px 40px;
   margin: 28px auto;

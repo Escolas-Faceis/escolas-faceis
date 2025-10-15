@@ -187,26 +187,26 @@
                                 <section class="ob">
                                     <section class="cep">
                                         <p>CEP</p> <br>
-                                        <input type="text" id="cep" placeholder="00000-000" name="cep" maxlength="9" value="<%= valores.cep %>" class="<%= erroValidacao.cep%>" onblur="pesquisacep(this.value);" onkeyup="mascaraCEP(event)">
+                                        <input type="text" id="cep" placeholder="00000-000" name="cep" maxlength="9" value="<%= valores.cep %>" class="<%= erroValidacao.cep%>" onblur="pesquisacep(this.value);" onkeyup="mascaraCEP(event)" required>
                                         <span class="spanerro"><%=msgErro.cep%></span>
                                     </section>
                                     <section class="complemento">
                                         <p>N°</p><br>
-                                        <input type="text" id="num" name="adress_n" value="<%= valores.adress_n %>" class="<%= erroValidacao.adress_n%>">
+                                        <input type="text" id="num" name="adress_n" value="<%= valores.adress_n %>" class="<%= erroValidacao.adress_n%>" required>
                                         <span class="spanerro"><%=msgErro.adress_n%></span>
                                     </section>
                                 </section>
                             </section>
 
                             <p>Endereço</p><br>
-                            <input type="text" id="logradouro" name="adress" value="<%= valores.adress %>" class="<%= erroValidacao.adress%>">
+                            <input type="text" id="logradouro" name="adress" value="<%= valores.adress %>" class="<%= erroValidacao.adress%>" required>
                             <span class="spanerro"><%=msgErro.adress%></span>
 
 
                             <section class="endereco">
                                 <section>
                                     <p>Cidade</p><br>
-                                    <input type="text" id="city" name="city" value="<%= valores.city %>" class="<%= erroValidacao.city%>">
+                                    <input type="text" id="city" name="city" value="<%= valores.city %>" class="<%= erroValidacao.city%>" required>
                                     <span class="spanerro"><%=msgErro.city%></span>
                                 </section>
                                 <section>

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/vizu.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script src="js/changeSM.js"></script>
 
 </head>
 <script>
@@ -309,7 +310,6 @@
     const observer = new MutationObserver(updateSocialMediaImages);
     observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
-    // AJAX form submission for reviews
     const form = document.querySelector('form[action="/avaliar"]');
     if (form) {
         form.addEventListener('submit', async (e) => {
@@ -366,9 +366,7 @@
                         `;
                         caixa.insertBefore(article, caixa.firstChild);
                     }
-                    // Reset form
                     form.reset();
-                    // Show success notification
                     notify('Avaliação realizada!', 'Sua avaliação foi criada com sucesso!', 'success', 'top-right');
                 } else {
                     notify('Erro ao avaliar!', data.message, 'error', 'top-right');

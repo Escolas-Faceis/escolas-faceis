@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/vizu.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script src="js/changeSM.js"></script>
 
 </head>
 <script>
@@ -279,21 +280,7 @@
       document.getElementById('radio' + counter).checked = true;
     }
 
-    function updateSocialMediaImages() {
-        const isDark = document.body.classList.contains('tema-escuro');
-        const socialImages = document.querySelectorAll('.social-media');
-        socialImages.forEach(img => {
-            let src = img.src;
-            if (isDark) {
-                img.src = src.replace('1.svg', '2.svg');
-            } else {
-                img.src = src.replace('2.svg', '1.svg');
-            }
-        });
-    }
-    updateSocialMediaImages();
-    const observer = new MutationObserver(updateSocialMediaImages);
-    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
 
     // AJAX form submission for reviews
     const form = document.querySelector('form[action="/avaliar"]');
@@ -394,6 +381,23 @@
             tempo_para_trocar = setInterval(ChangeSlide, delay);
           }
     }
+
+
+    function updateSocialMediaImages() {
+        const isDark = document.body.classList.contains('tema-escuro');
+        const socialImages = document.querySelectorAll('.social-media');
+        socialImages.forEach(img => {
+            let src = img.src;
+            if (isDark) {
+                img.src = src.replace('1.svg', '2.svg');
+            } else {
+                img.src = src.replace('2.svg', '1.svg');
+            }
+        });
+    }
+    updateSocialMediaImages();
+    const observer = new MutationObserver(updateSocialMediaImages);
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
        </script>
 

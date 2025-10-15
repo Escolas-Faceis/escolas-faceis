@@ -19,11 +19,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function validateStep(stepIndex) {
+    const step = steps[stepIndex];
+    const inputs = step.querySelectorAll('input[required]');
+    let isValid = true;
+    let firstInvalid = null;
+
+    inputs.forEach(input => {
+      if (!input.value.trim()) {
+        isValid = false;
+        input.classList.add('error');
+        if (!firstInvalid) firstInvalid = input;
+      } else {
+        input.classList.remove('error');
+      }
+    });
+
+    if (!isValid) {
+      notify("Campos obrigatórios", "Por favor, preencha todos os campos obrigatórios antes de prosseguir.", "error", "center");
+      if (firstInvalid) firstInvalid.focus();
+    }
+
+    return isValid;
+  }
+
   document.querySelectorAll(".next").forEach((button) => {
     button.addEventListener("click", () => {
-      if (currentStep < steps.length - 1) {
-        currentStep++;
-        showStep(currentStep);
+      if (validateStep(currentStep)) {
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          showStep(currentStep);
+        }
       }
     });
   });
