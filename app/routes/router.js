@@ -63,12 +63,12 @@ const client = new MercadoPagoConfig({
   accessToken: process.env.ACCESS_TOKEN,
 });
 
-router.post("/create-preference", function (req, res) {
+router.post("/create-preference", async function (req, res) {
   const preference = new Preference(client);
-  console.log("Received items for preference:", req.body.items);
+  console.log("🛒 Itens recebidos:", req.body.items);
 
-  preference
-    .create({
+  try {
+    const result = await preference.create({
       body: {
         items: req.body.items,
         back_urls: {
@@ -78,19 +78,32 @@ router.post("/create-preference", function (req, res) {
         },
         notification_url: process.env.URL_BASE + "/webhook-mercadopago",
         payer: {
-          email: "test_user@testuser.com" // Optional, but can help with testing
-        }
+          email: "test_user_123456@testuser.com", // e-mail fictício de teste
+        },
       },
-    })
-    .then((value) => {
-      console.log("Preference created successfully:", value);
-      res.json(value);
-    })
-    .catch((error) => {
-      console.error("Error creating preference:", error);
-      res.status(500).json({ error: error.message });
     });
+
+    // Verifica a estrutura real retornada
+    console.log("🔍 Resultado bruto da preferência:", result);
+
+    // Extrai corretamente o link
+    const body = result?.body || result; // em algumas versões vem dentro de .body, em outras direto
+
+    console.log("✅ Preferência criada com sucesso!");
+    console.log("🔗 Sandbox link:", body.sandbox_init_point);
+
+    res.json({
+      sandbox_init_point: body.sandbox_init_point || null,
+      init_point: body.init_point || null,
+      id: body.id || null,
+    });
+
+  } catch (error) {
+    console.error("❌ Erro ao criar preferência:", error);
+    res.status(500).json({ error: error.message });
+  }
 });
+
 
 router.get("/feedback", verificarUsuAutenticado, function (req, res) {
   assinaturaController.gravarAssinatura(req, res);

@@ -1,15 +1,16 @@
 document.addEventListener("DOMContentLoaded", function (e) {
+  // Inicializa Mercado Pago com sua Public Key de teste (pode manter essa)
   const mercadopago = new MercadoPago('APP_USR-65fd9118-bc71-4dab-b410-68fe7fe4679e', {
-    locale: 'pt-BR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+    locale: 'pt-BR' // pt-BR, es-AR ou en-US
   });
 
-  // Automatically create preference on page load
+  // Cria a preferência automaticamente ao carregar a página
   createPreference();
 
   function createPreference() {
     console.log("Creating preference automatically");
 
-    // Use the carrinho data passed from the server
+    // Dados do carrinho vindos do servidor
     const extractedData = carrinho.map(item => ({
       title: item.produto,
       unit_price: item.preco,
@@ -33,7 +34,24 @@ document.addEventListener("DOMContentLoaded", function (e) {
       })
       .then(function (preference) {
         console.log("Preference received:", preference);
-        createCheckoutButton(preference.id);
+
+        // 🔍 Tenta pegar o link sandbox
+        const sandboxLink = preference.sandbox_init_point || preference.body?.sandbox_init_point;
+
+        if (sandboxLink) {
+          console.log("🧪 Abrindo checkout sandbox:", sandboxLink);
+          window.location.href = sandboxLink; // abre o sandbox direto
+          return; // evita continuar pro botão
+        }
+
+        // 🧱 Se não tiver link sandbox, cria o botão
+        const prefId = preference.id || preference.body?.id;
+        if (prefId) {
+          console.log("🧱 Criando botão de checkout com preferenceId:", prefId);
+          createCheckoutButton(prefId);
+        } else {
+          console.warn("⚠️ Nenhum sandbox_init_point nem ID recebido!");
+        }
       })
       .catch(function (error) {
         console.error("Fetch error:", error);
@@ -43,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   function createCheckoutButton(preferenceId) {
     console.log("Creating checkout button with preferenceId:", preferenceId);
-    // Initialize the checkout
+
     const bricksBuilder = mercadopago.bricks();
 
     const renderComponent = async (bricksBuilder) => {
@@ -54,10 +72,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
       }
       await bricksBuilder.create(
         'wallet',
-        'button-checkout', // class/id where the payment button will be displayed
+        'button-checkout', // id ou classe onde o botão vai aparecer
         {
           initialization: {
             preferenceId: preferenceId
+          },
+          customization: {
+            visual: {
+              buttonBackground: 'blue',
+              borderRadius: '12px'
+            }
           },
           callbacks: {
             onError: (error) => {
@@ -74,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     window.checkoutButton = renderComponent(bricksBuilder);
   }
 
-  // Go back
+  // Botão de voltar
   document.getElementById("go-back").addEventListener("click", function () {
     window.location.href = "/planos";
   });
