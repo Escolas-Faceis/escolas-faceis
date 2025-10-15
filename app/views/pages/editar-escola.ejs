@@ -48,35 +48,7 @@
       </aside>
     </aside>
 
-    <aside class="modal" id="croppie-modal-carousel-1">
-      <aside class="modal-content">
-        <span class="close-modal" id="close-croppie-carousel-1">&times;</span>
-        <aside id="croppie-container-carousel-1"></aside>
-        <section class="btn">
-        <button class="btns crop-btn" id="crop-btn-carousel-1">Cortar</button>
-        <button class="btns cancel-btn" id="cancel-btn-carousel-1">Cancelar</button></section>
-      </aside>
-    </aside>
 
-    <aside class="modal" id="croppie-modal-carousel-2">
-      <aside class="modal-content">
-        <span class="close-modal" id="close-croppie-carousel-2">&times;</span>
-        <aside id="croppie-container-carousel-2"></aside>
-        <section class="btn">
-        <button class="btns crop-btn" id="crop-btn-carousel-2">Cortar</button>
-        <button class="btns cancel-btn" id="cancel-btn-carousel-2">Cancelar</button></section>
-      </aside>
-    </aside>
-
-    <aside class="modal" id="croppie-modal-carousel-3">
-      <aside class="modal-content">
-        <span class="close-modal" id="close-croppie-carousel-3">&times;</span>
-        <aside id="croppie-container-carousel-3"></aside>
-        <section class="btn">
-        <button class="btns crop-btn" id="crop-btn-carousel-3">Cortar</button>
-        <button class="btns cancel-btn" id="cancel-btn-carousel-3">Cancelar</button></section>
-      </aside>
-    </aside>
 
   <!-- Mini sumário fixo -->
   <nav id="sumario">
@@ -137,8 +109,8 @@
         <input class="input-campo" type="text" name="endereco" value="<%= valores.endereco || '' %>">
       </section>
 
-                <section class="carrossel caixa-sec" id="carrossel"> 
-                                              <h2>Carrossel</h2>                
+                <section class="carrossel caixa-sec" id="carrossel">
+                                              <h2>Carrossel</h2>
                         <section class="carousel-preview-section">
 
                             <section class="carousel-preview">
@@ -152,25 +124,35 @@
                                     <section class="slide">
                                         <img id="preview-slide-3" src="<%= valores.carouselImages && valores.carouselImages[2] ? valores.carouselImages[2] : '../imagem/placeholder.png' %>" alt="Slide 3">
                                     </section>
+                                    <% if (isPremium) { %>
+                                    <section class="slide">
+                                        <img id="preview-slide-4" src="<%= valores.carouselImages && valores.carouselImages[3] ? valores.carouselImages[3] : '../imagem/placeholder.png' %>" alt="Slide 4">
+                                    </section>
+                                    <section class="slide">
+                                        <img id="preview-slide-5" src="<%= valores.carouselImages && valores.carouselImages[4] ? valores.carouselImages[4] : '../imagem/placeholder.png' %>" alt="Slide 5">
+                                    </section>
+                                    <section class="slide">
+                                        <img id="preview-slide-6" src="<%= valores.carouselImages && valores.carouselImages[5] ? valores.carouselImages[5] : '../imagem/placeholder.png' %>" alt="Slide 6">
+                                    </section>
+                                    <% } %>
                                 </section>
                             </section>
                         </section>
-                                                <section class="carousel-upload box">
-
-                            <section class="carousel-previews">
-                                <section class="preview-item">
-                                    <img id="carousel-preview-1" src="<%= valores.carouselImages && valores.carouselImages[0] ? valores.carouselImages[0] : '../imagem/placeholder.png' %>" alt="Preview 1">
-                                    <input type="file" name="imagens_carrossel" id="carousel-input-1" accept="image/*">
+                        <section class="carousel-upload box">
+                            <label for="imagens_carrossel">Imagens do Carrossel (até <%= isPremium ? 6 : 3 %>):</label>
+                            <input type="file" id="imagens_carrossel" name="imagens_carrossel" accept="image/*" multiple>
+                            <% if (valores.carouselImages && valores.carouselImages.length > 0) { %>
+                                <section style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                                    <% valores.carouselImages.forEach((img, index) => { %>
+                                        <% if (img) { %>
+                                            <figure>
+                                                <img src="<%= img %>" alt="Imagem atual <%= index + 1 %>" style="max-width: 100px; max-height: 100px; border: 1px solid #ccc;">
+                                                <figcaption>Imagem <%= index + 1 %></figcaption>
+                                            </figure>
+                                        <% } %>
+                                    <% }) %>
                                 </section>
-                                <section class="preview-item">
-                                    <img id="carousel-preview-2" src="<%= valores.carouselImages && valores.carouselImages[1] ? valores.carouselImages[1] : '../imagem/placeholder.png' %>" alt="Preview 2">
-                                    <input type="file" name="imagens_carrossel" id="carousel-input-2" accept="image/*">
-                                </section>
-                                <section class="preview-item">
-                                    <img id="carousel-preview-3" src="<%= valores.carouselImages && valores.carouselImages[2] ? valores.carouselImages[2] : '../imagem/placeholder.png' %>" alt="Preview 3">
-                                    <input type="file" name="imagens_carrossel" id="carousel-input-3" accept="image/*">
-                                </section>
-                            </section>
+                            <% } %>
                         </section>
                 </section>
 
@@ -404,7 +386,9 @@
     var croppieInstances = {};
     var croppedBlobs = {};
 
-    for (let i = 1; i <= 3; i++) {
+    const maxCarousel = <% if (isPremium) { %>6<% } else { %>3<% } %>;
+
+    for (let i = 1; i <= maxCarousel; i++) {
         $('#carousel-input-' + i).on('change', function() {
             var index = this.id.split('-')[2];
             var file = this.files[0];

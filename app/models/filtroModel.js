@@ -8,14 +8,16 @@ const filtroModel = {
             const [linhas] = await pool.query(`
                 SELECT e.*, u.nome_usuario, u.email_usuario,
                        COALESCE(AVG(a.nota), 0) AS media_avaliacao,
-                       REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta
+                       REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta,
+                       CASE WHEN ass.id_assinatura IS NOT NULL THEN 1 ELSE 0 END AS is_premium
                 FROM escolas e
                 JOIN usuarios u ON e.id_usuario = u.id_usuario
                 LEFT JOIN avaliacoes a ON e.id_escola = a.id_escola
                 LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem
+                LEFT JOIN assinatura ass ON e.id_escola = ass.id_escola AND ass.ativo = TRUE AND (ass.data_fim IS NULL OR ass.data_fim >= CURDATE())
                 WHERE u.status_usuario = 1 AND u.tipo_usuario = "E"
                 GROUP BY e.id_escola, u.id_usuario
-                ORDER BY media_avaliacao DESC, e.nome_escola ASC
+                ORDER BY CASE WHEN ass.id_assinatura IS NOT NULL THEN 1 ELSE 0 END DESC, media_avaliacao DESC, e.nome_escola ASC
             `);
             return linhas;
         } catch (error) {
@@ -29,14 +31,16 @@ const filtroModel = {
             const [linhas] = await pool.query(`
                 SELECT e.*, u.nome_usuario, u.email_usuario,
                        COALESCE(AVG(a.nota), 0) AS media_avaliacao,
-                       REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta
+                       REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta,
+                       CASE WHEN ass.id_assinatura IS NOT NULL THEN 1 ELSE 0 END AS is_premium
                 FROM escolas e
                 JOIN usuarios u ON e.id_usuario = u.id_usuario
                 LEFT JOIN avaliacoes a ON e.id_escola = a.id_escola
                 LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem
+                LEFT JOIN assinatura ass ON e.id_escola = ass.id_escola AND ass.ativo = TRUE AND (ass.data_fim IS NULL OR ass.data_fim >= CURDATE())
                 WHERE u.status_usuario = 1 AND u.tipo_usuario = "E"
                 GROUP BY e.id_escola, u.id_usuario
-                ORDER BY media_avaliacao DESC, e.nome_escola ASC
+                ORDER BY CASE WHEN ass.id_assinatura IS NOT NULL THEN 1 ELSE 0 END DESC, media_avaliacao DESC, e.nome_escola ASC
                 LIMIT ?, ?
             `, [pagina, total]);
             return linhas;
@@ -66,11 +70,13 @@ const filtroModel = {
             let query = `
                 SELECT e.*, u.nome_usuario, u.email_usuario,
                        COALESCE(AVG(a.nota), 0) AS media_avaliacao,
-                       REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta
+                       REPLACE(i.caminho_imagem, 'app/public', '') AS img_perfil_pasta,
+                       CASE WHEN ass.id_assinatura IS NOT NULL THEN 1 ELSE 0 END AS is_premium
                 FROM escolas e
                 JOIN usuarios u ON e.id_usuario = u.id_usuario
                 LEFT JOIN avaliacoes a ON e.id_escola = a.id_escola
                 LEFT JOIN imagens i ON e.img_perfil_id = i.id_imagem
+                LEFT JOIN assinatura ass ON e.id_escola = ass.id_escola AND ass.ativo = TRUE AND (ass.data_fim IS NULL OR ass.data_fim >= CURDATE())
                 WHERE u.status_usuario = 1 AND u.tipo_usuario = "E"
             `;
 
@@ -109,7 +115,7 @@ const filtroModel = {
 
             query += `
                 GROUP BY e.id_escola, u.id_usuario
-                ORDER BY media_avaliacao DESC, e.nome_escola ASC
+                ORDER BY CASE WHEN ass.id_assinatura IS NOT NULL THEN 1 ELSE 0 END DESC, media_avaliacao DESC, e.nome_escola ASC
             `;
 
             let [linhas] = await pool.query(query, queryParams);

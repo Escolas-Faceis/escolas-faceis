@@ -76,6 +76,8 @@ router.post("/create-preference", function (req, res) {
           failure: process.env.URL_BASE + "/feedback",
           pending: process.env.URL_BASE + "/feedback",
         },
+        auto_return: "approved",
+        notification_url: process.env.URL_BASE + "/webhook-mercadopago"
       },
     })
     .then((value) => {
@@ -88,8 +90,14 @@ router.post("/create-preference", function (req, res) {
     });
 });
 
-router.get("/feedback", function (req, res) {
+router.get("/feedback", verificarUsuAutenticado, function (req, res) {
   assinaturaController.gravarAssinatura(req, res);
+});
+
+router.post("/webhook-mercadopago", function (req, res) {
+  console.log("Webhook received:", req.body);
+  // Processar notificações do MercadoPago aqui
+  res.sendStatus(200);
 });
 
 router.get("/", verificarUsuAutenticado, async (req, res) => {
@@ -161,7 +169,7 @@ router.get("/planos", assinaturaController.mostrarPlanos);
 
 router.post(
   "/editar_escola_post",
-  upload.fields([{ name: 'imagem_perfil_usu', maxCount: 1 }, { name: 'imagens_carrossel', maxCount: 3 }]),
+  upload.fields([{ name: 'imagem_perfil_usu', maxCount: 1 }, { name: 'imagens_carrossel', maxCount: 6 }]),
   escolaController.regrasValidacaoEditarEscola,
   verificarUsuAutorizado(["E"], "partials/401"),
     async (req, res) => {

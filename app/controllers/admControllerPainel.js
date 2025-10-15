@@ -28,7 +28,6 @@ const admControllerPainel = {
             const distribuicaoTipos = await admModel.getDistribuicaoTipos();
             const statusUsuarios = await admModel.getStatusUsuarios();
             const escolasPorRede = await admModel.getEscolasPorRede();
-            const usuariosOnline = await admModel.getUsuariosOnline();
             const denunciasPendentes = await admModel.getDenunciasPendentes();
 
             res.locals.dadosGraficos = {
@@ -36,7 +35,6 @@ const admControllerPainel = {
                 distribuicaoTipos,
                 statusUsuarios,
                 escolasPorRede,
-                usuariosOnline,
                 denunciasPendentes
             };
         } catch (error) {
@@ -46,7 +44,6 @@ const admControllerPainel = {
                 distribuicaoTipos: [],
                 statusUsuarios: [],
                 escolasPorRede: [],
-                usuariosOnline: 0,
                 denunciasPendentes: 0
             };
         }
