@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastro-usuario.css">
+    <link rel="stylesheet" href="css/redefinir-senha.css">
+    <title>Redefinir Senha</title>
+    <link rel="icon" type="image/png" href="/imagem/favicon.png">
+</head>
+
+<body>
+    <%- include('../partials/navbar'); %>
+
+    <section id="centralizar">
+    <main id="form_space">
+
+        <section id="form">
+            <form id="form-redefinir" action="/resetar-senha" method="POST">
+                <input type="hidden" name="id_usuario" value="<%= id_usuario %>">
+                <h2 style="font-size: 25px; color:#ff5c2a">Redefinir Senha</h2>
+
+                <p>Nova Senha</p>
+                <input type="password" name="senha" id="senha" required>
+
+                <div id="requisitos-senha">
+                    <p id="req-length" class="requisito">Pelo menos 8 caracteres</p>
+                    <p id="req-uppercase" class="requisito">Pelo menos 1 letra maiúscula</p>
+                    <p id="req-lowercase" class="requisito">Pelo menos 1 letra minúscula</p>
+                    <p id="req-number" class="requisito">Pelo menos 1 número</p>
+                    <p id="req-special" class="requisito">Pelo menos 1 caractere especial</p>
+                </div>
+
+                <p>Confirmar Nova Senha</p>
+                <input type="password" name="csenha" id="csenha" required>
+                <p id="req-match" class="requisito">As senhas devem coincidir</p>
+
+                <section id="login2">
+                    <input type="submit" id="login_button" value="ALTERAR SENHA" disabled />
+                </section>
+            </form>
+        </section>
+
+        <section id="texto_lateral">
+            <img src="imagem/login-amico.png">
+        </section>
+    </main>
+
+    <%- include('../partials/footer')%>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const senhaInput = document.getElementById('senha');
+            const csenhaInput = document.getElementById('csenha');
+            const submitBtn = document.getElementById('login_button');
+
+            const reqLength = document.getElementById('req-length');
+            const reqUppercase = document.getElementById('req-uppercase');
+            const reqLowercase = document.getElementById('req-lowercase');
+            const reqNumber = document.getElementById('req-number');
+            const reqSpecial = document.getElementById('req-special');
+            const reqMatch = document.getElementById('req-match');
+
+            function validatePassword() {
+                const senha = senhaInput.value;
+                const csenha = csenhaInput.value;
+
+                // Verificar cada requisito
+                const hasLength = senha.length >= 8;
+                const hasUppercase = /[A-Z]/.test(senha);
+                const hasLowercase = /[a-z]/.test(senha);
+                const hasNumber = /\d/.test(senha);
+                const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(senha);
+                const passwordsMatch = senha === csenha && senha !== '';
+
+                // Atualizar classes dos requisitos
+                reqLength.className = hasLength ? 'requisito valid' : 'requisito invalid';
+                reqUppercase.className = hasUppercase ? 'requisito valid' : 'requisito invalid';
+                reqLowercase.className = hasLowercase ? 'requisito valid' : 'requisito invalid';
+                reqNumber.className = hasNumber ? 'requisito valid' : 'requisito invalid';
+                reqSpecial.className = hasSpecial ? 'requisito valid' : 'requisito invalid';
+                reqMatch.className = passwordsMatch ? 'requisito valid' : 'requisito invalid';
+
+                // Habilitar/desabilitar botão
+                const allValid = hasLength && hasUppercase && hasLowercase && hasNumber && hasSpecial && passwordsMatch;
+                submitBtn.disabled = !allValid;
+            }
+
+            senhaInput.addEventListener('input', validatePassword);
+            csenhaInput.addEventListener('input', validatePassword);
+        });
+    </script>
+
+</body>
+</html>

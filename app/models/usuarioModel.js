@@ -138,6 +138,17 @@ const usuarioModel = {
         }
     },
 
+    updatePassword: async (senha, id) => {
+        try {
+            const [linhas] = await pool.query('UPDATE usuarios SET senha_usuario = ? WHERE id_usuario = ?',
+                [senha, id])
+            return linhas;
+        } catch (error) {
+            console.log("Erro na atualização da senha: ", error);
+            return error;
+        }
+    },
+
 
             findInativoId: async (id) => {
             try {

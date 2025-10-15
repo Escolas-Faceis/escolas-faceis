@@ -1,0 +1,27 @@
+/* Estilos específicos para a página de redefinir senha */
+
+#requisitos-senha {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.requisito {
+  font-size: 14px;
+  margin: 5px 0;
+  transition: color 0.3s;
+  color: #333; /* Default to invalid */
+}
+
+.requisito.valid {
+  color: var(--azulsec);
+}
+
+.requisito.invalid {
+  color: var(--laranja);
+}
+
+#login_button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -166,6 +166,31 @@ router.get("/perfil-usuario", (req, res) => {
   usuarioController.mostrarPerfil(req, res);
 });
 
+router.get("/redefinir", 
+  verificarUsuAutenticado, 
+  function(req, res){
+    res.render("pages/redefinicao-senha",
+      { listaErros: null, dadosNotificacao: null });
+});
+
+router.post("/redefinir_post",
+  loginController.regrasValidacaoFormRecSenha,
+  function(req, res){
+    loginController.recuperarSenha(req, res);
+    console.log("!@#")
+});
+
+router.get("/redefinir-senha",
+  function(req, res){
+    loginController.validarTokenNovaSenha(req, res);
+  });
+
+router.post("/resetar-senha",
+  loginController.regrasValidacaoFormNovaSenha,
+  function(req, res){
+    loginController.resetarSenha(req, res);
+  });
+
 router.get(
   "/info",
   verificarUsuAutorizado(["A", "C"], "partials/401"),

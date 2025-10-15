@@ -7,7 +7,7 @@
 :root {
     --laranja: #f56d44;
     --fundo: #ffffff;
-    --letras: #000000;
+    --letras: #141c44;
     --azulbase: #141c44;
     --azulsec: #77b6ea;
     --amarelo: #ffbc3e;
@@ -98,3 +98,30 @@ label{
     background-color: var(--laranja);
     cursor: pointer;
   }
+
+  #submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  #requisitos-senha {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .requisito {
+    font-size: 14px;
+    margin: 5px 0;
+    transition: color 0.3s;
+    color: var(--laranja); /* Default to invalid */
+  }
+
+  .requisito.valid {
+    color: var(--azulsec);
+  }
+
+  .requisito.invalid {
+    color: red;
+  }
+
+

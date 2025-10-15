@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <link rel="stylesheet" href="css/rec-pass.css">
     <script src="js/mascaras.js" defer></script>
     <title> Recuperação de Senha </title>
@@ -14,6 +16,36 @@
 <body>
     <%- include('../partials/navbar'); %>
 
+    <% 
+            let avisoErro = {"email_usu":""}
+            let msgErro = ""
+                if(listaErros){
+                    listaErros.errors.forEach(function(itemErro){
+                        if(itemErro.path == "email_usu"){
+                            avisoErro.email_usu = "erro";
+                            msgErro += `* ${itemErro.msg} <br>`
+                        }
+                    })
+                    if(msgErro != ""){
+                    %>
+                        <script>
+                            let msgErro ="<%= msgErro %>"
+                            notify("Erro(s) no preenchimento", 
+                                   "Verifique o(s) campo(s) <br> " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"), 
+                                   "error", "center", 5000)                        
+                        </script>
+                    <%
+                    }
+                }
+                if (dadosNotificacao) { %>
+                    <script>
+                            notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+                            if("<%= dadosNotificacao.tipo %>" == "success"){
+                                setTimeout(function(){window.location="/"}, 3000)
+                            }                        
+                    </script>
+                <% } %>              
+
     <article class="text">
         <span id="texto">
         <h1>Esqueceu a senha?</h1>
@@ -22,12 +54,12 @@
         <img src="imagem/normal_u9.png" alt="Decorativa">
     </article>
     <section class="center">
-    <form action="" id="passwordf">
+    <form action="/redefinir_post" method="POST" id="passwordf">
         <label for="email" id="email">Email</label><br>
-        <input type="email" id="email"><br><br>
-        <label for="number" id="number">Número de Telefone</label>
+        <input type="email" name="email" id="email"><br><br>
+        <!-- <label for="number" id="number">Número de Telefone</label>
         <br>
-        <input type="text" id="cellphone" maxlength="15"><br><br> <span class="margem">‎</span>
+        <input type="text" id="cellphone" maxlength="15"><br><br> <span class="margem">‎</span> -->
         <button type="submit" id="enviar" class="center">Enviar</button>
     </form></section>
     <aside><p id="retornar"><a href="/login" class="center">Retorne para a seção de login</a></p></aside>

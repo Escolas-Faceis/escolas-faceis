@@ -7,19 +7,7 @@ module.exports = (url, token, usuario)=>{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redefinir Senha</title>
 </head>
-<body>
-    <section class="caixa">
-        <section class="dentro">
-            <h2>Ola, ${usuario}</h2>
-            <article>Vamos recuperar sua senha.</article>
-           
-            <article>Somente as pessoas que souberem sua senha do Escolas Faceis ou clicarem no link de login neste email poderão entrar na sua conta.<br><br>
-                Se você não solicitou um link de redefinição de senha, ignore esta mensagem.
-               
-            </article><input type="submit" id="redefinir_button" value="Redefinir Senha" onclick="window.location.href='${url}/resetar-senha?token=${token}';">
-        </section>
-    </section>
-    <style>
+<style>
     .caixa{
         border: solid;
         border-radius: 20px;
@@ -71,9 +59,25 @@ module.exports = (url, token, usuario)=>{
         background-color: #f87d57;
     }
     </style>
+<body>
+    <section class="caixa">
+        <section class="dentro">
+            <h2>Ola, ${usuario}</h2>
+            <article>Vamos recuperar sua senha.</article>
+
+            <article>Somente as pessoas que souberem sua senha do Escolas Faceis ou clicarem no link de login neste email poderão entrar na sua conta.<br><br>
+                Se você não solicitou um link de redefinição de senha, ignore esta mensagem. 
+
+            </article> <br>
+            <a href="${url}/redefinir-senha?token=${token}" style="text-decoration: none;">
+                <button id="redefinir_button">Redefinir Senha</button>
+            </a>
+        </section>
+    </section>
+
 </body>
 </html>`
-    
+
     }
 
     //${url}

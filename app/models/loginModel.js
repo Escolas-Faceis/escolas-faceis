@@ -41,6 +41,32 @@ const loginModel = {
             }
         },
 
+                findCampoCustom: async (criterioWhere) => {
+            try {
+                const [resultados] = await pool.query(
+                    "SELECT count(*) totalReg FROM usuarios WHERE ?",
+                    [criterioWhere]
+                )
+                return resultados[0].totalReg;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        },
+
+            findUserCustom: async (criterioWhere) => {
+            try {
+                const [resultados] = await pool.query(
+                    "SELECT *  FROM usuarios WHERE ?",
+                    [criterioWhere]
+                )
+                return resultados;
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
+        },
+
 
 
 };
