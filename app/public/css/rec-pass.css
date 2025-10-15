@@ -1,5 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+    --laranja: #f56d44;
+    --azul: #141c44;
+        --azulletra: #141c44;
+    --azul-claro: #77b6ea;
+    --letra: #141c44;
+    --fundo: #ffffff;
+    --fundo-secundario: #f8f9fa;
+    --borda: #e9ecef;
+    --sombra: rgba(0, 0, 0, 0.1);
+    --amarelo: #ffbc3e;
+}
+
+.tema-escuro {
+    --letra: #ffffff;
+    --fundo: #030303;
+            --azulletra: #ffffff;
+    --fundo-secundario: #1a1a1a;
+    --borda: #333333;
+    --sombra: rgba(0, 0, 0, 0.3);
+}
+
+
 .text{
     margin: 5% 10%;
     display: flex;
@@ -12,7 +35,7 @@
     width: 45%;
     font-size: 18px;
     font-weight: 300;
-    color: #141c44;
+    color: var(--azulletra);
 }
 .text img{
     width: 23%;
@@ -28,7 +51,7 @@ form{
     width: 20%;
     margin: 2% 20%;
     padding: 3% 2%;
-
+    background-color: var(--fundo-secundario);
 }
 .center{
     display: flex;
@@ -47,11 +70,12 @@ label{
 
 form input{
     font-size: 16px;
-    color: #141c44;
+    color: var(--azulletra);
     border: solid rgb(169, 169, 169) 2px;
     border-radius: 10px;
     padding: 3% 2%;
     width: 94%;
+        background-color: var(--fundo-secundario);
 }
 form #enviar {
     margin: 0 auto; /* Centraliza horizontalmente */
@@ -76,7 +100,7 @@ input[type="number"]::-webkit-inner-spin-button{appearance: none;}input[type="nu
 
 #retornar a{
     text-decoration: none;
-    color: #141c44;
+    color: var(--azulletra);
     margin: 0;
     margin-top: -2%;
     margin-bottom: 5%;
