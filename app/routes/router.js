@@ -15,10 +15,8 @@ const assinaturaController = require("../controllers/assinaturaController");
 const contatoController = require("../controllers/contatoController")
 
 const uploadFile = require("../helpers/uploader")("app/public/imagem/uploads");
-
 const multer = require("multer");
 const path = require("path");
-
 const fileFilter = (req, file, callBack) => {
     const allowedExtensions = /jpeg|jpg|png|gif|webp/;
     const extname = allowedExtensions.test(
@@ -32,7 +30,6 @@ const fileFilter = (req, file, callBack) => {
         callBack(new Error("Apenas arquivos de imagem são permitidos!"));
     }
 };
-
 const storagePasta = multer.diskStorage({
     destination: (req, file, callBack) => {
         callBack(null, "app/public/imagem/uploads");
@@ -44,13 +41,11 @@ const storagePasta = multer.diskStorage({
         );
     },
 });
-
 const upload = multer({
     storage: storagePasta,
     limits: { fileSize: 3 * 1024 * 1024 },
     fileFilter: fileFilter,
 });
-
 const {
   verificarUsuAutenticado,
   limparSessao,
@@ -59,6 +54,40 @@ const {
 } = require("../models/autenticador_middleware");
 
 dotenv.config();
+
+// SDK do Mercado Pago
+const { MercadoPagoConfig, Preference } = require("mercadopago");
+
+// Adicione as credenciais
+const client = new MercadoPagoConfig({
+  accessToken: process.env.accessToken,
+});
+
+router.post("/create-preference", function (req, res) {
+  const preference = new Preference(client);
+  console.log(req.body.items);
+
+  preference
+    .create({
+      body: {
+        items: req.body.items,
+        back_urls: {
+          success: process.env.URL_BASE + "/feedback",
+          failure: process.env.URL_BASE + "/feedback",
+          pending: process.env.URL_BASE + "/feedback",
+        },
+        auto_return: "approved",
+      },
+    })
+    .then((value) => {
+      res.json(value);
+    })
+    .catch(console.log);
+});
+
+router.get("/feedback", function (req, res) {
+  pedidoController.gravarPedido(req, res);
+});
 
 router.get("/", verificarUsuAutenticado, async (req, res) => {
   try {
@@ -257,13 +286,10 @@ router.get("/sair", limparSessao, (req, res) => {
   res.redirect("/");
 });
 
-router.get("/redefinicao-senha", (req, res) => {
-  res.render("pages/redefinicao-senha");
+router.get("/pagamento", (req, res) => {
+  res.render("pages/pagamento");
 });
 
-router.get("/redefinir-senha", (req, res) => {
-  res.render("pages/redefinicao-senha");
-});
 
 router.get("/redefinir-senha-st2", (req, res) => {
   res.render("pages/redefinir");

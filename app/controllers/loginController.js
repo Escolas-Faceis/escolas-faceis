@@ -151,16 +151,15 @@ const loginController = {
       html,
       () => {
         console.log("Email enviadinho");
-        res.render("pages/index", {
+        res.render("pages/redefinicao-senha", {
           listaErros: null,
-          autenticado: req.session.autenticado,
           dadosNotificacao: {
             titulo: "Recuperação de senha",
             mensagem:
               "Enviamos um e-mail com instruções para resetar sua senha",
             tipo: "success",
           },
-          escolasPremium: [],
+          valores: req.body,
         });
       }
     );

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos de Assinatura - Busca Escolar</title>
+    <link rel="stylesheet" href="../css/assinatura.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://sdk.mercadoapago.com/js/v2"></script>
+</head>
+
+<body>
+        <%- include('../partials/navbar'); %>
+
+    <main>
+            <section class="payment-form dark">
+    <div class="container_payment">
+        <div class="block-heading">
+        <h2>Checkout</h2>
+        </div>
+
+        <div class="form-payment">
+        <div class="products">
+            <h2 class="title">Resumo do pedido</h2>
+
+            <% 
+            var total = 0; 
+            carrinho.forEach(function(item) { 
+                total += (item.qtd * item.preco); 
+            %>
+            <div class="item">
+                <span class="price hidden" id="summary-price">
+                R$ <%= item.preco.toFixed(2) %>
+                </span>
+                <span class="price" id="subtotal-price">
+                R$ <%= (item.qtd * item.preco).toFixed(2) %>
+                </span>
+                <p class="item-name">
+                <%= item.produto %>
+                (<span id="summary-quantity"><%= item.qtd %></span> un.)
+                </p>
+            </div>
+            <% }); %>
+
+            <div class="total">
+            <span class="price" id="summary-total">
+                Total R$ <%= total.toFixed(2) %>
+            </span>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    </main>
+
+
+        <%- include('../partials/footer'); %>
+    </body>
+</html>
