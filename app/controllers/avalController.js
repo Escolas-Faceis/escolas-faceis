@@ -184,7 +184,6 @@ criarAvaliacao: async (req, res) => {
         try {
             const deleted = await avalModel.delete(id_avaliacao, id_usuario);
             if (deleted) {
-                // Recalcular média da escola
                 const aval = await avalModel.findById(id_avaliacao);
                 if (aval) {
                     const newAverage = await avalModel.getAverage(aval.id_escola);
@@ -196,7 +195,6 @@ criarAvaliacao: async (req, res) => {
                     mensagem: "Sua avaliação foi excluída com sucesso.",
                     tipo: "success"
                 };
-                // Redirecionar baseado na origem
                 const referer = req.get('Referer');
                 if (referer && referer.includes('/perfil-escola')) {
                     return res.redirect(referer);

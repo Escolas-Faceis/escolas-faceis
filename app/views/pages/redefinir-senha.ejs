@@ -25,13 +25,13 @@
                 <p>Nova Senha</p>
                 <input type="password" name="senha" id="senha" required>
 
-                <div id="requisitos-senha">
+                <section id="requisitos-senha">
                     <p id="req-length" class="requisito">Pelo menos 8 caracteres</p>
                     <p id="req-uppercase" class="requisito">Pelo menos 1 letra maiúscula</p>
                     <p id="req-lowercase" class="requisito">Pelo menos 1 letra minúscula</p>
                     <p id="req-number" class="requisito">Pelo menos 1 número</p>
                     <p id="req-special" class="requisito">Pelo menos 1 caractere especial</p>
-                </div>
+                </section>
 
                 <p>Confirmar Nova Senha</p>
                 <input type="password" name="csenha" id="csenha" required>
@@ -68,7 +68,6 @@
                 const senha = senhaInput.value;
                 const csenha = csenhaInput.value;
 
-                // Verificar cada requisito
                 const hasLength = senha.length >= 8;
                 const hasUppercase = /[A-Z]/.test(senha);
                 const hasLowercase = /[a-z]/.test(senha);
@@ -76,7 +75,6 @@
                 const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(senha);
                 const passwordsMatch = senha === csenha && senha !== '';
 
-                // Atualizar classes dos requisitos
                 reqLength.className = hasLength ? 'requisito valid' : 'requisito invalid';
                 reqUppercase.className = hasUppercase ? 'requisito valid' : 'requisito invalid';
                 reqLowercase.className = hasLowercase ? 'requisito valid' : 'requisito invalid';
@@ -84,7 +82,6 @@
                 reqSpecial.className = hasSpecial ? 'requisito valid' : 'requisito invalid';
                 reqMatch.className = passwordsMatch ? 'requisito valid' : 'requisito invalid';
 
-                // Habilitar/desabilitar botão
                 const allValid = hasLength && hasUppercase && hasLowercase && hasNumber && hasSpecial && passwordsMatch;
                 submitBtn.disabled = !allValid;
             }

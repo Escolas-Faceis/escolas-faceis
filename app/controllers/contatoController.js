@@ -10,7 +10,6 @@ const contatoController = {
     ],
 
     enviarMensagem: async (req, res) => {
-        // Verificar se o usuário está autenticado
         if (!req.session.autenticado || !req.session.autenticado.autenticado) {
             return res.json({
                 success: false,
@@ -38,7 +37,6 @@ const contatoController = {
                 });
             }
 
-            // Construir o conteúdo do email
             const subject = assunto ? `Contato: ${assunto}` : "Contato via site";
             const htmlContent = `
                 <h2>Nova mensagem de contato</h2>
@@ -48,12 +46,10 @@ const contatoController = {
                 <p>${mensagem.replace(/\n/g, '<br>')}</p>
             `;
 
-            // Enviar email
             enviarEmail("escolasfaceis@gmail.com", subject, null, htmlContent, () => {
                 console.log("Email de contato enviado com sucesso.");
             });
 
-            // Responder com sucesso
             res.json({
                 success: true,
                 message: "Mensagem enviada com sucesso! Entraremos em contato em breve."

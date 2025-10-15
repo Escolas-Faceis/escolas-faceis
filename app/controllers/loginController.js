@@ -27,7 +27,6 @@ const loginController = {
             return res.render("pages/login", { erros: erros, dadosNotificacao: null, "valores": req.body, "retorno": null })
         }
         
-        // Check if authentication was successful (gravarUsuAutenticado middleware sets this)
         if (req.session.autenticado && req.session.autenticado.autenticado != null) {
             console.log("Usuário logado com sucesso:", req.session.autenticado);
             res.redirect("/");
@@ -118,7 +117,6 @@ const loginController = {
     recuperarSenha: async (req, res) => {
     const erros = validationResult(req);
     console.log(erros);
-    // Se houver erros de validação, renderiza novamente a página com as mensagens
     if (!erros.isEmpty()) {
     return res.render("pages/redefinicao-senha", {
       listaErros: erros,
@@ -137,7 +135,6 @@ const loginController = {
       process.env.SECRET_KEY
     );
 
-    // Enviar e-mail com link usando o token
     const html = require("../helpers/email-reset-senha")(
       process.env.URL_BASE,
       token,
@@ -169,11 +166,9 @@ const loginController = {
 },
 
     validarTokenNovaSenha: async (req, res) => {
-  // Receber token da URL
   const token = req.query.token;
   console.log(token);
 
-  // Validar token JWT
   jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
     if (err) {
       // Caso o token seja inválido ou tenha expirado

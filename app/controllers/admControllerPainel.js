@@ -22,7 +22,6 @@ const admControllerPainel = {
         next();
     },
 
-    // Método para buscar dados agregados para gráficos
     buscarDadosGraficos: async (req, res, next) => {
         try {
             const totalUsuarios = await admModel.getTotalUsuarios();
@@ -54,7 +53,6 @@ const admControllerPainel = {
         next();
     },
 
-    // Listar escolas premium
     listarEscolasPremium: async (req, res, next) => {
         try {
             const escolasPremium = await admModel.findAllPremiumSchools();

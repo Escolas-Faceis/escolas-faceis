@@ -79,10 +79,10 @@
                                 <a href="/perfil-usuario?id=<%= aval.id_usuario %>">
                                     <img src="<%= valores.img_perfil_banco ? valores.img_perfil_banco : valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="foto_comentario">
                                 </a>
-                                <div class="user-info">
+                                <section class="user-info">
                                     <h3 id="avalnome"><a id="avalnome" href="/perfil-usuario?id=<%= aval.id_usuario %>"><%= valores.nome %></a></h3>
                                 <p class="avaliou">  <a class="avaliou" href="/perfil-escola?id=<%= aval.id_escola %>"> Avaliou: <%= aval.nome_escola || "Escola" %></a></p>
-                                </div>
+                                </section>
                             </section>
                             <p>• <%= aval.data_formatada || 'há algum tempo' %></p>
                             <section id="texto">

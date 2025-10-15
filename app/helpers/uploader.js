@@ -17,7 +17,6 @@ const fileFilter = (req, file, callBack) => {
 
 module.exports = (caminho = null, tamanhoArq = 3) => {
   if (caminho == null) {
-    // Versão com armazenamento em SGBD
     const storage = multer.memoryStorage();
     upload = multer({
       storage: storage,
@@ -25,8 +24,6 @@ module.exports = (caminho = null, tamanhoArq = 3) => {
       fileFilter: fileFilter,
     });
   } else {
-    // Versão com armazenamento em diretório
-    // Definindo o diretório de armazenamento das imagens
     var storagePasta = multer.diskStorage({
       destination: (req, file, callBack) => {
         callBack(null, caminho); // diretório de destino

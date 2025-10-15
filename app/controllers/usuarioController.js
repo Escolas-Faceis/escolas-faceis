@@ -226,7 +226,6 @@ const usuarioController = {
                 let caminho = "app/public/imagem/uploads/" + req.file.filename;
                 let newId = await usuarioModel.insertImage(nomeImagem, caminho);
                 dados.img_perfil_id = newId;
-                // remove old if exists
                 if (currentUser[0].img_perfil_id != null) {
                     removeImg(currentUser[0].img_perfil_pasta);
                 }

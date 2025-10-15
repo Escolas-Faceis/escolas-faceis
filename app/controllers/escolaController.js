@@ -109,7 +109,6 @@ const escolaController = {
             console.log("Result of create:", create);
 
             if (create && create.success === false) {
-                // Handle specific database errors
                 let errorMessage = "Erro no banco de dados. Tente novamente.";
                 let notificationType = "error";
                 
@@ -157,7 +156,7 @@ const escolaController = {
 
     listarEscolasPremium: async () => {
         try {
-            const escolas = await escolaModel.findPremiumSchools(10); // Limitar a 10 escolas
+            const escolas = await escolaModel.findPremiumSchools(10);
             return escolas;
         } catch (error) {
             console.log("Erro ao listar escolas premium:", error);
@@ -173,7 +172,6 @@ const escolaController = {
             let regPagina = 5;
             let inicio = (pagina - 1) * regPagina;
 
-            // Extract search and filter parameters
             const searchParams = {
                 nome: req.query.nome || req.query['nome-escola-search'] || '',
                 cidade: req.query.cidade || req.query['cidade-search'] || '',
@@ -186,7 +184,6 @@ const escolaController = {
                 bilingue: req.query.bilingue
             };
 
-            // Check if any search/filter parameters are provided
             const hasFilters = Object.values(searchParams).some(value => {
                 if (Array.isArray(value)) return value.length > 0;
                 return value && value.trim && value.trim() !== '' && value !== 'regiao';
@@ -195,12 +192,10 @@ const escolaController = {
             let results, totalReg, totPaginas, paginador;
 
             if (hasFilters) {
-                // Use filtered search
                 results = await escolaModel.searchAndFilterSchools(searchParams, inicio, regPagina);
                 const countResult = await escolaModel.countFilteredSchools(searchParams);
                 totalReg = countResult[0] ? countResult[0].total : 0;
             } else {
-                // Use regular pagination
                 results = await escolaModel.findPage(inicio, regPagina);
                 const countResult = await escolaModel.totalReg();
                 totalReg = countResult[0] ? countResult[0].total : 0;
@@ -209,7 +204,6 @@ const escolaController = {
             totPaginas = Math.ceil(totalReg / regPagina);
             paginador = totalReg <= regPagina ? null : { "paginaAtual": pagina, "totalReg": totalReg, "totPaginas": totPaginas };
 
-            // Pass search parameters back to view for form population
             res.render('pages/encontre-escolas', {
                 escolas: results,
                 paginador: paginador,
@@ -338,7 +332,6 @@ const escolaController = {
                 };
             }
 
-            // Verificar status premium
             let isPremium = false;
             try {
                 isPremium = await assinaturaModel.isPremium(results[0].id_escola);
@@ -417,7 +410,6 @@ const escolaController = {
                 };
             }
 
-            // Verificar status premium e buscar assinatura ativa
             let isPremium = false;
             let assinatura = null;
             try {
@@ -425,7 +417,6 @@ const escolaController = {
                 if (isPremium) {
                     assinatura = await assinaturaModel.findActiveBySchool(results[0].id_escola);
                     if (assinatura) {
-                        // Formatar datas para exibição
                         assinatura.data_inicio = assinatura.data_inicio ? moment(assinatura.data_inicio).format('DD/MM/YYYY') : null;
                         assinatura.data_fim = assinatura.data_fim ? moment(assinatura.data_fim).format('DD/MM/YYYY') : null;
                     }
@@ -451,7 +442,6 @@ const escolaController = {
     gravarPerfil: async (req,res) => {
         let currentSchool = await escolaModel.findId(req.session.autenticado.id);
 
-        // Verificar status premium e buscar assinatura ativa
         let isPremium = false;
         let assinatura = null;
         try {
@@ -459,7 +449,6 @@ const escolaController = {
             if (isPremium) {
                 assinatura = await assinaturaModel.findActiveBySchool(currentSchool[0].id_escola);
                 if (assinatura) {
-                    // Formatar datas para exibição
                     assinatura.data_inicio = assinatura.data_inicio ? moment(assinatura.data_inicio).format('DD/MM/YYYY') : null;
                     assinatura.data_fim = assinatura.data_fim ? moment(assinatura.data_fim).format('DD/MM/YYYY') : null;
                 }
@@ -534,7 +523,6 @@ const escolaController = {
                 }
             }
 
-            // Handle carousel images
             console.log("DEBUG: req.files:", req.files);
             console.log("DEBUG: imagens_carrossel in req.files:", req.files && req.files['imagens_carrossel']);
             if (req.files && req.files['imagens_carrossel']) {
@@ -552,7 +540,6 @@ const escolaController = {
                     }
                 }
                 console.log("DEBUG: carouselImageIds:", carouselImageIds);
-                // Insert carousel images for the school
                 if (carouselImageIds.length > 0) {
                     console.log("DEBUG: Inserting carousel images for school ID:", currentSchool[0].id_escola);
                     await escolaModel.insertCarouselImages(currentSchool[0].id_escola, carouselImageIds);
