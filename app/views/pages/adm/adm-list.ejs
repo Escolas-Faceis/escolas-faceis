@@ -27,7 +27,7 @@
                 <td><%= usuario.email_usuario %></td>
                 <td><%= usuario.telefone_usuario || 'Não informado' %></td>
                 <td>
-                    <%= usuario.tipo_usuario%>
+                    <%= usuario.tipo_usuario === 'C' ? 'Comum' : usuario.tipo_usuario === 'A' ? 'Administrador' : usuario.tipo_usuario === 'E' ? 'Escola' : usuario.tipo_usuario %>
                 </td>
                 <td><%= usuario.status_usuario === 1 ? 'Ativo ✅' : 'Inativo ❌' %></td>
             </tr>

@@ -14,41 +14,39 @@
    <body>
         <%- include('../../partials/navbar'); %>
 
- 
-
 <section class="container body-content">
-        <h2 id="title">Escolas Ativas</h2>
+        <h2 id="title">Usuários Comuns</h2>
 <table class="table">
     <tr>
         <th>ID</th>
         <th>Nome</th>
         <th>E-mail</th>
-        <th>CNPJ</th>
-        <th>Endereço</th>
-        <th>Número</th>
+        <th>Telefone</th>
+        <th>Tipo Usuário</th>
         <th>Status</th>
     </tr>
-    <% if (escolas && escolas.length > 0) { %>
-        <% escolas.forEach(escola => { %>
+    <% if (usuariosComuns && usuariosComuns.length > 0) { %>
+        <% usuariosComuns.forEach(usuario => { %>
             <tr>
-                <td><%= escola.id_usuario %></td>
-                <td><%= escola.nome_usuario %></td>
-                <td><%= escola.email_usuario %></td>
-                <td><%= escola.cnpj || 'Não informado' %></td>
-                <td><%= escola.endereco || 'Não informado' %></td>
-                <td><%= escola.numero || 'Não informado' %></td>
-                <td><%= escola.status_usuario === 1 ? 'Ativo ✅' : 'Inativo ❌' %></td>
+                <td><%= usuario.id_usuario %></td>
+                <td><%= usuario.nome_usuario %></td>
+                <td><%= usuario.email_usuario %></td>
+                <td><%= usuario.telefone_usuario || 'Não informado' %></td>
+                <td>
+                    <%= usuario.tipo_usuario === 'C' ? 'Comum' : usuario.tipo_usuario === 'A' ? 'Administrador' : usuario.tipo_usuario === 'E' ? 'Escola' : usuario.tipo_usuario %>
+                </td>
+                <td><%= usuario.status_usuario === 1 ? 'Ativo ✅' : 'Inativo ❌' %></td>
             </tr>
         <% }); %>
     <% } else { %>
         <tr>
-            <td colspan="7">Nenhuma escola encontrada.</td>
+            <td colspan="6">Nenhum usuário comum encontrado.</td>
         </tr>
     <% } %>
 
-</table>
+</table></section>
 
         <section class="s"></section>
-        <%- include('../../partials/footer'); %>   
+        <%- include('../../partials/footer'); %>
         </body>
 </html>

@@ -53,11 +53,11 @@ router.get("/list-escolas",
 router.get("/list-comum",
     verificarUsuAutenticado,
     verificarUsuAutorizado(["A"], 'partials/401'),
-    admControllerPainel.listarEscolas,
+    admControllerPainel.listarUsuariosComuns,
     function(req, res) {
         res.render('pages/adm/adm-list-comum', {
             autenticado: req.session.autenticado,
-            escolas: res.locals.escolas
+            usuariosComuns: res.locals.usuariosComuns
         });
     }
 );
@@ -65,11 +65,11 @@ router.get("/list-comum",
 router.get("/list-adm",
     verificarUsuAutenticado,
     verificarUsuAutorizado(["A"], 'partials/401'),
-    admControllerPainel.listarEscolas,
+    admControllerPainel.listarUsuariosAdms,
     function(req, res) {
         res.render('pages/adm/adm-list-adm', {
             autenticado: req.session.autenticado,
-            escolas: res.locals.escolas
+            usuariosAdms: res.locals.usuariosAdms
         });
     }
 );
@@ -77,13 +77,7 @@ router.get("/list-adm",
 router.get("/premium",
     verificarUsuAutenticado,
     verificarUsuAutorizado(["A"], 'partials/401'),
-    admControllerPainel.listarEscolasPremium,
-    function(req, res) {
-        res.render('pages/adm/premium', {
-            autenticado: req.session.autenticado,
-            escolasPremium: res.locals.escolasPremium
-        });
-    }
+    admControllerPainel.listarEscolasPremiumPaginadas
 );
 
 router.get("/denuncias",

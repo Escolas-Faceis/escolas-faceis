@@ -11,6 +11,26 @@ const admModel = {
         }
     },
 
+    findAllComuns: async () => {
+        try {
+            const [results] = await pool.query("SELECT * FROM usuarios WHERE status_usuario = 1 AND tipo_usuario = 'C'");
+            return results;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+
+    findAllAdms: async () => {
+        try {
+            const [results] = await pool.query("SELECT * FROM usuarios WHERE status_usuario = 1 AND tipo_usuario = 'A'");
+            return results;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+
     findAllSchools: async () => {
         try {
             const [results] = await pool.query(`
@@ -163,40 +183,78 @@ const admModel = {
 findAllPremiumSchools: async () => {
   try {
     const [results] = await pool.query(`
-      SELECT 
-        u.id_usuario, 
-        u.nome_usuario, 
-        u.email_usuario, 
-        u.telefone_usuario, 
-        u.tipo_usuario, 
-        u.status_usuario,
-        e.cnpj, 
-        e.endereco, 
-        e.cep, 
-        e.numero, 
-        e.tipo_ensino, 
-        e.turnos, 
-        e.rede,
-        a.id_assinatura, 
-        a.data_inicio, 
-        a.data_fim, 
-        p.nome_plano, 
-        p.preco_plano
+      SELECT
+        e.id_escola,
+        u.nome_usuario as nome_escola,
+        a.id_assinatura,
+        p.nome_plano,
+        a.data_inicio,
+        a.data_fim
       FROM usuarios u
-      JOIN assinatura a ON u.id_usuario = a.id_usuario
-      JOIN plano p ON a.id_plano = p.id_plano
       JOIN escolas e ON u.id_usuario = e.id_usuario
-      WHERE 
-        u.status_usuario = 1 
-        AND u.tipo_usuario = 'E' 
-        AND a.ativo = TRUE 
+      JOIN assinatura a ON e.id_escola = a.id_escola
+      JOIN plano p ON a.id_plano = p.id_plano
+      WHERE
+        u.status_usuario = 1
+        AND u.tipo_usuario = 'E'
+        AND a.ativo = TRUE
         AND (a.data_fim IS NULL OR a.data_fim >= CURDATE())
-      ORDER BY u.nome_usuario ASC
+      ORDER BY e.id_escola ASC
     `);
     return results;
   } catch (error) {
     console.log("Erro ao buscar escolas premium:", error);
     return [];
+  }
+},
+
+findPremiumSchoolsPage: async (inicio, regPagina) => {
+  try {
+    const [results] = await pool.query(`
+      SELECT
+        e.id_escola,
+        u.nome_usuario as nome_escola,
+        a.id_assinatura,
+        p.nome_plano,
+        a.data_inicio,
+        a.data_fim
+      FROM usuarios u
+      JOIN escolas e ON u.id_usuario = e.id_usuario
+      JOIN assinatura a ON e.id_escola = a.id_escola
+      JOIN plano p ON a.id_plano = p.id_plano
+      WHERE
+        u.status_usuario = 1
+        AND u.tipo_usuario = 'E'
+        AND a.ativo = TRUE
+        AND (a.data_fim IS NULL OR a.data_fim >= CURDATE())
+      ORDER BY e.id_escola ASC
+      LIMIT ?, ?
+    `, [inicio, regPagina]);
+    return results;
+  } catch (error) {
+    console.log("Erro ao buscar escolas premium paginadas:", error);
+    return [];
+  }
+},
+
+totalPremiumSchools: async () => {
+  try {
+    const [results] = await pool.query(`
+      SELECT COUNT(*) as total
+      FROM usuarios u
+      JOIN escolas e ON u.id_usuario = e.id_usuario
+      JOIN assinatura a ON e.id_escola = a.id_escola
+      JOIN plano p ON a.id_plano = p.id_plano
+      WHERE
+        u.status_usuario = 1
+        AND u.tipo_usuario = 'E'
+        AND a.ativo = TRUE
+        AND (a.data_fim IS NULL OR a.data_fim >= CURDATE())
+    `);
+    return results;
+  } catch (error) {
+    console.log("Erro ao contar escolas premium:", error);
+    return [{ total: 0 }];
   }
 }
 
