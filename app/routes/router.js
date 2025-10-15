@@ -60,12 +60,12 @@ const { MercadoPagoConfig, Preference } = require("mercadopago");
 
 // Adicione as credenciais
 const client = new MercadoPagoConfig({
-  accessToken: process.env.accessToken,
+  accessToken: process.env.ACCESS_TOKEN,
 });
 
 router.post("/create-preference", function (req, res) {
   const preference = new Preference(client);
-  console.log(req.body.items);
+  console.log("Received items for preference:", req.body.items);
 
   preference
     .create({
@@ -76,17 +76,20 @@ router.post("/create-preference", function (req, res) {
           failure: process.env.URL_BASE + "/feedback",
           pending: process.env.URL_BASE + "/feedback",
         },
-        auto_return: "approved",
       },
     })
     .then((value) => {
+      console.log("Preference created successfully:", value);
       res.json(value);
     })
-    .catch(console.log);
+    .catch((error) => {
+      console.error("Error creating preference:", error);
+      res.status(500).json({ error: error.message });
+    });
 });
 
 router.get("/feedback", function (req, res) {
-  pedidoController.gravarPedido(req, res);
+  assinaturaController.gravarAssinatura(req, res);
 });
 
 router.get("/", verificarUsuAutenticado, async (req, res) => {
@@ -287,7 +290,15 @@ router.get("/sair", limparSessao, (req, res) => {
 });
 
 router.get("/pagamento", (req, res) => {
-  res.render("pages/pagamento");
+  // Produto padrão único
+  const carrinho = [
+    {
+      produto: "Plano Premium Mensal",
+      preco: 20.62,
+      qtde: 1
+    }
+  ];
+  res.render("pages/pagamento", { carrinho });
 });
 
 

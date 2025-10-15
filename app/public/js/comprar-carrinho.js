@@ -3,30 +3,32 @@ document.addEventListener("DOMContentLoaded", function (e) {
     locale: 'pt-BR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
   });
 
-  // Handle call to backend and generate preference.
   document.getElementById("checkout-btn").addEventListener("click", function () {
+    console.log("Checkout button clicked");
     $("#checkout-btn").attr("disabled", true);
 
-    const items = document.querySelectorAll(".products .item");
-    
-    // Array para armazenar os dados extraídos
-    const extractedData = [];
+    // Extract items dynamically from the cart table
+    const cartRows = document.querySelectorAll("table tbody tr");
+    console.log("Cart rows found:", cartRows.length);
+    const extractedData = Array.from(cartRows).map(row => {
+      const cells = row.querySelectorAll("td");
+      const produto = cells[1].textContent.trim();
+      const qtde = parseInt(cells[2].textContent.trim()) || 1; // Assuming quantity is in the third column
+      const precoText = cells[3].textContent.trim().replace("R$ ", "").replace(",", ".");
+      const unit_price = parseFloat(precoText);
 
-    // Itera sobre cada item para extrair os dados
-    items.forEach(item => {
-      const price = parseFloat(
-        item.querySelector("#summary-price").innerText.trim().replace('R$', '').trim()
-      );
-      const unit_price = Number(price.toFixed(2));
-      const nameElement = item.querySelector(".item-name");
-      const description = nameElement.childNodes[0].nodeValue.trim();
-      const quantity = Number(nameElement.querySelector("#summary-quantity").innerText.trim());
-      const currency_id = "BRL";
+      console.log("Extracted item:", { produto, qtde, unit_price });
 
-      extractedData.push({ unit_price, description, quantity, currency_id });
+      return {
+        title: produto,
+        unit_price: unit_price,
+        quantity: qtde,
+        currency_id: "BRL"
+      };
     });
 
     orderData = { items: extractedData }
+    console.log("Order data to send:", orderData);
 
 fetch("/create-preference", {
   method: "POST",
@@ -36,27 +38,35 @@ fetch("/create-preference", {
   body: JSON.stringify(orderData),
 })
   .then(function (response) {
+    console.log("Fetch response status:", response.status);
     return response.json();
   })
   .then(function (preference) {
-    createCheckoutButton(preference.id);
+    console.log("Preference received:", preference);
 
     $(".shopping-cart").fadeOut(500);
     setTimeout(() => {
       $(".container_payment").show(500).fadeIn();
+      createCheckoutButton(preference.id);
     }, 500);
   })
-  .catch(function () {
+  .catch(function (error) {
+    console.error("Fetch error:", error);
     alert("Unexpected error");
     $("#checkout-btn").attr("disabled", false);
   });
 
   function createCheckoutButton(preferenceId) {
+  console.log("Creating checkout button with preferenceId:", preferenceId);
   // Initialize the checkout
   const bricksBuilder = mercadopago.bricks();
 
   const renderComponent = async (bricksBuilder) => {
-    if (window.checkoutButton) window.checkoutButton.unmount();
+    console.log("Rendering MercadoPago brick");
+    if (window.checkoutButton) {
+      console.log("Unmounting existing checkout button");
+      window.checkoutButton.unmount();
+    }
     await bricksBuilder.create(
       'wallet',
       'button-checkout', // class/id where the payment button will be displayed
@@ -65,8 +75,12 @@ fetch("/create-preference", {
           preferenceId: preferenceId
         },
         callbacks: {
-          onError: (error) => console.error(error),
-          onReady: () => {}
+          onError: (error) => {
+            console.error("MercadoPago brick error:", error);
+          },
+          onReady: () => {
+            console.log("MercadoPago brick ready");
+          }
         }
       }
     );

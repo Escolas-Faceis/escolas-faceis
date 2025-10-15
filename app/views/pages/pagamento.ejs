@@ -5,56 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planos de Assinatura - Busca Escolar</title>
     <link rel="stylesheet" href="../css/assinatura.css">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script src="js/comprar-carrinho.js"></script>
+    <script src="js/script.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script src="https://sdk.mercadoapago.com/js/v2"></script>
+    
 </head>
 
 <body>
         <%- include('../partials/navbar'); %>
 
-    <main>
-            <section class="payment-form dark">
-    <section class="container_payment">
-        <section class="block-heading">
-        <h2>Checkout</h2>
-        </section>
+            <main class="carrinho">
+        <h1>Carrinho de Compras</h1>
+        <section class="shopping-cart dark">
+            <% if(carrinho){ %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Codigo Item</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Valor unitário</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                        var total=0;
+                        carrinho.forEach(function(item){
+                            total += (item.qtde * item.preco);
+                        %>
+                            <tr>
+                                <td>  <%= item.codproduto %> </td>
+                                <td>  <%= item.produto %>    </td>
+                                <td>  <%= item.qtde %> </td>
+                                <td> R$ <%= item.preco.toFixed(2) %> </td>
+                            </tr>
 
-        <section class="form-payment">
-        <section class="products">
-            <h2 class="title">Resumo do pedido</h2>
 
-            <% 
-            var total = 0; 
-            carrinho.forEach(function(item) { 
-                total += (item.qtd * item.preco); 
+                        <%
+                        });
+                        %>
+                    </tbody>
+                </table>
+            <%
+            }
             %>
-            <section class="item">
-                <span class="price hidden" id="summary-price">
-                R$ <%= item.preco.toFixed(2) %>
-                </span>
-                <span class="price" id="subtotal-price">
-                R$ <%= (item.qtd * item.preco).toFixed(2) %>
-                </span>
-                <p class="item-name">
-                <%= item.produto %>
-                (<span id="summary-quantity"><%= item.qtd %></span> un.)
-                </p>
-            </section>
-            <% }); %>
+                <% if(autenticado.autenticado){%>
+                    <button class="btn btn-primary btn-lg btn-block" id="checkout-btn">Comprar</button>
+                <% }else {%>
+                        <p class="btn btn-warning btn-lg btn-block">Para comprar faça <a href="/login">Login</a></p>
+                <% }%>
+        </section>
 
-            <section class="total">
-            <span class="price" id="summary-total">
-                Total R$ <%= total.toFixed(2) %>
-            </span>
+
+        <section class="payment-form dark">
+            <section class="container_payment">
+                <section class="block-heading"> <h2>Checkout</h2> </section>
+                <section class="form-payment">
+                    <section class="products">
+                        <h2 class="title">Resumo do pedido</h2>
+                        <%
+                        var total = 0;
+                        carrinho.forEach(function(item){
+                            total += (item.qtde * item.preco);
+                        %>
+                            <section class="item">
+                                <span class="price hidden" id="summary-price">R$ <%= item.preco.toFixed(2) %> </span>
+                                <span class="price" id="subtot-price">R$ <%= (item.qtde * item.preco).toFixed(2) %> </span>
+                                <p class="item-name"> <%= item.produto %>
+                                    (<span id="summary-quantity"> <%= item.qtde %>
+                                    </span>x R$ <%= item.preco.toFixed(2) %>)
+                                </p>
+                            </section>
+                        <% }); %>
+                        <section class="total">
+                            <span class="price" id="summary-total">Total R$ <%= total.toFixed(2) %> </span>
+                        </section>
+                    </section>
+
+                    <section class="payment-details">
+                        <section class="form-group col-sm-12">
+                            <br>
+                            <section id="button-checkout"></section>
+                            <br>
+                            <a id="go-back">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 10 10"
+                                    class="chevron-left">
+                                    <path fill="#009EE3" fill-rule="nonzero" id="chevron_left"
+                                        d="M7.05 1.4L6.2.552 1.756 4.997l4.449 4.448.849-.848-3.6-3.6z"></path>
+                                </svg>
+                                Voltar ao carrinho
+                            </a>
+                        </section>
+                    </section>
+                </section>
             </section>
         </section>
-        </section>
-    </section>
-    </section>
-
-    </main>
-
 
         <%- include('../partials/footer'); %>
     </body>

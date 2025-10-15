@@ -122,31 +122,43 @@ const assinaturaController = {
 
     gravarAssinatura: async (req, res) => {
     try {
-    const carrinho = req.session.carrinho;
+    const id_plano = 2; 
 
-    const camposJsonPedido = {
-      data: moment().format("YYYY-MM-DD HH:mm:ss"),
-      usuario_id_usuario: req.session.autenticado.id,
-      status_pedido: 1,
-      status_pagamento: req.query.status,
-      id_pagamento: req.query.payment_id,
+    const id_escola = req.session.autenticado.id;
+
+    const isPremium = await assinaturaModel.isPremium(id_escola);
+    if (isPremium) {
+      return res.redirect("/perfil-escola?error=Você já possui uma assinatura ativa");
+    }
+
+    const plano = await assinaturaModel.getPlanoById(id_plano);
+    if (!plano) {
+      return res.redirect("/planos?error=Plano não encontrado");
+    }
+
+    let data_fim = null;
+    if (plano.duracao_plano === 'A') {
+      const dataInicio = new Date();
+      data_fim = new Date(dataInicio.getFullYear() + 1, dataInicio.getMonth(), dataInicio.getDate());
+    }
+
+    const dadosAssinatura = {
+      id_escola: id_escola,
+      id_plano: id_plano,
+      data_inicio: new Date(),
+      data_fim: data_fim,
+      ativo: true
     };
 
-    var create = await pedidoModel.createPedido(camposJsonPedido);
-
-    carrinho.forEach(async (element) => {
-      const camposJsonItemPedido = {
-        pedido_id_pedido: create.insertId,
-        hq_id_hq: element.codproduto,
-        quantidade: element.qtd,
-      };
-      await pedidoModel.createItemPedido(camposJsonItemPedido);
-    });
-
-    req.session.carrinho = [];
-    res.redirect("/");
+    const result = await assinaturaModel.create(dadosAssinatura);
+    if (result) {
+      res.redirect("/perfil-escola?success=Assinatura realizada com sucesso!");
+    } else {
+      res.redirect("/planos?error=Erro ao processar assinatura");
+    }
   } catch (e) {
     console.log(e);
+    res.redirect("/planos?error=Erro interno do servidor");
   }
 }
 };
