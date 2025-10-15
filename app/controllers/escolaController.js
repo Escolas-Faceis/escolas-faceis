@@ -293,7 +293,7 @@ const escolaController = {
             }
             let avaliacoes = [];
             try {
-                avaliacoes = await avalController.getAvaliacoesPorEscola(id);
+                avaliacoes = await avalController.getAvaliacoesPorEscola(results[0].id_escola);
                 if (avaliacoes) {
                     avaliacoes.forEach(aval => {
                         aval.data_formatada = moment(aval.data_avaliacao).fromNow();
@@ -305,7 +305,7 @@ const escolaController = {
 
             let mediaAvaliacao = { media: 0, totalAvaliacoes: 0 };
             try {
-                const avgResult = await avalModel.getAverage(id);
+                const avgResult = await avalModel.getAverage(results[0].id_escola);
                 if (avgResult) {
                     mediaAvaliacao.media = parseFloat(avgResult.media || 0);
                     mediaAvaliacao.totalAvaliacoes = avgResult.total || 0;

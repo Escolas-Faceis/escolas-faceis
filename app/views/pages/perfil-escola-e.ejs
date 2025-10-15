@@ -264,6 +264,11 @@
 
     </section>
 <%- include('../partials/footer'); %>
+<% if (dadosNotificacao) { %>
+<script>
+notify('<%= dadosNotificacao.titulo %>', '<%= dadosNotificacao.mensagem %>', '<%= dadosNotificacao.tipo %>', 'top-right');
+</script>
+<% } %>
 <script>
     const textarea = document.getElementById('ratetext');
     const warning = document.getElementById('caracteres');
@@ -326,23 +331,25 @@
                 const data = await response.json();
                 if (data.success) {
                     // Update average
-                    const mediaSection = document.querySelector('.estrelas-media');
-                    if (mediaSection) {
-                        const stars = mediaSection.querySelectorAll('span');
+                    const ratingDisplay = document.querySelector('.rating-display');
+                    if (ratingDisplay) {
+                        const stars = ratingDisplay.querySelectorAll('span.star');
+                        const notaSpan = ratingDisplay.querySelector('.nota');
                         const rounded = Math.round(data.mediaAvaliacao.media);
                         stars.forEach((star, i) => {
                             if (i < rounded) {
-                                star.className = 'star-filled';
-                                star.textContent = '★';
+                                star.classList.add('filled');
                             } else {
-                                star.className = 'star-empty';
-                                star.textContent = '☆';
+                                star.classList.remove('filled');
                             }
                         });
-                        const p = mediaSection.nextElementSibling;
-                        if (p) {
-                            p.textContent = `${Math.round(data.mediaAvaliacao.media)} / 5 (baseado em ${data.mediaAvaliacao.totalAvaliacoes} avaliações)`;
+                        if (notaSpan) {
+                            notaSpan.textContent = rounded;
                         }
+                    }
+                    const totalP = document.querySelector('.media-avaliacoes p');
+                    if (totalP) {
+                        totalP.textContent = `Total de avaliações: ${data.mediaAvaliacao.totalAvaliacoes}`;
                     }
                     // Add new review
                     const caixa = document.getElementById('caixa_comentarios');

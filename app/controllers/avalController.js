@@ -45,21 +45,21 @@ criarAvaliacao: async (req, res) => {
             };
             return res.redirect('/perfil-escola?id=' + req.body.id_usuario_escola);
         }
-        if (req.session.autenticado.tipo === 'E' && req.session.autenticado.id == req.body.id_usuario) {
+        if (req.session.autenticado.tipo === 'E' && req.session.autenticado.id == req.body.id_usuario_escola) {
             const isAjax = req.headers['x-requested-with'] === 'XMLHttpRequest';
             if (isAjax) {
                 return res.json({ success: false, message: "Você não pode avaliar sua própria escola." });
             }
             req.session.dadosNotificacao = {
                 titulo: "Erro ao avaliar!",
-                mensagem: "Você não pode avaliar sua própria ou outra escola.",
+                mensagem: "Você não pode avaliar sua própria escola.",
                 tipo: "error"
             };
             return res.redirect('/perfil-escola?id=' + req.body.id_usuario_escola);
         }
         const dadosAvaliacao = {
             id_usuario: req.session.autenticado.id,
-            id_escola: req.body.id_usuario_escola,
+            id_escola: req.body.id_escola,
             nota: req.body.nota,
             comentario: req.body.comentario
         };
@@ -83,7 +83,7 @@ criarAvaliacao: async (req, res) => {
 
             const isAjax = req.headers['x-requested-with'] === 'XMLHttpRequest';
             if (isAjax) {
-                const newAverage = await avalModel.getAverage(req.body.id_usuario_escola);
+                const newAverage = await avalModel.getAverage(req.body.id_escola);
                 newAverage.media = parseFloat(newAverage.media).toFixed(1);
                 newAverage.totalAvaliacoes = newAverage.total;
                 const newAval = await avalModel.findById(result.id);

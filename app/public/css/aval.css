@@ -107,7 +107,7 @@ font-weight: 300;
   z-index: 1;
   border: solid #ffbc3e 1.5px;
   color: #ffbc3e;
-  background-color: #ffffff;
+  background-color: var(--fundo);
 
   border-radius: 5px;
   width: 80px;
@@ -129,6 +129,7 @@ font-weight: 300;
   padding: 3%;
   height: 150px;
   box-sizing: border-box;
+  background-color: var(--fundo-secundario);
 }
 
 .rating{
