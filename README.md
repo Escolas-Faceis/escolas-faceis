@@ -46,6 +46,9 @@ Controller: processa as requisições, aplica regras e envia respostas
 ✅ Recuperação de senha via e-mail
 ✅ Painel administrativo e gerenciamento de dados
 ✅ Interface amigável e responsiva
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7566a74189de67f2f77683cf61a1d8ef2925ffaa
 
 
