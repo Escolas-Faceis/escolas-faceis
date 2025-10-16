@@ -1,9 +1,10 @@
 :root {
   --laranja: #f56d44;
   --fundo: #ffffff;
-  --letras: #000000;
+  --letras: var(--azulbase);
   --azulbase: #141c44;
   --azulsec: #77b6ea;
+      --fundo2: #fafafa;
   --amarelo: #ffbc3e;
 }
 
@@ -14,6 +15,7 @@
   --azulsec: #77b6ea;
   --amarelo: #ffbc3e;
   --letras: #02030a;
+      --fundo2: #0a0a0a1a;
   transition: all 0.2s ease-in;
 }
 
@@ -50,7 +52,7 @@ body {
     flex-direction: column;
     width: 700px;
     max-width: 98vw;
-    background-color: #fff;
+    background-color: var(--fundo2);
     color: var(--letras);
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 6px 32px #77b6ea33;
@@ -73,7 +75,7 @@ body {
     height: 150px;
     margin-bottom: 0;
     position: relative;
-    z-index: 1;
+    z-index: 0;
 }
 
 #img-preview {
@@ -98,6 +100,7 @@ input[type="color"] {
   border-width: 1px;
   border-style: solid;
   border-color: rgb(153, 153, 153);
+  background-color: var(--fundo2);
 }
 
 .photo-color-row {
@@ -174,7 +177,7 @@ input[type="color"] {
   .form-group label {
     font-size: 15px;
     font-weight: 600;
-    color: #141c44;
+    color: var(--letras);
     margin-bottom: 4px;
     margin-top: 0;
     display: block;
@@ -192,7 +195,7 @@ input[type="color"] {
     border-radius: 10px;
     padding: 10px 12px;
     width: 100%;
-    background: #f8fbff;
+  background-color: var(--fundo2);
     color: var(--letras);
     transition: border 0.2s;
     margin-bottom: 0;
@@ -288,7 +291,8 @@ input[type="color"] {
   max-width: 98vw;
   margin: 0 auto 100px auto;
   padding: 32px 24px;
-  background-color: #fff;
+  background-color: var(--fundo2);
+
   border: 1.5px solid #c7d3dd;
   border-radius: 18px;
   box-shadow: 0 6px 32px #77b6ea33;

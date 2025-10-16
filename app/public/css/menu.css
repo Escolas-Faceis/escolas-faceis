@@ -68,8 +68,15 @@
     text-indent: 4em;
   }
 
+.navbar {
+    position: relative;
+    z-index: 100;
+  }
+
   .navbar header {
     background: var(--azulbase);
+    position: relative;
+    z-index: 100;
   }
 
   .navbar #check {
@@ -298,7 +305,7 @@
   }
 
   .navbar nav {
-    z-index: 3;
+    z-index: 100;
     background-color: var(--azulbase);
     height: 120px;
     width: 100vw;

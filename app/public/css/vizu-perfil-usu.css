@@ -12,7 +12,7 @@
 :root {
   --laranja: #f56d44;
   --fundo: #ffffff;
-  --letras: #000000;
+  --letras: #141c44;
   --azulbase: #141c44;
   --azulsec: #77b6ea;
   --amarelo: #ffbc3e;
@@ -106,7 +106,9 @@ body {
   transform: scale(1.05);
 }
 
-
+#perfil{
+        z-index: 0 !important;
+}
 
 
 #banner_perfil {
@@ -115,7 +117,7 @@ body {
     height: 200px;
     margin-bottom: 0;
     position: relative;
-    z-index: 1;
+    z-index: 0;
 }
 
 #perfil-foto-publica {
@@ -153,6 +155,7 @@ body {
     min-width: 320px;
     flex: 2;
     gap: 20px;
+        z-index: 0 !important;
 }
 
 #conteudo_perfil {
@@ -172,6 +175,7 @@ body {
     word-break: break-word;
     max-width: 350px;
     text-align: center;
+            z-index: -1 !important;
 }
 
 .alinhar {
@@ -305,7 +309,7 @@ body {
 }
 
 #avalnome{
-    color: var(--azulbase);
+    color: var(--letras);
     text-decoration: none;
 }
 

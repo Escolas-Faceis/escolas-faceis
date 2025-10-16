@@ -117,7 +117,7 @@
 
     <form action="/info_post" method="POST" enctype="multipart/form-data" class="form-editar-perfil">
         <h1>Editar Perfil</h1>
-
+        
         <section id="banner_perfil" onclick="document.getElementById('cor_banner').click()" title="Clique para alterar a cor do banner">
             <img class="img-perfil fototo"  id="img-preview" src="<%= arquivo.imagem || 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" alt="Foto de Perfil do Usuário">
             <input type="color" name="cor_banner" id="cor_banner" value="<%= valores && valores.cor_banner ? valores.cor_banner : '#C7D3DD' %>" required style="display:none;">
