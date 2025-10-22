@@ -74,7 +74,7 @@
                 <% if (avaliacoes && avaliacoes.length > 0) { %>
                     <% avaliacoes.forEach(aval => { %>
                         <article id="comentario" data-id="<%= aval.id_avaliacao %>">
-                            <% if(autenticado && autenticado.autenticado && autenticado.id == aval.id_usuario){ %> <form action="/excluir-avaliacao" method="post"><input type="hidden" name="id_avaliacao" value="<%= aval.id_avaliacao %>"><button type="submit" class="trash-icon" data-id="<%= aval.id_avaliacao %>" onclick="return confirm('Tem certeza que deseja excluir esta avaliação?')">&#128465;</button></form> <% } %>
+                            <% if(autenticado && autenticado.autenticado && autenticado.id == aval.id_usuario){ %> <form action="/excluir-avaliacao" method="post"><input type="hidden" name="id_avaliacao" value="<%= aval.id_avaliacao %>"><button type="submit" class="trash-icon" data-id="<%= aval.id_avaliacao %>" onclick="return confirm('Tem certeza que deseja excluir esta avaliação?')"><img src="/imagem/lixeira.svg" alt="Excluir avaliação" class="trash-svg"></button></form> <% } %>
                             <section id="info_usuario_comentario">
                                 <a href="/perfil-usuario?id=<%= aval.id_usuario %>">
                                     <img src="<%= valores.img_perfil_banco ? valores.img_perfil_banco : valores.img_perfil_pasta ? valores.img_perfil_pasta : 'https://cdn-icons-png.flaticon.com/512/219/219969.png' %>" id="foto_comentario">

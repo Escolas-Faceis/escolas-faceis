@@ -253,18 +253,20 @@ const escolaController = {
 
             }
 
+            let viaCep = {logradouro:"", bairro:"", localidade:"", uf:""}
+            let cep = null;
             if(results[0].cep != null){
-                const httpsAgent = new https.Agent({
-                    rejectUnauthorized: false});
-                    const response = await fetch(`https://viacep.com.br/ws/${results[0].cep}/json/`, {
-                        method: 'GET',
-                        agent: httpsAgent
-                    });
-                var viaCep = await response.json();
-                var cep = results[0].cep.slice(0,5)+ "-"+results[0].cep.slice(5)
-            }else{
-                var viaCep = {logradouro:"", bairro:"", localidade:"", uf:""}
-                var cep = null;
+                try {
+                    const response = await fetch(`https://viacep.com.br/ws/${results[0].cep}/json/`);
+                    if (response.ok) {
+                        viaCep = await response.json();
+                    } else {
+                        console.log('ViaCEP API returned status:', response.status);
+                    }
+                    cep = results[0].cep.slice(0,5)+ "-"+results[0].cep.slice(5);
+                } catch (error) {
+                    console.log('Erro ao buscar CEP:', error.message);
+                }
             }
 
             let carouselImages = [];

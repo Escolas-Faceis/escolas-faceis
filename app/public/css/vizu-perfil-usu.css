@@ -345,14 +345,28 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 1.5rem;
-    color: var(--azul-base);
+    background: none;
+    border: none;
     cursor: pointer;
-    transition: color 0.3s ease;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.trash-svg {
+    width: 20px;
+    height: 20px;
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .trash-icon:hover {
-    color: var(--laranja);
+    background-color: rgba(245, 109, 68, 0.1);
+    transform: scale(1.1);
+}
+
+.trash-icon:hover .trash-svg {
+   
+    transform: scale(1.1);
 }
 
 #estrelas {
